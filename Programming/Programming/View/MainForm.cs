@@ -1,3 +1,5 @@
+using System.Drawing;
+
 namespace Programming
 {
     public partial class Programming : Form
@@ -10,6 +12,11 @@ namespace Programming
                 typeof(Manufactures), typeof(Season), typeof(Weekday)};
             EnumsListBox.Items.AddRange(enums);
             EnumsListBox.SelectedIndex = 0;
+
+            SeasonComboBox.Items.AddRange(new string[]  {Convert.ToString(Season.Autumn),
+                                                         Convert.ToString(Season.Summer),
+                                                         Convert.ToString(Season.Spring),
+                                                         Convert.ToString(Season.Winter)});
 
         }
 
@@ -80,6 +87,36 @@ namespace Programming
                 ParsingResultLabel.Visible = true;
             }
 
+
+        }
+
+        private void SeasonComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void SeasonButton_Click(object sender, EventArgs e)
+        {
+            switch (SeasonComboBox.Text)
+            {
+                case "Summer":
+                    MessageBox.Show("Ура! Солнце!");
+                    break;
+                case "Autumn":
+                    BackColor = ColorTranslator.FromHtml("#e29c45");
+                    break;
+                case "Winter":
+                    MessageBox.Show("Бррр! Холодно!");
+                    break;
+                case "Spring":
+                    BackColor = ColorTranslator.FromHtml("#559c45"); ;
+                    break;
+                
+                default:
+                    MessageBox.Show("Выберите время года!");
+                    break;
+
+            }    
         }
     }
 }
