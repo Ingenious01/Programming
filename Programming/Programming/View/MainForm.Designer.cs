@@ -101,7 +101,7 @@
             this.ValuesListBox.Name = "ValuesListBox";
             this.ValuesListBox.Size = new System.Drawing.Size(159, 324);
             this.ValuesListBox.TabIndex = 1;
-            this.ValuesListBox.SelectedIndexChanged += new System.EventHandler(this.ValuesListBox_SelectedIndexChanged_1);
+            this.ValuesListBox.SelectedIndexChanged += new System.EventHandler(this.ValuesListBox_SelectedIndexChanged);
             // 
             // IntValueLabel
             // 
@@ -139,7 +139,7 @@
             this.EnumsListBox.Name = "EnumsListBox";
             this.EnumsListBox.Size = new System.Drawing.Size(159, 324);
             this.EnumsListBox.TabIndex = 0;
-            this.EnumsListBox.SelectedIndexChanged += new System.EventHandler(this.EnumsListBox_SelectedIndexChanged_1);
+            this.EnumsListBox.SelectedIndexChanged += new System.EventHandler(this.EnumsListBox_SelectedIndexChanged);
             // 
             // EnumLabel
             // 
@@ -258,7 +258,6 @@
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MainForm";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.EnumsTabPage.ResumeLayout(false);
             this.EnumPage.ResumeLayout(false);
             this.EnumerationsBox.ResumeLayout(false);

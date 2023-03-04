@@ -19,13 +19,9 @@ namespace Programming
                                                          Convert.ToString(Season.Winter)});
 
         }
+      
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void EnumsListBox_SelectedIndexChanged_1(object sender, EventArgs e)
+        private void EnumsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             var selectedEnum = (Type)EnumsListBox.SelectedItem;
             var enumValues = Enum.GetValues(selectedEnum);
@@ -37,7 +33,7 @@ namespace Programming
 
         }
 
-        private void ValuesListBox_SelectedIndexChanged_1(object sender, EventArgs e)
+        private void ValuesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
 
             if (ValuesListBox.Items == null)
