@@ -1,6 +1,6 @@
 ﻿namespace Programming
 {
-    partial class Programming
+    partial class MainForm
     {
         /// <summary>
         ///  Required designer variable.
@@ -38,7 +38,7 @@
             this.WDParsingTabControl = new System.Windows.Forms.TabControl();
             this.WeekDayParsingTabControl = new System.Windows.Forms.TabPage();
             this.ParsingResultLabel = new System.Windows.Forms.Label();
-            this.WeekDayParcingButton = new System.Windows.Forms.Button();
+            this.WeekDayParsingButton = new System.Windows.Forms.Button();
             this.ParsingTextBox = new System.Windows.Forms.TextBox();
             this.WDParsingLabel = new System.Windows.Forms.Label();
             this.EnumerationTabControl = new System.Windows.Forms.TabControl();
@@ -61,13 +61,15 @@
             // 
             // EnumsTabPage
             // 
+            this.EnumsTabPage.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.EnumsTabPage.Controls.Add(this.EnumPage);
-            this.EnumsTabPage.Dock = System.Windows.Forms.DockStyle.Fill;
             this.EnumsTabPage.Location = new System.Drawing.Point(0, 0);
             this.EnumsTabPage.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.EnumsTabPage.Name = "EnumsTabPage";
             this.EnumsTabPage.SelectedIndex = 0;
-            this.EnumsTabPage.Size = new System.Drawing.Size(926, 748);
+            this.EnumsTabPage.Size = new System.Drawing.Size(941, 771);
             this.EnumsTabPage.TabIndex = 0;
             // 
             // EnumPage
@@ -79,13 +81,16 @@
             this.EnumPage.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.EnumPage.Name = "EnumPage";
             this.EnumPage.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.EnumPage.Size = new System.Drawing.Size(918, 715);
+            this.EnumPage.Size = new System.Drawing.Size(933, 738);
             this.EnumPage.TabIndex = 0;
             this.EnumPage.Text = "Enum";
             this.EnumPage.UseVisualStyleBackColor = true;
             // 
             // SeasonHandleTabControl
             // 
+            this.SeasonHandleTabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.SeasonHandleTabControl.Controls.Add(this.SeasonHandle);
             this.SeasonHandleTabControl.Location = new System.Drawing.Point(469, 437);
             this.SeasonHandleTabControl.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -115,7 +120,6 @@
             this.SeasonComboBox.Name = "SeasonComboBox";
             this.SeasonComboBox.Size = new System.Drawing.Size(184, 28);
             this.SeasonComboBox.TabIndex = 3;
-            this.SeasonComboBox.SelectedIndexChanged += new System.EventHandler(this.SeasonComboBox_SelectedIndexChanged);
             // 
             // SeasonButton
             // 
@@ -140,6 +144,9 @@
             // 
             // WDParsingTabControl
             // 
+            this.WDParsingTabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.WDParsingTabControl.Controls.Add(this.WeekDayParsingTabControl);
             this.WDParsingTabControl.Location = new System.Drawing.Point(8, 437);
             this.WDParsingTabControl.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -151,7 +158,7 @@
             // WeekDayParsingTabControl
             // 
             this.WeekDayParsingTabControl.Controls.Add(this.ParsingResultLabel);
-            this.WeekDayParsingTabControl.Controls.Add(this.WeekDayParcingButton);
+            this.WeekDayParsingTabControl.Controls.Add(this.WeekDayParsingButton);
             this.WeekDayParsingTabControl.Controls.Add(this.ParsingTextBox);
             this.WeekDayParsingTabControl.Controls.Add(this.WDParsingLabel);
             this.WeekDayParsingTabControl.Location = new System.Drawing.Point(4, 29);
@@ -175,17 +182,17 @@
             this.ParsingResultLabel.Text = "label1";
             this.ParsingResultLabel.Visible = false;
             // 
-            // WeekDayParcingButton
+            // WeekDayParsingButton
             // 
-            this.WeekDayParcingButton.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.WeekDayParcingButton.Location = new System.Drawing.Point(266, 48);
-            this.WeekDayParcingButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.WeekDayParcingButton.Name = "WeekDayParcingButton";
-            this.WeekDayParcingButton.Size = new System.Drawing.Size(125, 36);
-            this.WeekDayParcingButton.TabIndex = 2;
-            this.WeekDayParcingButton.Text = "Parse";
-            this.WeekDayParcingButton.UseVisualStyleBackColor = true;
-            this.WeekDayParcingButton.Click += new System.EventHandler(this.WeekDayParcingButton_Click);
+            this.WeekDayParsingButton.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.WeekDayParsingButton.Location = new System.Drawing.Point(266, 48);
+            this.WeekDayParsingButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.WeekDayParsingButton.Name = "WeekDayParsingButton";
+            this.WeekDayParsingButton.Size = new System.Drawing.Size(125, 36);
+            this.WeekDayParsingButton.TabIndex = 2;
+            this.WeekDayParsingButton.Text = "Parse";
+            this.WeekDayParsingButton.UseVisualStyleBackColor = true;
+            this.WeekDayParsingButton.Click += new System.EventHandler(this.WeekDayParsingButton_Click);
             // 
             // ParsingTextBox
             // 
@@ -205,16 +212,18 @@
             this.WDParsingLabel.Size = new System.Drawing.Size(198, 25);
             this.WDParsingLabel.TabIndex = 0;
             this.WDParsingLabel.Text = "Type value for parsing";
-            this.WDParsingLabel.Click += new System.EventHandler(this.WDParcingLabel_Click);
             // 
             // EnumerationTabControl
             // 
+            this.EnumerationTabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.EnumerationTabControl.Controls.Add(this.EnumerationPage);
             this.EnumerationTabControl.Location = new System.Drawing.Point(3, 4);
             this.EnumerationTabControl.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.EnumerationTabControl.Name = "EnumerationTabControl";
             this.EnumerationTabControl.SelectedIndex = 0;
-            this.EnumerationTabControl.Size = new System.Drawing.Size(904, 413);
+            this.EnumerationTabControl.Size = new System.Drawing.Size(898, 411);
             this.EnumerationTabControl.TabIndex = 0;
             // 
             // EnumerationPage
@@ -229,7 +238,7 @@
             this.EnumerationPage.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.EnumerationPage.Name = "EnumerationPage";
             this.EnumerationPage.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.EnumerationPage.Size = new System.Drawing.Size(896, 380);
+            this.EnumerationPage.Size = new System.Drawing.Size(890, 378);
             this.EnumerationPage.TabIndex = 0;
             this.EnumerationPage.Text = "Enumeration";
             this.EnumerationPage.UseVisualStyleBackColor = true;
@@ -242,7 +251,6 @@
             this.ValuesTextBox.Name = "ValuesTextBox";
             this.ValuesTextBox.Size = new System.Drawing.Size(114, 27);
             this.ValuesTextBox.TabIndex = 5;
-            this.ValuesTextBox.TextChanged += new System.EventHandler(this.ValuesTextBox_TextChanged_1);
             // 
             // IntValueLabel
             // 
@@ -293,19 +301,17 @@
             this.EnumsListBox.TabIndex = 0;
             this.EnumsListBox.SelectedIndexChanged += new System.EventHandler(this.EnumsListBox_SelectedIndexChanged_1);
             // 
-            // Programming
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.ClientSize = new System.Drawing.Size(926, 748);
+            this.ClientSize = new System.Drawing.Size(941, 771);
             this.Controls.Add(this.EnumsTabPage);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "Programming";
+            this.MinimumSize = new System.Drawing.Size(959, 818);
+            this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Programming";
+            this.Text = "MainForm";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.EnumsTabPage.ResumeLayout(false);
             this.EnumPage.ResumeLayout(false);
@@ -338,7 +344,7 @@
         private TabPage WeekDayParsingTabControl;
         private Label WDParsingLabel;
         private Label ParsingResultLabel;
-        private Button WeekDayParcingButton;
+        private Button WeekDayParsingButton;
         private TextBox ParsingTextBox;
         private TabControl SeasonHandleTabControl;
         private TabPage SeasonHandle;

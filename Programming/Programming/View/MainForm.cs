@@ -2,9 +2,9 @@ using System.Drawing;
 
 namespace Programming
 {
-    public partial class Programming : Form
+    public partial class MainForm : Form
     {
-        public Programming()
+        public MainForm()
         {
             InitializeComponent();
 
@@ -33,8 +33,7 @@ namespace Programming
             foreach (var enumValue in enumValues)
             {
                 ValuesListBox.Items.Add(enumValue);
-            }
-            //ValuesTextBox.Clear();
+            }            
 
         }
 
@@ -48,28 +47,12 @@ namespace Programming
 
             else
             {
-                ValuesTextBox.Text = ((int)Enum.Parse(Type.GetType(EnumsListBox.Text),
-                    ValuesListBox.Text)).ToString();
+                ValuesTextBox.Text = ((int)Enum.Parse(Type.GetType(EnumsListBox.Text), ValuesListBox.Text)).ToString();
             }
 
-        }
-
-        private void ValuesTextBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ValuesTextBox_TextChanged_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void WDParcingLabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void WeekDayParcingButton_Click(object sender, EventArgs e)
+        }      
+       
+        private void WeekDayParsingButton_Click(object sender, EventArgs e)
         {
             if (Enum.IsDefined(typeof(Weekday), ParsingTextBox.Text))
             {
@@ -86,14 +69,7 @@ namespace Programming
 
                 ParsingResultLabel.Visible = true;
             }
-
-
-        }
-
-        private void SeasonComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
-        }
+        }      
 
         private void SeasonButton_Click(object sender, EventArgs e)
         {

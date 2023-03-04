@@ -6,6 +6,5 @@
     Xiaomi,
     Huawei,
     Sony,
-    Lenovo,
-
+    Lenovo
 }

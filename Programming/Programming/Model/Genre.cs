@@ -6,5 +6,4 @@
     Action,
     Horror,
     Blockbuster
-
 }
