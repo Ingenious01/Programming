@@ -3,7 +3,7 @@ using System.Drawing;
 namespace Programming
 {
     public partial class MainForm : Form
-    {
+    {       
         public MainForm()
         {
             InitializeComponent();
@@ -16,7 +16,7 @@ namespace Programming
             SeasonComboBox.Items.AddRange(new string[]  {Convert.ToString(Season.Autumn),
                                                          Convert.ToString(Season.Summer),
                                                          Convert.ToString(Season.Spring),
-                                                         Convert.ToString(Season.Winter)});
+                                                         Convert.ToString(Season.Winter)});            
 
         }
       
