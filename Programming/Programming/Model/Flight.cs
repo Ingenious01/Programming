@@ -10,7 +10,7 @@ namespace Programming.Model
     {
         string _start_point;
         string _end_point;
-        int _time;
+        int _duration;
 
         public string Start
         {
@@ -38,13 +38,13 @@ namespace Programming.Model
 
         }
 
-        public int Time
+        public int Duration
         {
-            get => _time;
+            get => _duration;
             set
             {
-                if (value >= 0)
-                    _time = value;
+                if (value >= 0 && value <= 100)
+                    _duration = value;
                 else
                     throw new ArgumentException("Укажите аргумент (больше 0)");
             }
@@ -56,11 +56,11 @@ namespace Programming.Model
 
         }
 
-        public Flight(string start, string end, int time)
+        public Flight(string start, string end, int duration)
         {
             Start = start;
             End = end;
-            Time = time;
+            Duration = duration;
         }
     }
 }

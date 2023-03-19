@@ -20,7 +20,7 @@ namespace Programming.Model
                 if (value >= 0 )
                     _length = value;
                 else
-                    throw new ArgumentException("Укажите аргумент (больше 0)");
+                    throw new ArgumentException("Укажите длинну прямоугольника (больше 0)");
             }
 
         }
@@ -33,7 +33,7 @@ namespace Programming.Model
                 if (value >= 0 )
                     _width = value;
                 else
-                    throw new ArgumentException("Укажите аргумент (больше 0)");
+                    throw new ArgumentException("Укажите ширину прямоугольника (больше 0)");
             }
 
         }
@@ -48,7 +48,7 @@ namespace Programming.Model
                       || value == "White" || value == "Black")
                     _color = value;
                 else
-                    throw new ArgumentException("Укажите аргумент (цвет на английском)");
+                    throw new ArgumentException("Укажите цвет прямоугольника (цвет на английском)");
             }
 
         }

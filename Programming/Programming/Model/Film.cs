@@ -72,7 +72,7 @@ namespace Programming.Model
             get => _rating;
             set
             {
-                if (value >= 0 && value <= 10)
+                if (value > 0 && value <= 10)
                     _rating = value;
                 else
                     throw new ArgumentException("Укажите рейтинг фильма");
