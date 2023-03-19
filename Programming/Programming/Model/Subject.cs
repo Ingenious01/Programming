@@ -12,7 +12,7 @@ namespace Programming.Model
         string _teacher;
         int _mark;
 
-        public string Name
+        private string Name
         {
             get => _name;
             set
@@ -25,7 +25,7 @@ namespace Programming.Model
 
         }
 
-        public string Teacher
+        private string Teacher
         {
             get => _teacher;
             set
@@ -38,7 +38,7 @@ namespace Programming.Model
 
         }
 
-        public int Mark
+        private int Mark
         {
             get => _mark;
             set

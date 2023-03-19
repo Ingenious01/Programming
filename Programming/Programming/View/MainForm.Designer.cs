@@ -49,6 +49,8 @@
             this.SeasonButton = new System.Windows.Forms.Button();
             this.SeasonComboBox = new System.Windows.Forms.ComboBox();
             this.SeasonLabel = new System.Windows.Forms.Label();
+            this.ClasseTabPage = new System.Windows.Forms.TabPage();
+            this.RectanglesBox = new System.Windows.Forms.GroupBox();
             this.EnumsTabPage.SuspendLayout();
             this.EnumPage.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -56,11 +58,13 @@
             this.tableLayoutPanel2.SuspendLayout();
             this.WeekdayParcingBox.SuspendLayout();
             this.SeasonHandleBox.SuspendLayout();
+            this.ClasseTabPage.SuspendLayout();
             this.SuspendLayout();
             // 
             // EnumsTabPage
             // 
             this.EnumsTabPage.Controls.Add(this.EnumPage);
+            this.EnumsTabPage.Controls.Add(this.ClasseTabPage);
             this.EnumsTabPage.Dock = System.Windows.Forms.DockStyle.Fill;
             this.EnumsTabPage.Location = new System.Drawing.Point(0, 0);
             this.EnumsTabPage.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -302,6 +306,27 @@
             this.SeasonLabel.TabIndex = 0;
             this.SeasonLabel.Text = "Choose season:";
             // 
+            // ClasseTabPage
+            // 
+            this.ClasseTabPage.Controls.Add(this.RectanglesBox);
+            this.ClasseTabPage.Location = new System.Drawing.Point(4, 29);
+            this.ClasseTabPage.Name = "ClasseTabPage";
+            this.ClasseTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.ClasseTabPage.Size = new System.Drawing.Size(884, 643);
+            this.ClasseTabPage.TabIndex = 1;
+            this.ClasseTabPage.Text = "Classe";
+            this.ClasseTabPage.UseVisualStyleBackColor = true;
+            // 
+            // RectanglesBox
+            // 
+            this.RectanglesBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.RectanglesBox.Location = new System.Drawing.Point(3, 3);
+            this.RectanglesBox.Name = "RectanglesBox";
+            this.RectanglesBox.Size = new System.Drawing.Size(878, 637);
+            this.RectanglesBox.TabIndex = 0;
+            this.RectanglesBox.TabStop = false;
+            this.RectanglesBox.Text = "groupBox1";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -326,6 +351,7 @@
             this.WeekdayParcingBox.PerformLayout();
             this.SeasonHandleBox.ResumeLayout(false);
             this.SeasonHandleBox.PerformLayout();
+            this.ClasseTabPage.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -352,5 +378,7 @@
         private Button SeasonButton;
         private ComboBox SeasonComboBox;
         private Label SeasonLabel;
+        private TabPage ClasseTabPage;
+        private GroupBox RectanglesBox;
     }
 }

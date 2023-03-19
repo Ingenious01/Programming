@@ -12,7 +12,7 @@ namespace Programming.Model
         private int _minutes;
         private int _seconds;
 
-        public int Hours
+        private int Hours
         {
             get => _hours;
             set 
@@ -25,7 +25,7 @@ namespace Programming.Model
 
         }
 
-        public int Minutes
+        private int Minutes
         {
             get => _minutes;
             set
@@ -38,7 +38,7 @@ namespace Programming.Model
 
         }
 
-        public int Seconds
+        private int Seconds
         {
             get => _seconds;
             set

@@ -13,7 +13,7 @@ namespace Programming.Model
         string _genre;
         string _singer;
 
-        public string Name
+        private string Name
         {
             get => _name;
             set
@@ -26,7 +26,7 @@ namespace Programming.Model
 
         }
 
-        public int Duration
+        private int Duration
         {
             get => _duration;
             set
@@ -39,7 +39,7 @@ namespace Programming.Model
 
         }
 
-        public string Genre
+        private string Genre
         {
             get => _genre;
             set
@@ -52,7 +52,7 @@ namespace Programming.Model
 
         }
 
-        public string Singer
+        private string Singer
         {
             get => _singer;
             set

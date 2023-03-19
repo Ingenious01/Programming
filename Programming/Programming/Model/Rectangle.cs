@@ -10,9 +10,9 @@ namespace Programming.Model
     {
         int _length;
         int _width;
-        string _color;       
+        string _color;
 
-        public int Length
+        private int Length
         {
             get => _length;
             set
@@ -25,7 +25,7 @@ namespace Programming.Model
 
         }
 
-        public int Width
+        private int Width
         {
             get => _width;
             set
@@ -38,7 +38,7 @@ namespace Programming.Model
 
         }
 
-        public string Color
+        private string Color
         {
             get => _color;
             set

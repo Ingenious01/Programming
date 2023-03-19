@@ -13,7 +13,7 @@ namespace Programming.Model
         int _age;
         string _phonenumber;        
 
-        public string Name
+        private string Name
         {
             get => _name;
             set
@@ -26,7 +26,7 @@ namespace Programming.Model
 
         }
 
-        public string Surname
+        private string Surname
         {
             get => _surname;
             set
@@ -39,7 +39,7 @@ namespace Programming.Model
 
         }
 
-        public int Age
+        private int Age
         {
             get => _age;
             set
@@ -52,7 +52,7 @@ namespace Programming.Model
 
         }
 
-        public string PhoneNumber
+        private string PhoneNumber
         {
             get => _phonenumber;
             set

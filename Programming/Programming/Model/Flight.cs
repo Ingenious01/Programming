@@ -12,7 +12,7 @@ namespace Programming.Model
         string _end_point;
         int _duration;
 
-        public string Start
+        private string Start
         {
             get => _start_point;
             set
@@ -25,7 +25,7 @@ namespace Programming.Model
 
         }
 
-        public string End
+        private string End
         {
             get => _end_point;
             set
@@ -38,7 +38,7 @@ namespace Programming.Model
 
         }
 
-        public int Duration
+        private int Duration
         {
             get => _duration;
             set

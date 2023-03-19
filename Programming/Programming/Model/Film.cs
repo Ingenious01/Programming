@@ -15,7 +15,7 @@ namespace Programming.Model
         string _genre;
         double _rating;
 
-        public string Name
+        private string Name
         {
             get => _name;
             set
@@ -28,7 +28,7 @@ namespace Programming.Model
 
         }
 
-        public int Duration
+        private int Duration
         {
             get => _duration;
             set
@@ -41,7 +41,7 @@ namespace Programming.Model
 
         }
 
-        public int Year
+        private int Year
         {
             get => _year;
             set
@@ -54,7 +54,7 @@ namespace Programming.Model
 
         }
 
-        public string Genre
+        private string Genre
         {
             get => _genre;
             set
@@ -67,7 +67,7 @@ namespace Programming.Model
 
         }
 
-        public double Rating
+        private double Rating
         {
             get => _rating;
             set
