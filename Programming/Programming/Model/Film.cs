@@ -8,27 +8,14 @@ using System.Threading.Tasks;
 namespace Programming.Model
 {
     internal class Film
-    {
-        string _name;
-        int _duration;
-        int _year;
-        string _genre;
-        double _rating;
+    {      
+        
+        private int _duration;
+        private int _year;
+        private string _genre;
+        private double _rating;        
 
-        private string Name
-        {
-            get => _name;
-            set
-            {
-                if (value != null)
-                    _name = value;
-                else
-                    throw new ArgumentException("Введите название фильма");
-            }
-
-        }
-
-        private int Duration
+        public int Duration
         {
             get => _duration;
             set
@@ -41,12 +28,12 @@ namespace Programming.Model
 
         }
 
-        private int Year
+        public int Year
         {
             get => _year;
             set
             {
-                if (value >= 1850 && value <= 2023)
+                if (value >= 1900 && value <= 2023)
                     _year = value;
                 else
                     throw new ArgumentException("Введите корректный год релиза фильма");
@@ -54,20 +41,10 @@ namespace Programming.Model
 
         }
 
-        private string Genre
-        {
-            get => _genre;
-            set
-            {
-                if (value != null )
-                    _genre = value;
-                else
-                    throw new ArgumentException("Введите корректный жанр фильма");
-            }
+        public string Genre { get; set; }
 
-        }
 
-        private double Rating
+        public double Rating
         {
             get => _rating;
             set
@@ -85,9 +62,8 @@ namespace Programming.Model
 
         }
 
-        public Film(string name, int duration, int year, string genre, double rating)
+        public Film(int duration, int year, string genre, double rating)
         {
-            Name = name;
             Duration = duration;
             Year = year;
             Genre = genre;

@@ -8,11 +8,11 @@ namespace Programming.Model
 {
     internal class Rectangle
     {
-        int _length;
-        int _width;
-        string _color;
+        private double _length;
+        private double _width;
+        private string _color;
 
-        private int Length
+        public double Length
         {
             get => _length;
             set
@@ -25,7 +25,7 @@ namespace Programming.Model
 
         }
 
-        private int Width
+        public double Width
         {
             get => _width;
             set
@@ -37,28 +37,14 @@ namespace Programming.Model
             }
 
         }
-
-        private string Color
-        {
-            get => _color;
-            set
-            {
-                if (value == "Red" || value == "Blue" || value == "Yellow" || value == "Green"
-                     || value == "Orange" || value == "Pink" || value == "Brown" || value == "Purple"
-                      || value == "White" || value == "Black")
-                    _color = value;
-                else
-                    throw new ArgumentException("Укажите цвет прямоугольника (цвет на английском)");
-            }
-
-        }
+        public string Color { get; set; }
 
         public Rectangle()
         {
 
         }
 
-        public Rectangle(int length, int width, string color)
+        public Rectangle(float length, float width, string color)
         {
             Length = length;
             Width = width;
