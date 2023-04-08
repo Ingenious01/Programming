@@ -26,7 +26,6 @@ namespace Programming
 
         private Random _random = new Random();
 
-
         public MainForm()
         {
             InitializeComponent();
@@ -70,8 +69,6 @@ namespace Programming
 
 
         }
-
-
 
         //-----------------------------------Rectangles-------------------------------------------\\
         private void FillRectangles()
