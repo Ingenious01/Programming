@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Programming.Model
 {
-    internal class Subject
+    public class Subject
     {
         string _name;
         string _teacher;

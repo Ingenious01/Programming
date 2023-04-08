@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Programming.Model
 {
-    internal class Contact
+    public class Contact
     {
         string _name;
         string _surname;
@@ -34,7 +34,7 @@ namespace Programming.Model
                 if (value != null)
                     _surname = value;
                 else
-                    throw new ArgumentException("Введите фамилию человека)");
+                    throw new ArgumentException("Введите фамилию человека");
             }
 
         }

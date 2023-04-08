@@ -6,19 +6,19 @@ using System.Threading.Tasks;
 
 namespace Programming.Model
 {
-    internal class Flight
+    public class Flight
     {
-        string _start_point;
-        string _end_point;
+        string _startPoint;
+        string _endPoint;
         int _duration;
 
         private string Start
         {
-            get => _start_point;
+            get => _startPoint;
             set
             {
                 if (value != null)
-                    _start_point = value;
+                    _startPoint = value;
                 else
                     throw new ArgumentException("Укажите точку начала полёта");
             }
@@ -27,11 +27,11 @@ namespace Programming.Model
 
         private string End
         {
-            get => _end_point;
+            get => _endPoint;
             set
             {
                 if (value != null)
-                    _end_point = value;
+                    _endPoint = value;
                 else
                     throw new ArgumentException("Укажите точку концпа полёта");
             }

@@ -3,6 +3,8 @@ using Programming.Model;
 using System.Drawing;
 using Rectangle = Programming.Model.Rectangle;
 using Film = Programming.Model.Film;
+using Color = Programming.Model.Color;
+using System.Windows.Forms;
 
 namespace Programming
 {
@@ -32,8 +34,8 @@ namespace Programming
 
             FillRectangles();
             FillFilms();
-            
 
+            EnumsListBox.DisplayMember = nameof(Type.Name);
             EnumsListBox.Items.AddRange(enums);
             EnumsListBox.SelectedIndex = 0;      
             
@@ -45,11 +47,11 @@ namespace Programming
 
             var listRectangles = new string[]
             {
-            "Rectangle 1",
-            "Rectangle 2",
-            "Rectangle 3",
-            "Rectangle 4",
-            "Rectangle 5"
+                "Rectangle 1",
+                "Rectangle 2",
+                "Rectangle 3",
+                "Rectangle 4",
+                "Rectangle 5"
             };
 
             RectanglesListBox.DataSource = listRectangles; 
@@ -57,11 +59,11 @@ namespace Programming
 
             var listFilms = new string[]
             {
-            "Film 1",
-            "Film 2",
-            "Film 3",
-            "Film 4",
-            "Film 5"
+                "Film 1",
+                "Film 2",
+                "Film 3",
+                "Film 4",
+                "Film 5"
             };
 
             FilmsListBox.DataSource = listFilms;
@@ -125,6 +127,11 @@ namespace Programming
 
         private void RectengleFindButton_Click(object sender, EventArgs e)
         {
+            FindRectangleWithMaxWidth();
+        }
+
+        public void FindRectangleWithMaxWidth()
+        {
             int index = 0;
             double maxWidth = 0;
             for (int i = 0; i < _rectangles.Length; i++)
@@ -135,7 +142,7 @@ namespace Programming
                     index = i;
                 }
                 RectanglesListBox.SelectedIndex = index;
-            }           
+            }
 
         }
 
@@ -143,25 +150,35 @@ namespace Programming
 
         private void FillFilms()
         {
+
+
             var genreValues = Enum.GetValues((Type)enums[2]);
             for (int i = 0; i < 5; i++)
             {
+                string number = Convert.ToString(i+1);
+                string name = "Film " + number; 
                 int duration = _random.Next(1, 601);
                 int year = _random.Next(1900, 2023);
                 string genre = genreValues.GetValue(_random.Next(0, 6)).ToString();
                 double rating = Math.Round(_random.Next(1,11) *_random.NextDouble(), 1);                
-                _films[i] = new Model.Film(duration, year, genre, rating);
+                _films[i] = new Model.Film(name, duration, year, genre, rating);
             }
         }
 
         private void FilmsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             _currentFilm = _films[FilmsListBox.SelectedIndex];
+            NameBox.Text = _films[FilmsListBox.SelectedIndex].Name;
             DurationBox.Text = _films[FilmsListBox.SelectedIndex].Duration.ToString();
             YearBox.Text = _films[FilmsListBox.SelectedIndex].Year.ToString();
             GenreBox.Text = _films[FilmsListBox.SelectedIndex].Genre;
             RatingBox.Text = _films[FilmsListBox.SelectedIndex].Rating.ToString();
 
+        }
+
+        private void NameBox_TextChanged(object sender, EventArgs e)
+        {
+            _currentFilm.Name = NameBox.Text;
         }
 
         private void DurationBox_TextChanged(object sender, EventArgs e)
@@ -210,7 +227,11 @@ namespace Programming
 
         private void FilmFindButton_Click(object sender, EventArgs e)
         {
+            FindFilmWithMaxRating ();
+        }
 
+        public void FindFilmWithMaxRating ()
+        {
             int index = 0;
             double maxRating = 0;
             for (int i = 0; i < _films.Length; i++)
@@ -222,7 +243,6 @@ namespace Programming
                 }
                 FilmsListBox.SelectedIndex = index;
             }
-            
 
         }
 
@@ -243,14 +263,14 @@ namespace Programming
         private void ValuesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-            if (ValuesListBox.Items == null)
+            if (ValuesListBox.Items == null) 
             {
                 return;
             }
 
             else
             {
-                ValuesTextBox.Text = ((int)Enum.Parse(Type.GetType(EnumsListBox.Text), ValuesListBox.Text)).ToString();
+                ValuesTextBox.Text = ValuesListBox.SelectedIndex.ToString();
             }
 
         }      
@@ -263,7 +283,6 @@ namespace Programming
                 ParsingResultLabel.Text = $"Это день недели ({ParsingTextBox.Text} = {num})";  
                 
                 ParsingResultLabel.Visible= true ;
-
             }
 
             else
@@ -294,10 +313,8 @@ namespace Programming
                 default:
                     MessageBox.Show("Выберите время года!");
                     break;
-
             }    
         }
-       
     }
 }
     

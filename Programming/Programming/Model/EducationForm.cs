@@ -1,8 +1,10 @@
-﻿public enum EducationForm
+﻿namespace Programming.Model
 {
-    Online,
-    Offline,
-    Evening,
-    Extramural
+    public enum EducationForm
+    {
+        Online,
+        Offline,
+        Evening,
+        Extramural
+    }
 }
-

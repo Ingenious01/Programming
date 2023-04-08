@@ -7,13 +7,14 @@ using System.Threading.Tasks;
 
 namespace Programming.Model
 {
-    internal class Film
-    {      
-        
+    public class Film
+    {
+                
         private int _duration;
-        private int _year;
-        private string _genre;
-        private double _rating;        
+        private int _year;        
+        private double _rating;
+
+        public string Name { get; set; }
 
         public int Duration
         {
@@ -62,8 +63,9 @@ namespace Programming.Model
 
         }
 
-        public Film(int duration, int year, string genre, double rating)
+        public Film(string name, int duration, int year, string genre, double rating)
         {
+            Name = name;
             Duration = duration;
             Year = year;
             Genre = genre;
