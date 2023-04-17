@@ -70,11 +70,14 @@ namespace Programming.Model
         {
             get => _age;
             set
-            {                
-                if (value > 0 && value <= 120)
+            {
+                string method = "Age";
+
+                bool check = Validator.AssertValueInRange(method,value,0,120);
+
+                if (check == true)
                     _age = value;
-                else
-                    throw new ArgumentException("Введите возраст человека");
+                
             }
             
 

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Programming.Model
 {
@@ -36,10 +37,12 @@ namespace Programming.Model
             get => _year;
             set
             {
-                if (value >= 1900 && value <= 2023)
+                string method = "FilmYear";
+
+                bool check = Validator.AssertValueInRange(method, value, 1900, 2023);
+
+                if (check == true)
                     _year = value;
-                else
-                    throw new ArgumentException("Введите корректный год релиза фильма");
             }
 
         }
@@ -52,10 +55,12 @@ namespace Programming.Model
             get => _rating;
             set
             {
-                if (value > 0 && value <= 10)
+                string method = "FilmRating";
+
+                bool check = Validator.AssertValueInRange(method, value, 0.000001, 10);
+
+                if (check == true)
                     _rating = value;
-                else
-                    throw new ArgumentException("Укажите рейтинг фильма");
             }
 
         }

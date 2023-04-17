@@ -17,10 +17,12 @@ namespace Programming.Model
             get => _hours;
             set 
             {
-                if (value >= 0 && value <= 23)
+                string method = "Hours";
+
+                bool check = Validator.AssertValueInRange(method, value, 0, 23);
+
+                if (check == true)
                     _hours = value;
-                else
-                    throw new ArgumentException("Укажите аргумент (от 0 до 23)");
             }
 
         }
@@ -30,10 +32,12 @@ namespace Programming.Model
             get => _minutes;
             set
             {
-                if (value >= 0 && value <= 59)
+                string method = "Minutes";
+
+                bool check = Validator.AssertValueInRange(method, value, 0, 59);
+
+                if (check == true)
                     _minutes = value;
-                else
-                    throw new ArgumentException("Укажите аргумент (от 0 до 59)");
             }
 
         }
@@ -43,10 +47,12 @@ namespace Programming.Model
             get => _seconds;
             set
             {
-                if (value >= 0 && value <= 59)
+                string method = "Seconds";
+
+                bool check = Validator.AssertValueInRange(method, value, 0, 59);
+
+                if (check == true)
                     _seconds = value;
-                else
-                    throw new ArgumentException("Укажите аргумент (от 0 до 59)");
             }
 
         }

@@ -43,10 +43,12 @@ namespace Programming.Model
             get => _mark;
             set
             {
-                if (value >= 0 && Mark <= 5)
+                string method = "Mark";
+
+                bool check = Validator.AssertValueInRange(method, value, 1, 5);
+
+                if (check == true)
                     _mark = value;
-                else
-                    throw new ArgumentException("Укажите оценку по дисциплине");
             }
 
         }
