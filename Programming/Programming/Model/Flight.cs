@@ -43,10 +43,12 @@ namespace Programming.Model
             get => _duration;
             set
             {
-                if (value >= 0 && value <= 100)
+                string method = "FlightDuration";
+
+                bool check = Validator.AssertOnPositiveValue(method, value);
+
+                if (check == true)
                     _duration = value;
-                else
-                    throw new ArgumentException("Укажите аргумент (больше 0)");
             }
 
         }

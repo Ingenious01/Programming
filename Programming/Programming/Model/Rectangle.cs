@@ -4,10 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace Programming.Model
 {
     public class Rectangle
     {
+
+        Validator validator = new Validator();
+
         private double _length;
         private double _width;
         private string _color;
@@ -17,10 +21,14 @@ namespace Programming.Model
             get => _length;
             set
             {
-                if (value >= 0 )
-                    _length = value;
-                else
-                    throw new ArgumentException("Укажите длинну прямоугольника (больше 0)");
+               
+                string method = "Length";
+
+                bool check = Validator.AssertOnPositiveValue(method, value);
+
+                if (check == true)
+                        _length = value;
+                
             }
 
         }
@@ -30,10 +38,12 @@ namespace Programming.Model
             get => _width;
             set
             {
-                if (value >= 0 )
+                string method = "Width";
+
+                bool check = Validator.AssertOnPositiveValue(method, value);
+
+                if (check == true)
                     _width = value;
-                else
-                    throw new ArgumentException("Укажите ширину прямоугольника (больше 0)");
             }
 
         }

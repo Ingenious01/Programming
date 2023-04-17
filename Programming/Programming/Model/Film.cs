@@ -21,10 +21,12 @@ namespace Programming.Model
             get => _duration;
             set
             {
-                if (value > 0 && value <= 600)
+                string method = "FilmDuration";
+
+                bool check = Validator.AssertOnPositiveValue(method, value);
+
+                if (check == true)
                     _duration = value;
-                else
-                    throw new ArgumentException("Введите время продождительности фильма(от 1 до 600)");
             }
 
         }

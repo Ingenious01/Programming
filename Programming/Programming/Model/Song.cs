@@ -31,10 +31,12 @@ namespace Programming.Model
             get => _duration;
             set
             {
-                if (value >0 )
+                string method = "SongDuration";
+
+                bool check = Validator.AssertOnPositiveValue(method, value);
+
+                if (check == true)
                     _duration = value;
-                else
-                    throw new ArgumentException("Укажите продолжительность песни");
             }
 
         }
