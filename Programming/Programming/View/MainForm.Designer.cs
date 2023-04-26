@@ -52,6 +52,10 @@
             this.ClassesTabPage = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.RectanglesBox = new System.Windows.Forms.GroupBox();
+            this.YBox = new System.Windows.Forms.TextBox();
+            this.YCoordinateLabel = new System.Windows.Forms.Label();
+            this.XBox = new System.Windows.Forms.TextBox();
+            this.XCoordinateLabel = new System.Windows.Forms.Label();
             this.RectengleFindButton = new System.Windows.Forms.Button();
             this.ColorBox = new System.Windows.Forms.TextBox();
             this.WidthBox = new System.Windows.Forms.TextBox();
@@ -73,6 +77,17 @@
             this.DurationLabel = new System.Windows.Forms.Label();
             this.YearLabel = new System.Windows.Forms.Label();
             this.FilmsListBox = new System.Windows.Forms.ListBox();
+            this.RectanglesTabPage = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.GraphicsListBox = new System.Windows.Forms.ListBox();
+            this.CoordinatesBox = new System.Windows.Forms.GroupBox();
+            this.YTextBOx = new System.Windows.Forms.TextBox();
+            this.XTextBox = new System.Windows.Forms.TextBox();
+            this.CentreLabel = new System.Windows.Forms.Label();
+            this.YLabel = new System.Windows.Forms.Label();
+            this.XLabel = new System.Windows.Forms.Label();
+            this.AddRectangleButton = new System.Windows.Forms.Button();
             this.MainTabPage.SuspendLayout();
             this.EnumPage.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -84,12 +99,17 @@
             this.tableLayoutPanel3.SuspendLayout();
             this.RectanglesBox.SuspendLayout();
             this.FilmsBox.SuspendLayout();
+            this.RectanglesTabPage.SuspendLayout();
+            this.tableLayoutPanel4.SuspendLayout();
+            this.tableLayoutPanel5.SuspendLayout();
+            this.CoordinatesBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // MainTabPage
             // 
             this.MainTabPage.Controls.Add(this.EnumPage);
             this.MainTabPage.Controls.Add(this.ClassesTabPage);
+            this.MainTabPage.Controls.Add(this.RectanglesTabPage);
             this.MainTabPage.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MainTabPage.Location = new System.Drawing.Point(0, 0);
             this.MainTabPage.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -359,6 +379,10 @@
             // 
             // RectanglesBox
             // 
+            this.RectanglesBox.Controls.Add(this.YBox);
+            this.RectanglesBox.Controls.Add(this.YCoordinateLabel);
+            this.RectanglesBox.Controls.Add(this.XBox);
+            this.RectanglesBox.Controls.Add(this.XCoordinateLabel);
             this.RectanglesBox.Controls.Add(this.RectengleFindButton);
             this.RectanglesBox.Controls.Add(this.ColorBox);
             this.RectanglesBox.Controls.Add(this.WidthBox);
@@ -375,9 +399,45 @@
             this.RectanglesBox.TabStop = false;
             this.RectanglesBox.Text = "Rectangles";
             // 
+            // YBox
+            // 
+            this.YBox.Location = new System.Drawing.Point(229, 335);
+            this.YBox.Name = "YBox";
+            this.YBox.ReadOnly = true;
+            this.YBox.Size = new System.Drawing.Size(125, 27);
+            this.YBox.TabIndex = 11;
+            // 
+            // YCoordinateLabel
+            // 
+            this.YCoordinateLabel.AutoSize = true;
+            this.YCoordinateLabel.Location = new System.Drawing.Point(229, 313);
+            this.YCoordinateLabel.Name = "YCoordinateLabel";
+            this.YCoordinateLabel.Size = new System.Drawing.Size(101, 20);
+            this.YCoordinateLabel.TabIndex = 10;
+            this.YCoordinateLabel.Text = "Y coordonate:";
+            // 
+            // XBox
+            // 
+            this.XBox.Location = new System.Drawing.Point(229, 263);
+            this.XBox.Name = "XBox";
+            this.XBox.ReadOnly = true;
+            this.XBox.Size = new System.Drawing.Size(125, 27);
+            this.XBox.TabIndex = 9;
+            this.XBox.TextChanged += new System.EventHandler(this.textBox1_TextChanged_1);
+            // 
+            // XCoordinateLabel
+            // 
+            this.XCoordinateLabel.AutoSize = true;
+            this.XCoordinateLabel.Location = new System.Drawing.Point(229, 241);
+            this.XCoordinateLabel.Name = "XCoordinateLabel";
+            this.XCoordinateLabel.Size = new System.Drawing.Size(102, 20);
+            this.XCoordinateLabel.TabIndex = 8;
+            this.XCoordinateLabel.Text = "X coordonate:";
+            this.XCoordinateLabel.Click += new System.EventHandler(this.label1_Click);
+            // 
             // RectengleFindButton
             // 
-            this.RectengleFindButton.Location = new System.Drawing.Point(229, 269);
+            this.RectengleFindButton.Location = new System.Drawing.Point(229, 407);
             this.RectengleFindButton.Name = "RectengleFindButton";
             this.RectengleFindButton.Size = new System.Drawing.Size(125, 29);
             this.RectengleFindButton.TabIndex = 7;
@@ -448,6 +508,7 @@
             // 
             // FilmsBox
             // 
+            this.FilmsBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.FilmsBox.Controls.Add(this.NameBox);
             this.FilmsBox.Controls.Add(this.NameLabel);
             this.FilmsBox.Controls.Add(this.FilmFindButton);
@@ -573,6 +634,133 @@
             this.FilmsListBox.TabIndex = 0;
             this.FilmsListBox.SelectedIndexChanged += new System.EventHandler(this.FilmsListBox_SelectedIndexChanged);
             // 
+            // RectanglesTabPage
+            // 
+            this.RectanglesTabPage.Controls.Add(this.tableLayoutPanel4);
+            this.RectanglesTabPage.Location = new System.Drawing.Point(4, 29);
+            this.RectanglesTabPage.Name = "RectanglesTabPage";
+            this.RectanglesTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.RectanglesTabPage.Size = new System.Drawing.Size(883, 643);
+            this.RectanglesTabPage.TabIndex = 2;
+            this.RectanglesTabPage.Text = "Rectangles";
+            this.RectanglesTabPage.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel4
+            // 
+            this.tableLayoutPanel4.ColumnCount = 2;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 65F));
+            this.tableLayoutPanel4.Controls.Add(this.tableLayoutPanel5, 0, 0);
+            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 1;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(877, 637);
+            this.tableLayoutPanel4.TabIndex = 0;
+            // 
+            // tableLayoutPanel5
+            // 
+            this.tableLayoutPanel5.ColumnCount = 1;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel5.Controls.Add(this.GraphicsListBox, 0, 0);
+            this.tableLayoutPanel5.Controls.Add(this.CoordinatesBox, 0, 1);
+            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
+            this.tableLayoutPanel5.RowCount = 2;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 35F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 65F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(300, 631);
+            this.tableLayoutPanel5.TabIndex = 0;
+            // 
+            // GraphicsListBox
+            // 
+            this.GraphicsListBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.GraphicsListBox.FormattingEnabled = true;
+            this.GraphicsListBox.ItemHeight = 20;
+            this.GraphicsListBox.Location = new System.Drawing.Point(3, 3);
+            this.GraphicsListBox.Name = "GraphicsListBox";
+            this.GraphicsListBox.Size = new System.Drawing.Size(294, 214);
+            this.GraphicsListBox.TabIndex = 0;
+            this.GraphicsListBox.SelectedIndexChanged += new System.EventHandler(this.GraphicsListBox_SelectedIndexChanged);
+            // 
+            // CoordinatesBox
+            // 
+            this.CoordinatesBox.Controls.Add(this.YTextBOx);
+            this.CoordinatesBox.Controls.Add(this.XTextBox);
+            this.CoordinatesBox.Controls.Add(this.CentreLabel);
+            this.CoordinatesBox.Controls.Add(this.YLabel);
+            this.CoordinatesBox.Controls.Add(this.XLabel);
+            this.CoordinatesBox.Controls.Add(this.AddRectangleButton);
+            this.CoordinatesBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CoordinatesBox.Location = new System.Drawing.Point(3, 223);
+            this.CoordinatesBox.Name = "CoordinatesBox";
+            this.CoordinatesBox.Size = new System.Drawing.Size(294, 405);
+            this.CoordinatesBox.TabIndex = 1;
+            this.CoordinatesBox.TabStop = false;
+            this.CoordinatesBox.Text = "Coordinates";
+            // 
+            // YTextBOx
+            // 
+            this.YTextBOx.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.YTextBOx.Location = new System.Drawing.Point(78, 212);
+            this.YTextBOx.Name = "YTextBOx";
+            this.YTextBOx.Size = new System.Drawing.Size(125, 41);
+            this.YTextBOx.TabIndex = 5;
+            this.YTextBOx.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            // 
+            // XTextBox
+            // 
+            this.XTextBox.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.XTextBox.Location = new System.Drawing.Point(78, 163);
+            this.XTextBox.Name = "XTextBox";
+            this.XTextBox.Size = new System.Drawing.Size(125, 41);
+            this.XTextBox.TabIndex = 4;
+            this.XTextBox.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // CentreLabel
+            // 
+            this.CentreLabel.AutoSize = true;
+            this.CentreLabel.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.CentreLabel.Location = new System.Drawing.Point(86, 110);
+            this.CentreLabel.Name = "CentreLabel";
+            this.CentreLabel.Size = new System.Drawing.Size(85, 32);
+            this.CentreLabel.TabIndex = 3;
+            this.CentreLabel.Text = "Centre";
+            // 
+            // YLabel
+            // 
+            this.YLabel.AutoSize = true;
+            this.YLabel.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.YLabel.Location = new System.Drawing.Point(19, 215);
+            this.YLabel.Name = "YLabel";
+            this.YLabel.Size = new System.Drawing.Size(53, 35);
+            this.YLabel.TabIndex = 2;
+            this.YLabel.Text = "Y =";
+            // 
+            // XLabel
+            // 
+            this.XLabel.AutoSize = true;
+            this.XLabel.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.XLabel.Location = new System.Drawing.Point(19, 166);
+            this.XLabel.Name = "XLabel";
+            this.XLabel.Size = new System.Drawing.Size(54, 35);
+            this.XLabel.TabIndex = 1;
+            this.XLabel.Text = "X =";
+            // 
+            // AddRectangleButton
+            // 
+            this.AddRectangleButton.Location = new System.Drawing.Point(59, 43);
+            this.AddRectangleButton.Name = "AddRectangleButton";
+            this.AddRectangleButton.Size = new System.Drawing.Size(147, 48);
+            this.AddRectangleButton.TabIndex = 0;
+            this.AddRectangleButton.Text = "Add Rectangle";
+            this.AddRectangleButton.UseVisualStyleBackColor = true;
+            this.AddRectangleButton.Click += new System.EventHandler(this.AddRectangleButton_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -602,6 +790,11 @@
             this.RectanglesBox.PerformLayout();
             this.FilmsBox.ResumeLayout(false);
             this.FilmsBox.PerformLayout();
+            this.RectanglesTabPage.ResumeLayout(false);
+            this.tableLayoutPanel4.ResumeLayout(false);
+            this.tableLayoutPanel5.ResumeLayout(false);
+            this.CoordinatesBox.ResumeLayout(false);
+            this.CoordinatesBox.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -652,5 +845,20 @@
         private TableLayoutPanel tableLayoutPanel3;
         private TextBox NameBox;
         private Label NameLabel;
+        private TabPage RectanglesTabPage;
+        private TableLayoutPanel tableLayoutPanel4;
+        private TableLayoutPanel tableLayoutPanel5;
+        private ListBox GraphicsListBox;
+        private GroupBox CoordinatesBox;
+        private TextBox YTextBOx;
+        private TextBox XTextBox;
+        private Label CentreLabel;
+        private Label YLabel;
+        private Label XLabel;
+        private Button AddRectangleButton;
+        private TextBox XBox;
+        private Label XCoordinateLabel;
+        private TextBox YBox;
+        private Label YCoordinateLabel;
     }
 }

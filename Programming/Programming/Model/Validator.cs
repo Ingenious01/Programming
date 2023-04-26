@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -46,6 +47,15 @@ namespace Programming.Model
             {
                 throw new ArgumentException(String.Format("В методе {0} вводимое число должно быть больше 0 ", method));
             }
+        }
+
+        //-------------------------------------------------Area---------------------------------------------------------//
+        public static double CalculateArea(double InnerRadius, double OuterRadius)
+        {
+            double OuterArea = Math.PI * (OuterRadius * OuterRadius);
+            double InnerArea = Math.PI * (InnerRadius * InnerRadius);
+            double result = OuterArea - InnerArea;
+            return result;
         }
     }
 }

@@ -52,10 +52,13 @@ namespace Programming
                 "Rectangle 3",
                 "Rectangle 4",
                 "Rectangle 5"
-            };
+            };            
 
             RectanglesListBox.DataSource = listRectangles; 
             RectanglesListBox.SelectedIndex = 0;
+
+            GraphicsListBox.DataSource = listRectangles;
+            GraphicsListBox.SelectedIndex = 0;
 
             var listFilms = new string[]
             {
@@ -68,8 +71,6 @@ namespace Programming
 
             FilmsListBox.DataSource = listFilms;
             FilmsListBox.SelectedIndex = 0;
-
-
         }
 
         //-----------------------------------Rectangles-------------------------------------------\\
@@ -92,7 +93,9 @@ namespace Programming
             LengthBox.Text = _rectangles[RectanglesListBox.SelectedIndex].Length.ToString();
             WidthBox.Text = _rectangles[RectanglesListBox.SelectedIndex].Width.ToString();
             ColorBox.Text = _rectangles[RectanglesListBox.SelectedIndex].Color;
-            
+            XBox.Text = _rectangles[RectanglesListBox.SelectedIndex].Centre.X.ToString();
+            YBox.Text = _rectangles[RectanglesListBox.SelectedIndex].Centre.Y.ToString();
+
         }
 
         private void LengthBox_TextChanged(object sender, EventArgs e)
@@ -146,6 +149,33 @@ namespace Programming
             }
 
         }
+
+        //----------------------------------Geometry----------------------------------------\\
+        private void GraphicsListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _currentRectangle = _rectangles[GraphicsListBox.SelectedIndex];
+            XTextBox.Text = _rectangles[GraphicsListBox.SelectedIndex].Centre.ToString();
+            
+        }
+
+        private void AddRectangleButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+
+
+
 
         //-----------------------------------Films-------------------------------------------\\
 
@@ -315,6 +345,16 @@ namespace Programming
                     MessageBox.Show("Выберите время года!");
                     break;
             }    
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged_1(object sender, EventArgs e)
+        {
+
         }
     }
 }
