@@ -81,7 +81,8 @@ namespace Programming
                 int length = _random.Next(1, 30);
                 int width = _random.Next(1, 30);
                 string color = colorValues.GetValue(_random.Next(0, 6)).ToString();
-                _rectangles[i] = new Model.Rectangle(length, width, color);
+                Point2D centre = new Point2D(_random.Next(0,201), _random.Next(0, 201));
+                _rectangles[i] = new Model.Rectangle(length, width, color, centre);
             }
         }       
 
