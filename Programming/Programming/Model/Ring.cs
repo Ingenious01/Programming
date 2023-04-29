@@ -21,7 +21,7 @@ namespace Programming.Model
             set
             {
 
-                string method = "Intermal Radius";
+                string method = "Internal Radius";
 
                 bool check = Validator.AssertOnPositiveValue(method, value);
 

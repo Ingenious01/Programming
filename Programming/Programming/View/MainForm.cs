@@ -95,6 +95,7 @@ namespace Programming
             ColorBox.Text = _rectangles[RectanglesListBox.SelectedIndex].Color;
             XBox.Text = _rectangles[RectanglesListBox.SelectedIndex].Centre.X.ToString();
             YBox.Text = _rectangles[RectanglesListBox.SelectedIndex].Centre.Y.ToString();
+            IdBox.Text = _rectangles[RectanglesListBox.SelectedIndex].Id.ToString();
 
         }
 
@@ -203,7 +204,7 @@ namespace Programming
             DurationBox.Text = _films[FilmsListBox.SelectedIndex].Duration.ToString();
             YearBox.Text = _films[FilmsListBox.SelectedIndex].Year.ToString();
             GenreBox.Text = _films[FilmsListBox.SelectedIndex].Genre;
-            RatingBox.Text = _films[FilmsListBox.SelectedIndex].Rating.ToString();
+            RatingBox.Text = _films[FilmsListBox.SelectedIndex].Rating.ToString();            
 
         }
 
@@ -353,6 +354,16 @@ namespace Programming
         }
 
         private void textBox1_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged_2(object sender, EventArgs e)
         {
 
         }

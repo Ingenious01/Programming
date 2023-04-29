@@ -88,6 +88,8 @@
             this.YLabel = new System.Windows.Forms.Label();
             this.XLabel = new System.Windows.Forms.Label();
             this.AddRectangleButton = new System.Windows.Forms.Button();
+            this.IdBox = new System.Windows.Forms.TextBox();
+            this.IdLabel = new System.Windows.Forms.Label();
             this.MainTabPage.SuspendLayout();
             this.EnumPage.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -379,6 +381,8 @@
             // 
             // RectanglesBox
             // 
+            this.RectanglesBox.Controls.Add(this.IdBox);
+            this.RectanglesBox.Controls.Add(this.IdLabel);
             this.RectanglesBox.Controls.Add(this.YBox);
             this.RectanglesBox.Controls.Add(this.YCoordinateLabel);
             this.RectanglesBox.Controls.Add(this.XBox);
@@ -761,6 +765,25 @@
             this.AddRectangleButton.UseVisualStyleBackColor = true;
             this.AddRectangleButton.Click += new System.EventHandler(this.AddRectangleButton_Click);
             // 
+            // IdBox
+            // 
+            this.IdBox.Location = new System.Drawing.Point(21, 335);
+            this.IdBox.Name = "IdBox";
+            this.IdBox.ReadOnly = true;
+            this.IdBox.Size = new System.Drawing.Size(125, 27);
+            this.IdBox.TabIndex = 13;
+            this.IdBox.TextChanged += new System.EventHandler(this.textBox1_TextChanged_2);
+            // 
+            // IdLabel
+            // 
+            this.IdLabel.AutoSize = true;
+            this.IdLabel.Location = new System.Drawing.Point(21, 313);
+            this.IdLabel.Name = "IdLabel";
+            this.IdLabel.Size = new System.Drawing.Size(24, 20);
+            this.IdLabel.TabIndex = 12;
+            this.IdLabel.Text = "ID";
+            this.IdLabel.Click += new System.EventHandler(this.label1_Click_1);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -860,5 +883,7 @@
         private Label XCoordinateLabel;
         private TextBox YBox;
         private Label YCoordinateLabel;
+        private TextBox IdBox;
+        private Label IdLabel;
     }
 }

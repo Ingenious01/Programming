@@ -12,10 +12,17 @@ namespace Programming.Model
 
         Validator validator = new Validator();
 
+        private static int _allRectanglesCount = 0;
         private double _length;
         private double _width;
         private string _color;
         private Point2D _centre;
+        private int _id;
+
+        public static void AllRectanglesCount()
+        {
+            _allRectanglesCount = _allRectanglesCount +1;
+        }
 
         public double Length
         {
@@ -50,7 +57,17 @@ namespace Programming.Model
         }
         public string Color { get; set; }
 
-        public Point2D Centre { get;set; }
+        public int Id
+        {
+            get
+            {
+                AllRectanglesCount();
+                _id = _allRectanglesCount;
+                return _id;
+            }
+        }
+
+    public Point2D Centre { get;set; }
         
 
         public Rectangle()

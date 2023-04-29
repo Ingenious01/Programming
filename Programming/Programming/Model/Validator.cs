@@ -50,10 +50,10 @@ namespace Programming.Model
         }
 
         //-------------------------------------------------Area---------------------------------------------------------//
-        public static double CalculateArea(double InnerRadius, double OuterRadius)
+        public static double CalculateArea(double InternalRadius, double OuterRadius)
         {
             double OuterArea = Math.PI * (OuterRadius * OuterRadius);
-            double InnerArea = Math.PI * (InnerRadius * InnerRadius);
+            double InnerArea = Math.PI * (InternalRadius * InternalRadius);
             double result = OuterArea - InnerArea;
             return result;
         }
