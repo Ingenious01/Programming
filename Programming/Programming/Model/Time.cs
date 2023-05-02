@@ -17,12 +17,9 @@ namespace Programming.Model
             get => _hours;
             set 
             {
-                string method = "Hours";
+                Validator.AssertValueInRange(nameof(Hours), value, 0, 23);
 
-                bool check = Validator.AssertValueInRange(method, value, 0, 23);
-
-                if (check == true)
-                    _hours = value;
+                _hours = value;
             }
 
         }
@@ -32,12 +29,9 @@ namespace Programming.Model
             get => _minutes;
             set
             {
-                string method = "Minutes";
+                Validator.AssertValueInRange(nameof(Minutes), value, 0, 59);
 
-                bool check = Validator.AssertValueInRange(method, value, 0, 59);
-
-                if (check == true)
-                    _minutes = value;
+                _minutes = value;
             }
 
         }
@@ -47,12 +41,9 @@ namespace Programming.Model
             get => _seconds;
             set
             {
-                string method = "Seconds";
+                Validator.AssertValueInRange(nameof(Seconds), value, 0, 59);
 
-                bool check = Validator.AssertValueInRange(method, value, 0, 59);
-
-                if (check == true)
-                    _seconds = value;
+                _seconds = value;
             }
 
         }

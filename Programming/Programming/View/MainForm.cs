@@ -96,7 +96,6 @@ namespace Programming
             XBox.Text = _rectangles[RectanglesListBox.SelectedIndex].Centre.X.ToString();
             YBox.Text = _rectangles[RectanglesListBox.SelectedIndex].Centre.Y.ToString();
             IdBox.Text = _rectangles[RectanglesListBox.SelectedIndex].Id.ToString();
-
         }
 
         private void LengthBox_TextChanged(object sender, EventArgs e)
@@ -149,41 +148,12 @@ namespace Programming
                 RectanglesListBox.SelectedIndex = index;
             }
 
-        }
-
-        //----------------------------------Geometry----------------------------------------\\
-        private void GraphicsListBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            _currentRectangle = _rectangles[GraphicsListBox.SelectedIndex];
-            XTextBox.Text = _rectangles[GraphicsListBox.SelectedIndex].Centre.ToString();
-            
-        }
-
-        private void AddRectangleButton_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-
-
-
-
+        }        
+        
         //-----------------------------------Films-------------------------------------------\\
 
         private void FillFilms()
         {
-
-
             var genreValues = Enum.GetValues((Type)enums[2]);
             for (int i = 0; i < 5; i++)
             {
@@ -304,7 +274,6 @@ namespace Programming
             {
                 ValuesTextBox.Text = ValuesListBox.SelectedIndex.ToString();
             }
-
         }      
        
         private void WeekDayParsingButton_Click(object sender, EventArgs e)
@@ -346,27 +315,7 @@ namespace Programming
                     MessageBox.Show("Выберите время года!");
                     break;
             }    
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged_2(object sender, EventArgs e)
-        {
-
-        }
+        }        
     }
 }
     

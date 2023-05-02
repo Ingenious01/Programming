@@ -16,15 +16,13 @@ namespace Programming.Model
             double dy = Math.Max(rectangle1.Centre.Y, rectangle2.Centre.Y)
                 - Math.Min(rectangle1.Centre.Y, rectangle2.Centre.Y);
 
-            double xlength = (rectangle1.Length - rectangle2.Length)/2;
-            Math.Abs(xlength);
+            double Xlength = (rectangle1.Length - rectangle2.Length)/2;
+            Math.Abs(Xlength);
 
-            double ywidth = (rectangle1.Width - rectangle2.Width)/ 2;
-            Math.Abs(xlength);
+            double Ywidth = (rectangle1.Width - rectangle2.Width)/ 2;
+            Math.Abs(Ywidth);
 
-            if ((dx < xlength) && (dy < ywidth)) return true;
- 
-            else  return false;
+            return ((dx < Xlength) && (dy < Ywidth));
         }
 
         public static bool IsCollision(Ring ring1, Ring ring2)
@@ -39,8 +37,7 @@ namespace Programming.Model
 
             double C = Math.Sqrt((dx*dx)+(dy*dy));
 
-            if (C < radiuses) return true;
-            else return false;
+            return (C < radiuses);
         }
     }
 }

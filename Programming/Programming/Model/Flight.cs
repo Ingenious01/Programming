@@ -43,12 +43,9 @@ namespace Programming.Model
             get => _duration;
             set
             {
-                string method = "FlightDuration";
-
-                bool check = Validator.AssertOnPositiveValue(method, value);
-
-                if (check == true)
-                    _duration = value;
+                Validator.AssertOnPositiveValue(nameof(Duration), value);
+                
+                _duration = value;
             }
 
         }

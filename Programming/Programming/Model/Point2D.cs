@@ -16,11 +16,9 @@ namespace Programming.Model
             get => _x;
             private set 
             {
-                string method = "X";
+                Validator.AssertOnPositiveValue(nameof(X), value);
 
-                bool check = Validator.AssertOnPositiveValue(method, value);
-
-                if (check == true) _x = value;            
+                _x = value;            
             }
         }
 
@@ -28,12 +26,10 @@ namespace Programming.Model
         {
             get => _y;
             private set
-            {
-                string method = "Y";
+            {               
+                Validator.AssertOnPositiveValue(nameof(Y), value);
 
-                bool check = Validator.AssertOnPositiveValue(method, value);
-
-                if (check == true) _y = value;
+                _y = value;
             }
         }        
 

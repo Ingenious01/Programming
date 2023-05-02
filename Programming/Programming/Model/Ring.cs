@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Programming.Model
 {
-    internal class Ring
-    {
-        Validator validator = new Validator();
+    public class Ring
+    {        
 
         private Point2D _centre;
         private double _inRadius;
@@ -20,22 +19,17 @@ namespace Programming.Model
             get => _inRadius;
             set
             {
+                Validator.AssertOnPositiveValue(nameof(InRadius), value);
 
-                string method = "Internal Radius";
-
-                bool check = Validator.AssertOnPositiveValue(method, value);
-
-                if (check == true)
-                {
+                
                     if (value < _outRadius)
                     {
                         _inRadius = value;
                     }
                     else
                     {
-                        throw new ArgumentException(String.Format("Внутренний радиус не может быть больше внешнего ", method));
-                    }
-                }
+                        throw new ArgumentException(String.Format("Внутренний радиус не может быть больше внешнего "));
+                    }               
             }
         }
 
@@ -44,21 +38,16 @@ namespace Programming.Model
             get => _outRadius;
             set
             {
-                string method = "Outher Radius";
-
-                bool check = Validator.AssertOnPositiveValue(method, value);
-
-                if (check == true)
-                {
+                Validator.AssertOnPositiveValue(nameof(OutRadius), value);
+                
                     if (value < _inRadius)
                     {
                         _outRadius = value;
                     }
                     else
                     {
-                        throw new ArgumentException(String.Format("Внешний радиус не может быть меньне внутреннего", method));
-                    }
-                }
+                        throw new ArgumentException(String.Format("Внешний радиус не может быть меньне внутреннего"));
+                    }                
             }
 
         }       
@@ -67,10 +56,8 @@ namespace Programming.Model
 
         public double Area
         {
-            get=> Validator.CalculateArea(_inRadius,_outRadius);           
-
+            get=> Validator.CalculateArea(_inRadius,_outRadius);
         }
-
 
         public Ring()
         {

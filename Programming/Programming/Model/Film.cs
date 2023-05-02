@@ -22,12 +22,9 @@ namespace Programming.Model
             get => _duration;
             set
             {
-                string method = "FilmDuration";
-
-                bool check = Validator.AssertOnPositiveValue(method, value);
-
-                if (check == true)
-                    _duration = value;
+                Validator.AssertOnPositiveValue(nameof(Duration), value);
+                
+                _duration = value;
             }
 
         }
@@ -37,12 +34,9 @@ namespace Programming.Model
             get => _year;
             set
             {
-                string method = "FilmYear";
-
-                bool check = Validator.AssertValueInRange(method, value, 1900, 2023);
-
-                if (check == true)
-                    _year = value;
+                Validator.AssertValueInRange(nameof(Year), value, 1900, 2023);
+                
+                _year = value;
             }
 
         }
@@ -55,12 +49,9 @@ namespace Programming.Model
             get => _rating;
             set
             {
-                string method = "FilmRating";
-
-                bool check = Validator.AssertValueInRange(method, value, 0.000001, 10);
-
-                if (check == true)
-                    _rating = value;
+                Validator.AssertValueInRange(nameof(Rating), value, 0.000001, 10);
+                
+                _rating = value;
             }
 
         }

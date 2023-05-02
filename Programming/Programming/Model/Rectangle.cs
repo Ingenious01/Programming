@@ -10,18 +10,17 @@ namespace Programming.Model
     public class Rectangle
     {
 
-        Validator validator = new Validator();
-
-        private static int _allRectanglesCount = 0;
+        private static int _allRectanglesCount = 1;
         private double _length;
         private double _width;
         private string _color;
         private Point2D _centre;
         private int _id;
 
-        public static void AllRectanglesCount()
+        public static int AllRectanglesCount
         {
-            _allRectanglesCount = _allRectanglesCount +1;
+           get => _allRectanglesCount;
+           private set => _allRectanglesCount = value;
         }
 
         public double Length
@@ -30,13 +29,9 @@ namespace Programming.Model
             set
             {
                
-                string method = "Length";
-
-                bool check = Validator.AssertOnPositiveValue(method, value);
-
-                if (check == true)
-                        _length = value;
+               Validator.AssertOnPositiveValue(nameof(Length), value);
                 
+               _length = value;                
             }
 
         }
@@ -46,12 +41,9 @@ namespace Programming.Model
             get => _width;
             set
             {
-                string method = "Width";
+                Validator.AssertOnPositiveValue(nameof(Width), value);
 
-                bool check = Validator.AssertOnPositiveValue(method, value);
-
-                if (check == true)
-                    _width = value;
+                _width = value;
             }
 
         }
@@ -59,15 +51,11 @@ namespace Programming.Model
 
         public int Id
         {
-            get
-            {
-                AllRectanglesCount();
-                _id = _allRectanglesCount;
-                return _id;
-            }
+            get => _id;
+            set => _id = value;             
         }
 
-    public Point2D Centre { get;set; }
+        public Point2D Centre { get;set; }
         
 
         public Rectangle()
@@ -77,10 +65,12 @@ namespace Programming.Model
 
         public Rectangle(float length, float width, string color, Point2D centre)
         {
+            Id = AllRectanglesCount;
+            AllRectanglesCount++;
             Length = length;
             Width = width;
             Color = color;            
-            Centre = centre;
+            Centre = centre;            
         }
     }
 }

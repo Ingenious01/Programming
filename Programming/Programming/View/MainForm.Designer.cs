@@ -427,7 +427,7 @@
             this.XBox.ReadOnly = true;
             this.XBox.Size = new System.Drawing.Size(125, 27);
             this.XBox.TabIndex = 9;
-            this.XBox.TextChanged += new System.EventHandler(this.textBox1_TextChanged_1);
+            
             // 
             // XCoordinateLabel
             // 
@@ -437,7 +437,7 @@
             this.XCoordinateLabel.Size = new System.Drawing.Size(102, 20);
             this.XCoordinateLabel.TabIndex = 8;
             this.XCoordinateLabel.Text = "X coordonate:";
-            this.XCoordinateLabel.Click += new System.EventHandler(this.label1_Click);
+            
             // 
             // RectengleFindButton
             // 
@@ -689,7 +689,7 @@
             this.GraphicsListBox.Name = "GraphicsListBox";
             this.GraphicsListBox.Size = new System.Drawing.Size(294, 214);
             this.GraphicsListBox.TabIndex = 0;
-            this.GraphicsListBox.SelectedIndexChanged += new System.EventHandler(this.GraphicsListBox_SelectedIndexChanged);
+            
             // 
             // CoordinatesBox
             // 
@@ -714,7 +714,7 @@
             this.YTextBOx.Name = "YTextBOx";
             this.YTextBOx.Size = new System.Drawing.Size(125, 41);
             this.YTextBOx.TabIndex = 5;
-            this.YTextBOx.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+           
             // 
             // XTextBox
             // 
@@ -723,7 +723,7 @@
             this.XTextBox.Name = "XTextBox";
             this.XTextBox.Size = new System.Drawing.Size(125, 41);
             this.XTextBox.TabIndex = 4;
-            this.XTextBox.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            
             // 
             // CentreLabel
             // 
@@ -763,7 +763,7 @@
             this.AddRectangleButton.TabIndex = 0;
             this.AddRectangleButton.Text = "Add Rectangle";
             this.AddRectangleButton.UseVisualStyleBackColor = true;
-            this.AddRectangleButton.Click += new System.EventHandler(this.AddRectangleButton_Click);
+            
             // 
             // IdBox
             // 
@@ -772,7 +772,7 @@
             this.IdBox.ReadOnly = true;
             this.IdBox.Size = new System.Drawing.Size(125, 27);
             this.IdBox.TabIndex = 13;
-            this.IdBox.TextChanged += new System.EventHandler(this.textBox1_TextChanged_2);
+            
             // 
             // IdLabel
             // 
@@ -782,7 +782,7 @@
             this.IdLabel.Size = new System.Drawing.Size(24, 20);
             this.IdLabel.TabIndex = 12;
             this.IdLabel.Text = "ID";
-            this.IdLabel.Click += new System.EventHandler(this.label1_Click_1);
+            
             // 
             // MainForm
             // 
