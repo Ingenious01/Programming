@@ -52,6 +52,8 @@
             this.ClassesTabPage = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.RectanglesBox = new System.Windows.Forms.GroupBox();
+            this.IdBox = new System.Windows.Forms.TextBox();
+            this.IdLabel = new System.Windows.Forms.Label();
             this.YBox = new System.Windows.Forms.TextBox();
             this.YCoordinateLabel = new System.Windows.Forms.Label();
             this.XBox = new System.Windows.Forms.TextBox();
@@ -80,16 +82,22 @@
             this.RectanglesTabPage = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.GraphicsListBox = new System.Windows.Forms.ListBox();
             this.CoordinatesBox = new System.Windows.Forms.GroupBox();
-            this.YTextBOx = new System.Windows.Forms.TextBox();
-            this.XTextBox = new System.Windows.Forms.TextBox();
-            this.CentreLabel = new System.Windows.Forms.Label();
-            this.YLabel = new System.Windows.Forms.Label();
-            this.XLabel = new System.Windows.Forms.Label();
-            this.AddRectangleButton = new System.Windows.Forms.Button();
-            this.IdBox = new System.Windows.Forms.TextBox();
-            this.IdLabel = new System.Windows.Forms.Label();
+            this.GeometryRemoveButton = new System.Windows.Forms.Button();
+            this.GeometryAddButton = new System.Windows.Forms.Button();
+            this.GeometryRectanglesWidthTextBox = new System.Windows.Forms.TextBox();
+            this.GeometryWidthLabel = new System.Windows.Forms.Label();
+            this.GeometryRectanglesYTextBox = new System.Windows.Forms.TextBox();
+            this.GeometryYLabel = new System.Windows.Forms.Label();
+            this.GeometryRectanglesHeightTextBox = new System.Windows.Forms.TextBox();
+            this.GeometryHeightLabel = new System.Windows.Forms.Label();
+            this.GeometryRectanglesXTextBox = new System.Windows.Forms.TextBox();
+            this.GeometryXLabel = new System.Windows.Forms.Label();
+            this.GeometryRectanglesIdTextBox = new System.Windows.Forms.TextBox();
+            this.GeometryIdLabel = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.GeometryRectanglesBox = new System.Windows.Forms.GroupBox();
+            this.GeometryRectanlesListBox = new System.Windows.Forms.ListBox();
             this.MainTabPage.SuspendLayout();
             this.EnumPage.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -105,6 +113,7 @@
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.CoordinatesBox.SuspendLayout();
+            this.GeometryRectanglesBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // MainTabPage
@@ -117,7 +126,7 @@
             this.MainTabPage.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MainTabPage.Name = "MainTabPage";
             this.MainTabPage.SelectedIndex = 0;
-            this.MainTabPage.Size = new System.Drawing.Size(891, 676);
+            this.MainTabPage.Size = new System.Drawing.Size(1072, 680);
             this.MainTabPage.TabIndex = 0;
             // 
             // EnumPage
@@ -127,7 +136,7 @@
             this.EnumPage.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.EnumPage.Name = "EnumPage";
             this.EnumPage.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.EnumPage.Size = new System.Drawing.Size(883, 643);
+            this.EnumPage.Size = new System.Drawing.Size(1064, 647);
             this.EnumPage.TabIndex = 0;
             this.EnumPage.Text = "Enum";
             this.EnumPage.UseVisualStyleBackColor = true;
@@ -146,7 +155,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 63.07449F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 36.92551F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(877, 635);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1058, 639);
             this.tableLayoutPanel1.TabIndex = 7;
             // 
             // EnumerationsBox
@@ -160,7 +169,7 @@
             this.EnumerationsBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.EnumerationsBox.Location = new System.Drawing.Point(3, 3);
             this.EnumerationsBox.Name = "EnumerationsBox";
-            this.EnumerationsBox.Size = new System.Drawing.Size(871, 394);
+            this.EnumerationsBox.Size = new System.Drawing.Size(1052, 397);
             this.EnumerationsBox.TabIndex = 6;
             this.EnumerationsBox.TabStop = false;
             this.EnumerationsBox.Text = "Enumerations";
@@ -175,7 +184,7 @@
             this.ValuesListBox.Location = new System.Drawing.Point(203, 59);
             this.ValuesListBox.Margin = new System.Windows.Forms.Padding(25, 4, 3, 4);
             this.ValuesListBox.Name = "ValuesListBox";
-            this.ValuesListBox.Size = new System.Drawing.Size(159, 278);
+            this.ValuesListBox.Size = new System.Drawing.Size(159, 281);
             this.ValuesListBox.TabIndex = 1;
             this.ValuesListBox.SelectedIndexChanged += new System.EventHandler(this.ValuesListBox_SelectedIndexChanged);
             // 
@@ -216,7 +225,7 @@
             this.EnumsListBox.Location = new System.Drawing.Point(16, 59);
             this.EnumsListBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.EnumsListBox.Name = "EnumsListBox";
-            this.EnumsListBox.Size = new System.Drawing.Size(159, 278);
+            this.EnumsListBox.Size = new System.Drawing.Size(159, 281);
             this.EnumsListBox.TabIndex = 0;
             this.EnumsListBox.SelectedIndexChanged += new System.EventHandler(this.EnumsListBox_SelectedIndexChanged);
             // 
@@ -237,12 +246,12 @@
             this.tableLayoutPanel2.Controls.Add(this.WeekdayParcingBox, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.SeasonHandleBox, 1, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 400);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 403);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(877, 235);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1058, 236);
             this.tableLayoutPanel2.TabIndex = 7;
             // 
             // WeekdayParcingBox
@@ -254,7 +263,7 @@
             this.WeekdayParcingBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.WeekdayParcingBox.Location = new System.Drawing.Point(3, 3);
             this.WeekdayParcingBox.Name = "WeekdayParcingBox";
-            this.WeekdayParcingBox.Size = new System.Drawing.Size(432, 229);
+            this.WeekdayParcingBox.Size = new System.Drawing.Size(523, 230);
             this.WeekdayParcingBox.TabIndex = 6;
             this.WeekdayParcingBox.TabStop = false;
             this.WeekdayParcingBox.Text = "Weekday Parcing";
@@ -263,7 +272,7 @@
             // 
             this.WeekDayParsingButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.WeekDayParsingButton.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.WeekDayParsingButton.Location = new System.Drawing.Point(196, 75);
+            this.WeekDayParsingButton.Location = new System.Drawing.Point(287, 75);
             this.WeekDayParsingButton.Margin = new System.Windows.Forms.Padding(25, 4, 3, 4);
             this.WeekDayParsingButton.Name = "WeekDayParsingButton";
             this.WeekDayParsingButton.Size = new System.Drawing.Size(125, 36);
@@ -302,7 +311,7 @@
             this.ParsingTextBox.Location = new System.Drawing.Point(6, 77);
             this.ParsingTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ParsingTextBox.Name = "ParsingTextBox";
-            this.ParsingTextBox.Size = new System.Drawing.Size(163, 32);
+            this.ParsingTextBox.Size = new System.Drawing.Size(254, 32);
             this.ParsingTextBox.TabIndex = 1;
             // 
             // SeasonHandleBox
@@ -312,9 +321,9 @@
             this.SeasonHandleBox.Controls.Add(this.SeasonComboBox);
             this.SeasonHandleBox.Controls.Add(this.SeasonLabel);
             this.SeasonHandleBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SeasonHandleBox.Location = new System.Drawing.Point(441, 3);
+            this.SeasonHandleBox.Location = new System.Drawing.Point(532, 3);
             this.SeasonHandleBox.Name = "SeasonHandleBox";
-            this.SeasonHandleBox.Size = new System.Drawing.Size(433, 229);
+            this.SeasonHandleBox.Size = new System.Drawing.Size(523, 230);
             this.SeasonHandleBox.TabIndex = 6;
             this.SeasonHandleBox.TabStop = false;
             this.SeasonHandleBox.Text = "Season Handle";
@@ -323,7 +332,7 @@
             // 
             this.SeasonButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.SeasonButton.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.SeasonButton.Location = new System.Drawing.Point(199, 77);
+            this.SeasonButton.Location = new System.Drawing.Point(289, 77);
             this.SeasonButton.Margin = new System.Windows.Forms.Padding(25, 3, 3, 3);
             this.SeasonButton.Name = "SeasonButton";
             this.SeasonButton.Size = new System.Drawing.Size(125, 35);
@@ -340,7 +349,7 @@
             this.SeasonComboBox.FormattingEnabled = true;
             this.SeasonComboBox.Location = new System.Drawing.Point(6, 77);
             this.SeasonComboBox.Name = "SeasonComboBox";
-            this.SeasonComboBox.Size = new System.Drawing.Size(165, 33);
+            this.SeasonComboBox.Size = new System.Drawing.Size(255, 33);
             this.SeasonComboBox.TabIndex = 3;
             // 
             // SeasonLabel
@@ -359,7 +368,7 @@
             this.ClassesTabPage.Location = new System.Drawing.Point(4, 29);
             this.ClassesTabPage.Name = "ClassesTabPage";
             this.ClassesTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.ClassesTabPage.Size = new System.Drawing.Size(883, 643);
+            this.ClassesTabPage.Size = new System.Drawing.Size(1064, 647);
             this.ClassesTabPage.TabIndex = 1;
             this.ClassesTabPage.Text = "Classes";
             this.ClassesTabPage.UseVisualStyleBackColor = true;
@@ -376,7 +385,7 @@
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(877, 637);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(1058, 641);
             this.tableLayoutPanel3.TabIndex = 12;
             // 
             // RectanglesBox
@@ -398,10 +407,27 @@
             this.RectanglesBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.RectanglesBox.Location = new System.Drawing.Point(3, 3);
             this.RectanglesBox.Name = "RectanglesBox";
-            this.RectanglesBox.Size = new System.Drawing.Size(432, 631);
+            this.RectanglesBox.Size = new System.Drawing.Size(523, 635);
             this.RectanglesBox.TabIndex = 0;
             this.RectanglesBox.TabStop = false;
             this.RectanglesBox.Text = "Rectangles";
+            // 
+            // IdBox
+            // 
+            this.IdBox.Location = new System.Drawing.Point(21, 335);
+            this.IdBox.Name = "IdBox";
+            this.IdBox.ReadOnly = true;
+            this.IdBox.Size = new System.Drawing.Size(125, 27);
+            this.IdBox.TabIndex = 13;
+            // 
+            // IdLabel
+            // 
+            this.IdLabel.AutoSize = true;
+            this.IdLabel.Location = new System.Drawing.Point(21, 313);
+            this.IdLabel.Name = "IdLabel";
+            this.IdLabel.Size = new System.Drawing.Size(24, 20);
+            this.IdLabel.TabIndex = 12;
+            this.IdLabel.Text = "ID";
             // 
             // YBox
             // 
@@ -427,7 +453,6 @@
             this.XBox.ReadOnly = true;
             this.XBox.Size = new System.Drawing.Size(125, 27);
             this.XBox.TabIndex = 9;
-            
             // 
             // XCoordinateLabel
             // 
@@ -437,7 +462,6 @@
             this.XCoordinateLabel.Size = new System.Drawing.Size(102, 20);
             this.XCoordinateLabel.TabIndex = 8;
             this.XCoordinateLabel.Text = "X coordonate:";
-            
             // 
             // RectengleFindButton
             // 
@@ -526,9 +550,9 @@
             this.FilmsBox.Controls.Add(this.YearLabel);
             this.FilmsBox.Controls.Add(this.FilmsListBox);
             this.FilmsBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.FilmsBox.Location = new System.Drawing.Point(441, 3);
+            this.FilmsBox.Location = new System.Drawing.Point(532, 3);
             this.FilmsBox.Name = "FilmsBox";
-            this.FilmsBox.Size = new System.Drawing.Size(433, 631);
+            this.FilmsBox.Size = new System.Drawing.Size(523, 635);
             this.FilmsBox.TabIndex = 1;
             this.FilmsBox.TabStop = false;
             this.FilmsBox.Text = "Films";
@@ -644,7 +668,7 @@
             this.RectanglesTabPage.Location = new System.Drawing.Point(4, 29);
             this.RectanglesTabPage.Name = "RectanglesTabPage";
             this.RectanglesTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.RectanglesTabPage.Size = new System.Drawing.Size(883, 643);
+            this.RectanglesTabPage.Size = new System.Drawing.Size(1064, 647);
             this.RectanglesTabPage.TabIndex = 2;
             this.RectanglesTabPage.Text = "Rectangles";
             this.RectanglesTabPage.UseVisualStyleBackColor = true;
@@ -652,144 +676,192 @@
             // tableLayoutPanel4
             // 
             this.tableLayoutPanel4.ColumnCount = 2;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 65F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 55F));
             this.tableLayoutPanel4.Controls.Add(this.tableLayoutPanel5, 0, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(877, 637);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(1058, 641);
             this.tableLayoutPanel4.TabIndex = 0;
             // 
             // tableLayoutPanel5
             // 
             this.tableLayoutPanel5.ColumnCount = 1;
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel5.Controls.Add(this.GraphicsListBox, 0, 0);
             this.tableLayoutPanel5.Controls.Add(this.CoordinatesBox, 0, 1);
+            this.tableLayoutPanel5.Controls.Add(this.GeometryRectanglesBox, 0, 0);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 2;
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 35F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 65F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(300, 631);
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(470, 635);
             this.tableLayoutPanel5.TabIndex = 0;
-            // 
-            // GraphicsListBox
-            // 
-            this.GraphicsListBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.GraphicsListBox.FormattingEnabled = true;
-            this.GraphicsListBox.ItemHeight = 20;
-            this.GraphicsListBox.Location = new System.Drawing.Point(3, 3);
-            this.GraphicsListBox.Name = "GraphicsListBox";
-            this.GraphicsListBox.Size = new System.Drawing.Size(294, 214);
-            this.GraphicsListBox.TabIndex = 0;
-            
             // 
             // CoordinatesBox
             // 
-            this.CoordinatesBox.Controls.Add(this.YTextBOx);
-            this.CoordinatesBox.Controls.Add(this.XTextBox);
-            this.CoordinatesBox.Controls.Add(this.CentreLabel);
-            this.CoordinatesBox.Controls.Add(this.YLabel);
-            this.CoordinatesBox.Controls.Add(this.XLabel);
-            this.CoordinatesBox.Controls.Add(this.AddRectangleButton);
+            this.CoordinatesBox.Controls.Add(this.GeometryRemoveButton);
+            this.CoordinatesBox.Controls.Add(this.GeometryAddButton);
+            this.CoordinatesBox.Controls.Add(this.GeometryRectanglesWidthTextBox);
+            this.CoordinatesBox.Controls.Add(this.GeometryWidthLabel);
+            this.CoordinatesBox.Controls.Add(this.GeometryRectanglesYTextBox);
+            this.CoordinatesBox.Controls.Add(this.GeometryYLabel);
+            this.CoordinatesBox.Controls.Add(this.GeometryRectanglesHeightTextBox);
+            this.CoordinatesBox.Controls.Add(this.GeometryHeightLabel);
+            this.CoordinatesBox.Controls.Add(this.GeometryRectanglesXTextBox);
+            this.CoordinatesBox.Controls.Add(this.GeometryXLabel);
+            this.CoordinatesBox.Controls.Add(this.GeometryRectanglesIdTextBox);
+            this.CoordinatesBox.Controls.Add(this.GeometryIdLabel);
+            this.CoordinatesBox.Controls.Add(this.label1);
             this.CoordinatesBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CoordinatesBox.Location = new System.Drawing.Point(3, 223);
+            this.CoordinatesBox.Location = new System.Drawing.Point(3, 320);
             this.CoordinatesBox.Name = "CoordinatesBox";
-            this.CoordinatesBox.Size = new System.Drawing.Size(294, 405);
+            this.CoordinatesBox.Size = new System.Drawing.Size(464, 312);
             this.CoordinatesBox.TabIndex = 1;
             this.CoordinatesBox.TabStop = false;
-            this.CoordinatesBox.Text = "Coordinates";
+            this.CoordinatesBox.Text = "Coordinates and stuff";
             // 
-            // YTextBOx
+            // GeometryRemoveButton
             // 
-            this.YTextBOx.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.YTextBOx.Location = new System.Drawing.Point(78, 212);
-            this.YTextBOx.Name = "YTextBOx";
-            this.YTextBOx.Size = new System.Drawing.Size(125, 41);
-            this.YTextBOx.TabIndex = 5;
-           
+            this.GeometryRemoveButton.Image = ((System.Drawing.Image)(resources.GetObject("GeometryRemoveButton.Image")));
+            this.GeometryRemoveButton.Location = new System.Drawing.Point(342, 137);
+            this.GeometryRemoveButton.Name = "GeometryRemoveButton";
+            this.GeometryRemoveButton.Size = new System.Drawing.Size(96, 94);
+            this.GeometryRemoveButton.TabIndex = 12;
+            this.GeometryRemoveButton.UseVisualStyleBackColor = true;
+            this.GeometryRemoveButton.Click += new System.EventHandler(this.GeometryRemoveButton_Click);
             // 
-            // XTextBox
+            // GeometryAddButton
             // 
-            this.XTextBox.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.XTextBox.Location = new System.Drawing.Point(78, 163);
-            this.XTextBox.Name = "XTextBox";
-            this.XTextBox.Size = new System.Drawing.Size(125, 41);
-            this.XTextBox.TabIndex = 4;
-            
+            this.GeometryAddButton.Image = ((System.Drawing.Image)(resources.GetObject("GeometryAddButton.Image")));
+            this.GeometryAddButton.Location = new System.Drawing.Point(224, 137);
+            this.GeometryAddButton.Name = "GeometryAddButton";
+            this.GeometryAddButton.Size = new System.Drawing.Size(96, 94);
+            this.GeometryAddButton.TabIndex = 11;
+            this.GeometryAddButton.UseVisualStyleBackColor = true;
+            this.GeometryAddButton.Click += new System.EventHandler(this.GeometryAddButton_Click);
             // 
-            // CentreLabel
+            // GeometryRectanglesWidthTextBox
             // 
-            this.CentreLabel.AutoSize = true;
-            this.CentreLabel.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.CentreLabel.Location = new System.Drawing.Point(86, 110);
-            this.CentreLabel.Name = "CentreLabel";
-            this.CentreLabel.Size = new System.Drawing.Size(85, 32);
-            this.CentreLabel.TabIndex = 3;
-            this.CentreLabel.Text = "Centre";
+            this.GeometryRectanglesWidthTextBox.Location = new System.Drawing.Point(77, 200);
+            this.GeometryRectanglesWidthTextBox.Name = "GeometryRectanglesWidthTextBox";
+            this.GeometryRectanglesWidthTextBox.Size = new System.Drawing.Size(125, 27);
+            this.GeometryRectanglesWidthTextBox.TabIndex = 10;
             // 
-            // YLabel
+            // GeometryWidthLabel
             // 
-            this.YLabel.AutoSize = true;
-            this.YLabel.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.YLabel.Location = new System.Drawing.Point(19, 215);
-            this.YLabel.Name = "YLabel";
-            this.YLabel.Size = new System.Drawing.Size(53, 35);
-            this.YLabel.TabIndex = 2;
-            this.YLabel.Text = "Y =";
+            this.GeometryWidthLabel.AutoSize = true;
+            this.GeometryWidthLabel.Location = new System.Drawing.Point(9, 207);
+            this.GeometryWidthLabel.Name = "GeometryWidthLabel";
+            this.GeometryWidthLabel.Size = new System.Drawing.Size(52, 20);
+            this.GeometryWidthLabel.TabIndex = 9;
+            this.GeometryWidthLabel.Text = "Width:";
             // 
-            // XLabel
+            // GeometryRectanglesYTextBox
             // 
-            this.XLabel.AutoSize = true;
-            this.XLabel.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.XLabel.Location = new System.Drawing.Point(19, 166);
-            this.XLabel.Name = "XLabel";
-            this.XLabel.Size = new System.Drawing.Size(54, 35);
-            this.XLabel.TabIndex = 1;
-            this.XLabel.Text = "X =";
+            this.GeometryRectanglesYTextBox.Location = new System.Drawing.Point(77, 167);
+            this.GeometryRectanglesYTextBox.Name = "GeometryRectanglesYTextBox";
+            this.GeometryRectanglesYTextBox.Size = new System.Drawing.Size(125, 27);
+            this.GeometryRectanglesYTextBox.TabIndex = 8;
             // 
-            // AddRectangleButton
+            // GeometryYLabel
             // 
-            this.AddRectangleButton.Location = new System.Drawing.Point(59, 43);
-            this.AddRectangleButton.Name = "AddRectangleButton";
-            this.AddRectangleButton.Size = new System.Drawing.Size(147, 48);
-            this.AddRectangleButton.TabIndex = 0;
-            this.AddRectangleButton.Text = "Add Rectangle";
-            this.AddRectangleButton.UseVisualStyleBackColor = true;
-            
+            this.GeometryYLabel.AutoSize = true;
+            this.GeometryYLabel.Location = new System.Drawing.Point(41, 174);
+            this.GeometryYLabel.Name = "GeometryYLabel";
+            this.GeometryYLabel.Size = new System.Drawing.Size(20, 20);
+            this.GeometryYLabel.TabIndex = 7;
+            this.GeometryYLabel.Text = "Y:";
             // 
-            // IdBox
+            // GeometryRectanglesHeightTextBox
             // 
-            this.IdBox.Location = new System.Drawing.Point(21, 335);
-            this.IdBox.Name = "IdBox";
-            this.IdBox.ReadOnly = true;
-            this.IdBox.Size = new System.Drawing.Size(125, 27);
-            this.IdBox.TabIndex = 13;
-            
+            this.GeometryRectanglesHeightTextBox.Location = new System.Drawing.Point(77, 233);
+            this.GeometryRectanglesHeightTextBox.Name = "GeometryRectanglesHeightTextBox";
+            this.GeometryRectanglesHeightTextBox.Size = new System.Drawing.Size(125, 27);
+            this.GeometryRectanglesHeightTextBox.TabIndex = 6;
             // 
-            // IdLabel
+            // GeometryHeightLabel
             // 
-            this.IdLabel.AutoSize = true;
-            this.IdLabel.Location = new System.Drawing.Point(21, 313);
-            this.IdLabel.Name = "IdLabel";
-            this.IdLabel.Size = new System.Drawing.Size(24, 20);
-            this.IdLabel.TabIndex = 12;
-            this.IdLabel.Text = "ID";
-            
+            this.GeometryHeightLabel.AutoSize = true;
+            this.GeometryHeightLabel.Location = new System.Drawing.Point(4, 240);
+            this.GeometryHeightLabel.Name = "GeometryHeightLabel";
+            this.GeometryHeightLabel.Size = new System.Drawing.Size(57, 20);
+            this.GeometryHeightLabel.TabIndex = 5;
+            this.GeometryHeightLabel.Text = "Height:";
+            // 
+            // GeometryRectanglesXTextBox
+            // 
+            this.GeometryRectanglesXTextBox.Location = new System.Drawing.Point(77, 134);
+            this.GeometryRectanglesXTextBox.Name = "GeometryRectanglesXTextBox";
+            this.GeometryRectanglesXTextBox.Size = new System.Drawing.Size(125, 27);
+            this.GeometryRectanglesXTextBox.TabIndex = 4;
+            // 
+            // GeometryXLabel
+            // 
+            this.GeometryXLabel.AutoSize = true;
+            this.GeometryXLabel.Location = new System.Drawing.Point(40, 141);
+            this.GeometryXLabel.Name = "GeometryXLabel";
+            this.GeometryXLabel.Size = new System.Drawing.Size(21, 20);
+            this.GeometryXLabel.TabIndex = 3;
+            this.GeometryXLabel.Text = "X:";
+            // 
+            // GeometryRectanglesIdTextBox
+            // 
+            this.GeometryRectanglesIdTextBox.Location = new System.Drawing.Point(77, 101);
+            this.GeometryRectanglesIdTextBox.Name = "GeometryRectanglesIdTextBox";
+            this.GeometryRectanglesIdTextBox.Size = new System.Drawing.Size(125, 27);
+            this.GeometryRectanglesIdTextBox.TabIndex = 2;
+            // 
+            // GeometryIdLabel
+            // 
+            this.GeometryIdLabel.AutoSize = true;
+            this.GeometryIdLabel.Location = new System.Drawing.Point(36, 108);
+            this.GeometryIdLabel.Name = "GeometryIdLabel";
+            this.GeometryIdLabel.Size = new System.Drawing.Size(25, 20);
+            this.GeometryIdLabel.TabIndex = 1;
+            this.GeometryIdLabel.Text = "Id:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(16, 41);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(139, 20);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Selected Rectangle:";
+            // 
+            // GeometryRectanglesBox
+            // 
+            this.GeometryRectanglesBox.Controls.Add(this.GeometryRectanlesListBox);
+            this.GeometryRectanglesBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.GeometryRectanglesBox.Location = new System.Drawing.Point(3, 3);
+            this.GeometryRectanglesBox.Name = "GeometryRectanglesBox";
+            this.GeometryRectanglesBox.Size = new System.Drawing.Size(464, 311);
+            this.GeometryRectanglesBox.TabIndex = 2;
+            this.GeometryRectanglesBox.TabStop = false;
+            this.GeometryRectanglesBox.Text = "Rectangles:";
+            // 
+            // GeometryRectanlesListBox
+            // 
+            this.GeometryRectanlesListBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.GeometryRectanlesListBox.FormattingEnabled = true;
+            this.GeometryRectanlesListBox.ItemHeight = 20;
+            this.GeometryRectanlesListBox.Location = new System.Drawing.Point(3, 23);
+            this.GeometryRectanlesListBox.Name = "GeometryRectanlesListBox";
+            this.GeometryRectanlesListBox.Size = new System.Drawing.Size(458, 285);
+            this.GeometryRectanlesListBox.TabIndex = 0;
+            this.GeometryRectanlesListBox.SelectedIndexChanged += new System.EventHandler(this.GeometryRectanlesListBox_SelectedIndexChanged);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.ClientSize = new System.Drawing.Size(891, 676);
+            this.ClientSize = new System.Drawing.Size(1072, 680);
             this.Controls.Add(this.MainTabPage);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimizeBox = false;
@@ -818,6 +890,7 @@
             this.tableLayoutPanel5.ResumeLayout(false);
             this.CoordinatesBox.ResumeLayout(false);
             this.CoordinatesBox.PerformLayout();
+            this.GeometryRectanglesBox.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -871,19 +944,27 @@
         private TabPage RectanglesTabPage;
         private TableLayoutPanel tableLayoutPanel4;
         private TableLayoutPanel tableLayoutPanel5;
-        private ListBox GraphicsListBox;
         private GroupBox CoordinatesBox;
-        private TextBox YTextBOx;
-        private TextBox XTextBox;
-        private Label CentreLabel;
-        private Label YLabel;
-        private Label XLabel;
-        private Button AddRectangleButton;
         private TextBox XBox;
         private Label XCoordinateLabel;
         private TextBox YBox;
         private Label YCoordinateLabel;
         private TextBox IdBox;
         private Label IdLabel;
+        private GroupBox GeometryRectanglesBox;
+        private ListBox GeometryRectanlesListBox;
+        private TextBox GeometryRectanglesWidthTextBox;
+        private Label GeometryWidthLabel;
+        private TextBox GeometryRectanglesYTextBox;
+        private Label GeometryYLabel;
+        private TextBox GeometryRectanglesHeightTextBox;
+        private Label GeometryHeightLabel;
+        private TextBox GeometryRectanglesXTextBox;
+        private Label GeometryXLabel;
+        private TextBox GeometryRectanglesIdTextBox;
+        private Label GeometryIdLabel;
+        private Label label1;
+        private Button GeometryRemoveButton;
+        private Button GeometryAddButton;
     }
 }

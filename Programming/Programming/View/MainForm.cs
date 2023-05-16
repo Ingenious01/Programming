@@ -5,6 +5,7 @@ using Rectangle = Programming.Model.Rectangle;
 using Film = Programming.Model.Film;
 using Color = Programming.Model.Color;
 using System.Windows.Forms;
+using System.Drawing.Text;
 
 namespace Programming
 {
@@ -20,7 +21,7 @@ namespace Programming
             typeof(Weekday)
         };
 
-        private Rectangle[] _rectangles = new Rectangle[5];
+        private Rectangle[] _rectangles = new Rectangle[100];
         private Rectangle _currentRectangle;
 
         private Film[] _films = new Film[5];
@@ -37,8 +38,8 @@ namespace Programming
 
             EnumsListBox.DisplayMember = nameof(Type.Name);
             EnumsListBox.Items.AddRange(enums);
-            EnumsListBox.SelectedIndex = 0;      
-            
+            EnumsListBox.SelectedIndex = 0;
+
 
             SeasonComboBox.Items.AddRange(new string[]  {Convert.ToString(Season.Autumn),
                                                          Convert.ToString(Season.Summer),
@@ -52,13 +53,7 @@ namespace Programming
                 "Rectangle 3",
                 "Rectangle 4",
                 "Rectangle 5"
-            };            
-
-            RectanglesListBox.DataSource = listRectangles; 
-            RectanglesListBox.SelectedIndex = 0;
-
-            GraphicsListBox.DataSource = listRectangles;
-            GraphicsListBox.SelectedIndex = 0;
+            };
 
             var listFilms = new string[]
             {
@@ -71,6 +66,12 @@ namespace Programming
 
             FilmsListBox.DataSource = listFilms;
             FilmsListBox.SelectedIndex = 0;
+
+            RectanglesListBox.DataSource = listRectangles;
+            RectanglesListBox.SelectedIndex = 0;
+
+            GeometryRectanlesListBox.DataSource = listRectangles;
+            GeometryRectanlesListBox.SelectedIndex = 0;
         }
 
         //-----------------------------------Rectangles-------------------------------------------\\
@@ -82,10 +83,10 @@ namespace Programming
                 int length = _random.Next(1, 30);
                 int width = _random.Next(1, 30);
                 string color = colorValues.GetValue(_random.Next(0, 6)).ToString();
-                Point2D centre = new Point2D(_random.Next(0,201), _random.Next(0, 201));
+                Point2D centre = new Point2D(_random.Next(0, 201), _random.Next(0, 201));
                 _rectangles[i] = new Model.Rectangle(length, width, color, centre);
             }
-        }       
+        }
 
         private void RectanglesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -148,8 +149,49 @@ namespace Programming
                 RectanglesListBox.SelectedIndex = index;
             }
 
-        }        
-        
+        }
+
+        //---------------------------------Geometry-----------------------------------------\\
+
+        private void GeometryRectanlesListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _currentRectangle = _rectangles[GeometryRectanlesListBox.SelectedIndex];
+            GeometryRectanglesHeightTextBox.Text = _rectangles[GeometryRectanlesListBox.SelectedIndex].Length.ToString();
+            GeometryRectanglesWidthTextBox.Text = _rectangles[GeometryRectanlesListBox.SelectedIndex].Width.ToString();
+            GeometryRectanglesXTextBox.Text = _rectangles[GeometryRectanlesListBox.SelectedIndex].Centre.X.ToString();
+            GeometryRectanglesYTextBox.Text = _rectangles[GeometryRectanlesListBox.SelectedIndex].Centre.Y.ToString();
+            GeometryRectanglesIdTextBox.Text = _rectangles[GeometryRectanlesListBox.SelectedIndex].Id.ToString();
+        }
+
+        int count = 6;
+        private void GeometryAddButton_Click(object sender, EventArgs e)
+        {
+            var colorValues = Enum.GetValues((Type)enums[0]);
+
+            int length = _random.Next(1, 30);
+            int width = _random.Next(1, 30);
+            string color = colorValues.GetValue(_random.Next(0, 6)).ToString();
+            Point2D centre = new Point2D(_random.Next(0, 201), _random.Next(0, 201));
+            _rectangles[count] = new Model.Rectangle(length, width, color, centre);
+
+            GeometryRectanlesListBox.Items.Add("Rectangle");
+
+            count++;
+
+        }
+
+
+
+        private void GeometryRemoveButton_Click(object sender, EventArgs e)
+        {
+
+
+        }
+
+
+
+
+
         //-----------------------------------Films-------------------------------------------\\
 
         private void FillFilms()
@@ -157,12 +199,12 @@ namespace Programming
             var genreValues = Enum.GetValues((Type)enums[2]);
             for (int i = 0; i < 5; i++)
             {
-                string number = Convert.ToString(i+1);
-                string name = "Film " + number; 
+                string number = Convert.ToString(i + 1);
+                string name = "Film " + number;
                 int duration = _random.Next(1, 601);
                 int year = _random.Next(1900, 2023);
                 string genre = genreValues.GetValue(_random.Next(0, 6)).ToString();
-                double rating = Math.Round(_random.Next(1,11) *_random.NextDouble(), 1);                
+                double rating = Math.Round(_random.Next(1, 11) * _random.NextDouble(), 1);
                 _films[i] = new Model.Film(name, duration, year, genre, rating);
             }
         }
@@ -174,7 +216,7 @@ namespace Programming
             DurationBox.Text = _films[FilmsListBox.SelectedIndex].Duration.ToString();
             YearBox.Text = _films[FilmsListBox.SelectedIndex].Year.ToString();
             GenreBox.Text = _films[FilmsListBox.SelectedIndex].Genre;
-            RatingBox.Text = _films[FilmsListBox.SelectedIndex].Rating.ToString();            
+            RatingBox.Text = _films[FilmsListBox.SelectedIndex].Rating.ToString();
 
         }
 
@@ -229,10 +271,10 @@ namespace Programming
 
         private void FilmFindButton_Click(object sender, EventArgs e)
         {
-            FindFilmWithMaxRating ();
+            FindFilmWithMaxRating();
         }
 
-        public void FindFilmWithMaxRating ()
+        public void FindFilmWithMaxRating()
         {
             int index = 0;
             double maxRating = 0;
@@ -248,7 +290,7 @@ namespace Programming
 
         }
 
-        //-------------------------------------Enums------------------------------------------\\
+       //-------------------------------------Enums------------------------------------------\\
 
         private void EnumsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -258,14 +300,14 @@ namespace Programming
             foreach (var enumValue in enumValues)
             {
                 ValuesListBox.Items.Add(enumValue);
-            }            
+            }
 
         }
 
         private void ValuesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-            if (ValuesListBox.Items == null) 
+            if (ValuesListBox.Items == null)
             {
                 return;
             }
@@ -274,16 +316,16 @@ namespace Programming
             {
                 ValuesTextBox.Text = ValuesListBox.SelectedIndex.ToString();
             }
-        }      
-       
+        }
+
         private void WeekDayParsingButton_Click(object sender, EventArgs e)
         {
             if (Enum.IsDefined(typeof(Weekday), ParsingTextBox.Text))
             {
                 int num = (int)Enum.Parse(typeof(Weekday), ParsingTextBox.Text);
-                ParsingResultLabel.Text = $"Ёто день недели ({ParsingTextBox.Text} = {num})";  
-                
-                ParsingResultLabel.Visible= true ;
+                ParsingResultLabel.Text = $"Ёто день недели ({ParsingTextBox.Text} = {num})";
+
+                ParsingResultLabel.Visible = true;
             }
 
             else
@@ -292,7 +334,7 @@ namespace Programming
 
                 ParsingResultLabel.Visible = true;
             }
-        }      
+        }
 
         private void SeasonButton_Click(object sender, EventArgs e)
         {
@@ -310,12 +352,14 @@ namespace Programming
                 case "Spring":
                     BackColor = ColorTranslator.FromHtml("#559c45"); ;
                     break;
-                
+
                 default:
                     MessageBox.Show("¬ыберите врем€ года!");
                     break;
-            }    
-        }        
+            }
+        }
+       
+       
     }
 }
     
