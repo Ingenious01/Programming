@@ -1,11 +1,12 @@
 using Microsoft.VisualBasic.Devices;
-using Programming.Model;
 using System.Drawing;
-using Rectangle = Programming.Model.Rectangle;
+using Rectangle = Programming.Model.Geometry.Rectangle;
 using Film = Programming.Model.Film;
-using Color = Programming.Model.Color;
+using Color = Programming.Model.Enums.Color;
 using System.Windows.Forms;
 using System.Drawing.Text;
+using Programming.Model.Enums;
+using Programming.Model.Geometry;
 
 namespace Programming
 {
@@ -84,7 +85,7 @@ namespace Programming
                 int width = _random.Next(1, 30);
                 string color = colorValues.GetValue(_random.Next(0, 6)).ToString();
                 Point2D centre = new Point2D(_random.Next(0, 201), _random.Next(0, 201));
-                _rectangles[i] = new Model.Rectangle(length, width, color, centre);
+                _rectangles[i] = new Model.Geometry.Rectangle(length, width, color, centre);
             }
         }
 
@@ -94,8 +95,8 @@ namespace Programming
             LengthBox.Text = _rectangles[RectanglesListBox.SelectedIndex].Length.ToString();
             WidthBox.Text = _rectangles[RectanglesListBox.SelectedIndex].Width.ToString();
             ColorBox.Text = _rectangles[RectanglesListBox.SelectedIndex].Color;
-            XBox.Text = _rectangles[RectanglesListBox.SelectedIndex].Centre.X.ToString();
-            YBox.Text = _rectangles[RectanglesListBox.SelectedIndex].Centre.Y.ToString();
+            XBox.Text = _rectangles[RectanglesListBox.SelectedIndex].Center.X.ToString();
+            YBox.Text = _rectangles[RectanglesListBox.SelectedIndex].Center.Y.ToString();
             IdBox.Text = _rectangles[RectanglesListBox.SelectedIndex].Id.ToString();
         }
 
@@ -151,15 +152,16 @@ namespace Programming
 
         }
 
-        //---------------------------------Geometry-----------------------------------------\\
-
+        //---------------------------------Geometry-----------------------------------------\\       
+       
+       
         private void GeometryRectanlesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             _currentRectangle = _rectangles[GeometryRectanlesListBox.SelectedIndex];
             GeometryRectanglesHeightTextBox.Text = _rectangles[GeometryRectanlesListBox.SelectedIndex].Length.ToString();
             GeometryRectanglesWidthTextBox.Text = _rectangles[GeometryRectanlesListBox.SelectedIndex].Width.ToString();
-            GeometryRectanglesXTextBox.Text = _rectangles[GeometryRectanlesListBox.SelectedIndex].Centre.X.ToString();
-            GeometryRectanglesYTextBox.Text = _rectangles[GeometryRectanlesListBox.SelectedIndex].Centre.Y.ToString();
+            GeometryRectanglesXTextBox.Text = _rectangles[GeometryRectanlesListBox.SelectedIndex].Center.X.ToString();
+            GeometryRectanglesYTextBox.Text = _rectangles[GeometryRectanlesListBox.SelectedIndex].Center.Y.ToString();
             GeometryRectanglesIdTextBox.Text = _rectangles[GeometryRectanlesListBox.SelectedIndex].Id.ToString();
         }
 
@@ -172,7 +174,7 @@ namespace Programming
             int width = _random.Next(1, 30);
             string color = colorValues.GetValue(_random.Next(0, 6)).ToString();
             Point2D centre = new Point2D(_random.Next(0, 201), _random.Next(0, 201));
-            _rectangles[count] = new Model.Rectangle(length, width, color, centre);
+            _rectangles[count] = new Model.Geometry.Rectangle(length, width, color, centre);
 
             GeometryRectanlesListBox.Items.Add("Rectangle");
 
@@ -290,7 +292,7 @@ namespace Programming
 
         }
 
-       //-------------------------------------Enums------------------------------------------\\
+        //-------------------------------------Enums------------------------------------------\\
 
         private void EnumsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -358,8 +360,7 @@ namespace Programming
                     break;
             }
         }
-       
-       
+        
     }
 }
-    
+

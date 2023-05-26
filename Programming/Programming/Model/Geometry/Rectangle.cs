@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace Programming.Model
+namespace Programming.Model.Geometry
 {
     public class Rectangle
     {
@@ -14,13 +14,13 @@ namespace Programming.Model
         private double _length;
         private double _width;
         private string _color;
-        private Point2D _centre;
+        private Point2D _center;
         private int _id;
 
         public static int AllRectanglesCount
         {
-           get => _allRectanglesCount;
-           private set => _allRectanglesCount = value;
+            get => _allRectanglesCount;
+            private set => _allRectanglesCount = value;
         }
 
         public double Length
@@ -28,10 +28,10 @@ namespace Programming.Model
             get => _length;
             set
             {
-               
-               Validator.AssertOnPositiveValue(nameof(Length), value);
-                
-               _length = value;                
+
+                Validator.AssertOnPositiveValue(nameof(Length), value);
+
+                _length = value;
             }
 
         }
@@ -52,25 +52,25 @@ namespace Programming.Model
         public int Id
         {
             get => _id;
-            set => _id = value;             
+            set => _id = value;
         }
 
-        public Point2D Centre { get;set; }
-        
+        public Point2D Center { get; set; }
+
 
         public Rectangle()
         {
 
         }
 
-        public Rectangle(float length, float width, string color, Point2D centre)
+        public Rectangle(float length, float width, string color, Point2D center)
         {
             Id = AllRectanglesCount;
             AllRectanglesCount++;
             Length = length;
             Width = width;
-            Color = color;            
-            Centre = centre;            
+            Color = color;
+            Center = center;
         }
     }
 }
