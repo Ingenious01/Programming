@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using System.Drawing.Text;
 using Programming.Model.Enums;
 using Programming.Model.Geometry;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Programming
 {
@@ -29,6 +30,10 @@ namespace Programming
         private Film _currentFilm;
 
         private Random _random = new Random();
+
+        private List<Rectangle> _rectanglesList = new List<Rectangle>();
+        private Rectangle _currentRectangleList;
+        private List<Panel> _rectanglePanel = new List<Panel>();
 
         public MainForm()
         {
@@ -71,8 +76,8 @@ namespace Programming
             RectanglesListBox.DataSource = listRectangles;
             RectanglesListBox.SelectedIndex = 0;
 
-            GeometryRectanlesListBox.DataSource = listRectangles;
-            GeometryRectanlesListBox.SelectedIndex = 0;
+            GeometryRectanglesListBox.DataSource = listRectangles;
+            GeometryRectanglesListBox.SelectedIndex = 0;
         }
 
         //-----------------------------------Rectangles-------------------------------------------\\
@@ -153,45 +158,209 @@ namespace Programming
         }
 
         //---------------------------------Geometry-----------------------------------------\\       
-       
-       
-        private void GeometryRectanlesListBox_SelectedIndexChanged(object sender, EventArgs e)
+        private static string TakeInfoFromRectangle(Rectangle rectangle)
         {
-            _currentRectangle = _rectangles[GeometryRectanlesListBox.SelectedIndex];
-            GeometryRectanglesHeightTextBox.Text = _rectangles[GeometryRectanlesListBox.SelectedIndex].Length.ToString();
-            GeometryRectanglesWidthTextBox.Text = _rectangles[GeometryRectanlesListBox.SelectedIndex].Width.ToString();
-            GeometryRectanglesXTextBox.Text = _rectangles[GeometryRectanlesListBox.SelectedIndex].Center.X.ToString();
-            GeometryRectanglesYTextBox.Text = _rectangles[GeometryRectanlesListBox.SelectedIndex].Center.Y.ToString();
-            GeometryRectanglesIdTextBox.Text = _rectangles[GeometryRectanlesListBox.SelectedIndex].Id.ToString();
+            var info = $"{rectangle.Id}. " +
+                       $"(X={rectangle.Center.X}; " +
+                       $"Y={rectangle.Center.Y};" +
+                       $" W={rectangle.Width}; " +
+                       $"L={rectangle.Length})";
+
+            return info;
         }
 
-        int count = 6;
+        private void UpdateRectangleInfo(ref Rectangle rectangle)
+        {
+            rectangle = _rectanglesList[GeometryRectanglesListBox.SelectedIndex];
+
+            GeometryRectanglesIdTextBox.Text = rectangle.Id.ToString();
+            GeometryRectanglesXTextBox.Text = rectangle.Center.X.ToString();
+            GeometryRectanglesYTextBox.Text = rectangle.Center.Y.ToString();
+            GeometryRectanglesWidthTextBox.Text = rectangle.Width.ToString();
+            GeometryRectanglesLengthTextBox.Text = rectangle.Length.ToString();
+        }
+
+        private void ClearRectangleInfo()
+        {
+            GeometryRectanglesIdTextBox.Text = " ";
+            GeometryRectanglesXTextBox.Text = " ";
+            GeometryRectanglesYTextBox.Text = " ";
+            GeometryRectanglesWidthTextBox.Text = " ";
+            GeometryRectanglesLengthTextBox.Text = " ";
+
+            GeometryRectanglesXTextBox.BackColor = System.Drawing.Color.White;
+            GeometryRectanglesYTextBox.BackColor = System.Drawing.Color.White;
+            GeometryRectanglesWidthTextBox.BackColor = System.Drawing.Color.White;
+            GeometryRectanglesLengthTextBox.BackColor = System.Drawing.Color.White;
+        }
+
         private void GeometryAddButton_Click(object sender, EventArgs e)
         {
-            var colorValues = Enum.GetValues((Type)enums[0]);
+            var rectangle = RectangleFactory.Randomize();
+            var panel = new Panel();
 
-            int length = _random.Next(1, 30);
-            int width = _random.Next(1, 30);
-            string color = colorValues.GetValue(_random.Next(0, 6)).ToString();
-            Point2D centre = new Point2D(_random.Next(0, 201), _random.Next(0, 201));
-            _rectangles[count] = new Model.Geometry.Rectangle(length, width, color, centre);
+            var info = TakeInfoFromRectangle(rectangle);
 
-            GeometryRectanlesListBox.Items.Add("Rectangle");
+            _rectanglesList.Add(rectangle);
+            GeometryRectanglesListBox.Items.Add(info);
 
-            count++;
+            panel.Height = Convert.ToInt32(rectangle.Length);
+            panel.Width = Convert.ToInt32(rectangle.Width);
+            var x = Convert.ToInt32(rectangle.Center.X);
+            var y = Convert.ToInt32(rectangle.Center.Y);
+            panel.Location = new Point(x, y);
+            panel.BackColor = System.Drawing.Color.FromArgb(127, 127, 255, 127);
 
+            _rectanglePanel.Add(panel);
+            rectanglesPanel.Controls.Add(panel);
+            FindCollision();
         }
-
-
 
         private void GeometryRemoveButton_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                _rectanglesList.RemoveAt(GeometryRectanglesListBox.SelectedIndex);
+                _rectanglePanel.RemoveAt(GeometryRectanglesListBox.SelectedIndex);
+                rectanglesPanel.Controls.RemoveAt(GeometryRectanglesListBox.SelectedIndex);
+                GeometryRectanglesListBox.Items.RemoveAt(GeometryRectanglesListBox.SelectedIndex);
+                FindCollision();
+            }
+            catch
+            {
+                // ignored
+            }
 
         }
 
+        private void GeometryRectanlesListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                UpdateRectangleInfo(ref _currentRectangleList);
+            }
+            catch
+            {
+                ClearRectangleInfo();
+            }
 
+        }
 
+        private void FindCollision()
+        {
+            var colorRed = System.Drawing.Color.FromArgb(127, 255, 127, 127);
+            var colorGreen = System.Drawing.Color.FromArgb(127, 127, 255, 127);
+
+            foreach (Panel rectangle in rectanglesPanel.Controls)
+            {
+                rectangle.BackColor = colorGreen;
+            }
+
+            for (int i = 0; i < _rectanglesList.Count; i++)
+            {
+                for (int j = 0; j < _rectanglesList.Count; j++)
+                {
+                    if (CollisionManager.IsCollision(_rectanglesList[i], _rectanglesList[j]) && i != j)
+                    {
+                        _rectanglePanel[i].BackColor = colorRed;
+                        _rectanglePanel[j].BackColor = colorRed;
+                    }
+                }
+            }
+        }
+
+        private void GeometryRectanglesIdTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        private void GeometryRectanglesXTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                GeometryRectanglesIdTextBox.BackColor = System.Drawing.Color.White;
+
+                var x = Convert.ToDouble(GeometryRectanglesIdTextBox.Text);
+                var y = _currentRectangleList.Center.Y;
+                var coordinatePoint2D = new Point2D(x, y);
+                var coordinatePoint = new Point(Convert.ToInt32(x), Convert.ToInt32(y));
+                var info = TakeInfoFromRectangle(_currentRectangleList);
+
+                _currentRectangleList.Center = coordinatePoint2D;
+                _rectanglePanel[GeometryRectanglesListBox.SelectedIndex].Location = coordinatePoint;
+                GeometryRectanglesListBox.Items[GeometryRectanglesListBox.SelectedIndex] = info;
+                FindCollision();
+            }
+            catch
+            {
+                GeometryRectanglesIdTextBox.BackColor = System.Drawing.Color.LightPink;
+            }
+
+        }
+
+        private void GeometryRectanglesYTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                GeometryRectanglesYTextBox.BackColor = System.Drawing.Color.White;
+
+                var x = _currentRectangleList.Center.X;
+                var y = Convert.ToDouble(GeometryRectanglesYTextBox.Text);
+                var coordinatePoint2D = new Point2D(x, y);
+                var coordinatePoint = new Point(Convert.ToInt32(x), Convert.ToInt32(y));
+                var info = TakeInfoFromRectangle(_currentRectangleList);
+
+                _currentRectangleList.Center = coordinatePoint2D;
+                _rectanglePanel[GeometryRectanglesListBox.SelectedIndex].Location = coordinatePoint;
+                GeometryRectanglesListBox.Items[GeometryRectanglesListBox.SelectedIndex] = info;
+                FindCollision();
+            }
+            catch
+            {
+                GeometryRectanglesYTextBox.BackColor = System.Drawing.Color.LightPink;
+            }
+        }
+
+        private void GeometryRectanglesWidthTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                GeometryRectanglesWidthTextBox.BackColor = System.Drawing.Color.White;
+                var widthDouble = Convert.ToDouble(GeometryRectanglesWidthTextBox.Text);
+                var widthInt = Convert.ToInt32(GeometryRectanglesWidthTextBox.Text);
+                var info = TakeInfoFromRectangle(_currentRectangleList);
+
+                _currentRectangleList.Width = widthDouble;
+                _rectanglePanel[GeometryRectanglesListBox.SelectedIndex].Width = widthInt;
+                GeometryRectanglesListBox.Items[GeometryRectanglesListBox.SelectedIndex] = info;
+                FindCollision();
+            }
+            catch
+            {
+                GeometryRectanglesWidthTextBox.BackColor = System.Drawing.Color.LightPink;
+            }
+
+        }
+
+        private void GeometryRectanglesLengthTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                GeometryRectanglesLengthTextBox.BackColor = System.Drawing.Color.White;
+                var lengthDouble = Convert.ToDouble(GeometryRectanglesLengthTextBox.Text);
+                var lengthInt = Convert.ToInt32(GeometryRectanglesLengthTextBox.Text);
+                var info = TakeInfoFromRectangle(_currentRectangleList);
+
+                _currentRectangleList.Length = lengthDouble;
+                _rectanglePanel[GeometryRectanglesListBox.SelectedIndex].Height = lengthInt;
+                GeometryRectanglesListBox.Items[GeometryRectanglesListBox.SelectedIndex] = info;
+                FindCollision();
+            }
+            catch
+            {
+                GeometryRectanglesLengthTextBox.BackColor = System.Drawing.Color.LightPink;
+            }
+        }
 
 
         //-----------------------------------Films-------------------------------------------\\
@@ -360,7 +529,7 @@ namespace Programming
                     break;
             }
         }
-        
+
     }
 }
 

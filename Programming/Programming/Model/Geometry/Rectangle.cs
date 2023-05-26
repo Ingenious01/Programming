@@ -72,5 +72,14 @@ namespace Programming.Model.Geometry
             Color = color;
             Center = center;
         }
+
+        public Rectangle(float length, float width, Point2D center)
+        {
+            Id = AllRectanglesCount;
+            AllRectanglesCount++;
+            Length = length;
+            Width = width;            
+            Center = center;
+        }
     }
 }

@@ -89,15 +89,16 @@
             GeometryWidthLabel = new Label();
             GeometryRectanglesYTextBox = new TextBox();
             GeometryYLabel = new Label();
-            GeometryRectanglesHeightTextBox = new TextBox();
-            GeometryHeightLabel = new Label();
+            GeometryRectanglesLengthTextBox = new TextBox();
+            GeometryLengthLabel = new Label();
             GeometryRectanglesXTextBox = new TextBox();
             GeometryXLabel = new Label();
             GeometryRectanglesIdTextBox = new TextBox();
             GeometryIdLabel = new Label();
             label1 = new Label();
             GeometryRectanglesBox = new GroupBox();
-            GeometryRectanlesListBox = new ListBox();
+            GeometryRectanglesListBox = new ListBox();
+            rectanglesPanel = new Panel();
             MainTabPage.SuspendLayout();
             EnumPage.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
@@ -675,6 +676,7 @@
             tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 45F));
             tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 55F));
             tableLayoutPanel4.Controls.Add(tableLayoutPanel5, 0, 0);
+            tableLayoutPanel4.Controls.Add(rectanglesPanel, 1, 0);
             tableLayoutPanel4.Dock = DockStyle.Fill;
             tableLayoutPanel4.Location = new Point(3, 3);
             tableLayoutPanel4.Name = "tableLayoutPanel4";
@@ -706,8 +708,8 @@
             CoordinatesBox.Controls.Add(GeometryWidthLabel);
             CoordinatesBox.Controls.Add(GeometryRectanglesYTextBox);
             CoordinatesBox.Controls.Add(GeometryYLabel);
-            CoordinatesBox.Controls.Add(GeometryRectanglesHeightTextBox);
-            CoordinatesBox.Controls.Add(GeometryHeightLabel);
+            CoordinatesBox.Controls.Add(GeometryRectanglesLengthTextBox);
+            CoordinatesBox.Controls.Add(GeometryLengthLabel);
             CoordinatesBox.Controls.Add(GeometryRectanglesXTextBox);
             CoordinatesBox.Controls.Add(GeometryXLabel);
             CoordinatesBox.Controls.Add(GeometryRectanglesIdTextBox);
@@ -747,6 +749,7 @@
             GeometryRectanglesWidthTextBox.Name = "GeometryRectanglesWidthTextBox";
             GeometryRectanglesWidthTextBox.Size = new Size(125, 27);
             GeometryRectanglesWidthTextBox.TabIndex = 10;
+            GeometryRectanglesWidthTextBox.TextChanged += GeometryRectanglesWidthTextBox_TextChanged;
             // 
             // GeometryWidthLabel
             // 
@@ -763,6 +766,7 @@
             GeometryRectanglesYTextBox.Name = "GeometryRectanglesYTextBox";
             GeometryRectanglesYTextBox.Size = new Size(125, 27);
             GeometryRectanglesYTextBox.TabIndex = 8;
+            GeometryRectanglesYTextBox.TextChanged += GeometryRectanglesYTextBox_TextChanged;
             // 
             // GeometryYLabel
             // 
@@ -773,21 +777,22 @@
             GeometryYLabel.TabIndex = 7;
             GeometryYLabel.Text = "Y:";
             // 
-            // GeometryRectanglesHeightTextBox
+            // GeometryRectanglesLengthTextBox
             // 
-            GeometryRectanglesHeightTextBox.Location = new Point(77, 233);
-            GeometryRectanglesHeightTextBox.Name = "GeometryRectanglesHeightTextBox";
-            GeometryRectanglesHeightTextBox.Size = new Size(125, 27);
-            GeometryRectanglesHeightTextBox.TabIndex = 6;
+            GeometryRectanglesLengthTextBox.Location = new Point(77, 233);
+            GeometryRectanglesLengthTextBox.Name = "GeometryRectanglesLengthTextBox";
+            GeometryRectanglesLengthTextBox.Size = new Size(125, 27);
+            GeometryRectanglesLengthTextBox.TabIndex = 6;
+            GeometryRectanglesLengthTextBox.TextChanged += GeometryRectanglesLengthTextBox_TextChanged;
             // 
-            // GeometryHeightLabel
+            // GeometryLengthLabel
             // 
-            GeometryHeightLabel.AutoSize = true;
-            GeometryHeightLabel.Location = new Point(4, 240);
-            GeometryHeightLabel.Name = "GeometryHeightLabel";
-            GeometryHeightLabel.Size = new Size(57, 20);
-            GeometryHeightLabel.TabIndex = 5;
-            GeometryHeightLabel.Text = "Height:";
+            GeometryLengthLabel.AutoSize = true;
+            GeometryLengthLabel.Location = new Point(4, 240);
+            GeometryLengthLabel.Name = "GeometryLengthLabel";
+            GeometryLengthLabel.Size = new Size(57, 20);
+            GeometryLengthLabel.TabIndex = 5;
+            GeometryLengthLabel.Text = "Length:";
             // 
             // GeometryRectanglesXTextBox
             // 
@@ -795,6 +800,7 @@
             GeometryRectanglesXTextBox.Name = "GeometryRectanglesXTextBox";
             GeometryRectanglesXTextBox.Size = new Size(125, 27);
             GeometryRectanglesXTextBox.TabIndex = 4;
+            GeometryRectanglesXTextBox.TextChanged += GeometryRectanglesXTextBox_TextChanged;
             // 
             // GeometryXLabel
             // 
@@ -811,6 +817,7 @@
             GeometryRectanglesIdTextBox.Name = "GeometryRectanglesIdTextBox";
             GeometryRectanglesIdTextBox.Size = new Size(125, 27);
             GeometryRectanglesIdTextBox.TabIndex = 2;
+            GeometryRectanglesIdTextBox.KeyPress += GeometryRectanglesIdTextBox_KeyPress;
             // 
             // GeometryIdLabel
             // 
@@ -832,7 +839,7 @@
             // 
             // GeometryRectanglesBox
             // 
-            GeometryRectanglesBox.Controls.Add(GeometryRectanlesListBox);
+            GeometryRectanglesBox.Controls.Add(GeometryRectanglesListBox);
             GeometryRectanglesBox.Dock = DockStyle.Fill;
             GeometryRectanglesBox.Location = new Point(3, 3);
             GeometryRectanglesBox.Name = "GeometryRectanglesBox";
@@ -840,18 +847,25 @@
             GeometryRectanglesBox.TabIndex = 2;
             GeometryRectanglesBox.TabStop = false;
             GeometryRectanglesBox.Text = "Rectangles:";
-           
             // 
-            // GeometryRectanlesListBox
+            // GeometryRectanglesListBox
             // 
-            GeometryRectanlesListBox.Dock = DockStyle.Fill;
-            GeometryRectanlesListBox.FormattingEnabled = true;
-            GeometryRectanlesListBox.ItemHeight = 20;
-            GeometryRectanlesListBox.Location = new Point(3, 23);
-            GeometryRectanlesListBox.Name = "GeometryRectanlesListBox";
-            GeometryRectanlesListBox.Size = new Size(458, 285);
-            GeometryRectanlesListBox.TabIndex = 0;
-            GeometryRectanlesListBox.SelectedIndexChanged += GeometryRectanlesListBox_SelectedIndexChanged;
+            GeometryRectanglesListBox.Dock = DockStyle.Fill;
+            GeometryRectanglesListBox.FormattingEnabled = true;
+            GeometryRectanglesListBox.ItemHeight = 20;
+            GeometryRectanglesListBox.Location = new Point(3, 23);
+            GeometryRectanglesListBox.Name = "GeometryRectanglesListBox";
+            GeometryRectanglesListBox.Size = new Size(458, 285);
+            GeometryRectanglesListBox.TabIndex = 0;
+            GeometryRectanglesListBox.SelectedIndexChanged += GeometryRectanlesListBox_SelectedIndexChanged;
+            // 
+            // rectanglesPanel
+            // 
+            rectanglesPanel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            rectanglesPanel.Location = new Point(479, 3);
+            rectanglesPanel.Name = "rectanglesPanel";
+            rectanglesPanel.Size = new Size(576, 635);
+            rectanglesPanel.TabIndex = 1;
             // 
             // MainForm
             // 
@@ -948,13 +962,13 @@
         private TextBox IdBox;
         private Label IdLabel;
         private GroupBox GeometryRectanglesBox;
-        private ListBox GeometryRectanlesListBox;
+        private ListBox GeometryRectanglesListBox;
         private TextBox GeometryRectanglesWidthTextBox;
         private Label GeometryWidthLabel;
         private TextBox GeometryRectanglesYTextBox;
         private Label GeometryYLabel;
-        private TextBox GeometryRectanglesHeightTextBox;
-        private Label GeometryHeightLabel;
+        private TextBox GeometryRectanglesLengthTextBox;
+        private Label GeometryLengthLabel;
         private TextBox GeometryRectanglesXTextBox;
         private Label GeometryXLabel;
         private TextBox GeometryRectanglesIdTextBox;
@@ -962,5 +976,6 @@
         private Label label1;
         private Button GeometryRemoveButton;
         private Button GeometryAddButton;
+        private Panel rectanglesPanel;
     }
 }
