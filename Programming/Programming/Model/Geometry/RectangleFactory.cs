@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Programming.Model.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,19 +7,21 @@ using System.Threading.Tasks;
 
 namespace Programming.Model.Geometry
 {
-    internal class RectangleFactory
-    {
-        private Random _random = new Random();
-        public  Rectangle Randomize()
+    public static class RectangleFactory
+    {       
+        public static Rectangle Randomize(int maxXPosition,int maxYPosition)
         {
-            Rectangle fill = new Rectangle(); 
+            var _random = new Random();
+            var colors = Enum.GetNames(typeof(Enums.Color));
+            var randomColor = colors[_random.Next(colors.Length)];
 
-            int length = _random.Next(1, 30);
-            int width = _random.Next(1, 30);            
-            Point2D centre = new Point2D(_random.Next(0, 201), _random.Next(0, 201));
-            fill = new Rectangle(length, width, centre);
+            var height = _random.Next(1, 200);
+            var length = _random.Next(1, 200);
 
-            return fill;
-        }
+            var centreX=_random.Next(length / 2 + 15, maxXPosition - (length / 2) - 15);
+            var centreY=_random.Next(height / 2 + 15, maxYPosition - (length / 2) - 15);
+
+            return new Rectangle(height, length, randomColor, new Point2D(centreX, centreY));
+        }   
     }
 }

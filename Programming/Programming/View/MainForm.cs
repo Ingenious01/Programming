@@ -30,10 +30,10 @@ namespace Programming
         private Film _currentFilm;
 
         private Random _random = new Random();
-
+        
+        private List<Panel> _rectanglePanel = new List<Panel>();
         private List<Rectangle> _rectanglesList = new List<Rectangle>();
         private Rectangle _currentRectangleList;
-        private List<Panel> _rectanglePanel = new List<Panel>();
 
         public MainForm()
         {
@@ -74,10 +74,7 @@ namespace Programming
             FilmsListBox.SelectedIndex = 0;
 
             RectanglesListBox.DataSource = listRectangles;
-            RectanglesListBox.SelectedIndex = 0;
-
-            GeometryRectanglesListBox.DataSource = listRectangles;
-            GeometryRectanglesListBox.SelectedIndex = 0;
+            RectanglesListBox.SelectedIndex = 0;         
         }
 
         //-----------------------------------Rectangles-------------------------------------------\\
@@ -194,9 +191,10 @@ namespace Programming
             GeometryRectanglesLengthTextBox.BackColor = System.Drawing.Color.White;
         }
 
+
         private void GeometryAddButton_Click(object sender, EventArgs e)
         {
-            var rectangle = RectangleFactory.Randomize();
+            var rectangle = RectangleFactory.Randomize(576, 635);
             var panel = new Panel();
 
             var info = TakeInfoFromRectangle(rectangle);
@@ -228,13 +226,14 @@ namespace Programming
             }
             catch
             {
-                // ignored
+                
             }
 
         }
 
         private void GeometryRectanlesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+
             try
             {
                 UpdateRectangleInfo(ref _currentRectangleList);
@@ -243,6 +242,7 @@ namespace Programming
             {
                 ClearRectangleInfo();
             }
+
 
         }
 
@@ -280,7 +280,7 @@ namespace Programming
             {
                 GeometryRectanglesIdTextBox.BackColor = System.Drawing.Color.White;
 
-                var x = Convert.ToDouble(GeometryRectanglesIdTextBox.Text);
+                var x = Convert.ToDouble(GeometryRectanglesXTextBox.Text);
                 var y = _currentRectangleList.Center.Y;
                 var coordinatePoint2D = new Point2D(x, y);
                 var coordinatePoint = new Point(Convert.ToInt32(x), Convert.ToInt32(y));
@@ -293,7 +293,7 @@ namespace Programming
             }
             catch
             {
-                GeometryRectanglesIdTextBox.BackColor = System.Drawing.Color.LightPink;
+                GeometryRectanglesXTextBox.BackColor = System.Drawing.Color.LightPink;
             }
 
         }
