@@ -6,12 +6,29 @@ using System.Threading.Tasks;
 
 namespace Programming.Model
 {
+    /// <summary>
+    /// Хранит информацию об учебной дисциплине.
+    /// </summary>
     public class Subject
     {
+        /// <summary>
+        /// Название дисциплины.
+        /// </summary>
         string _name;
+
+        /// <summary>
+        /// Преподователь.
+        /// </summary>
         string _teacher;
+
+        /// <summary>
+        /// Оценка
+        /// </summary>
         int _mark;
 
+        /// <summary>
+        /// Возвращает и задает название дисциплины.
+        /// </summary>
         private string Name
         {
             get => _name;
@@ -25,6 +42,9 @@ namespace Programming.Model
 
         }
 
+        /// <summary>
+        /// Возвращает и задаёт преподователя.
+        /// </summary>
         private string Teacher
         {
             get => _teacher;
@@ -38,6 +58,9 @@ namespace Programming.Model
 
         }
 
+        /// <summary>
+        /// Возвращает и задаёт оценку по диспциплине.
+        /// </summary>
         private int Mark
         {
             get => _mark;
@@ -50,11 +73,20 @@ namespace Programming.Model
 
         }
 
+        /// <summary>
+        /// Создаёт экземпляр класса <see cref="Subject"/> без инициализации полей.
+        /// </summary>
         public Subject()
         {
 
         }
 
+        /// <summary>
+        /// Создаёт экземпляр класса <see cref="Subject"/>.
+        /// </summary>
+        /// <param name="name">Название дисциплины.</param>
+        /// <param name="mark">Оценка.</param>
+        /// <param name="teacher">Преподователь.</param>
         public Subject(string name, string teacher, int mark)
         {
             Name = name;

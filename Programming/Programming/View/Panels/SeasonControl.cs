@@ -11,8 +11,14 @@ using System.Windows.Forms;
 
 namespace Programming.View.Panels
 {
+    /// <summary>
+    /// Предоставляет шаблон пользовательского интерфейса SeasonControl.
+    /// </summary>
     public partial class SeasonControl : UserControl
     {
+        /// <summary>
+        /// Создаёт экземпляр класса SeasonControl.
+        /// </summary>
         public SeasonControl()
         {
             InitializeComponent();
@@ -23,6 +29,9 @@ namespace Programming.View.Panels
                                                          Convert.ToString(Season.Winter)});
         }
 
+        /// <summary>
+        /// Выводит сообщение в зависимости от выбранного времени года.
+        /// </summary>
         private void SeasonButton_Click(object sender, EventArgs e)
         {
             switch (SeasonComboBox.Text)
@@ -44,6 +53,11 @@ namespace Programming.View.Panels
                     MessageBox.Show("Выберите время года!");
                     break;
             }
+        }
+
+        private void SeasonComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

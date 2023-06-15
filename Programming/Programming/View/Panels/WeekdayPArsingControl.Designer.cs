@@ -1,6 +1,6 @@
 ﻿namespace Programming.View.Panels
 {
-    partial class WeekdayPArsingControl
+    partial class WeekdayParsingControl
     {
         /// <summary> 
         /// Обязательная переменная конструктора.
@@ -94,6 +94,7 @@
             ParsingTextBox.Name = "ParsingTextBox";
             ParsingTextBox.Size = new Size(268, 32);
             ParsingTextBox.TabIndex = 1;
+            ParsingTextBox.TextChanged += ParsingTextBox_TextChanged;
             // 
             // WeekdayPArsingControl
             // 

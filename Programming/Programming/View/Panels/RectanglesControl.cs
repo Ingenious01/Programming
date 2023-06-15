@@ -13,8 +13,14 @@ using Programming.Model.Enums;
 
 namespace Programming.View.Panels
 {
+    /// <summary>
+    /// Предоставляет шаблон пользовательского интерфейса RectanglesFinderControl.
+    /// </summary>
     public partial class RectanglesControl : UserControl
     {
+        /// <summary>
+        /// Все перечисления.
+        /// </summary>
         object[] enums = new object[]
         {
             typeof(Model.Enums.Color),
@@ -25,17 +31,33 @@ namespace Programming.View.Panels
             typeof(Weekday)
         };
 
+        /// <summary>
+        /// Массив из 100 прямоугольников.
+        /// </summary>
         private Rectangle[] _rectangles = new Rectangle[100];
+
+        /// <summary>
+        /// Выбранный прямоугольник.
+        /// </summary>
         private Rectangle _currentRectangle;
 
+        /// <summary>
+        /// Экземпляр класса Random.
+        /// </summary>
         private Random _random = new Random();
 
+        /// <summary>
+        /// Создаёт экземпляр класса RectanglesFinderControl.
+        /// </summary>
         public RectanglesControl()
         {
             InitializeComponent();
 
             FillRectangles();
 
+            /// <summary>
+            /// Список из 5 изначальных прямоугольников.
+            /// </summary>
             var listRectangles = new string[]
             {
                 "Rectangle 1",
@@ -49,6 +71,9 @@ namespace Programming.View.Panels
             RectanglesListBox.SelectedIndex = 0;
         }
 
+        /// <summary>
+        /// Заполняет массив 5 случайными экземплярами класса <see cref="Rectangle"/>.
+        /// </summary>        
         private void FillRectangles()
         {
             var colorValues = Enum.GetValues((Type)enums[0]);
@@ -62,6 +87,9 @@ namespace Programming.View.Panels
             }
         }
 
+        /// <summary>
+        /// При изменении выбранного прямоугольника в списке прямоугольников меняются характеристики на новые значения.
+        /// </summary>
         private void RectanglesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             _currentRectangle = _rectangles[RectanglesListBox.SelectedIndex];
@@ -73,6 +101,9 @@ namespace Programming.View.Panels
             IdBox.Text = _rectangles[RectanglesListBox.SelectedIndex].Id.ToString();
         }
 
+        /// <summary>
+        /// При изменении длины выбранного прямоугольника запоминает новое значение.
+        /// </summary>
         private void LengthBox_TextChanged(object sender, EventArgs e)
         {
             try
@@ -86,6 +117,9 @@ namespace Programming.View.Panels
             }
         }
 
+        /// <summary>
+        /// При изменении ширины выбранного прямоугольника запоминает новое значение.
+        /// </summary>
         private void WidthBox_TextChanged(object sender, EventArgs e)
         {
             try
@@ -99,16 +133,26 @@ namespace Programming.View.Panels
             }
         }
 
+        /// <summary>
+        /// При изменении цвета выбранного прямоугольника запоминает новое значение.
+        /// </summary>
         private void ColorBox_TextChanged(object sender, EventArgs e)
         {
             _currentRectangle.Color = ColorBox.Text;
         }
 
+        /// <summary>
+        /// Выбирает прямоугольник с наибольшей шириной в списке прямоугольников по нажатию кнопки find.
+        /// </summary>
         private void RectengleFindButton_Click(object sender, EventArgs e)
         {
             FindRectangleWithMaxWidth();
         }
 
+        /// <summary>
+        /// Определяет прямоугольник с наибольшей шириной.
+        /// </summary>        
+        /// <returns>Возвращает индекс с наибольшей шириной в списке.</returns>
         public void FindRectangleWithMaxWidth()
         {
             int index = 0;
@@ -124,7 +168,5 @@ namespace Programming.View.Panels
             }
 
         }
-
-
     }
 }

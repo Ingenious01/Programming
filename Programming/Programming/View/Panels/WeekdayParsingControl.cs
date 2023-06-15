@@ -11,13 +11,22 @@ using System.Windows.Forms;
 
 namespace Programming.View.Panels
 {
-    public partial class WeekdayPArsingControl : UserControl
+    /// <summary>
+    /// Предоставляет шаблон пользовательского интерфейса Weekday Parsing.
+    /// </summary>
+    public partial class WeekdayParsingControl : UserControl
     {
-        public WeekdayPArsingControl()
+        /// <summary>
+        /// Создаёт экземпляр класса Weekday Parsing.
+        /// </summary>
+        public WeekdayParsingControl()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Считывает текст и определяет есть ли такой день недели.
+        /// </summary>
         private void WeekDayParsingButton_Click(object sender, EventArgs e)
         {
             if (Enum.IsDefined(typeof(Weekday), ParsingTextBox.Text))
@@ -34,6 +43,11 @@ namespace Programming.View.Panels
 
                 ParsingResultLabel.Visible = true;
             }
+        }
+
+        private void ParsingTextBox_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -6,13 +6,34 @@ using System.Threading.Tasks;
 
 namespace Programming.Model
 {
+    /// <summary>
+    /// Хранит информацию о песне.
+    /// </summary>
     public class Song
     {
+        /// <summary>
+        /// Название песни
+        /// </summary>
         string _name;
+
+        /// <summary>
+        /// Длительность песни в минутах
+        /// </summary>
         int _duration;
+
+        /// <summary>
+        /// Жанр
+        /// </summary>
         string _genre;
+
+        /// <summary>
+        /// Автор песни.
+        /// </summary>
         string _singer;
 
+        /// <summary>
+        /// Возвращает и задаёт название песни.
+        /// </summary>
         private string Name
         {
             get => _name;
@@ -26,6 +47,9 @@ namespace Programming.Model
 
         }
 
+        /// <summary>
+        /// Возвращает и задаёт длительность песни.
+        /// </summary>
         private int Duration
         {
             get => _duration;
@@ -38,6 +62,9 @@ namespace Programming.Model
 
         }
 
+        /// <summary>
+        /// Возвращает и задаёт жанр песни.
+        /// </summary>
         private string Genre
         {
             get => _genre;
@@ -51,6 +78,9 @@ namespace Programming.Model
 
         }
 
+        /// <summary>
+        /// Возвращает и задаёт автора песни.
+        /// </summary>
         private string Singer
         {
             get => _singer;
@@ -64,11 +94,21 @@ namespace Programming.Model
 
         }
 
+        /// <summary>
+        /// Создаёт экземпляр класса <see cref="Song"/> без инициализации полей.
+        /// </summary>
         public Song()
         {
 
         }
 
+        /// <summary>
+        /// Создаёт экземпляр класса <see cref="Song"/>.
+        /// </summary>
+        /// <param name="singer">Автор.</param>
+        /// <param name="name">Название.</param>
+        /// <param name="duration">Длительность.</param>
+        /// <param name="genre">Жанр.</param>
         public Song(string name, int duration, string genre, string singer)
         {
             Name = name;

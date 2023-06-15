@@ -12,6 +12,11 @@ namespace Programming.Model
     {
         //----------------------------------------------AssertOnPositiveValue--------------------------------------------//
 
+        /// <summary>
+        /// Проверяет число на положительность.
+        /// </summary>
+        /// <param name="value">Проверямая строка.</param>
+        /// <param name="method">Имя свойства или объекта, которое подлежит проверке.</param>
         public static void AssertOnPositiveValue(string method, double value)
         {
             if (value <= 0)
@@ -21,6 +26,11 @@ namespace Programming.Model
            
         }
 
+        /// <summary>
+        /// Проверяет число на положительность.
+        /// </summary>
+        /// <param name="value">Проверямая строка.</param>
+        /// <param name="method">Имя свойства или объекта, которое подлежит проверке.</param>
         public static void AssertOnPositiveValue(string method, int value)
         {
             if (value <= 0)
@@ -32,6 +42,13 @@ namespace Programming.Model
 
         //----------------------------------------------AssertValueInRange--------------------------------------------//
 
+        /// <summary>
+        /// Проверяет число на нахождение в значениях от min до max
+        /// </summary>
+        /// <param name="value">Проверямая строка.</param>
+        /// <param name="method">Имя свойства или объекта, которое подлежит проверке.</param>
+        /// <param name="min">Минимальное значение.</param>
+        /// <param name="max">Максимальное значение.</param>
         public static void AssertValueInRange(string method, int value, int min, int max)
         {
             if (!(value >= min && value <= max))            
@@ -40,6 +57,13 @@ namespace Programming.Model
             }
         }
 
+        /// <summary>
+        /// Проверяет число на нахождение в значениях от min до max
+        /// </summary>
+        /// <param name="value">Проверямая строка.</param>
+        /// <param name="method">Имя свойства или объекта, которое подлежит проверке.</param>
+        /// <param name="min">Минимальное значение.</param>
+        /// <param name="max">Максимальное значение.</param>
         public static void AssertValueInRange(string method, double value, double min, double max)
         {
             if (!(value >= min && value <= max))            
@@ -49,6 +73,11 @@ namespace Programming.Model
         }
 
         //-------------------------------------------------Area---------------------------------------------------------//
+        /// <summary>
+        /// Считает площадь кольца
+        /// </summary>
+        /// <param name="InternalRadius">Внутренний радиус.</param>
+        /// <param name="OuterRadius">Внешний радиус.</param>
         public static double CalculateArea(double InternalRadius, double OuterRadius)
         {
             double OuterArea = Math.PI * (OuterRadius * OuterRadius);
@@ -59,6 +88,10 @@ namespace Programming.Model
 
         //--------------------------------------------------------------------------------------------------------------//
 
+        /// <summary>
+        /// Проверяет, что строка состоит только из букв.
+        /// </summary>
+        /// <param name="value">Проверяемая строка.</param>            
         public static bool AssertStringContainsOnlyLetters(string value)
         {
             return !string.IsNullOrEmpty(value) && !Regex.IsMatch(value, @"^[a-zA-z]+$");

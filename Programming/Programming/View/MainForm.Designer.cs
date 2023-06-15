@@ -33,7 +33,7 @@
             EnumPage = new TabPage();
             tableLayoutPanel1 = new TableLayoutPanel();
             tableLayoutPanel2 = new TableLayoutPanel();
-            weekdayparsingControl1 = new View.Panels.WeekdayPArsingControl();
+            weekdayparsingControl1 = new View.Panels.WeekdayParsingControl();
             seasonControl1 = new View.Panels.SeasonControl();
             allEnumerationsControl1 = new View.Panels.AllEnumerationsControl();
             ClassesTabPage = new TabPage();
@@ -230,7 +230,7 @@
         private View.Panels.RectanglesControl rectanglesControl1;
         private View.Panels.MoviesControl moviesControl1;
         private View.Panels.AllEnumerationsControl allEnumerationsControl1;
-        private View.Panels.WeekdayPArsingControl weekdayparsingControl1;
+        private View.Panels.WeekdayParsingControl weekdayparsingControl1;
         private View.Panels.SeasonControl seasonControl1;
         private View.Panels.MoviesControl moviesControl2;
     }

@@ -13,8 +13,14 @@ using Film = Programming.Model.Film;
 
 namespace Programming.View.Panels
 {
+    /// <summary>
+    /// Предоставляет шаблон пользовательского интерфейса MoviesFinderControl.
+    /// </summary>
     public partial class MoviesControl : UserControl
     {
+        /// <summary>
+        /// Все перечисления.
+        /// </summary>
         object[] enums = new object[]
         {
             typeof(Model.Enums.Color),
@@ -25,16 +31,33 @@ namespace Programming.View.Panels
             typeof(Weekday)
         };
 
+        /// <summary>
+        /// Массив из 5 фильмов.
+        /// </summary>
         private Film[] _films = new Film[5];
+
+        /// <summary>
+        /// Выбранный фильм.
+        /// </summary>
         private Film _currentFilm;
 
+        /// <summary>
+        /// Экземпляр класса Random.
+        /// </summary>
         private Random _random = new Random();
+
+        /// <summary>
+        /// Создаёт экземпляр класса MoviesFinderControl.
+        /// </summary>
         public MoviesControl()
         {
             InitializeComponent();
 
             FillFilms();
 
+            /// <summary>
+            /// Создаёт список из 5 фильмов
+            /// </summary>
             var listFilms = new string[]
             {
                 "Film 1",
@@ -48,6 +71,9 @@ namespace Programming.View.Panels
             FilmsListBox.SelectedIndex = 0;
         }
 
+        /// <summary>
+        /// Заполняет массив фильмов пятью экземплярами класса <see cref="Film"/>.
+        /// </summary>        
         private void FillFilms()
         {
             var genreValues = Enum.GetValues((Type)enums[2]);
@@ -63,6 +89,9 @@ namespace Programming.View.Panels
             }
         }
 
+        /// <summary>
+        /// При изменении выбранного фильма в списке фильмов меняются характеристики на новые значения.
+        /// </summary>
         private void FilmsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             _currentFilm = _films[FilmsListBox.SelectedIndex];
@@ -74,11 +103,17 @@ namespace Programming.View.Panels
 
         }
 
+        /// <summary>
+        /// При изменении названия выбранного фильма запоминает новое значение.
+        /// </summary>
         private void NameBox_TextChanged(object sender, EventArgs e)
         {
             _currentFilm.Name = NameBox.Text;
         }
 
+        /// <summary>
+        /// При изменении длительности выбранного фильма запоминает новое значение.
+        /// </summary>
         private void DurationBox_TextChanged(object sender, EventArgs e)
         {
             try
@@ -92,6 +127,9 @@ namespace Programming.View.Panels
             }
         }
 
+        /// <summary>
+        /// При изменении года выпуска выбранного фильма запоминает новое значение.
+        /// </summary>
         private void YearBox_TextChanged(object sender, EventArgs e)
         {
             try
@@ -105,6 +143,9 @@ namespace Programming.View.Panels
             }
         }
 
+        /// <summary>
+        /// При изменении рейтинга выбранного фильма запоминает новое значение.
+        /// </summary>
         private void RatingBox_TextChanged(object sender, EventArgs e)
         {
             try
@@ -118,16 +159,25 @@ namespace Programming.View.Panels
             }
         }
 
+        /// <summary>
+        /// При изменении жанра выбранного фильма запоминает новое значение.
+        /// </summary>
         private void GenreBox_TextChanged(object sender, EventArgs e)
         {
             _currentFilm.Genre = GenreBox.Text;
         }
 
+        /// <summary>
+        /// Выбирает фильм с наибольшим рейтингом в списке фильмов по нажатию кнопки find.
+        /// </summary>
         private void FilmFindButton_Click(object sender, EventArgs e)
         {
             FindFilmWithMaxRating();
         }
 
+        /// <summary>
+        /// Определяет фильм с наибольшим рейтингом.
+        /// </summary> 
         public void FindFilmWithMaxRating()
         {
             int index = 0;

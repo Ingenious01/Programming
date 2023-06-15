@@ -6,12 +6,29 @@ using System.Threading.Tasks;
 
 namespace Programming.Model
 {
+    /// <summary>
+    /// Хранит информацию о полёте.
+    /// </summary>
     public class Flight
     {
+        /// <summary>
+        /// Пункт вылета
+        /// </summary>
         string _startPoint;
+
+        /// <summary>
+        /// Пункт назначения
+        /// </summary>
         string _endPoint;
+
+        /// <summary>
+        /// Продолжительность полёта(в минутах)
+        /// </summary>
         int _duration;
 
+        /// <summary>
+        /// Возвращает и задаёт пункт вылета.
+        /// </summary>
         private string Start
         {
             get => _startPoint;
@@ -25,6 +42,9 @@ namespace Programming.Model
 
         }
 
+        /// <summary>
+        /// Возвращает и задаёт место назначения.
+        /// </summary>
         private string End
         {
             get => _endPoint;
@@ -38,6 +58,9 @@ namespace Programming.Model
 
         }
 
+        /// <summary>
+        /// Возвращает и задаёт время полёта.
+        /// </summary>
         private int Duration
         {
             get => _duration;
@@ -50,11 +73,20 @@ namespace Programming.Model
 
         }
 
+        /// <summary>
+        /// Создаёт экземпляр класса <see cref="Flight"/> без инициализации полей.
+        /// </summary>
         public Flight()
         {
 
         }
 
+        /// <summary>
+        /// Создаёт экземпляр класса <see cref="Flight"/>.
+        /// </summary>
+        /// <param name="start">Пункт вылета.</param>
+        /// <param name="end">Место назначения.</param>
+        /// <param name="duration">Время полёта.</param>
         public Flight(string start, string end, int duration)
         {
             Start = start;

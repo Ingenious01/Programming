@@ -6,12 +6,29 @@ using System.Threading.Tasks;
 
 namespace Programming.Model
 {
+    /// <summary>
+    /// Хранит информацию о текущем времени.
+    /// </summary>
     public class Time
     {
+        /// <summary>
+        /// Часы.
+        /// </summary>
         private int _hours;
+
+        /// <summary>
+        /// Минуты.
+        /// </summary>
         private int _minutes;
+
+        /// <summary>
+        /// Секунды.
+        /// </summary>
         private int _seconds;
 
+        /// <summary>
+        /// Возвращает и задаёт часы. Должны быть со значением от 0 до 23.
+        /// </summary>
         private int Hours
         {
             get => _hours;
@@ -24,6 +41,9 @@ namespace Programming.Model
 
         }
 
+        /// <summary>
+        /// Возвращает и задаёт минуты. Должны быть со значением от 0 до 60.
+        /// </summary>
         private int Minutes
         {
             get => _minutes;
@@ -36,6 +56,9 @@ namespace Programming.Model
 
         }
 
+        /// <summary>
+        /// Возвращает и задаёт секунды. Должны быть со значением от 0 до 60.
+        /// </summary>
         private int Seconds
         {
             get => _seconds;
@@ -48,11 +71,20 @@ namespace Programming.Model
 
         }
 
+        /// <summary>
+        /// Создаёт экземпляр класса <see cref="Time"/> без инициализации полей.
+        /// </summary>
         public Time() 
         { 
         
         }
 
+        /// <summary>
+        /// Создаёт экземпляр класса <see cref="Time"/>.
+        /// </summary>
+        /// <param name="hours">Часы.</param>
+        /// <param name="minutes">Минуты.</param>
+        /// <param name="seconds">Секунды.</param>
         public Time(int hours, int minutes, int seconds)
         {
             Hours = hours;

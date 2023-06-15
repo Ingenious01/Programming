@@ -12,17 +12,38 @@ using Rectangle = Programming.Model.Geometry.Rectangle;
 
 namespace Programming.View.Panels
 {
+
+    /// <summary>
+    /// Предоставляет шаблон пользовательского интерфейса RectanglesCollisionControl.
+    /// </summary>
     public partial class RectanglesCollisionControl : UserControl
     {
+        /// <summary>
+        /// Прямоугольники типа Panel.
+        /// </summary>
         private List<Panel> _rectanglePanel = new List<Panel>();
+        /// <summary>
+        /// Прямоугольники на панели.
+        /// </summary>
         private List<Rectangle> _rectanglesList = new List<Rectangle>();
+        /// <summary>
+        /// Выбранный прямоугольник на панели.
+        /// </summary>
         private Rectangle _currentRectangleList;
 
+        /// <summary>
+        /// Создаёт экземпляр класса RectanglesCollisionControl.
+        /// </summary>
         public RectanglesCollisionControl()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Создаёт строку с информацией о прямоугольнике.
+        /// </summary>
+        /// <param name="rectangle">Прямоугольник.</param>
+        /// <returns>Возвращает строку с информацией о прямоугольнике.</returns>
         private static string TakeInfoFromRectangle(Rectangle rectangle)
         {
             var info = $"{rectangle.Id}. " +
@@ -34,6 +55,10 @@ namespace Programming.View.Panels
             return info;
         }
 
+        /// <summary>
+        /// Обновляет параметры прямоугольника.
+        /// </summary>
+        /// <param name="rectangle">Прямоугольник</param>
         private void UpdateRectangleInfo(ref Rectangle rectangle)
         {
             rectangle = _rectanglesList[GeometryRectanglesListBox1.SelectedIndex];
@@ -45,6 +70,9 @@ namespace Programming.View.Panels
             GeometryRectanglesLengthTextBox1.Text = rectangle.Length.ToString();
         }
 
+        /// <summary>
+        /// Очищает информацию о прямоугольнике.
+        /// </summary>
         private void ClearRectangleInfo()
         {
             GeometryRectanglesIdTextBox1.Text = " ";
@@ -59,6 +87,9 @@ namespace Programming.View.Panels
             GeometryRectanglesLengthTextBox1.BackColor = System.Drawing.Color.White;
         }
 
+        /// <summary>
+        /// Добавляет прямоугольник на панель.
+        /// </summary>
         private void GeometryAddButton1_Click(object sender, EventArgs e)
         {
             var rectangle = RectangleFactory.Randomize(576, 635);
@@ -81,6 +112,9 @@ namespace Programming.View.Panels
             FindCollision();
         }
 
+        /// <summary>
+        /// Удаляет прямоугольник с панели.
+        /// </summary>
         private void GeometryRemoveButton1_Click(object sender, EventArgs e)
         {
             try
@@ -98,6 +132,9 @@ namespace Programming.View.Panels
 
         }
 
+        /// <summary>
+        /// При нажатии на конкретный прямоугольник в списке прямоугольников даёт о нём информацию.
+        /// </summary>
         private void GeometryRectanlesListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -113,6 +150,9 @@ namespace Programming.View.Panels
 
         }
 
+        /// <summary>
+        /// Определяет пересекаются ли прямоугольники на панели.
+        /// </summary>
         private void FindCollision()
         {
             var colorRed = System.Drawing.Color.FromArgb(127, 255, 127, 127);
@@ -136,11 +176,18 @@ namespace Programming.View.Panels
             }
         }
 
+        /// <summary>
+        /// Запрещает изменять текст в поле ID.
+        /// </summary>
         private void GeometryRectanglesIdTextBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = true;
         }
 
+        /// <summary>
+        /// При изменении у конкретного прямоугольника X координаты перерисовывет положение прямоугольника и обновляет
+        /// информацию о нём.
+        /// </summary>
         private void GeometryRectanglesXTextBox1_TextChanged(object sender, EventArgs e)
         {
             try
@@ -165,6 +212,10 @@ namespace Programming.View.Panels
 
         }
 
+        /// <summary>
+        /// При изменении у конкретного прямоугольника Y координаты перерисовывет положение прямоугольника и обновляет
+        /// информацию о нём.
+        /// </summary>
         private void GeometryRectanglesYTextBox1_TextChanged(object sender, EventArgs e)
         {
             try
@@ -188,6 +239,10 @@ namespace Programming.View.Panels
             }
         }
 
+        /// <summary>
+        /// При изменении у конкретного прямоугольника ширины перерисовывет положение прямоугольника и обновляет
+        /// информацию о нём.
+        /// </summary>
         private void GeometryRectanglesWidthTextBox1_TextChanged(object sender, EventArgs e)
         {
             try
@@ -209,6 +264,10 @@ namespace Programming.View.Panels
 
         }
 
+        /// <summary>
+        /// При изменении у конкретного прямоугольника высоты перерисовывет положение прямоугольника и обновляет
+        /// информацию о нём.
+        /// </summary>
         private void GeometryRectanglesLengthTextBox1_TextChanged(object sender, EventArgs e)
         {
             try

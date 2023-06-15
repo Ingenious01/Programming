@@ -11,8 +11,14 @@ using System.Windows.Forms;
 
 namespace Programming.View.Panels
 {
+    /// <summary>
+    /// Предоставляет шаблон пользовательского интерфейса Enumerations.
+    /// </summary>
     public partial class AllEnumerationsControl : UserControl
     {
+        /// <summary>
+        /// Все перечисления.
+        /// </summary>
         object[] enums = new object[]
         {
             typeof(Model.Enums.Color),
@@ -23,6 +29,9 @@ namespace Programming.View.Panels
             typeof(Weekday)
         };
 
+        /// <summary>
+        /// Создаёт экземпляр класса Enumerations.
+        /// </summary>
         public AllEnumerationsControl()
         {
             InitializeComponent();
@@ -32,6 +41,9 @@ namespace Programming.View.Panels
             EnumsListBox1.SelectedIndex = 0;
         }
 
+        /// <summary>
+        /// При изменении выбранного перечисления в списке перечислений меняет содержимое списка значений.
+        /// </summary>
         private void EnumsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             var selectedEnum = (Type)EnumsListBox1.SelectedItem;
@@ -43,6 +55,9 @@ namespace Programming.View.Panels
             }
         }
 
+        /// <summary>
+        /// При изменении выбранного значения в списке значений меняет порядковый номер значения.
+        /// </summary>
         private void ValuesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
 
