@@ -6,11 +6,24 @@ using System.Threading.Tasks;
 
 namespace Programming.Model.Geometry
 {
+    /// <summary>
+    /// Создает точку в двумерном пространстве.
+    /// </summary>
     public class Point2D
     {
+        /// <summary>
+        /// X координата.
+        /// </summary>
         private double _x;
+
+        /// <summary>
+        /// Y координата.
+        /// </summary>
         private double _y;
 
+        /// <summary>
+        /// Возвращает и задает X координату. Должна быть положительным числом.
+        /// </summary>
         public double X
         {
             get => _x;
@@ -22,6 +35,9 @@ namespace Programming.Model.Geometry
             }
         }
 
+        /// <summary>
+        /// Возвращает и задает Y координату. Должна быть положительным числом.
+        /// </summary>
         public double Y
         {
             get => _y;
@@ -33,6 +49,11 @@ namespace Programming.Model.Geometry
             }
         }
 
+        /// <summary>
+        /// Создает экземпляр класса.<see cref="Point2D"/>
+        /// </summary>
+        /// <param name="x">X координата. Должна быть только положительным числом.</param>
+        /// <param name="y">Y координата. Должна быть только положительным числом.</param>
         public Point2D(double x, double y)
         {
             X = x;

@@ -7,11 +7,19 @@ using System.Threading.Tasks;
 
 namespace Programming.Model.Geometry
 {
+    /// <summary>
+    /// Возвращает случайный экземпляр класса Rectangle.
+    /// </summary>
     public static class RectangleFactory
-    {       
+    {
+        /// <summary>
+        /// Создает новый случайный объект прямоугольника.
+        /// </summary>
+        /// <returns>Возвращает новый случайный экземпляр класса Rectangle.</returns>
         public static Rectangle Randomize(int maxXPosition,int maxYPosition)
-        {
+        {            
             var _random = new Random();
+
             var colors = Enum.GetNames(typeof(Enums.Color));
             var randomColor = colors[_random.Next(colors.Length)];
 
