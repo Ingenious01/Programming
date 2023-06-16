@@ -82,7 +82,7 @@ namespace Programming.View.Panels
                 int length = _random.Next(1, 30);
                 int width = _random.Next(1, 30);
                 string color = colorValues.GetValue(_random.Next(0, 6)).ToString();
-                Point2D centre = new Point2D(_random.Next(0, 201), _random.Next(0, 201));
+                Point2D centre = new Point2D(_random.Next(1, 201), _random.Next(1, 201));
                 _rectangles[i] = new Model.Geometry.Rectangle(length, width, color, centre);
             }
         }
@@ -157,7 +157,7 @@ namespace Programming.View.Panels
         {
             int index = 0;
             double maxWidth = 0;
-            for (int i = 0; i < _rectangles.Length; i++)
+            for (int i = 0; i < 5; i++)
             {
                 if (_rectangles[i].Width > maxWidth)
                 {

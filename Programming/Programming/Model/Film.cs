@@ -76,7 +76,7 @@ namespace Programming.Model
             get => _rating;
             set
             {
-                Validator.AssertValueInRange(nameof(Rating), value, 0.000001, 10);
+                Validator.AssertValueInRange(nameof(Rating), value, 0.01, 10);
                 
                 _rating = value;
             }

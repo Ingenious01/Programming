@@ -68,7 +68,7 @@ namespace Programming.Model
         {
             if (!(value >= min && value <= max))            
             {
-                throw new ArgumentException(String.Format("В методе {0} вводимое число должно быть больше 0 ", method));
+                throw new ArgumentException(String.Format("В методе {0} вводимое число должно быть больше {1} и меньше {2} ", method, min, max));
             }
         }
 
