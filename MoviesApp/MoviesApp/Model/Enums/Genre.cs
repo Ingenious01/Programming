@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace _8lab.Model.Enums
+namespace MoviesApp.Model.Enums
 {
     /// <summary>
     /// Перечисление жанров.
@@ -14,8 +8,8 @@ namespace _8lab.Model.Enums
         Comedy,
         Drama,
         Thriller,
-        ActionMovie,
+        ActionMovie, 
         Horror,
         Blockbuster
-    }
+    }   
 }

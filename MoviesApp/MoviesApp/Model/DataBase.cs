@@ -1,11 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Text.Json;
 
-namespace _8lab.Model
+namespace MoviesApp.Model
 {
     /// <summary>
     /// Реализует статическую сериализацию и десериализацию json файла.
@@ -17,7 +16,7 @@ namespace _8lab.Model
         /// Путь до папки.
         /// </summary>
         private static string _directoryPath = Environment.ExpandEnvironmentVariables(@"%appdata%\MoviesApp");
-
+        
         /// <summary>
         /// Путь до файла.
         /// </summary>
@@ -43,7 +42,7 @@ namespace _8lab.Model
                 }
             }
         }
-
+        
         /// <summary>
         /// Считывает данные файла и возвращает их список. 
         /// </summary>
@@ -52,7 +51,7 @@ namespace _8lab.Model
         {
             using (FileStream fstream = new FileStream(_filePath, FileMode.OpenOrCreate))
             {
-                return JsonSerializer.Deserialize<List<Movie>>(fstream);
+                return JsonSerializer.Deserialize<List<Movie>>(fstream);   
             }
         }
 
@@ -66,10 +65,10 @@ namespace _8lab.Model
             using (FileStream fstream = new FileStream(_filePath, FileMode.Create))
             {
                 byte[] buffer = Encoding.Default.GetBytes(newDate);
-
+                
                 fstream.Write(buffer, 0, buffer.Length);
             }
         }
-
-    }
+        
+    } 
 }

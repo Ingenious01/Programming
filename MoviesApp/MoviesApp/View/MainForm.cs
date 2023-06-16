@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using MoviesApp.Model;
+using MoviesApp.Model.Enums;
 
-namespace _8lab
+namespace MoviesApp.View
 {
     /// <summary>
     /// Создает главное окно.
@@ -19,7 +16,7 @@ namespace _8lab
         ///  Перечисление жанров.
         /// </summary>
         private object[] _genre = Enum.GetNames(typeof(Genre));
-
+        
         /// <summary>
         /// Список фильмов.
         /// </summary>
@@ -40,25 +37,25 @@ namespace _8lab
         /// Флаг для смены события AcceptButton. Если он == true добавляем фильм, иначе редактируем.
         /// </summary>
         private bool _flagButton;
-
+        
         /// <summary>
         /// Создает экземпляр класса MainForm.
         /// </summary>
         public MainForm()
         {
             InitializeComponent();
-
+            
             DataBase.IsCreateFolderAndFile();
             _movies = DataBase.GetData();
-
+            
             if (_movies.Count > 0)
             {
-                SortedMoviesAdd();
+               SortedMoviesAdd();
             }
-
+            
             genreComboBox.Items.AddRange(_genre);
         }
-
+        
         /// <summary>
         /// Выбор элемента в moviesListBox с последующим обновлением информации в TextBox.
         /// </summary>
@@ -90,7 +87,7 @@ namespace _8lab
             ratingTextBox.Text = _currentMovie.Rating.ToString();
             durationTextBox.Text = _currentMovie.DurationMinutes.ToString();
         }
-
+        
         /// <summary>
         /// Событие добавления фильма.
         /// </summary>
@@ -110,13 +107,13 @@ namespace _8lab
             acceptButton.Enabled = false;
         }
 
-
+    
         /// <summary>
         /// Сортировка по алфавиту add.
         /// </summary>
         private void SortedMoviesAdd()
         {
-            _movies.Sort(delegate (Movie movie, Movie movie1)
+            _movies.Sort(delegate(Movie movie, Movie movie1)
             {
                 return movie.Title.CompareTo(movie1.Title);
             });
@@ -127,7 +124,7 @@ namespace _8lab
                 moviesListBox.Items.Add($"{_movies[i].Title} / {_movies[i].Year} / {_movies[i].Genre}");
             }
         }
-
+        
         /// <summary>
         /// Сортировка по алфавиту delete.
         /// </summary>
@@ -136,7 +133,7 @@ namespace _8lab
             _infoMovies.Clear();
             moviesListBox.Items.Clear();
         }
-
+        
         /// <summary>
         /// Добавление фильма.
         /// </summary>
@@ -145,21 +142,21 @@ namespace _8lab
             SortedMoviesDelete();
             Movie newMovie = new Movie(titleTextBox.Text, Convert.ToInt32(durationTextBox.Text),
                 Convert.ToInt32(yearTextBox.Text), genreComboBox.Text, Convert.ToDouble(ratingTextBox.Text));
-
+            
             _movies.Insert(0, newMovie);
-
+            
             SortedMoviesAdd();
-
+            
             DataBase.UpdateData(_movies);
-
-
+            
+            
             DisableElements();
             DisableVisibleButtons();
             EnableButtonsClicks();
             ClearTextBox();
             moviesListBox.SelectedIndex = 0;
         }
-
+        
         /// <summary>
         /// Событие изменения фильма.
         /// </summary>
@@ -170,7 +167,7 @@ namespace _8lab
             EnableVisibleButtons();
             EnableElements();
         }
-
+        
         /// <summary>
         /// Изменения фильма.
         /// </summary>
@@ -178,22 +175,22 @@ namespace _8lab
         {
             Movie newMovie = new Movie(titleTextBox.Text, Convert.ToInt32(durationTextBox.Text),
                 Convert.ToInt32(yearTextBox.Text), genreComboBox.Text, Convert.ToDouble(ratingTextBox.Text));
-
+            
             _movies.RemoveAt(moviesListBox.SelectedIndex);
             SortedMoviesDelete();
             _movies.Add(newMovie);
-
+            
             SortedMoviesAdd();
-
+            
             DataBase.UpdateData(_movies);
-
+            
             DisableElements();
             DisableVisibleButtons();
             EnableButtonsClicks();
             ClearTextBox();
             moviesListBox.SelectedIndex = 0;
         }
-
+        
         /// <summary>
         /// Событие принятия добавления или редактирования фильма.
         /// </summary>
@@ -208,7 +205,7 @@ namespace _8lab
                 EditMovieButtonAccept();
             }
         }
-
+        
         /// <summary>
         /// Событие отмены добавления или редактирования фильма.
         /// </summary>
@@ -217,7 +214,7 @@ namespace _8lab
             EnableButtonsClicks();
             DisableElements();
             DisableVisibleButtons();
-
+            
             if (moviesListBox.SelectedIndex == -1)
             {
                 deleteButton.Enabled = false;
@@ -228,19 +225,19 @@ namespace _8lab
                 FillInfo();
             }
         }
-
+        
         /// <summary>
         /// Событие удаления фильма.
         /// </summary>
         private void DeleteMovieButton_Click(object sender, EventArgs e)
         {
-            _movies.RemoveAt(moviesListBox.SelectedIndex);
+            _movies.RemoveAt(moviesListBox.SelectedIndex); 
             _infoMovies.RemoveAt(moviesListBox.SelectedIndex);
             moviesListBox.Items.RemoveAt(moviesListBox.SelectedIndex);
-            DataBase.UpdateData(_movies);
+            DataBase.UpdateData(_movies); 
             ClearTextBox();
         }
-
+        
         /// <summary>
         /// Включение всех элементов в groupBox.
         /// </summary>
@@ -277,7 +274,7 @@ namespace _8lab
             genreComboBox.Text = "";
             yearTextBox.Text = "";
             durationTextBox.Text = "";
-
+            
             titleTextBox.BackColor = Color.White;
             ratingTextBox.BackColor = Color.White;
             yearTextBox.BackColor = Color.White;
@@ -292,7 +289,7 @@ namespace _8lab
             cancelButton.Visible = true;
             acceptButton.Visible = true;
         }
-
+        
         /// <summary>
         /// Отключение видимости кнопок cancelButton и acceptButton.
         /// </summary>
@@ -336,7 +333,7 @@ namespace _8lab
             }
             EnabledAcceptButton();
         }
-
+        
         /// <summary>
         /// Событие изменения yearTextBox.
         /// </summary>
@@ -434,47 +431,6 @@ namespace _8lab
             {
                 acceptButton.Enabled = true;
             }
-        }
-
-        /// <summary>
-        /// Событие вызова toolTip для TitleTextBox.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void TitleTextBox_MouseHover(object sender, EventArgs e)
-        {
-            titleToolTip.SetToolTip(titleTextBox, "Длина строки меньше 100");
-
-        }
-
-        /// <summary>
-        /// Событие вызова toolTip для YearTextBox.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void YearTextBox_MouseHover(object sender, EventArgs e)
-        {
-            yearToolTip.SetToolTip(yearTextBox, "Больше 0");
-        }
-
-        /// <summary>
-        /// Событие вызова toolTip для RatingTextBox.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void RatingTextBox_MouseHover(object sender, EventArgs e)
-        {
-            ratingToolTip.SetToolTip(ratingTextBox, "От 1 до 10");
-        }
-
-        /// <summary>
-        /// Событие вызова toolTip для DurationTextBox.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void DurationTextBox_MouseHover(object sender, EventArgs e)
-        {
-            durationToolTip.SetToolTip(durationTextBox, "От 1 до 300");
         }
     }
 }

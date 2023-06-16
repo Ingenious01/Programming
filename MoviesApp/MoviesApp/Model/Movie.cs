@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace _8lab.Model
+namespace MoviesApp.Model
 {
-    internal class Movie
+    /// <summary>
+    /// Хранит данные о фильме.
+    /// </summary>
+    public class Movie
     {
         /// <summary>
         /// Создает экземпляр класса Movie.
@@ -24,7 +21,7 @@ namespace _8lab.Model
             Genre = genre;
             Rating = rating;
         }
-
+        
         /// <summary>
         /// Возвращает и задает название фильма.
         /// </summary>
