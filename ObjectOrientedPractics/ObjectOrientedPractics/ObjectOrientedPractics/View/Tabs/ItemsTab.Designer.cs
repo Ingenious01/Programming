@@ -102,6 +102,7 @@
             this.ItemsListBox.Name = "ItemsListBox";
             this.ItemsListBox.Size = new System.Drawing.Size(392, 579);
             this.ItemsListBox.TabIndex = 0;
+            this.ItemsListBox.SelectedIndexChanged += new System.EventHandler(this.ItemsListBox_SelectedIndexChanged);
             // 
             // tableLayoutPanel3
             // 
@@ -129,6 +130,7 @@
             this.AddButton.TabIndex = 0;
             this.AddButton.Text = "Add";
             this.AddButton.UseVisualStyleBackColor = true;
+            this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
             // 
             // RemoveButton
             // 
@@ -140,6 +142,7 @@
             this.RemoveButton.TabIndex = 1;
             this.RemoveButton.Text = "Remove";
             this.RemoveButton.UseVisualStyleBackColor = true;
+            this.RemoveButton.Click += new System.EventHandler(this.RemoveButton_Click);
             // 
             // SelectedItemGroupBox
             // 
@@ -171,7 +174,8 @@
             this.DescriptionRichTextBox.Size = new System.Drawing.Size(565, 236);
             this.DescriptionRichTextBox.TabIndex = 7;
             this.DescriptionRichTextBox.Text = "";
-            this.DescriptionRichTextBox.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
+            this.DescriptionRichTextBox.TextChanged += new System.EventHandler(this.DescriptionRichTextBox1_TextChanged);
+            this.DescriptionRichTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DescriptionRichTextBox_KeyPress);
             // 
             // SearchDescriptionLabel
             // 
@@ -193,6 +197,8 @@
             this.NameRichTextBox.Size = new System.Drawing.Size(565, 140);
             this.NameRichTextBox.TabIndex = 5;
             this.NameRichTextBox.Text = "";
+            this.NameRichTextBox.TextChanged += new System.EventHandler(this.NameRichTextBox_TextChanged);
+            this.NameRichTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NameRichTextBox_KeyPress);
             // 
             // SearchNameLabel
             // 
@@ -210,14 +216,18 @@
             this.CostTextBox.Name = "CostTextBox";
             this.CostTextBox.Size = new System.Drawing.Size(141, 28);
             this.CostTextBox.TabIndex = 3;
+            this.CostTextBox.TextChanged += new System.EventHandler(this.CostTextBox_TextChanged);
+            this.CostTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CostTextBox_KeyPress);
             // 
             // IdTextBox
             // 
             this.IdTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.IdTextBox.Location = new System.Drawing.Point(67, 44);
             this.IdTextBox.Name = "IdTextBox";
+            this.IdTextBox.ReadOnly = true;
             this.IdTextBox.Size = new System.Drawing.Size(141, 28);
             this.IdTextBox.TabIndex = 2;
+            this.IdTextBox.TextChanged += new System.EventHandler(this.IdTextBox_TextChanged);
             // 
             // CostLabel
             // 
