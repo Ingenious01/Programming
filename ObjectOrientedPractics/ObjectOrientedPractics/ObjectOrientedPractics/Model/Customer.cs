@@ -46,6 +46,8 @@ namespace ObjectOrientedPractics.Services
             {
                 ValueValidator.AssertStringOnLength(value, 200, nameof(FullName));
 
+                ValueValidator.AssertFullNameStringOnSymbols(value, nameof(FullName));
+
                 _fullname = value;
             }
         }

@@ -36,9 +36,9 @@
             this.AddButton = new System.Windows.Forms.Button();
             this.RemoveButton = new System.Windows.Forms.Button();
             this.SelectedItemGroupBox = new System.Windows.Forms.GroupBox();
-            this.NameRichTextBox = new System.Windows.Forms.RichTextBox();
+            this.AdressRichTextBox = new System.Windows.Forms.RichTextBox();
             this.SearchAdressLabel = new System.Windows.Forms.Label();
-            this.CostTextBox = new System.Windows.Forms.TextBox();
+            this.NameTextBox = new System.Windows.Forms.TextBox();
             this.IdTextBox = new System.Windows.Forms.TextBox();
             this.FullNameLabel = new System.Windows.Forms.Label();
             this.IdLabel = new System.Windows.Forms.Label();
@@ -100,6 +100,7 @@
             this.CustomersListBox.Name = "CustomersListBox";
             this.CustomersListBox.Size = new System.Drawing.Size(423, 750);
             this.CustomersListBox.TabIndex = 0;
+            this.CustomersListBox.SelectedIndexChanged += new System.EventHandler(this.CustomersListBox_SelectedIndexChanged);
             // 
             // tableLayoutPanel3
             // 
@@ -129,6 +130,7 @@
             this.AddButton.TabIndex = 0;
             this.AddButton.Text = "Add";
             this.AddButton.UseVisualStyleBackColor = true;
+            this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
             // 
             // RemoveButton
             // 
@@ -140,12 +142,13 @@
             this.RemoveButton.TabIndex = 1;
             this.RemoveButton.Text = "Remove";
             this.RemoveButton.UseVisualStyleBackColor = true;
+            this.RemoveButton.Click += new System.EventHandler(this.RemoveButton_Click);
             // 
             // SelectedItemGroupBox
             // 
-            this.SelectedItemGroupBox.Controls.Add(this.NameRichTextBox);
+            this.SelectedItemGroupBox.Controls.Add(this.AdressRichTextBox);
             this.SelectedItemGroupBox.Controls.Add(this.SearchAdressLabel);
-            this.SelectedItemGroupBox.Controls.Add(this.CostTextBox);
+            this.SelectedItemGroupBox.Controls.Add(this.NameTextBox);
             this.SelectedItemGroupBox.Controls.Add(this.IdTextBox);
             this.SelectedItemGroupBox.Controls.Add(this.FullNameLabel);
             this.SelectedItemGroupBox.Controls.Add(this.IdLabel);
@@ -158,17 +161,19 @@
             this.SelectedItemGroupBox.TabStop = false;
             this.SelectedItemGroupBox.Text = "Selected Customer";
             // 
-            // NameRichTextBox
+            // AdressRichTextBox
             // 
-            this.NameRichTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.AdressRichTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.NameRichTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.NameRichTextBox.Location = new System.Drawing.Point(111, 124);
-            this.NameRichTextBox.Name = "NameRichTextBox";
-            this.NameRichTextBox.Size = new System.Drawing.Size(469, 599);
-            this.NameRichTextBox.TabIndex = 5;
-            this.NameRichTextBox.Text = "";
+            this.AdressRichTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.AdressRichTextBox.Location = new System.Drawing.Point(111, 124);
+            this.AdressRichTextBox.Name = "AdressRichTextBox";
+            this.AdressRichTextBox.Size = new System.Drawing.Size(469, 599);
+            this.AdressRichTextBox.TabIndex = 5;
+            this.AdressRichTextBox.Text = "";
+            this.AdressRichTextBox.TextChanged += new System.EventHandler(this.AdressRichTextBox_TextChanged);
+            this.AdressRichTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.AdressRichTextBox_KeyPress);
             // 
             // SearchAdressLabel
             // 
@@ -180,22 +185,24 @@
             this.SearchAdressLabel.TabIndex = 4;
             this.SearchAdressLabel.Text = "Adress:";
             // 
-            // CostTextBox
+            // NameTextBox
             // 
-            this.CostTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.NameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.CostTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.CostTextBox.Location = new System.Drawing.Point(111, 83);
-            this.CostTextBox.Name = "CostTextBox";
-            this.CostTextBox.Size = new System.Drawing.Size(469, 28);
-            this.CostTextBox.TabIndex = 3;
-            this.CostTextBox.TextChanged += new System.EventHandler(this.CostTextBox_TextChanged);
+            this.NameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.NameTextBox.Location = new System.Drawing.Point(111, 83);
+            this.NameTextBox.Name = "NameTextBox";
+            this.NameTextBox.Size = new System.Drawing.Size(469, 28);
+            this.NameTextBox.TabIndex = 3;
+            this.NameTextBox.TextChanged += new System.EventHandler(this.NameTextBox_TextChanged);
+            this.NameTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NameTextBox_KeyPress);
             // 
             // IdTextBox
             // 
             this.IdTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.IdTextBox.Location = new System.Drawing.Point(111, 44);
             this.IdTextBox.Name = "IdTextBox";
+            this.IdTextBox.ReadOnly = true;
             this.IdTextBox.Size = new System.Drawing.Size(151, 28);
             this.IdTextBox.TabIndex = 2;
             // 
@@ -246,9 +253,9 @@
         private System.Windows.Forms.Button AddButton;
         private System.Windows.Forms.Button RemoveButton;
         private System.Windows.Forms.GroupBox SelectedItemGroupBox;
-        private System.Windows.Forms.RichTextBox NameRichTextBox;
+        private System.Windows.Forms.RichTextBox AdressRichTextBox;
         private System.Windows.Forms.Label SearchAdressLabel;
-        private System.Windows.Forms.TextBox CostTextBox;
+        private System.Windows.Forms.TextBox NameTextBox;
         private System.Windows.Forms.TextBox IdTextBox;
         private System.Windows.Forms.Label FullNameLabel;
         private System.Windows.Forms.Label IdLabel;

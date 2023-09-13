@@ -41,17 +41,37 @@ namespace ObjectOrientedPractics.Services
            get => _id;
            set => _id = value;
 
-        }
+        }        
 
         /// <summary>
         /// Возвращает и задаёт название товара.
         /// </summary>
-        public string Name { get; set; }
+        public string Name
+        {
+            get => _name;
+            set
+            {
+                ValueValidator.AssertStringOnLength(value, 200, nameof(Name));
+
+                ValueValidator.AssertNameStringOnSymbols(value, nameof(Name));
+
+                _name = value;
+            }
+        }
 
         /// <summary>
         /// Возвращает и задаёт информацию о товаре.
         /// </summary>
-        public string Info { get; set; }
+        public string Info
+        {
+            get => _info;
+            set
+            {
+                ValueValidator.AssertStringOnLength(value, 500, nameof(Info));               
+
+                _info = value;
+            }
+        }
 
         /// <summary>
         /// Возвращает и задаёт стоимость товара. Стоимость должна быть больше 0.

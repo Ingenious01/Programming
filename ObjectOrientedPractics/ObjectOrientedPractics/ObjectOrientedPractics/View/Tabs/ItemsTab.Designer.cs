@@ -184,8 +184,7 @@
             this.SearchDescriptionLabel.Name = "SearchDescriptionLabel";
             this.SearchDescriptionLabel.Size = new System.Drawing.Size(127, 26);
             this.SearchDescriptionLabel.TabIndex = 6;
-            this.SearchDescriptionLabel.Text = "Description:";
-            this.SearchDescriptionLabel.Click += new System.EventHandler(this.label1_Click);
+            this.SearchDescriptionLabel.Text = "Description:";            
             // 
             // NameRichTextBox
             // 
@@ -226,8 +225,7 @@
             this.IdTextBox.Name = "IdTextBox";
             this.IdTextBox.ReadOnly = true;
             this.IdTextBox.Size = new System.Drawing.Size(141, 28);
-            this.IdTextBox.TabIndex = 2;
-            this.IdTextBox.TextChanged += new System.EventHandler(this.IdTextBox_TextChanged);
+            this.IdTextBox.TabIndex = 2;            
             // 
             // CostLabel
             // 

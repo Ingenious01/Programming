@@ -14,18 +14,44 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
+    /// <summary>
+    /// Предоставляет шаблон пользовательского интерфейса ItemsTab.
+    /// </summary>
     public partial class ItemsTab : UserControl
     {
+        /// <summary>
+        /// Предмет типа Item.
+        /// </summary>
         private List<Item> _items = new List<Item>();
 
-        private Item _currentItemList;        
+        /// <summary>
+        /// Предмет, выбранный в ItemsListBox.
+        /// </summary>
+        private Item _currentItemList;
 
+        /// <summary>
+        /// Default value of Cost.
+        /// </summary>
         static int firstcost = 100;
-        static string firstname = "StockName";
-        static string firstdescription = "Description here";
 
+        /// <summary>
+        /// Default value for Name.
+        /// </summary>
+        static string firstname = "Name";
+
+        /// <summary>
+        /// Default value for Info.
+        /// </summary>
+        static string firstdescription = "Info";
+
+        /// <summary>
+        /// The first default Item.
+        /// </summary>  
         Item stockItem = new Item(firstname, firstdescription, firstcost);
 
+        /// <summary>
+        /// Создаёт экземпляр класса ItemsTab.
+        /// </summary>
         public ItemsTab()
         {
             InitializeComponent();
@@ -34,17 +60,24 @@ namespace ObjectOrientedPractics.View.Tabs
             var info = TakeInfoFromItem(stockItem);
 
             ItemsListBox.Items.Add(info);            
-        }              
+        }
 
+        /// <summary>
+        /// Создаёт строчку с информацией о предмете.
+        /// </summary>
+        /// <param name="item">Предмет</param>
+        /// <returns>Возвращает строку с информацией о предмете</returns>
         private static string TakeInfoFromItem(Item item)
         {
-
-
             var info = $"{item.Id}. " + $"Name={item.Name}, " + $"Cost={item.Cost} ";
 
             return info;
         }
 
+        /// <summary>
+        /// Обновляет параметры предмета.
+        /// </summary>
+        /// <param name="item">Предмет</param>
         private void UpdateItemInfo(ref Item item)
         {
             item = _items[ItemsListBox.SelectedIndex];
@@ -55,6 +88,9 @@ namespace ObjectOrientedPractics.View.Tabs
             DescriptionRichTextBox.Text = item.Info;            
         }
 
+        /// <summary>
+        /// Очищает информацию о предмете.
+        /// </summary>
         private void ClearItemInfo()
         {
             IdTextBox.Text = " ";            
@@ -65,16 +101,13 @@ namespace ObjectOrientedPractics.View.Tabs
             CostTextBox.BackColor = System.Drawing.Color.White;
             DescriptionRichTextBox.BackColor = System.Drawing.Color.White; 
             NameRichTextBox.BackColor= System.Drawing.Color.White;
-        }
+        }        
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }       
-
+        /// <summary>
+        /// При нажатии на конкретный предмет в списке предметов даёт о нём информацию.
+        /// </summary>
         private void ItemsListBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
+        {            
             try
             {
                 UpdateItemInfo(ref _currentItemList);
@@ -83,51 +116,36 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 ClearItemInfo();
             }
-
         }
-
-        private void AddButton_Click(object sender, EventArgs e)
-        {
-            var cost = 100;
-            var name = "Stock Name";
-            var description = "Description here";
-
-            var newItem = new Item(name, description, cost);
-            _items.Add(newItem);
-            var info = TakeInfoFromItem(newItem);
-
-            ItemsListBox.Items.Add(info);            
-            
-        }
-
-        private void IdTextBox_TextChanged(object sender, EventArgs e)
-        {
-            
-          
-            
-        }
-
+        
+        /// <summary>
+        /// При изменении символа в строке цены окрашивает её в белый цвет.
+        /// </summary>  
         private void CostTextBox_TextChanged(object sender, EventArgs e)
         {
-                 
+            CostTextBox.BackColor = System.Drawing.Color.White;
         }
 
+        /// <summary>
+        /// При изменении символа в строке имени окрашивает её в белый цвет.
+        /// </summary>  
         private void NameRichTextBox_TextChanged(object sender, EventArgs e)
         {
-            
-
-                        
-
-            
+            NameRichTextBox.BackColor = System.Drawing.Color.White;
         }
 
+        /// <summary>
+        /// При изменении символа в строке описания окрашивает её в белый цвет.
+        /// </summary>  
         private void DescriptionRichTextBox1_TextChanged(object sender, EventArgs e)
-        {            
-
-            
-
+        {
+            DescriptionRichTextBox.BackColor = System.Drawing.Color.White;
         }
 
+        /// <summary>
+        /// При нажатии пробела присваивает название предмету из NameRichTextBox. 
+        /// Если не получается, окрашивает background поля NameRIchTextBox в красный цвет.
+        /// </summary>   
         private void NameRichTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
@@ -151,8 +169,13 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
+        /// <summary>
+        /// При нажатии пробела присваивает цену предмету из CostTextBox. 
+        /// Если не получается, окрашивает background поля CostTextBox в красный цвет.
+        /// </summary>  
         private void CostTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
+
             try
             {
                 _currentItemList = _items[ItemsListBox.SelectedIndex];
@@ -175,6 +198,10 @@ namespace ObjectOrientedPractics.View.Tabs
 
         }
 
+        /// <summary>
+        /// При нажатии пробела присваивает описание предмету из DescriptionRichTextBox. 
+        /// Если не получается, окрашивает background поля DescriptionRichTextBox в красный цвет.
+        /// </summary>  
         private void DescriptionRichTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
@@ -194,22 +221,35 @@ namespace ObjectOrientedPractics.View.Tabs
             }
             catch
             {
-                NameRichTextBox.BackColor = System.Drawing.Color.LightPink;
+                DescriptionRichTextBox.BackColor = System.Drawing.Color.LightPink;
             }
 
         }
 
+        /// <summary>
+        /// Добавляет новый предмет в список. 
+        /// </summary>        
+        private void AddButton_Click(object sender, EventArgs e)
+        {
+            var newItem = new Item(firstname, firstdescription, firstcost);
+            _items.Add(newItem);
+            var info = TakeInfoFromItem(newItem);
+
+            ItemsListBox.Items.Add(info);
+        }
+
+        /// <summary>
+        /// Удаляет предмет и всю информацию о нём из списка.
+        /// </summary>  
         private void RemoveButton_Click(object sender, EventArgs e)
         {
             try
             {
                 _items.RemoveAt(ItemsListBox.SelectedIndex);                
-                ItemsListBox.Items.RemoveAt(ItemsListBox.SelectedIndex);
-                
+                ItemsListBox.Items.RemoveAt(ItemsListBox.SelectedIndex);                
             }
             catch
             {
-
             }
         }
     }
