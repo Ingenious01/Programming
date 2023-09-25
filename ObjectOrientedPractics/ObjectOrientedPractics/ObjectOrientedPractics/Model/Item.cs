@@ -102,7 +102,5 @@ namespace ObjectOrientedPractics.Services
             Info = info;
             Cost = cost;
         }
-
-
     }
 }

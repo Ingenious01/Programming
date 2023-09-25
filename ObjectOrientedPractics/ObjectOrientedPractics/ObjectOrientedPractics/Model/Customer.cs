@@ -64,7 +64,6 @@ namespace ObjectOrientedPractics.Services
 
                 _adress = value;
             }
-
         }
 
         /// <summary>
