@@ -16,8 +16,9 @@ namespace ObjectOrientedPractics.Services
         /// <param name="maxLength">Максимальная длинна строки</param>
         /// <param name=propertyName">Название параметра класса</param>
         public static void AssertStringOnLength(string value, int maxLength, string propertyName)
-        {            
-            if ((value.Length <= maxLength) && (value != string.Empty) && (value.Length > 3))
+        {
+            string pattern = ("^[a-zA-Z]+$");
+            if ((value.Length <= maxLength) && (value != string.Empty) && (value.Length > 3) && (Regex.IsMatch(value, pattern, RegexOptions.IgnoreCase)))
             { }
             else 
             { throw new ArgumentException(String.Format("{0} должен быть меньше {1} символов ", propertyName, maxLength)); } 

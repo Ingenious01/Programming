@@ -90,6 +90,9 @@ namespace ObjectOrientedPractics.Services
             }
         }
 
+        /// <summary>
+        /// Возвращает и задаёт категорию товара.
+        /// </summary>
         public Category Category {get; set;}
 
 

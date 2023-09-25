@@ -1,4 +1,5 @@
-﻿using ObjectOrientedPractics.Services;
+﻿using ObjectOrientedPractics.Model;
+using ObjectOrientedPractics.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -32,14 +33,42 @@ namespace ObjectOrientedPractics.View.Tabs
         static string firstname = "Stock Name";
 
         /// <summary>
-        /// Default value for Adress.
+        /// Default value for Name.
         /// </summary>
-        static string firstadress = "Adress";
+        static int firstindex = 000001;
+
+        /// <summary>
+        /// Default value for Name.
+        /// </summary>
+        static string firstcountry = "Country";
+
+        /// <summary>
+        /// Default value for Name.
+        /// </summary>
+        static string firstcity = "City";
+
+        /// <summary>
+        /// Default value for Name.
+        /// </summary>
+        static string firststreet = "Street";
+
+        /// <summary>
+        /// Default value for Name.
+        /// </summary>
+        static string firstbuilding = "Building";
+
+        /// <summary>
+        /// Default value for Name.
+        /// </summary>
+        static string firstapartament = "Apartament";
+
+        static Adress stockAdress = new Adress(firstindex, firstcountry, firstcity, firststreet, firstbuilding, firstapartament);
+        
 
         /// <summary>
         /// The first default Customer.
         /// </summary>             
-        Customer stockCustomer = new Customer(firstname, firstadress);
+        Customer stockCustomer = new Customer(firstname, stockAdress);
 
         /// <summary>
         /// Создаёт экземпляр класса CustomerTab.
@@ -116,17 +145,7 @@ namespace ObjectOrientedPractics.View.Tabs
         private void NameTextBox_TextChanged(object sender, EventArgs e)
         {
             NameTextBox.BackColor = System.Drawing.Color.White;
-        }
-
-        /// <summary>
-        /// При изменении символа в строке адреса окрашивает её в белый цвет.
-        /// </summary>   
-        private void AdressRichTextBox_TextChanged(object sender, EventArgs e)
-        {
-            AdressRichTextBox.BackColor = System.Drawing.Color.White;
-        }
-
-        
+        }        
 
         /// <summary>
         /// При нажатии пробела присваивает имя клиенту из NameTextBox. 
@@ -154,41 +173,14 @@ namespace ObjectOrientedPractics.View.Tabs
                 NameTextBox.BackColor = System.Drawing.Color.LightPink;
             }
         }
-
-        /// <summary>
-        /// При нажатии пробела присваивает адрес клиенту из AdressRichTextBox. 
-        /// Если не получается, окрашивает background поля AdressRichTextBox в красный цвет.
-        /// </summary>  
-        private void AdressRichTextBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            try
-            {
-                _currentCustomerList = _customers[CustomersListBox.SelectedIndex];
-
-                var currentAdress = AdressRichTextBox.Text;
-
-                if (e.KeyChar == (char)Keys.Enter)
-                {
-                    _currentCustomerList.Adress = currentAdress;
-
-                    var info = TakeInfoFromCustomer(_currentCustomerList);
-
-                    CustomersListBox.Items[CustomersListBox.SelectedIndex] = info;
-                }
-            }
-            catch
-            {
-                AdressRichTextBox.BackColor = System.Drawing.Color.LightPink;
-            }
-
-        }
+        
 
         /// <summary>
         /// Добавляет нового клинта в список.
         /// </summary>        
         private void AddButton_Click(object sender, EventArgs e)
         {
-            var newCustomer = new Customer(firstname, firstadress);
+            var newCustomer = new Customer(firstname, stockAdress);
             _customers.Add(newCustomer);
             var info = TakeInfoFromCustomer(newCustomer);
 
@@ -208,6 +200,11 @@ namespace ObjectOrientedPractics.View.Tabs
             catch
             {
             }
+
+        }
+
+        private void DeliveryAdressLabel_Click(object sender, EventArgs e)
+        {
 
         }
     }

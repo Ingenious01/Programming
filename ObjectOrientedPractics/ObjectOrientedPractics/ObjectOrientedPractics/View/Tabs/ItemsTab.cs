@@ -46,7 +46,7 @@ namespace ObjectOrientedPractics.View.Tabs
         static string firstdescription = "Info";
 
         /// <summary>
-        /// Default value for Info.
+        /// Default value for Category.
         /// </summary>
         static Category firstCategory = Category.Processor;
 
@@ -234,7 +234,9 @@ namespace ObjectOrientedPractics.View.Tabs
             }
 
         }
-
+        /// <summary>
+        /// При изменении значения в CategoryComboBox присваивает его значение параметру category товара. 
+        /// </summary> 
         private void CategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             _currentItemList = _items[ItemsListBox.SelectedIndex];

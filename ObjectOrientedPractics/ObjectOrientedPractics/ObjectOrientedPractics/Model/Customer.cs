@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ObjectOrientedPractics.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,7 +26,7 @@ namespace ObjectOrientedPractics.Services
         /// <summary>
         /// Домашний адрес покупателя.
         /// </summary>
-        private string _adress;
+        private Adress _adress;
 
         /// <summary>
         /// Возвращает и задаёт персональный номер покупателя.
@@ -55,23 +56,14 @@ namespace ObjectOrientedPractics.Services
         /// <summary>
         /// Возвращает и задаёт домашний адрес покупателя. Длинна строки с адресом должна быть не больше 500.
         /// </summary>
-        public string Adress
-        {
-            get => _adress;
-            set
-            {
-                ValueValidator.AssertStringOnLength(value, 500, nameof(Adress));
-
-                _adress = value;
-            }
-        }
+        public Adress Adress { get; set; }        
 
         /// <summary>
         /// Создаёт экземпляр класса <see cref="Customer"/>.
         /// </summary>    
         /// <param name="fullname">ФИО</param>
         /// <param name="adress">Адрес</param>
-        public Customer(string fullname, string adress)
+        public Customer(string fullname, Adress adress)
         {
             Id = IdGenerator.GetNextCustomerId();
             FullName = fullname;
