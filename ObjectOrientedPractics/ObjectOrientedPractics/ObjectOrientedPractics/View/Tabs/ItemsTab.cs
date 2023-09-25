@@ -1,4 +1,5 @@
-﻿using ObjectOrientedPractics.Services;
+﻿using ObjectOrientedPractics.Model;
+using ObjectOrientedPractics.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -45,9 +46,14 @@ namespace ObjectOrientedPractics.View.Tabs
         static string firstdescription = "Info";
 
         /// <summary>
+        /// Default value for Info.
+        /// </summary>
+        static Category firstCategory = Category.Processor;
+
+        /// <summary>
         /// The first default Item.
         /// </summary>  
-        Item stockItem = new Item(firstname, firstdescription, firstcost);
+        Item stockItem = new Item(firstname, firstdescription, firstcost, firstCategory);
 
         /// <summary>
         /// Создаёт экземпляр класса ItemsTab.
@@ -59,7 +65,9 @@ namespace ObjectOrientedPractics.View.Tabs
             _items.Add(stockItem);
             var info = TakeInfoFromItem(stockItem);
 
-            ItemsListBox.Items.Add(info);            
+            ItemsListBox.Items.Add(info);
+
+            CategoryComboBox.DataSource = Enum.GetValues(typeof(Category));
         }
 
         /// <summary>
@@ -69,7 +77,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <returns>Возвращает строку с информацией о предмете</returns>
         private static string TakeInfoFromItem(Item item)
         {
-            var info = $"{item.Id}. " + $"Name={item.Name}, " + $"Cost={item.Cost} ";
+            var info = $"{item.Id}. " + $"{item.Name}, " + $"{item.Category}, " + $"{item.Cost}";
 
             return info;
         }
@@ -85,7 +93,8 @@ namespace ObjectOrientedPractics.View.Tabs
             IdTextBox.Text = item.Id.ToString();
             CostTextBox.Text = item.Cost.ToString();
             NameRichTextBox.Text = item.Name;
-            DescriptionRichTextBox.Text = item.Info;            
+            DescriptionRichTextBox.Text = item.Info;
+            CategoryComboBox.Text=item.Category.ToString();
         }
 
         /// <summary>
@@ -226,12 +235,50 @@ namespace ObjectOrientedPractics.View.Tabs
 
         }
 
+        private void CategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _currentItemList = _items[ItemsListBox.SelectedIndex];
+
+            var currentCategory = CategoryComboBox.Text;
+
+            switch (currentCategory)
+            {
+                case "Processor":
+                    _currentItemList.Category = Category.Processor;
+                    break;
+                case "GraphicsCard":
+                    _currentItemList.Category = Category.GraphicsCard;
+                    break;
+                case "Motherboard":
+                    _currentItemList.Category = Category.Motherboard;
+                    break;
+                case "RAM":
+                    _currentItemList.Category = Category.RAM;
+                    break;
+                case "PowerSupplie":
+                    _currentItemList.Category = Category.PowerSupplie;
+                    break;
+                case "SSD":
+                    _currentItemList.Category = Category.SSD;
+                    break;
+                case "HDD":
+                    _currentItemList.Category = Category.HDD;
+                    break;
+            }      
+            
+
+            var info = TakeInfoFromItem(_currentItemList);
+
+            ItemsListBox.Items[ItemsListBox.SelectedIndex] = info;           
+
+        }
+
         /// <summary>
         /// Добавляет новый предмет в список. 
         /// </summary>        
         private void AddButton_Click(object sender, EventArgs e)
         {
-            var newItem = new Item(firstname, firstdescription, firstcost);
+            var newItem = new Item(firstname, firstdescription, firstcost, firstCategory);
             _items.Add(newItem);
             var info = TakeInfoFromItem(newItem);
 
@@ -251,6 +298,6 @@ namespace ObjectOrientedPractics.View.Tabs
             catch
             {
             }
-        }
+        }        
     }
 }

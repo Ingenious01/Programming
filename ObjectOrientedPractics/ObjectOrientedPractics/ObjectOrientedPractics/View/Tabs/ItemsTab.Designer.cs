@@ -44,6 +44,8 @@
             this.IdTextBox = new System.Windows.Forms.TextBox();
             this.CostLabel = new System.Windows.Forms.Label();
             this.IdLabel = new System.Windows.Forms.Label();
+            this.CategoryLabel = new System.Windows.Forms.Label();
+            this.CategoryComboBox = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.ItemsGroupBox.SuspendLayout();
@@ -146,6 +148,8 @@
             // 
             // SelectedItemGroupBox
             // 
+            this.SelectedItemGroupBox.Controls.Add(this.CategoryComboBox);
+            this.SelectedItemGroupBox.Controls.Add(this.CategoryLabel);
             this.SelectedItemGroupBox.Controls.Add(this.DescriptionRichTextBox);
             this.SelectedItemGroupBox.Controls.Add(this.SearchDescriptionLabel);
             this.SelectedItemGroupBox.Controls.Add(this.NameRichTextBox);
@@ -184,7 +188,7 @@
             this.SearchDescriptionLabel.Name = "SearchDescriptionLabel";
             this.SearchDescriptionLabel.Size = new System.Drawing.Size(127, 26);
             this.SearchDescriptionLabel.TabIndex = 6;
-            this.SearchDescriptionLabel.Text = "Description:";            
+            this.SearchDescriptionLabel.Text = "Description:";
             // 
             // NameRichTextBox
             // 
@@ -211,7 +215,7 @@
             // CostTextBox
             // 
             this.CostTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.CostTextBox.Location = new System.Drawing.Point(67, 82);
+            this.CostTextBox.Location = new System.Drawing.Point(118, 82);
             this.CostTextBox.Name = "CostTextBox";
             this.CostTextBox.Size = new System.Drawing.Size(141, 28);
             this.CostTextBox.TabIndex = 3;
@@ -221,11 +225,11 @@
             // IdTextBox
             // 
             this.IdTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.IdTextBox.Location = new System.Drawing.Point(67, 44);
+            this.IdTextBox.Location = new System.Drawing.Point(118, 44);
             this.IdTextBox.Name = "IdTextBox";
             this.IdTextBox.ReadOnly = true;
             this.IdTextBox.Size = new System.Drawing.Size(141, 28);
-            this.IdTextBox.TabIndex = 2;            
+            this.IdTextBox.TabIndex = 2;
             // 
             // CostLabel
             // 
@@ -246,6 +250,26 @@
             this.IdLabel.Size = new System.Drawing.Size(32, 24);
             this.IdLabel.TabIndex = 0;
             this.IdLabel.Text = "ID:";
+            // 
+            // CategoryLabel
+            // 
+            this.CategoryLabel.AutoSize = true;
+            this.CategoryLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.CategoryLabel.Location = new System.Drawing.Point(8, 122);
+            this.CategoryLabel.Name = "CategoryLabel";
+            this.CategoryLabel.Size = new System.Drawing.Size(90, 24);
+            this.CategoryLabel.TabIndex = 8;
+            this.CategoryLabel.Text = "Category:";
+            // 
+            // CategoryComboBox
+            // 
+            this.CategoryComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.CategoryComboBox.FormattingEnabled = true;
+            this.CategoryComboBox.Location = new System.Drawing.Point(118, 119);
+            this.CategoryComboBox.Name = "CategoryComboBox";
+            this.CategoryComboBox.Size = new System.Drawing.Size(141, 30);
+            this.CategoryComboBox.TabIndex = 9;
+            this.CategoryComboBox.SelectedIndexChanged += new System.EventHandler(this.CategoryComboBox_SelectedIndexChanged);
             // 
             // ItemsTab
             // 
@@ -282,5 +306,7 @@
         private System.Windows.Forms.TextBox IdTextBox;
         private System.Windows.Forms.Label CostLabel;
         private System.Windows.Forms.Label IdLabel;
+        private System.Windows.Forms.Label CategoryLabel;
+        private System.Windows.Forms.ComboBox CategoryComboBox;
     }
 }

@@ -1,4 +1,5 @@
-﻿using ObjectOrientedPractics.Services;
+﻿using ObjectOrientedPractics.Model;
+using ObjectOrientedPractics.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -89,18 +90,23 @@ namespace ObjectOrientedPractics.Services
             }
         }
 
+        public Category Category {get; set;}
+
+
         /// <summary>
         /// Создаёт экземпляр класса <see cref="Item"/>.
         /// </summary>    
         /// <param name="name">Название товара</param>
         /// <param name="info">Информация о товаре</param>
         /// <param name="cost">Стоимость товара</param>
-        public Item(string name, string info, double cost)
+        /// /// <param name="category">Категория товара</param>
+        public Item(string name, string info, double cost, Category category)
         {
             Id = IdGenerator.GetNextItemId();
             Name = name;
             Info = info;
             Cost = cost;
+            Category = category;
         }
     }
 }
