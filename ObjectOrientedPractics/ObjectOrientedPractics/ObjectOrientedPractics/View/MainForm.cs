@@ -21,5 +21,10 @@ namespace ObjectOrientedPractics
         {
 
         }
+
+        private void customerTab1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

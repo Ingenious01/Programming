@@ -17,8 +17,8 @@ namespace ObjectOrientedPractics.Services
         /// <param name=propertyName">Название параметра класса</param>
         public static void AssertStringOnLength(string value, int maxLength, string propertyName)
         {
-            string pattern = ("^[a-zA-Z]+$");
-            if ((value.Length <= maxLength) && (value != string.Empty) && (value.Length > 3) && (Regex.IsMatch(value, pattern, RegexOptions.IgnoreCase)))
+            
+            if ((value.Length <= maxLength) && (value != string.Empty) && (value.Length > 3))
             { }
             else 
             { throw new ArgumentException(String.Format("{0} должен быть меньше {1} символов ", propertyName, maxLength)); } 
@@ -53,6 +53,6 @@ namespace ObjectOrientedPractics.Services
             else
             { throw new ArgumentException(String.Format("{0} должно состоять из двух слов и пробела, включать в себя только англмйские буквы ", propertyName)); }
 
-        }
+        }        
     }
 }

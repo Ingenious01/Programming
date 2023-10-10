@@ -127,16 +127,18 @@ namespace ObjectOrientedPractics.Model
 
                 _apartament = value;
             }
-        }       
+        }
 
 
         /// <summary>
         /// Создаёт экземпляр класса <see cref="Item"/>.
         /// </summary>    
-        /// <param name="name">Название товара</param>
-        /// <param name="info">Информация о товаре</param>
-        /// <param name="cost">Стоимость товара</param>
-        /// /// <param name="category">Категория товара</param>
+        /// <param name="index">Индекс</param>
+        /// <param name="country">Страна</param>
+        /// <param name="city">Город</param>
+        /// <param name="street">Улица</param>
+        /// <param name="building">Номер дома</param>
+        /// <param name="apartament">Номер квартиры</param>
         public Adress(int index, string country, string city, string street, string building, string apartament)
         {
             Index = index;

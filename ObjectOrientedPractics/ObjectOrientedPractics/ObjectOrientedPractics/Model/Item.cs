@@ -52,9 +52,7 @@ namespace ObjectOrientedPractics.Services
             get => _name;
             set
             {
-                ValueValidator.AssertStringOnLength(value, 200, nameof(Name));
-
-                ValueValidator.AssertNameStringOnSymbols(value, nameof(Name));
+                ValueValidator.AssertStringOnLength(value, 200, nameof(Name));               
 
                 _name = value;
             }

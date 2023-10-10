@@ -67,7 +67,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
             ItemsListBox.Items.Add(info);
 
-            CategoryComboBox.DataSource = Enum.GetValues(typeof(Category));
+            CategoryComboBox.DataSource = Enum.GetValues(typeof(Category));          
         }
 
         /// <summary>
@@ -239,40 +239,42 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary> 
         private void CategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            _currentItemList = _items[ItemsListBox.SelectedIndex];
-
-            var currentCategory = CategoryComboBox.Text;
-
-            switch (currentCategory)
+            if (ItemsListBox.SelectedIndex >= 0)
             {
-                case "Processor":
-                    _currentItemList.Category = Category.Processor;
-                    break;
-                case "GraphicsCard":
-                    _currentItemList.Category = Category.GraphicsCard;
-                    break;
-                case "Motherboard":
-                    _currentItemList.Category = Category.Motherboard;
-                    break;
-                case "RAM":
-                    _currentItemList.Category = Category.RAM;
-                    break;
-                case "PowerSupplie":
-                    _currentItemList.Category = Category.PowerSupplie;
-                    break;
-                case "SSD":
-                    _currentItemList.Category = Category.SSD;
-                    break;
-                case "HDD":
-                    _currentItemList.Category = Category.HDD;
-                    break;
-            }      
-            
+                _currentItemList = _items[ItemsListBox.SelectedIndex];
 
-            var info = TakeInfoFromItem(_currentItemList);
+                var currentCategory = CategoryComboBox.Text;
 
-            ItemsListBox.Items[ItemsListBox.SelectedIndex] = info;           
+                switch (currentCategory)
+                {
+                    case "Processor":
+                        _currentItemList.Category = Category.Processor;
+                        break;
+                    case "GraphicsCard":
+                        _currentItemList.Category = Category.GraphicsCard;
+                        break;
+                    case "Motherboard":
+                        _currentItemList.Category = Category.Motherboard;
+                        break;
+                    case "RAM":
+                        _currentItemList.Category = Category.RAM;
+                        break;
+                    case "PowerSupplie":
+                        _currentItemList.Category = Category.PowerSupplie;
+                        break;
+                    case "SSD":
+                        _currentItemList.Category = Category.SSD;
+                        break;
+                    case "HDD":
+                        _currentItemList.Category = Category.HDD;
+                        break;
+                }
 
+
+                var info = TakeInfoFromItem(_currentItemList);
+
+                ItemsListBox.Items[ItemsListBox.SelectedIndex] = info;
+            }
         }
 
         /// <summary>
