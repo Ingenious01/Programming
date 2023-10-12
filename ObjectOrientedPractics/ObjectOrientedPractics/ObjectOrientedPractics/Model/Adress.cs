@@ -1,13 +1,15 @@
 ﻿using ObjectOrientedPractics.Services;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ObjectOrientedPractics.Model
 {
-    internal class Adress
+    public class Adress : INotifyPropertyChanged
     {
         /// <summary>
         /// Почтовый индекс.
@@ -39,6 +41,8 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         private string _apartament;
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
         /// <summary>
         /// Возвращает и задаёт индивидуальный номер товара.
         /// </summary>
@@ -55,6 +59,8 @@ namespace ObjectOrientedPractics.Model
                 }
 
                 _index = value;
+
+                OnPropertyChanged();
             }
 
         }
@@ -70,6 +76,8 @@ namespace ObjectOrientedPractics.Model
                 ValueValidator.AssertStringOnLength(value, 50, nameof(Country));                
 
                 _country = value;
+
+                OnPropertyChanged();
             }
         }
 
@@ -84,6 +92,8 @@ namespace ObjectOrientedPractics.Model
                 ValueValidator.AssertStringOnLength(value, 50, nameof(City));
 
                 _city = value;
+
+                OnPropertyChanged();
             }
         }
 
@@ -98,6 +108,8 @@ namespace ObjectOrientedPractics.Model
                 ValueValidator.AssertStringOnLength(value, 100, nameof(Street));
 
                 _street = value;
+
+                OnPropertyChanged();
             }
         }
 
@@ -112,6 +124,8 @@ namespace ObjectOrientedPractics.Model
                 ValueValidator.AssertStringOnLength(value, 10, nameof(Building));
 
                 _building = value;
+
+                OnPropertyChanged();
             }
         }
 
@@ -120,13 +134,20 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         public string Apartament
         {
-            get => _city;
+            get => _apartament;
             set
             {
                 ValueValidator.AssertStringOnLength(value, 10, nameof(Apartament));
 
                 _apartament = value;
+
+                OnPropertyChanged();
             }
+        }
+
+        public void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
 

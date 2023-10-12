@@ -17,20 +17,31 @@ namespace ObjectOrientedPractics.View.Controls
 {
     public partial class AdressControl : UserControl
     {
+        private Adress _adress;
+
         public AdressControl()
         {
-            InitializeComponent();                      
+            InitializeComponent();
         }
-       
-        public void UpdateAdressInfo(int postIndex, string country, string city,
-            string street, string building, string apartament)
+
+        public Adress Adress
         {
-            PostIndexTextBox.Text = postIndex.ToString();
-            CountryTextBox.Text = country;
-            CityTextBox.Text = city;
-            StreetTextBox.Text = street;
-            BuildingTextBox.Text = building;
-            ApartamentTextBox.Text = apartament; 
+            get => _adress;
+            set
+            {
+                _adress = value;
+                UpdateAdressInfo(_adress);
+            }
+        }
+
+        public void UpdateAdressInfo(Adress value)
+        {
+            PostIndexTextBox.Text = value.Index.ToString();
+            CountryTextBox.Text = value.Country;
+            CityTextBox.Text = value.City;
+            StreetTextBox.Text = value.Street;
+            BuildingTextBox.Text = value.Building;
+            ApartamentTextBox.Text = value.Apartament; 
         }
 
         private void PostIndexTextBox_TextChanged(object sender, EventArgs e)
@@ -47,7 +58,8 @@ namespace ObjectOrientedPractics.View.Controls
 
                 if (e.KeyChar == (char)Keys.Enter)
                 {
-                    customertab.RefreshIndexValue(currentIndex);                                       
+                    _adress.Index = currentIndex;
+                                        
                 }
             }
             catch
@@ -63,7 +75,21 @@ namespace ObjectOrientedPractics.View.Controls
 
         private void CountryTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            
+            try
+            {
+                var currentCountry = CountryTextBox.Text;
+
+                if (e.KeyChar == (char)Keys.Enter)
+                {
+                    _adress.Country = currentCountry;
+
+                }
+            }
+            catch
+            {
+                CountryTextBox.BackColor = System.Drawing.Color.LightPink;
+            }
+
         }
 
         private void CityTextBox_TextChanged(object sender, EventArgs e)
@@ -73,7 +99,21 @@ namespace ObjectOrientedPractics.View.Controls
 
         private void CityTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            
+            try
+            {
+                var currentCity = CityTextBox.Text;
+
+                if (e.KeyChar == (char)Keys.Enter)
+                {
+                    _adress.City = currentCity;
+                    
+                }
+            }
+            catch
+            {
+                CityTextBox.BackColor = System.Drawing.Color.LightPink;
+            }
+
         }
 
         private void StreetTextBox_TextChanged(object sender, EventArgs e)
@@ -83,7 +123,21 @@ namespace ObjectOrientedPractics.View.Controls
 
         private void StreetTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            
+            try
+            {
+                var currentStreet = StreetTextBox.Text;
+
+                if (e.KeyChar == (char)Keys.Enter)
+                {
+                    _adress.Street = currentStreet;
+
+                }
+            }
+            catch
+            {
+                StreetTextBox.BackColor = System.Drawing.Color.LightPink;
+            }
+
         }
 
         private void BuildingTextBox_TextChanged(object sender, EventArgs e)
@@ -93,7 +147,21 @@ namespace ObjectOrientedPractics.View.Controls
 
         private void BuildingTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            
+            try
+            {
+                var currentBuilding = BuildingTextBox.Text;
+
+                if (e.KeyChar == (char)Keys.Enter)
+                {
+                    _adress.Building = currentBuilding;
+
+                }
+            }
+            catch
+            {
+                BuildingTextBox.BackColor = System.Drawing.Color.LightPink;
+            }
+
         }
 
         private void ApartamentTextBox_TextChanged(object sender, EventArgs e)
@@ -103,7 +171,21 @@ namespace ObjectOrientedPractics.View.Controls
 
         private void ApartamentextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            
+            try
+            {
+                var currentApartament = ApartamentTextBox.Text;
+
+                if (e.KeyChar == (char)Keys.Enter)
+                {
+                    _adress.Apartament = currentApartament;
+
+                }
+            }
+            catch
+            {
+                ApartamentTextBox.BackColor = System.Drawing.Color.LightPink;
+            }
+
         }        
     }
 }
