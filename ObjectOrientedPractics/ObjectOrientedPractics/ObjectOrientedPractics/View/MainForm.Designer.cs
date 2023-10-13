@@ -31,8 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.MainTavPage = new System.Windows.Forms.TabControl();
             this.ItemsTabPage = new System.Windows.Forms.TabPage();
-            this.CustomersTabPage = new System.Windows.Forms.TabPage();
             this.itemsTab1 = new ObjectOrientedPractics.View.Tabs.ItemsTab();
+            this.CustomersTabPage = new System.Windows.Forms.TabPage();
             this.customerTab1 = new ObjectOrientedPractics.View.Tabs.CustomerTab();
             this.MainTavPage.SuspendLayout();
             this.ItemsTabPage.SuspendLayout();
@@ -60,7 +60,16 @@
             this.ItemsTabPage.Size = new System.Drawing.Size(988, 733);
             this.ItemsTabPage.TabIndex = 0;
             this.ItemsTabPage.Text = "Items";
-            this.ItemsTabPage.UseVisualStyleBackColor = true;
+            this.ItemsTabPage.UseVisualStyleBackColor = true;            
+            // 
+            // itemsTab1
+            // 
+            this.itemsTab1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.itemsTab1.Location = new System.Drawing.Point(3, 3);
+            this.itemsTab1.Margin = new System.Windows.Forms.Padding(5);
+            this.itemsTab1.Name = "itemsTab1";
+            this.itemsTab1.Size = new System.Drawing.Size(982, 727);
+            this.itemsTab1.TabIndex = 0;
             // 
             // CustomersTabPage
             // 
@@ -72,15 +81,6 @@
             this.CustomersTabPage.TabIndex = 1;
             this.CustomersTabPage.Text = "Customers";
             this.CustomersTabPage.UseVisualStyleBackColor = true;
-            // 
-            // itemsTab1
-            // 
-            this.itemsTab1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.itemsTab1.Location = new System.Drawing.Point(3, 3);
-            this.itemsTab1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
-            this.itemsTab1.Name = "itemsTab1";
-            this.itemsTab1.Size = new System.Drawing.Size(982, 727);
-            this.itemsTab1.TabIndex = 0;
             // 
             // customerTab1
             // 
@@ -98,8 +98,7 @@
             this.Controls.Add(this.MainTavPage);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
-            this.Text = "Object Oriented Practics";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Text = "Object Oriented Practics";            
             this.MainTavPage.ResumeLayout(false);
             this.ItemsTabPage.ResumeLayout(false);
             this.CustomersTabPage.ResumeLayout(false);

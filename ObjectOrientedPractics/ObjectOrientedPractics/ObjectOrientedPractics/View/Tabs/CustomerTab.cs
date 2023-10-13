@@ -182,5 +182,16 @@ namespace ObjectOrientedPractics.View.Tabs
             }
 
         }
+
+        public BindingList<Customer> Customers
+        {
+            get { return _customers; }
+            set
+            {  
+                _customers = value;
+
+                CustomersListBox.DataSource = _customers;
+            }
+        }
     }
 }

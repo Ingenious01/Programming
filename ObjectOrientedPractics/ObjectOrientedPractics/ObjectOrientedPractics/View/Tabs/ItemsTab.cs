@@ -48,24 +48,14 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <summary>
         /// Default value for Category.
         /// </summary>
-        static Category firstCategory = Category.Processor;
-
-        /// <summary>
-        /// The first default Item.
-        /// </summary>  
-        Item stockItem = new Item(firstname, firstdescription, firstcost, firstCategory);
+        static Category firstCategory = Category.Processor;       
 
         /// <summary>
         /// Создаёт экземпляр класса ItemsTab.
         /// </summary>
         public ItemsTab()
         {
-            InitializeComponent();
-
-            _items.Add(stockItem);
-            var info = TakeInfoFromItem(stockItem);
-
-            ItemsListBox.Items.Add(info);
+            InitializeComponent();           
 
             CategoryComboBox.DataSource = Enum.GetValues(typeof(Category));          
         }
@@ -302,6 +292,23 @@ namespace ObjectOrientedPractics.View.Tabs
             catch
             {
             }
-        }        
+        } 
+        
+        public List<Item> Items
+        {
+            get { return _items; }
+            set 
+            {
+                ItemsListBox.Items.Clear();
+
+                _items = value; 
+                for (int i =0; i< _items.Count;i++)
+                {
+                    var info = TakeInfoFromItem(_items[i]);
+
+                    ItemsListBox.Items.Add(info);
+                }
+            }
+        }
     }
 }

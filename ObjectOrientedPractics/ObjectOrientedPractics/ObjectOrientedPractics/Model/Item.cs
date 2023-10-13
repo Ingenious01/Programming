@@ -12,7 +12,7 @@ namespace ObjectOrientedPractics.Services
     /// <summary>
     /// Хранит информацию о товаре.
     /// </summary>
-    internal class Item
+    public class Item
     {
         /// <summary>
         /// Индивидуальный номер товара.
