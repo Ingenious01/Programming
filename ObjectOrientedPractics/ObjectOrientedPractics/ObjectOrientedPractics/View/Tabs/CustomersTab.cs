@@ -1,5 +1,4 @@
 ﻿using ObjectOrientedPractics.Model;
-using ObjectOrientedPractics.Services;
 using ObjectOrientedPractics.View.Controls;
 using System;
 using System.Collections.Generic;
@@ -10,52 +9,36 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
-    /// <summary>
-    /// Предоставляет шаблон пользовательского интерфейса CustomerTab.
-    /// </summary>
-    public partial class CustomerTab : UserControl
+    public partial class customersTab : UserControl
     {
         /// <summary>
         /// Покупатель типа Customer.
         /// </summary>
-        private BindingList<Customer> _customers = new BindingList<Customer>();               
+        private BindingList<Customer> _customers = new BindingList<Customer>();
 
         /// <summary>
         /// Покупатель, выбранный в CustomersListBox.
         /// </summary>
-        private Customer _currentCustomerList;        
+        private Customer _currentCustomerList;
 
         /// <summary>
         /// Default value for Name.
         /// </summary>
         static string firstname = "Stock Name";
-     
+
         /// <summary>
         /// Создаёт экземпляр класса CustomerTab.
         /// </summary>
-        public CustomerTab()
+        public customersTab()
         {
-            InitializeComponent();                   
+            InitializeComponent();
 
-            CustomersListBox.DataSource = _customers;
-        }
-
-        /// <summary>
-        /// Создаёт строку с информацией о покупателе.
-        /// </summary>
-        /// <param name="customer">Покупатель.</param>
-        /// <returns>Возвращает строку с информацией о клиенте.</returns>
-        public static string TakeInfoFromCustomer(Customer customer)
-        {
-            var info = $"{customer.Id}. " +
-               $"Name={customer.FullName}, " +
-               $"Index ={customer.Adress.Index} ";            
-            
-            return info;
-        }
+            customersListBox.DataSource = _customers;
+        }      
 
         /// <summary>
         /// Обновляет параметры покупателя.
@@ -63,9 +46,9 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <param name="customer">Покупатель</param>
         private void UpdateCustomerInfo(Customer customer)
         {
-            IdTextBox.Text = customer.Id.ToString();
-            NameTextBox.Text = customer.FullName;
-            adressControl1.Adress = customer.Adress;
+            idTextBox.Text = customer.Id.ToString();
+            nameTextBox.Text = customer.FullName;
+            addressControl1.Address = customer.Address;
         }
 
         /// <summary>
@@ -73,21 +56,21 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private void ClearCustomerInfo()
         {
-            IdTextBox.Text = " ";
-            NameTextBox.Text = " ";            
+            idTextBox.Text = " ";
+            nameTextBox.Text = " ";
 
-            NameTextBox.BackColor = System.Drawing.Color.White;                       
+            nameTextBox.BackColor = System.Drawing.Color.White;
         }
-        
+
         /// <summary>
         /// При нажатии на конкретного покупателя в списке покупателей даёт о нём информацию.
         /// </summary>
-        public void CustomersListBox_SelectedIndexChanged(object sender, EventArgs e)
+        public void customersListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
-                _currentCustomerList = _customers[CustomersListBox.SelectedIndex];
-                UpdateCustomerInfo(_currentCustomerList);                               
+                _currentCustomerList = _customers[customersListBox.SelectedIndex];
+                UpdateCustomerInfo(_currentCustomerList);
             }
             catch
             {
@@ -98,37 +81,35 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <summary>
         /// При изменении символа в строке имени окрашивает её в белый цвет.
         /// </summary>        
-        private void NameTextBox_TextChanged(object sender, EventArgs e)
+        private void nameTextBox_TextChanged(object sender, EventArgs e)
         {
-            NameTextBox.BackColor = System.Drawing.Color.White;
-        }        
+            nameTextBox.BackColor = System.Drawing.Color.White;
+        }
 
         /// <summary>
         /// При нажатии пробела присваивает имя клиенту из NameTextBox. 
         /// Если не получается, окрашивает background поля NameTextBox в красный цвет.
         /// </summary>        
-        private void NameTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        private void nameTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
             {
-                _currentCustomerList = _customers[CustomersListBox.SelectedIndex];
+                _currentCustomerList = _customers[customersListBox.SelectedIndex];
 
-                var currentName = NameTextBox.Text;
+                var currentName = nameTextBox.Text;
 
                 if (e.KeyChar == (char)Keys.Enter)
                 {
                     _currentCustomerList.FullName = currentName;
-                    
-                    
                 }
             }
             catch
             {
-                NameTextBox.BackColor = System.Drawing.Color.LightPink;
+                nameTextBox.BackColor = System.Drawing.Color.LightPink;
             }
-        } 
-   
-        public void AddButton_Click(object sender, EventArgs e)
+        }
+
+        public void addButton_Click(object sender, EventArgs e)
         {
             /// <summary>
             /// Default value for Name.
@@ -160,22 +141,22 @@ namespace ObjectOrientedPractics.View.Tabs
             /// </summary>
             string defaultapartament = "Apartament";
 
-            Adress stockAdress = new Adress(defaultindex, defaultcountry, defaultcity, defaultstreet, defaultbuilding, defaultapartament);
+            Address stockAdress = new Address(defaultindex, defaultcountry, defaultcity, defaultstreet, defaultbuilding, defaultapartament);
 
             var newCustomer = new Customer(firstname, stockAdress);
-            _customers.Add(newCustomer);           
-            
+            _customers.Add(newCustomer);
+
         }
 
         /// <summary>
         /// Удаляет покупателя и всю информацию о нём из списка.
         /// </summary>        
-        private void RemoveButton_Click(object sender, EventArgs e)
+        private void removeButton_Click(object sender, EventArgs e)
         {
             try
             {
-                _customers.RemoveAt(CustomersListBox.SelectedIndex);
-                CustomersListBox.Items.RemoveAt(CustomersListBox.SelectedIndex);
+                _customers.RemoveAt(customersListBox.SelectedIndex);
+                customersListBox.Items.RemoveAt(customersListBox.SelectedIndex);
             }
             catch
             {
@@ -187,10 +168,10 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             get { return _customers; }
             set
-            {  
+            {
                 _customers = value;
 
-                CustomersListBox.DataSource = _customers;
+                customersListBox.DataSource = _customers;
             }
         }
     }

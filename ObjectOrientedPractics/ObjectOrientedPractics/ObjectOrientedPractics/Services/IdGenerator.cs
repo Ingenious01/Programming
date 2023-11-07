@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace ObjectOrientedPractics.Services
 {
     static class IdGenerator
-    {       
+    {
         /// <summary>
         /// Счётчик индивидуального номера для товаров.
         /// </summary>
@@ -18,8 +18,8 @@ namespace ObjectOrientedPractics.Services
         /// </summary>
         public static int GetNextItemId()
         {
-         currentItemID++;
-         return currentItemID;
+            currentItemID++;
+            return currentItemID;
         }
 
         /// <summary>
@@ -31,6 +31,20 @@ namespace ObjectOrientedPractics.Services
         /// Метод, задающий покупателю его индивидуальный номер(Id).
         /// </summary>
         public static int GetNextCustomerId()
+        {
+            currentCustomerID++;
+            return currentCustomerID;
+        }
+
+        /// <summary>
+        /// Счётчик индивидуального номера для заказов.
+        /// </summary>
+        static int currentOrderID = 0;
+
+        /// <summary>
+        /// Метод, задающий заказу его индивидуальный номер(Id).
+        /// </summary>
+        public static int GetNextOrderId()
         {
             currentCustomerID++;
             return currentCustomerID;

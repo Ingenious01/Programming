@@ -13,23 +13,17 @@ using System.Windows.Forms;
 namespace ObjectOrientedPractics
 {
     public partial class MainForm : Form
-    {      
+    {
+        private Store _store = new Store();        
         public MainForm()
         {
             InitializeComponent();            
 
-            Store _store = new Store();
-
-            customerTab1.Customers = _store.Customers;
-
+            customersTab1.Customers = _store.Customers;
             itemsTab1.Items = _store.Items;
 
-            
-
-        }
-
-
-
-
+            cartsTab1.Customers = _store.Customers;
+            cartsTab1.Items = _store.Items;
+        }        
     }
 }

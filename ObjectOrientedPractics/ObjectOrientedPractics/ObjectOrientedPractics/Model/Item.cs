@@ -1,18 +1,18 @@
-﻿using ObjectOrientedPractics.Model;
-using ObjectOrientedPractics.Services;
+﻿using ObjectOrientedPractics.Services;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
-using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ObjectOrientedPractics.Services
+namespace ObjectOrientedPractics.Model
 {
     /// <summary>
     /// Хранит информацию о товаре.
     /// </summary>
-    public class Item
+    public class Item : INotifyPropertyChanged
     {
         /// <summary>
         /// Индивидуальный номер товара.
@@ -34,15 +34,21 @@ namespace ObjectOrientedPractics.Services
         /// </summary>
         private double _cost;
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
         /// <summary>
         /// Возвращает и задаёт индивидуальный номер товара.
         /// </summary>
         public int Id
-        { 
-           get => _id;
-           set => _id = value;
-
-        }        
+        {
+            get => _id;
+            set => _id = value;            
+        }
 
         /// <summary>
         /// Возвращает и задаёт название товара.
@@ -52,10 +58,21 @@ namespace ObjectOrientedPractics.Services
             get => _name;
             set
             {
-                ValueValidator.AssertStringOnLength(value, 200, nameof(Name));               
+                ValueValidator.AssertStringOnLength(value, 200, nameof(Name));
 
                 _name = value;
+
+                OnPropertyChanged();
             }
+        }
+
+        public override string ToString()
+        {
+            var info = $"{Id}. " +
+               $"Name={Name}, " +
+               $"Cost ={Cost} ";
+
+            return info;
         }
 
         /// <summary>
@@ -66,32 +83,35 @@ namespace ObjectOrientedPractics.Services
             get => _info;
             set
             {
-                ValueValidator.AssertStringOnLength(value, 500, nameof(Info));               
+                ValueValidator.AssertStringOnLength(value, 500, nameof(Info));                
 
                 _info = value;
+
+                OnPropertyChanged();
             }
         }
 
         /// <summary>
         /// Возвращает и задаёт стоимость товара. Стоимость должна быть больше 0.
         /// </summary>
-        public double Cost 
+        public double Cost
         {
             get => _cost;
 
             set
             {
-                if (value>0) 
-                    _cost = value;                
-                else 
+                if (value > 0)
+                    _cost = value;
+                else
                     throw new ArgumentException("Укажите корректную цену");
+                OnPropertyChanged();
             }
         }
 
         /// <summary>
         /// Возвращает и задаёт категорию товара.
         /// </summary>
-        public Category Category {get; set;}
+        public Category Category { get; set; }
 
 
         /// <summary>

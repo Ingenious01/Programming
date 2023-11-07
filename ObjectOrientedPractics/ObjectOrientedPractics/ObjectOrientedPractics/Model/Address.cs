@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ObjectOrientedPractics.Model
 {
-    public class Adress : INotifyPropertyChanged
+    public class Address : INotifyPropertyChanged
     {
         /// <summary>
         /// Почтовый индекс.
@@ -73,7 +73,7 @@ namespace ObjectOrientedPractics.Model
             get => _country;
             set
             {
-                ValueValidator.AssertStringOnLength(value, 50, nameof(Country));                
+                ValueValidator.AssertStringOnLength(value, 50, nameof(Country));               
 
                 _country = value;
 
@@ -160,7 +160,7 @@ namespace ObjectOrientedPractics.Model
         /// <param name="street">Улица</param>
         /// <param name="building">Номер дома</param>
         /// <param name="apartament">Номер квартиры</param>
-        public Adress(int index, string country, string city, string street, string building, string apartament)
+        public Address(int index, string country, string city, string street, string building, string apartament)
         {
             Index = index;
             Country = country;

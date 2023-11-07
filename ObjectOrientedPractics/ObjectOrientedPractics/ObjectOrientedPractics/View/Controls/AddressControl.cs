@@ -1,47 +1,46 @@
 ﻿using ObjectOrientedPractics.Model;
-using ObjectOrientedPractics.Services;
-using ObjectOrientedPractics.View.Tabs;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ObjectOrientedPractics.View.Controls
 {
-    public partial class AdressControl : UserControl
+    public partial class AddressControl : UserControl
     {
-        private Adress _adress;
+        private Address _address;
 
-        public AdressControl()
+        public AddressControl()
         {
             InitializeComponent();
-        }
+        }       
 
-        public Adress Adress
+        public Address Address
         {
-            get => _adress;
+            get => _address;
             set
             {
-                _adress = value;
-                UpdateAdressInfo(_adress);
+                _address = value;
+                if (value != null) 
+                { 
+                    UpdateAdressInfo(_address); 
+                }
             }
         }
 
-        public void UpdateAdressInfo(Adress value)
+        public void UpdateAdressInfo(Address value)
         {
             PostIndexTextBox.Text = value.Index.ToString();
             CountryTextBox.Text = value.Country;
             CityTextBox.Text = value.City;
             StreetTextBox.Text = value.Street;
             BuildingTextBox.Text = value.Building;
-            ApartamentTextBox.Text = value.Apartament; 
+            ApartamentTextBox.Text = value.Apartament;
         }
 
         private void PostIndexTextBox_TextChanged(object sender, EventArgs e)
@@ -51,22 +50,22 @@ namespace ObjectOrientedPractics.View.Controls
 
         private void PostIndexTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            
+
             try
             {
                 var currentIndex = Convert.ToInt32(PostIndexTextBox.Text);
 
                 if (e.KeyChar == (char)Keys.Enter)
                 {
-                    _adress.Index = currentIndex;
-                                        
+                    _address.Index = currentIndex;
+
                 }
             }
             catch
             {
                 PostIndexTextBox.BackColor = System.Drawing.Color.LightPink;
             }
-        } 
+        }
 
         private void CountryTextBox_TextChanged(object sender, EventArgs e)
         {
@@ -81,7 +80,7 @@ namespace ObjectOrientedPractics.View.Controls
 
                 if (e.KeyChar == (char)Keys.Enter)
                 {
-                    _adress.Country = currentCountry;
+                    _address.Country = currentCountry;
 
                 }
             }
@@ -105,8 +104,8 @@ namespace ObjectOrientedPractics.View.Controls
 
                 if (e.KeyChar == (char)Keys.Enter)
                 {
-                    _adress.City = currentCity;
-                    
+                    _address.City = currentCity;
+
                 }
             }
             catch
@@ -129,7 +128,7 @@ namespace ObjectOrientedPractics.View.Controls
 
                 if (e.KeyChar == (char)Keys.Enter)
                 {
-                    _adress.Street = currentStreet;
+                    _address.Street = currentStreet;
 
                 }
             }
@@ -153,7 +152,7 @@ namespace ObjectOrientedPractics.View.Controls
 
                 if (e.KeyChar == (char)Keys.Enter)
                 {
-                    _adress.Building = currentBuilding;
+                    _address.Building = currentBuilding;
 
                 }
             }
@@ -177,7 +176,7 @@ namespace ObjectOrientedPractics.View.Controls
 
                 if (e.KeyChar == (char)Keys.Enter)
                 {
-                    _adress.Apartament = currentApartament;
+                    _address.Apartament = currentApartament;
 
                 }
             }
@@ -186,6 +185,6 @@ namespace ObjectOrientedPractics.View.Controls
                 ApartamentTextBox.BackColor = System.Drawing.Color.LightPink;
             }
 
-        }        
+        }
     }
 }

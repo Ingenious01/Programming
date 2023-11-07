@@ -1,4 +1,4 @@
-﻿using ObjectOrientedPractics.Model;
+﻿using ObjectOrientedPractics.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -6,9 +6,8 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-using System.Xml.Linq;
 
-namespace ObjectOrientedPractics.Services
+namespace ObjectOrientedPractics.Model
 {
     /// <summary>
     /// Хранит информацию о покупателе.
@@ -28,9 +27,24 @@ namespace ObjectOrientedPractics.Services
         /// <summary>
         /// Домашний адрес покупателя.
         /// </summary>
-        private Adress _adress;
+        private Address _address;
+
+        /// <summary>
+        /// Корзина покупателя.
+        /// </summary>
+        private Cart _cart;
+
+        /// <summary>
+        /// Заказы покупателя.
+        /// </summary>
+        private List<Order> _orders;
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        public void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
 
         /// <summary>
         /// Возвращает и задаёт персональный номер покупателя.
@@ -47,7 +61,7 @@ namespace ObjectOrientedPractics.Services
         public string FullName
         {
             get => _fullname;
-            set 
+            set
             {
                 ValueValidator.AssertStringOnLength(value, 200, nameof(FullName));
 
@@ -57,18 +71,13 @@ namespace ObjectOrientedPractics.Services
 
                 OnPropertyChanged();
             }
-        }
-        
-        public void OnPropertyChanged([CallerMemberName] string propertyName = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+        }        
 
         public override string ToString()
         {
             var info = $"{Id}. " +
                $"Name={FullName}, " +
-               $"Index ={Adress.Index} ";
+               $"Index ={Address.Index} ";
 
             return info;
         }
@@ -77,19 +86,40 @@ namespace ObjectOrientedPractics.Services
         /// <summary>
         /// Возвращает и задаёт домашний адрес покупателя. Длинна строки с адресом должна быть не больше 500.
         /// </summary>
-        public Adress Adress
+        public Address Address
         {
             get
             {
-                return _adress;
+                return _address;
             }
             set
             {
-                _adress = value;
-                _adress.PropertyChanged += AddressChanged;
+                _address = value;
+                _address.PropertyChanged += AddressChanged;
                 void AddressChanged(object sender, PropertyChangedEventArgs args) =>
                     OnPropertyChanged();
             }
+        }
+
+        /// <summary>
+        /// Возвращает и задаёт персональный номер покупателя.
+        /// </summary>
+        public Cart Cart
+        {
+            get => _cart;
+            set
+            {
+                _cart = value;
+            }
+        }
+
+        /// <summary>
+        /// Возвращает и задаёт заказ покупателя.
+        /// </summary>
+        public List<Order> Orders
+        {
+            set => _orders = value;
+            get => _orders;
         }
 
         /// <summary>
@@ -97,11 +127,13 @@ namespace ObjectOrientedPractics.Services
         /// </summary>    
         /// <param name="fullname">ФИО</param>
         /// <param name="adress">Адрес</param>
-        public Customer(string fullname, Adress adress)
+        public Customer(string fullname, Address address)
         {
             Id = IdGenerator.GetNextCustomerId();
             FullName = fullname;
-            Adress = adress;
+            Address = address;
+            Cart = new Cart();
+            Orders = new List<Order>();
         }
     }
 }
