@@ -27,9 +27,12 @@ namespace ObjectOrientedPractics.View.Tabs
             get => _items;
             set
             {
-                _items = value;
+                if (value != null)
+                {
+                    _items = value;
 
-                itemsListBox.DataSource = Items;
+                    itemsListBox.DataSource = Items;
+                }
             }
         }
 
@@ -38,9 +41,14 @@ namespace ObjectOrientedPractics.View.Tabs
             get => _customers;
             set
             {
-                _customers = value;
+                if (value != null)
+                {   
 
-                customerComboBox.DataSource = Customers;
+                    _customers = value;
+
+                    customerComboBox.DataSource = Customers;
+                }
+            
             }
         }
 
@@ -114,8 +122,10 @@ namespace ObjectOrientedPractics.View.Tabs
         private void createOrderButton_Click(object sender, EventArgs e)
         {
             Order NewOrder = new Order(CurrentCustomer.Address, CurrentCustomer.Cart);
+            CurrentCustomer.Orders.Add(NewOrder);
 
             CurrentCustomer.Cart.ListOfItems.Clear();
+            Customers.ResetBindings();
             UpdateCartInfo();
         }
     }

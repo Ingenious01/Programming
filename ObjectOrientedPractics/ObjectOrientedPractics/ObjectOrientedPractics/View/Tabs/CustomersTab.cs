@@ -169,9 +169,13 @@ namespace ObjectOrientedPractics.View.Tabs
             get { return _customers; }
             set
             {
-                _customers = value;
+                if (value != null)
+                {
+                    _customers = value;
 
-                customersListBox.DataSource = _customers;
+                    customersListBox.DataSource = _customers;
+                    
+                }
             }
         }
     }

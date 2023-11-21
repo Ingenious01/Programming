@@ -46,8 +46,8 @@ namespace ObjectOrientedPractics.Services
         /// </summary>
         public static int GetNextOrderId()
         {
-            currentCustomerID++;
-            return currentCustomerID;
+            currentOrderID++;
+            return currentOrderID;
         }
     }
 }

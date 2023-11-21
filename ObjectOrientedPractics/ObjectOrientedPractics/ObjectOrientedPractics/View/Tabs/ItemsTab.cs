@@ -274,9 +274,13 @@ namespace ObjectOrientedPractics.View.Tabs
             get { return _items; }
             set
             {
-                _items = value;
+                if (value != null)
+                {
+                    _items = value;
 
-                itemsListBox.DataSource = _items;                
+                    itemsListBox.DataSource = _items;
+                }
+                        
             }
         }      
     }

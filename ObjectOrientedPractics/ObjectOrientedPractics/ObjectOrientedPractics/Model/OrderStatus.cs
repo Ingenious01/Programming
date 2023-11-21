@@ -17,6 +17,6 @@ namespace ObjectOrientedPractics.Model
         Sent,
         Delivered,
         Returned,
-        Adandoned
+        Abandoned
     }
 }
