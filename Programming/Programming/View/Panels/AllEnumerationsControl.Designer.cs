@@ -28,114 +28,114 @@
         /// </summary>
         private void InitializeComponent()
         {
-            EnumerationsBox1 = new GroupBox();
-            ValuesListBox1 = new ListBox();
-            IntValueLabel1 = new Label();
-            ValuesTextBox1 = new TextBox();
-            ValueLabel1 = new Label();
-            EnumsListBox1 = new ListBox();
-            EnumLabel1 = new Label();
-            EnumerationsBox1.SuspendLayout();
+            EnumerationsBox = new GroupBox();
+            ValuesListBox = new ListBox();
+            IntValueLabel = new Label();
+            ValuesTextBox = new TextBox();
+            ValueLabel = new Label();
+            EnumsListBox = new ListBox();
+            EnumLabel = new Label();
+            EnumerationsBox.SuspendLayout();
             SuspendLayout();
             // 
-            // EnumerationsBox1
+            // EnumerationsBox
             // 
-            EnumerationsBox1.Controls.Add(ValuesListBox1);
-            EnumerationsBox1.Controls.Add(IntValueLabel1);
-            EnumerationsBox1.Controls.Add(ValuesTextBox1);
-            EnumerationsBox1.Controls.Add(ValueLabel1);
-            EnumerationsBox1.Controls.Add(EnumsListBox1);
-            EnumerationsBox1.Controls.Add(EnumLabel1);
-            EnumerationsBox1.Dock = DockStyle.Fill;
-            EnumerationsBox1.Location = new Point(0, 0);
-            EnumerationsBox1.Name = "EnumerationsBox1";
-            EnumerationsBox1.Size = new Size(716, 590);
-            EnumerationsBox1.TabIndex = 7;
-            EnumerationsBox1.TabStop = false;
-            EnumerationsBox1.Text = "Enumerations";
+            EnumerationsBox.Controls.Add(ValuesListBox);
+            EnumerationsBox.Controls.Add(IntValueLabel);
+            EnumerationsBox.Controls.Add(ValuesTextBox);
+            EnumerationsBox.Controls.Add(ValueLabel);
+            EnumerationsBox.Controls.Add(EnumsListBox);
+            EnumerationsBox.Controls.Add(EnumLabel);
+            EnumerationsBox.Dock = DockStyle.Fill;
+            EnumerationsBox.Location = new Point(0, 0);
+            EnumerationsBox.Name = "EnumerationsBox";
+            EnumerationsBox.Size = new Size(716, 590);
+            EnumerationsBox.TabIndex = 7;
+            EnumerationsBox.TabStop = false;
+            EnumerationsBox.Text = "Enumerations";
             // 
-            // ValuesListBox1
+            // ValuesListBox
             // 
-            ValuesListBox1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            ValuesListBox1.FormattingEnabled = true;
-            ValuesListBox1.IntegralHeight = false;
-            ValuesListBox1.ItemHeight = 20;
-            ValuesListBox1.Location = new Point(203, 59);
-            ValuesListBox1.Margin = new Padding(25, 4, 3, 4);
-            ValuesListBox1.Name = "ValuesListBox1";
-            ValuesListBox1.Size = new Size(159, 491);
-            ValuesListBox1.TabIndex = 1;
-            ValuesListBox1.SelectedIndexChanged += ValuesListBox_SelectedIndexChanged;
+            ValuesListBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            ValuesListBox.FormattingEnabled = true;
+            ValuesListBox.IntegralHeight = false;
+            ValuesListBox.ItemHeight = 20;
+            ValuesListBox.Location = new Point(203, 59);
+            ValuesListBox.Margin = new Padding(25, 4, 3, 4);
+            ValuesListBox.Name = "ValuesListBox";
+            ValuesListBox.Size = new Size(159, 491);
+            ValuesListBox.TabIndex = 1;
+            ValuesListBox.SelectedIndexChanged += ValuesListBox_SelectedIndexChanged;
             // 
-            // IntValueLabel1
+            // IntValueLabel
             // 
-            IntValueLabel1.AutoSize = true;
-            IntValueLabel1.Location = new Point(390, 35);
-            IntValueLabel1.Name = "IntValueLabel1";
-            IntValueLabel1.Size = new Size(66, 20);
-            IntValueLabel1.TabIndex = 4;
-            IntValueLabel1.Text = "Int Value";
+            IntValueLabel.AutoSize = true;
+            IntValueLabel.Location = new Point(390, 35);
+            IntValueLabel.Name = "IntValueLabel";
+            IntValueLabel.Size = new Size(66, 20);
+            IntValueLabel.TabIndex = 4;
+            IntValueLabel.Text = "Int Value";
             // 
-            // ValuesTextBox1
+            // ValuesTextBox
             // 
-            ValuesTextBox1.Enabled = false;
-            ValuesTextBox1.Location = new Point(390, 59);
-            ValuesTextBox1.Margin = new Padding(25, 4, 3, 4);
-            ValuesTextBox1.Name = "ValuesTextBox1";
-            ValuesTextBox1.Size = new Size(114, 27);
-            ValuesTextBox1.TabIndex = 5;
+            ValuesTextBox.Enabled = false;
+            ValuesTextBox.Location = new Point(390, 59);
+            ValuesTextBox.Margin = new Padding(25, 4, 3, 4);
+            ValuesTextBox.Name = "ValuesTextBox";
+            ValuesTextBox.Size = new Size(114, 27);
+            ValuesTextBox.TabIndex = 5;
             // 
-            // ValueLabel1
+            // ValueLabel
             // 
-            ValueLabel1.AutoSize = true;
-            ValueLabel1.Location = new Point(203, 35);
-            ValueLabel1.Name = "ValueLabel1";
-            ValueLabel1.Size = new Size(97, 20);
-            ValueLabel1.TabIndex = 3;
-            ValueLabel1.Text = "Choose value";
+            ValueLabel.AutoSize = true;
+            ValueLabel.Location = new Point(203, 35);
+            ValueLabel.Name = "ValueLabel";
+            ValueLabel.Size = new Size(97, 20);
+            ValueLabel.TabIndex = 3;
+            ValueLabel.Text = "Choose value";
             // 
-            // EnumsListBox1
+            // EnumsListBox
             // 
-            EnumsListBox1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            EnumsListBox1.FormattingEnabled = true;
-            EnumsListBox1.IntegralHeight = false;
-            EnumsListBox1.ItemHeight = 20;
-            EnumsListBox1.Location = new Point(16, 59);
-            EnumsListBox1.Margin = new Padding(3, 4, 3, 4);
-            EnumsListBox1.Name = "EnumsListBox1";
-            EnumsListBox1.Size = new Size(159, 491);
-            EnumsListBox1.TabIndex = 0;
-            EnumsListBox1.SelectedIndexChanged += EnumsListBox_SelectedIndexChanged;
+            EnumsListBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            EnumsListBox.FormattingEnabled = true;
+            EnumsListBox.IntegralHeight = false;
+            EnumsListBox.ItemHeight = 20;
+            EnumsListBox.Location = new Point(16, 59);
+            EnumsListBox.Margin = new Padding(3, 4, 3, 4);
+            EnumsListBox.Name = "EnumsListBox";
+            EnumsListBox.Size = new Size(159, 491);
+            EnumsListBox.TabIndex = 0;
+            EnumsListBox.SelectedIndexChanged += EnumsListBox_SelectedIndexChanged;
             // 
-            // EnumLabel1
+            // EnumLabel
             // 
-            EnumLabel1.AutoSize = true;
-            EnumLabel1.Location = new Point(16, 35);
-            EnumLabel1.Name = "EnumLabel1";
-            EnumLabel1.Size = new Size(146, 20);
-            EnumLabel1.TabIndex = 2;
-            EnumLabel1.Text = "Choose enumeration";
+            EnumLabel.AutoSize = true;
+            EnumLabel.Location = new Point(16, 35);
+            EnumLabel.Name = "EnumLabel";
+            EnumLabel.Size = new Size(146, 20);
+            EnumLabel.TabIndex = 2;
+            EnumLabel.Text = "Choose enumeration";
             // 
             // AllEnumerationsControl
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(EnumerationsBox1);
+            Controls.Add(EnumerationsBox);
             Name = "AllEnumerationsControl";
             Size = new Size(716, 590);
-            EnumerationsBox1.ResumeLayout(false);
-            EnumerationsBox1.PerformLayout();
+            EnumerationsBox.ResumeLayout(false);
+            EnumerationsBox.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private GroupBox EnumerationsBox1;
-        private ListBox ValuesListBox1;
-        private Label IntValueLabel1;
-        private TextBox ValuesTextBox1;
-        private Label ValueLabel1;
-        private ListBox EnumsListBox1;
-        private Label EnumLabel1;
+        private GroupBox EnumerationsBox;
+        private ListBox ValuesListBox;
+        private Label IntValueLabel;
+        private TextBox ValuesTextBox;
+        private Label ValueLabel;
+        private ListBox EnumsListBox;
+        private Label EnumLabel;
     }
 }

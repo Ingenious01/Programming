@@ -11,7 +11,7 @@ namespace Programming.Model
     /// <summary>
     /// Хранит информацию о фильме.
     /// </summary>
-    public class Film
+    public class Movie
     {
         /// <summary>
         /// Продолжительность фильма.
@@ -45,7 +45,6 @@ namespace Programming.Model
                 
                 _duration = value;
             }
-
         }
 
         /// <summary>
@@ -60,7 +59,6 @@ namespace Programming.Model
                 
                 _year = value;
             }
-
         }
 
         /// <summary>
@@ -76,30 +74,29 @@ namespace Programming.Model
             get => _rating;
             set
             {
-                Validator.AssertValueInRange(nameof(Rating), value, 0.01, 10);
+                Validator.AssertValueInRange(nameof(Rating), value, 0.1, 10);
                 
                 _rating = value;
             }
-
         }
 
         /// <summary>
-        /// Создаёт экземпляр класса <see cref="Film"/> без инициализации полей.
+        /// Создаёт экземпляр класса <see cref="Movie"/> без инициализации полей.
         /// </summary>
-        public Film()
+        public Movie()
         {
 
         }
 
         /// <summary>
-        /// Создаёт экземпляр класса <see cref="Film"/>.
+        /// Создаёт экземпляр класса <see cref="Movie"/>.
         /// </summary>
         /// <param name="name">Название</param>
         /// <param name="duration">Длительность</param>
         /// <param name="year">Год создания</param>
         /// <param name="genre">Жанр</param>
         /// <param name="rating">Рейтинг</param>
-        public Film(string name, int duration, int year, string genre, double rating)
+        public Movie(string name, int duration, int year, string genre, double rating)
         {
             Name = name;
             Duration = duration;

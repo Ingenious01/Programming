@@ -33,29 +33,29 @@
             EnumPage = new TabPage();
             tableLayoutPanel1 = new TableLayoutPanel();
             tableLayoutPanel2 = new TableLayoutPanel();
-            weekdayparsingControl1 = new View.Panels.WeekdayParsingControl();
-            seasonControl1 = new View.Panels.SeasonControl();
-            allEnumerationsControl1 = new View.Panels.AllEnumerationsControl();
+            WeekDayParsingControl = new View.Panels.WeekdayParsingControl();
+            SeasonControl = new View.Panels.SeasonControl();
+            AllEnumerationsControl = new View.Panels.AllEnumerationsControl();
             ClassesTabPage = new TabPage();
             tableLayoutPanel3 = new TableLayoutPanel();
-            rectanglesControl1 = new View.Panels.RectanglesControl();
-            RectanglesTabPage1 = new TabPage();
-            rectanglesCollisionControl1 = new View.Panels.RectanglesCollisionControl();
-            moviesControl2 = new View.Panels.MoviesControl();
+            RectanglesControl = new View.Panels.RectanglesControl();
+            RectanglesTabPage = new TabPage();
+            RectanglesCollisionControl = new View.Panels.RectanglesCollisionControl();
+            moviesControl3 = new View.Panels.MoviesControl();
             MainTabPage.SuspendLayout();
             EnumPage.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
             ClassesTabPage.SuspendLayout();
             tableLayoutPanel3.SuspendLayout();
-            RectanglesTabPage1.SuspendLayout();
+            RectanglesTabPage.SuspendLayout();
             SuspendLayout();
             // 
             // MainTabPage
             // 
             MainTabPage.Controls.Add(EnumPage);
             MainTabPage.Controls.Add(ClassesTabPage);
-            MainTabPage.Controls.Add(RectanglesTabPage1);
+            MainTabPage.Controls.Add(RectanglesTabPage);
             MainTabPage.Dock = DockStyle.Fill;
             MainTabPage.Location = new Point(0, 0);
             MainTabPage.Margin = new Padding(3, 4, 3, 4);
@@ -82,7 +82,7 @@
             tableLayoutPanel1.ColumnCount = 1;
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel1.Controls.Add(tableLayoutPanel2, 0, 1);
-            tableLayoutPanel1.Controls.Add(allEnumerationsControl1, 0, 0);
+            tableLayoutPanel1.Controls.Add(AllEnumerationsControl, 0, 0);
             tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.Location = new Point(3, 4);
             tableLayoutPanel1.Margin = new Padding(0);
@@ -98,8 +98,8 @@
             tableLayoutPanel2.ColumnCount = 2;
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel2.Controls.Add(weekdayparsingControl1, 0, 0);
-            tableLayoutPanel2.Controls.Add(seasonControl1, 1, 0);
+            tableLayoutPanel2.Controls.Add(WeekDayParsingControl, 0, 0);
+            tableLayoutPanel2.Controls.Add(SeasonControl, 1, 0);
             tableLayoutPanel2.Dock = DockStyle.Fill;
             tableLayoutPanel2.Location = new Point(0, 403);
             tableLayoutPanel2.Margin = new Padding(0);
@@ -109,29 +109,29 @@
             tableLayoutPanel2.Size = new Size(1058, 236);
             tableLayoutPanel2.TabIndex = 7;
             // 
-            // weekdayparsingControl1
+            // WeekDayParsingControl
             // 
-            weekdayparsingControl1.Dock = DockStyle.Fill;
-            weekdayparsingControl1.Location = new Point(3, 3);
-            weekdayparsingControl1.Name = "weekdayparsingControl1";
-            weekdayparsingControl1.Size = new Size(523, 230);
-            weekdayparsingControl1.TabIndex = 7;
+            WeekDayParsingControl.Dock = DockStyle.Fill;
+            WeekDayParsingControl.Location = new Point(3, 3);
+            WeekDayParsingControl.Name = "WeekDayParsingControl";
+            WeekDayParsingControl.Size = new Size(523, 230);
+            WeekDayParsingControl.TabIndex = 7;
             // 
-            // seasonControl1
+            // SeasonControl
             // 
-            seasonControl1.Dock = DockStyle.Fill;
-            seasonControl1.Location = new Point(532, 3);
-            seasonControl1.Name = "seasonControl1";
-            seasonControl1.Size = new Size(523, 230);
-            seasonControl1.TabIndex = 8;
+            SeasonControl.Dock = DockStyle.Fill;
+            SeasonControl.Location = new Point(532, 3);
+            SeasonControl.Name = "SeasonControl";
+            SeasonControl.Size = new Size(523, 230);
+            SeasonControl.TabIndex = 8;
             // 
-            // allEnumerationsControl1
+            // AllEnumerationsControl
             // 
-            allEnumerationsControl1.Dock = DockStyle.Fill;
-            allEnumerationsControl1.Location = new Point(3, 3);
-            allEnumerationsControl1.Name = "allEnumerationsControl1";
-            allEnumerationsControl1.Size = new Size(1052, 397);
-            allEnumerationsControl1.TabIndex = 8;
+            AllEnumerationsControl.Dock = DockStyle.Fill;
+            AllEnumerationsControl.Location = new Point(3, 3);
+            AllEnumerationsControl.Name = "AllEnumerationsControl";
+            AllEnumerationsControl.Size = new Size(1052, 397);
+            AllEnumerationsControl.TabIndex = 8;
             // 
             // ClassesTabPage
             // 
@@ -149,8 +149,8 @@
             tableLayoutPanel3.ColumnCount = 2;
             tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel3.Controls.Add(rectanglesControl1, 0, 0);
-            tableLayoutPanel3.Controls.Add(moviesControl2, 1, 0);
+            tableLayoutPanel3.Controls.Add(RectanglesControl, 0, 0);
+            tableLayoutPanel3.Controls.Add(moviesControl3, 1, 0);
             tableLayoutPanel3.Dock = DockStyle.Fill;
             tableLayoutPanel3.Location = new Point(3, 3);
             tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -159,40 +159,39 @@
             tableLayoutPanel3.Size = new Size(1058, 641);
             tableLayoutPanel3.TabIndex = 12;
             // 
-            // rectanglesControl1
+            // RectanglesControl
             // 
-            rectanglesControl1.Dock = DockStyle.Fill;
-            rectanglesControl1.Location = new Point(3, 3);
-            rectanglesControl1.Name = "rectanglesControl1";
-            rectanglesControl1.Size = new Size(523, 635);
-            rectanglesControl1.TabIndex = 2;
+            RectanglesControl.Dock = DockStyle.Fill;
+            RectanglesControl.Location = new Point(3, 3);
+            RectanglesControl.Name = "RectanglesControl";
+            RectanglesControl.Size = new Size(523, 635);
+            RectanglesControl.TabIndex = 2;
             // 
-            // RectanglesTabPage1
+            // RectanglesTabPage
             // 
-            RectanglesTabPage1.Controls.Add(rectanglesCollisionControl1);
-            RectanglesTabPage1.Location = new Point(4, 29);
-            RectanglesTabPage1.Name = "RectanglesTabPage1";
-            RectanglesTabPage1.Padding = new Padding(3);
-            RectanglesTabPage1.Size = new Size(1064, 647);
-            RectanglesTabPage1.TabIndex = 2;
-            RectanglesTabPage1.Text = "Rectangles";
-            RectanglesTabPage1.UseVisualStyleBackColor = true;
+            RectanglesTabPage.Controls.Add(RectanglesCollisionControl);
+            RectanglesTabPage.Location = new Point(4, 29);
+            RectanglesTabPage.Name = "RectanglesTabPage";
+            RectanglesTabPage.Padding = new Padding(3);
+            RectanglesTabPage.Size = new Size(1064, 647);
+            RectanglesTabPage.TabIndex = 2;
+            RectanglesTabPage.Text = "Rectangles";
+            RectanglesTabPage.UseVisualStyleBackColor = true;
             // 
-            // rectanglesCollisionControl1
+            // RectanglesCollisionControl
             // 
-            rectanglesCollisionControl1.Dock = DockStyle.Fill;
-            rectanglesCollisionControl1.Location = new Point(3, 3);
-            rectanglesCollisionControl1.Name = "rectanglesCollisionControl1";
-            rectanglesCollisionControl1.Size = new Size(1058, 641);
-            rectanglesCollisionControl1.TabIndex = 0;
+            RectanglesCollisionControl.Dock = DockStyle.Fill;
+            RectanglesCollisionControl.Location = new Point(3, 3);
+            RectanglesCollisionControl.Name = "RectanglesCollisionControl";
+            RectanglesCollisionControl.Size = new Size(1058, 641);
+            RectanglesCollisionControl.TabIndex = 0;
             // 
-            // moviesControl2
+            // moviesControl3
             // 
-            moviesControl2.Dock = DockStyle.Fill;
-            moviesControl2.Location = new Point(532, 3);
-            moviesControl2.Name = "moviesControl2";
-            moviesControl2.Size = new Size(523, 635);
-            moviesControl2.TabIndex = 3;
+            moviesControl3.Location = new Point(532, 3);
+            moviesControl3.Name = "moviesControl3";
+            moviesControl3.Size = new Size(523, 635);
+            moviesControl3.TabIndex = 3;
             // 
             // MainForm
             // 
@@ -213,7 +212,7 @@
             tableLayoutPanel2.ResumeLayout(false);
             ClassesTabPage.ResumeLayout(false);
             tableLayoutPanel3.ResumeLayout(false);
-            RectanglesTabPage1.ResumeLayout(false);
+            RectanglesTabPage.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -222,16 +221,17 @@
         private TabControl MainTabPage;
         private TabPage ClassesTabPage;
         private TableLayoutPanel tableLayoutPanel3;
-        private TabPage RectanglesTabPage1;
-        private View.Panels.RectanglesCollisionControl rectanglesCollisionControl1;
+        private TabPage RectanglesTabPage;
+        private View.Panels.RectanglesCollisionControl RectanglesCollisionControl;
         private TabPage EnumPage;
         private TableLayoutPanel tableLayoutPanel1;
         private TableLayoutPanel tableLayoutPanel2;
-        private View.Panels.RectanglesControl rectanglesControl1;
+        private View.Panels.RectanglesControl RectanglesControl;
         private View.Panels.MoviesControl moviesControl1;
-        private View.Panels.AllEnumerationsControl allEnumerationsControl1;
-        private View.Panels.WeekdayParsingControl weekdayparsingControl1;
-        private View.Panels.SeasonControl seasonControl1;
+        private View.Panels.AllEnumerationsControl AllEnumerationsControl;
+        private View.Panels.WeekdayParsingControl WeekDayParsingControl;
+        private View.Panels.SeasonControl SeasonControl;
         private View.Panels.MoviesControl moviesControl2;
+        private View.Panels.MoviesControl moviesControl3;
     }
 }

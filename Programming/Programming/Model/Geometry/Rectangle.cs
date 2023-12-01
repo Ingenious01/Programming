@@ -13,7 +13,12 @@ namespace Programming.Model.Geometry
     public class Rectangle
     {
         /// <summary>
-        /// Счетчик все созданных прямоугольников.
+        /// Уникальный идентификатор для объектов данного класса.
+        /// </summary>
+        private int _id;
+
+        /// <summary>
+        /// Счетчик всех созданных прямоугольников.
         /// </summary>
         private static int _allRectanglesCount = 1;
 
@@ -38,9 +43,13 @@ namespace Programming.Model.Geometry
         private Point2D _center;
 
         /// <summary>
-        /// Уникальный идентификатор для объектов данного класса.
+        /// Возращает и задаёт уникальный идентификатор для объектов данного класса.
         /// </summary>
-        private int _id;
+        public int Id
+        {
+            get => _id;
+            set => _id = value;
+        }
 
         /// <summary>
         /// Возвращает счётчик всех созданных экземпляров данного класса.
@@ -64,7 +73,6 @@ namespace Programming.Model.Geometry
 
                 _length = value;
             }
-
         }
 
         /// <summary>
@@ -79,22 +87,12 @@ namespace Programming.Model.Geometry
 
                 _width = value;
             }
-
         }
 
         /// <summary>
         /// Возвращает и задаёт цвет прямоугольника.
         /// </summary>
-        public string Color { get; set; }
-
-        /// <summary>
-        /// Возращает и задаёт уникальный идентификатор для объектов данного класса.
-        /// </summary>
-        public int Id
-        {
-            get => _id;
-            set => _id = value;
-        }
+        public string Color { get; set; }        
 
         /// <summary>
         /// Центр координат прямоугольника.

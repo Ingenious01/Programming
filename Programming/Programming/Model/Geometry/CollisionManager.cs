@@ -9,7 +9,7 @@ namespace Programming.Model.Geometry
     /// <summary>
     /// Реализует проверку на пересечение прямоугольников и кругов.
     /// </summary>
-    internal class CollisionManager
+    static class CollisionManager
     {
         /// <summary>
         /// Проверяет пересечение прямоугольников.
@@ -59,7 +59,7 @@ namespace Programming.Model.Geometry
         /// <summary>
         /// Проверяет пересечение кругов.
         /// </summary>
-        /// <param name="ring1"> Первый экземпляр круга.</param>
+        /// <param name="ring1">Первый экземпляр круга.</param>
         /// <param name="ring2">Второй экземпляр круга.</param>
         /// <returns>Если круги пересекаются, метод возвращает true, иначе возвращает false.</returns>
         public static bool IsCollision(Ring ring1, Ring ring2)

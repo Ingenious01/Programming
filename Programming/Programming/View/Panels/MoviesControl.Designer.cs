@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            FilmsBox = new GroupBox();
+            MoviesBox = new GroupBox();
             NameBox = new TextBox();
             NameLabel = new Label();
-            FilmFindButton = new Button();
+            MovieFindButton = new Button();
             RatingBox = new TextBox();
             RatingLabel = new Label();
             GenreBox = new TextBox();
@@ -40,32 +40,32 @@
             GenreLabel = new Label();
             DurationLabel = new Label();
             YearLabel = new Label();
-            FilmsListBox = new ListBox();
-            FilmsBox.SuspendLayout();
+            MoviesListBox = new ListBox();
+            MoviesBox.SuspendLayout();
             SuspendLayout();
             // 
-            // FilmsBox
+            // MoviesBox
             // 
-            FilmsBox.BackgroundImageLayout = ImageLayout.None;
-            FilmsBox.Controls.Add(NameBox);
-            FilmsBox.Controls.Add(NameLabel);
-            FilmsBox.Controls.Add(FilmFindButton);
-            FilmsBox.Controls.Add(RatingBox);
-            FilmsBox.Controls.Add(RatingLabel);
-            FilmsBox.Controls.Add(GenreBox);
-            FilmsBox.Controls.Add(DurationBox);
-            FilmsBox.Controls.Add(YearBox);
-            FilmsBox.Controls.Add(GenreLabel);
-            FilmsBox.Controls.Add(DurationLabel);
-            FilmsBox.Controls.Add(YearLabel);
-            FilmsBox.Controls.Add(FilmsListBox);
-            FilmsBox.Dock = DockStyle.Fill;
-            FilmsBox.Location = new Point(0, 0);
-            FilmsBox.Name = "FilmsBox";
-            FilmsBox.Size = new Size(423, 683);
-            FilmsBox.TabIndex = 2;
-            FilmsBox.TabStop = false;
-            FilmsBox.Text = "Films";
+            MoviesBox.BackgroundImageLayout = ImageLayout.None;
+            MoviesBox.Controls.Add(NameBox);
+            MoviesBox.Controls.Add(NameLabel);
+            MoviesBox.Controls.Add(MovieFindButton);
+            MoviesBox.Controls.Add(RatingBox);
+            MoviesBox.Controls.Add(RatingLabel);
+            MoviesBox.Controls.Add(GenreBox);
+            MoviesBox.Controls.Add(DurationBox);
+            MoviesBox.Controls.Add(YearBox);
+            MoviesBox.Controls.Add(GenreLabel);
+            MoviesBox.Controls.Add(DurationLabel);
+            MoviesBox.Controls.Add(YearLabel);
+            MoviesBox.Controls.Add(MoviesListBox);
+            MoviesBox.Dock = DockStyle.Fill;
+            MoviesBox.Location = new Point(0, 0);
+            MoviesBox.Name = "MoviesBox";
+            MoviesBox.Size = new Size(423, 683);
+            MoviesBox.TabIndex = 2;
+            MoviesBox.TabStop = false;
+            MoviesBox.Text = "Films";
             // 
             // NameBox
             // 
@@ -84,15 +84,15 @@
             NameLabel.TabIndex = 11;
             NameLabel.Text = "Name";
             // 
-            // FilmFindButton
+            // MovieFindButton
             // 
-            FilmFindButton.Location = new Point(248, 409);
-            FilmFindButton.Name = "FilmFindButton";
-            FilmFindButton.Size = new Size(125, 27);
-            FilmFindButton.TabIndex = 9;
-            FilmFindButton.Text = "Find";
-            FilmFindButton.UseVisualStyleBackColor = true;
-            FilmFindButton.Click += FilmFindButton_Click;
+            MovieFindButton.Location = new Point(248, 409);
+            MovieFindButton.Name = "MovieFindButton";
+            MovieFindButton.Size = new Size(125, 27);
+            MovieFindButton.TabIndex = 9;
+            MovieFindButton.Text = "Find";
+            MovieFindButton.UseVisualStyleBackColor = true;
+            MovieFindButton.Click += FilmMovieButton_Click;
             // 
             // RatingBox
             // 
@@ -162,34 +162,34 @@
             YearLabel.TabIndex = 1;
             YearLabel.Text = "Year";
             // 
-            // FilmsListBox
+            // MoviesListBox
             // 
-            FilmsListBox.FormattingEnabled = true;
-            FilmsListBox.ItemHeight = 20;
-            FilmsListBox.Location = new Point(24, 35);
-            FilmsListBox.Name = "FilmsListBox";
-            FilmsListBox.Size = new Size(167, 264);
-            FilmsListBox.TabIndex = 0;
-            FilmsListBox.SelectedIndexChanged += FilmsListBox_SelectedIndexChanged;
+            MoviesListBox.FormattingEnabled = true;
+            MoviesListBox.ItemHeight = 20;
+            MoviesListBox.Location = new Point(24, 35);
+            MoviesListBox.Name = "MoviesListBox";
+            MoviesListBox.Size = new Size(167, 264);
+            MoviesListBox.TabIndex = 0;
+            MoviesListBox.SelectedIndexChanged += MoviesListBox_SelectedIndexChanged;
             // 
             // MoviesControl
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(FilmsBox);
+            Controls.Add(MoviesBox);
             Name = "MoviesControl";
             Size = new Size(423, 683);
-            FilmsBox.ResumeLayout(false);
-            FilmsBox.PerformLayout();
+            MoviesBox.ResumeLayout(false);
+            MoviesBox.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private GroupBox FilmsBox;
+        private GroupBox MoviesBox;
         private TextBox NameBox;
         private Label NameLabel;
-        private Button FilmFindButton;
+        private Button MovieFindButton;
         private TextBox RatingBox;
         private Label RatingLabel;
         private TextBox GenreBox;
@@ -198,6 +198,6 @@
         private Label GenreLabel;
         private Label DurationLabel;
         private Label YearLabel;
-        private ListBox FilmsListBox;
+        private ListBox MoviesListBox;
     }
 }

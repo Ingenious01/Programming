@@ -39,7 +39,6 @@ namespace Programming.Model
                 else
                     throw new ArgumentException("Укажите точку начала полёта");
             }
-
         }
 
         /// <summary>
@@ -55,7 +54,6 @@ namespace Programming.Model
                 else
                     throw new ArgumentException("Укажите точку концпа полёта");
             }
-
         }
 
         /// <summary>
@@ -70,7 +68,6 @@ namespace Programming.Model
                 
                 _duration = value;
             }
-
         }
 
         /// <summary>

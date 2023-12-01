@@ -36,9 +36,9 @@ namespace Programming.View.Panels
         {
             InitializeComponent();
 
-            EnumsListBox1.DisplayMember = nameof(Type.Name);
-            EnumsListBox1.Items.AddRange(enums);
-            EnumsListBox1.SelectedIndex = 0;
+            EnumsListBox.DisplayMember = nameof(Type.Name);
+            EnumsListBox.Items.AddRange(enums);
+            EnumsListBox.SelectedIndex = 0;
         }
 
         /// <summary>
@@ -46,12 +46,12 @@ namespace Programming.View.Panels
         /// </summary>
         private void EnumsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var selectedEnum = (Type)EnumsListBox1.SelectedItem;
+            var selectedEnum = (Type)EnumsListBox.SelectedItem;
             var enumValues = Enum.GetValues(selectedEnum);
-            ValuesListBox1.Items.Clear();
+            ValuesListBox.Items.Clear();
             foreach (var enumValue in enumValues)
             {
-                ValuesListBox1.Items.Add(enumValue);
+                ValuesListBox.Items.Add(enumValue);
             }
         }
 
@@ -60,18 +60,15 @@ namespace Programming.View.Panels
         /// </summary>
         private void ValuesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-
-            if (ValuesListBox1.Items == null)
+            if (ValuesListBox.Items == null)
             {
                 return;
             }
 
             else
             {
-                ValuesTextBox1.Text = ValuesListBox1.SelectedIndex.ToString();
+                ValuesTextBox.Text = ValuesListBox.SelectedIndex.ToString();
             }
         }
-
-
     }
 }

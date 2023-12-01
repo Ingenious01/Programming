@@ -94,7 +94,6 @@
             ParsingTextBox.Name = "ParsingTextBox";
             ParsingTextBox.Size = new Size(268, 32);
             ParsingTextBox.TabIndex = 1;
-            ParsingTextBox.TextChanged += ParsingTextBox_TextChanged;
             // 
             // WeekdayPArsingControl
             // 

@@ -38,7 +38,6 @@ namespace Programming.Model
 
                 _hours = value;
             }
-
         }
 
         /// <summary>
@@ -53,7 +52,6 @@ namespace Programming.Model
 
                 _minutes = value;
             }
-
         }
 
         /// <summary>
@@ -68,7 +66,6 @@ namespace Programming.Model
 
                 _seconds = value;
             }
-
         }
 
         /// <summary>

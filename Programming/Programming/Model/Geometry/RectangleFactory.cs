@@ -16,7 +16,7 @@ namespace Programming.Model.Geometry
         /// Создает новый случайный объект прямоугольника.
         /// </summary>
         /// <returns>Возвращает новый случайный экземпляр класса Rectangle.</returns>
-        public static Rectangle Randomize(int maxXPosition,int maxYPosition)
+        public static Rectangle Randomize(int maxXPosition, int maxYPosition)
         {            
             var _random = new Random();
 

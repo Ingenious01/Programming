@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Programming.Model
 {
-    static class Validator
+    public static class Validator
     {
         //----------------------------------------------AssertOnPositiveValue--------------------------------------------//
 
@@ -68,7 +68,7 @@ namespace Programming.Model
         {
             if (!(value >= min && value <= max))            
             {
-                throw new ArgumentException(String.Format("В методе {0} вводимое число должно быть больше {1} и меньше {2} ", method, min, max));
+                throw new ArgumentException(String.Format("В методе {0} вводимое число должно быть больше {1} и меньше {2}. Ваше число {3} ", method, min, max, value));
             }
         }
 

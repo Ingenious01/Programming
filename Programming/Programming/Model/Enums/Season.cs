@@ -1,7 +1,7 @@
 ﻿namespace Programming.Model.Enums
 {
     /// <summary>
-    /// Перечисление сезонов.
+    /// Перечисление времён года.
     /// </summary>
     public enum Season
     {

@@ -1,7 +1,7 @@
 using Microsoft.VisualBasic.Devices;
 using System.Drawing;
 using Rectangle = Programming.Model.Geometry.Rectangle;
-using Film = Programming.Model.Film;
+using Film = Programming.Model.Movie;
 using Color = Programming.Model.Enums.Color;
 using System.Windows.Forms;
 using System.Drawing.Text;

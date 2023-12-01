@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Film = Programming.Model.Film;
+using Movie = Programming.Model.Movie;
 
 namespace Programming.View.Panels
 {
@@ -34,17 +34,29 @@ namespace Programming.View.Panels
         /// <summary>
         /// Массив из 5 фильмов.
         /// </summary>
-        private Film[] _films = new Film[5];
+        private Movie[] _movies = new Movie[5];
 
         /// <summary>
         /// Выбранный фильм.
         /// </summary>
-        private Film _currentFilm;
+        private Movie _currentMovie;
 
         /// <summary>
         /// Экземпляр класса Random.
         /// </summary>
         private Random _random = new Random();
+
+        /// <summary>
+        /// Создаёт список из 5 фильмов
+        /// </summary>
+        string[] listMovies = new string[]
+        {
+            "Film 1",
+            "Film 2",
+            "Film 3",
+            "Film 4",
+            "Film 5"
+        };
 
         /// <summary>
         /// Создаёт экземпляр класса MoviesFinderControl.
@@ -53,28 +65,16 @@ namespace Programming.View.Panels
         {
             InitializeComponent();
 
-            FillFilms();
+            FillMovies();
 
-            /// <summary>
-            /// Создаёт список из 5 фильмов
-            /// </summary>
-            var listFilms = new string[]
-            {
-                "Film 1",
-                "Film 2",
-                "Film 3",
-                "Film 4",
-                "Film 5"
-            };
-
-            FilmsListBox.DataSource = listFilms;
-            FilmsListBox.SelectedIndex = 0;
+            MoviesListBox.DataSource = listMovies;
+            MoviesListBox.SelectedIndex = 0;
         }
 
         /// <summary>
-        /// Заполняет массив фильмов пятью экземплярами класса <see cref="Film"/>.
+        /// Заполняет массив фильмов пятью экземплярами класса <see cref="Movie"/>.
         /// </summary>        
-        private void FillFilms()
+        private void FillMovies()
         {
             var genreValues = Enum.GetValues((Type)enums[2]);
             for (int i = 0; i < 5; i++)
@@ -84,23 +84,25 @@ namespace Programming.View.Panels
                 int duration = _random.Next(1, 601);
                 int year = _random.Next(1900, 2023);
                 string genre = genreValues.GetValue(_random.Next(0, 6)).ToString();
-                double rating = Math.Round(_random.Next(1, 11) * _random.NextDouble(), 1);
-                _films[i] = new Model.Film(name, duration, year, genre, rating);
+                double rating = _random.NextDouble() * (10 - 0.1) + 0.1;
+                _movies[i] = new Movie(name, duration, year, genre, rating);
             }
         }
 
         /// <summary>
         /// При изменении выбранного фильма в списке фильмов меняются характеристики на новые значения.
         /// </summary>
-        private void FilmsListBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void MoviesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            _currentFilm = _films[FilmsListBox.SelectedIndex];
-            NameBox.Text = _films[FilmsListBox.SelectedIndex].Name;
-            DurationBox.Text = _films[FilmsListBox.SelectedIndex].Duration.ToString();
-            YearBox.Text = _films[FilmsListBox.SelectedIndex].Year.ToString();
-            GenreBox.Text = _films[FilmsListBox.SelectedIndex].Genre;
-            RatingBox.Text = _films[FilmsListBox.SelectedIndex].Rating.ToString();
-
+            if (MoviesListBox.DataSource != null)
+            {
+                _currentMovie = _movies[MoviesListBox.SelectedIndex];
+                NameBox.Text = _currentMovie.Name;
+                DurationBox.Text = _currentMovie.Duration.ToString();
+                YearBox.Text = _currentMovie.Year.ToString();
+                GenreBox.Text = _currentMovie.Genre;
+                RatingBox.Text = _currentMovie.Rating.ToString();
+            }
         }
 
         /// <summary>
@@ -108,7 +110,11 @@ namespace Programming.View.Panels
         /// </summary>
         private void NameBox_TextChanged(object sender, EventArgs e)
         {
-            _currentFilm.Name = NameBox.Text;
+            _currentMovie.Name = NameBox.Text;
+            _movies[MoviesListBox.SelectedIndex].Name = NameBox.Text;
+            listMovies[MoviesListBox.SelectedIndex] = NameBox.Text;
+            MoviesListBox.DataSource = null;
+            MoviesListBox.DataSource = listMovies;
         }
 
         /// <summary>
@@ -119,7 +125,7 @@ namespace Programming.View.Panels
             try
             {
                 DurationBox.BackColor = System.Drawing.Color.White;
-                _currentFilm.Duration = Convert.ToInt32(DurationBox.Text);
+                _currentMovie.Duration = Convert.ToInt32(DurationBox.Text);
             }
             catch
             {
@@ -135,7 +141,7 @@ namespace Programming.View.Panels
             try
             {
                 YearBox.BackColor = System.Drawing.Color.White;
-                _currentFilm.Year = Convert.ToInt32(YearBox.Text);
+                _currentMovie.Year = Convert.ToInt32(YearBox.Text);
             }
             catch
             {
@@ -151,7 +157,7 @@ namespace Programming.View.Panels
             try
             {
                 RatingBox.BackColor = System.Drawing.Color.White;
-                _currentFilm.Rating = Convert.ToDouble(RatingBox.Text);
+                _currentMovie.Rating = Convert.ToDouble(RatingBox.Text);
             }
             catch
             {
@@ -164,34 +170,33 @@ namespace Programming.View.Panels
         /// </summary>
         private void GenreBox_TextChanged(object sender, EventArgs e)
         {
-            _currentFilm.Genre = GenreBox.Text;
+            _currentMovie.Genre = GenreBox.Text;
         }
 
         /// <summary>
         /// Выбирает фильм с наибольшим рейтингом в списке фильмов по нажатию кнопки find.
         /// </summary>
-        private void FilmFindButton_Click(object sender, EventArgs e)
+        private void FilmMovieButton_Click(object sender, EventArgs e)
         {
-            FindFilmWithMaxRating();
+            FindMovieWithMaxRating();
         }
 
         /// <summary>
         /// Определяет фильм с наибольшим рейтингом.
         /// </summary> 
-        public void FindFilmWithMaxRating()
+        public void FindMovieWithMaxRating()
         {
             int index = 0;
             double maxRating = 0;
-            for (int i = 0; i < _films.Length; i++)
+            for (int i = 0; i < _movies.Length; i++)
             {
-                if (_films[i].Rating > maxRating)
+                if (_movies[i].Rating > maxRating)
                 {
-                    maxRating = _films[i].Rating;
+                    maxRating = _movies[i].Rating;
                     index = i;
                 }
-                FilmsListBox.SelectedIndex = index;
+                MoviesListBox.SelectedIndex = index;
             }
-
         }
     }
 }

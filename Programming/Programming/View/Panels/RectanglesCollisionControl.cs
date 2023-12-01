@@ -19,17 +19,29 @@ namespace Programming.View.Panels
     public partial class RectanglesCollisionControl : UserControl
     {
         /// <summary>
+        /// Цвет ошибки(красный).
+        /// </summary>
+        Color colorRed = System.Drawing.Color.FromArgb(127, 255, 127, 127);
+
+        /// <summary>
+        /// Корректный цвет(зелёный).
+        /// </summary>
+        Color colorGreen = System.Drawing.Color.FromArgb(127, 127, 255, 127);
+
+        /// <summary>
         /// Прямоугольники типа Panel.
         /// </summary>
-        private List<Panel> _rectanglePanel = new List<Panel>();
+        private List<Panel> _rectanglePanels = new List<Panel>();
+
         /// <summary>
         /// Прямоугольники на панели.
         /// </summary>
-        private List<Rectangle> _rectanglesList = new List<Rectangle>();
+        private List<Rectangle> _rectangles = new List<Rectangle>();
+
         /// <summary>
         /// Выбранный прямоугольник на панели.
         /// </summary>
-        private Rectangle _currentRectangleList;
+        private Rectangle _currentRectangle;
 
         /// <summary>
         /// Создаёт экземпляр класса RectanglesCollisionControl.
@@ -61,13 +73,13 @@ namespace Programming.View.Panels
         /// <param name="rectangle">Прямоугольник</param>
         private void UpdateRectangleInfo(ref Rectangle rectangle)
         {
-            rectangle = _rectanglesList[GeometryRectanglesListBox1.SelectedIndex];
+            rectangle = _rectangles[GeometryRectanglesListBox.SelectedIndex];
 
-            GeometryRectanglesIdTextBox1.Text = rectangle.Id.ToString();
-            GeometryRectanglesXTextBox1.Text = rectangle.Center.X.ToString();
-            GeometryRectanglesYTextBox1.Text = rectangle.Center.Y.ToString();
-            GeometryRectanglesWidthTextBox1.Text = rectangle.Width.ToString();
-            GeometryRectanglesLengthTextBox1.Text = rectangle.Length.ToString();
+            GeometryRectanglesIdTextBox.Text = rectangle.Id.ToString();
+            GeometryRectanglesXTextBox.Text = rectangle.Center.X.ToString();
+            GeometryRectanglesYTextBox.Text = rectangle.Center.Y.ToString();
+            GeometryRectanglesWidthTextBox.Text = rectangle.Width.ToString();
+            GeometryRectanglesLengthTextBox.Text = rectangle.Length.ToString();
         }
 
         /// <summary>
@@ -75,79 +87,80 @@ namespace Programming.View.Panels
         /// </summary>
         private void ClearRectangleInfo()
         {
-            GeometryRectanglesIdTextBox1.Text = " ";
-            GeometryRectanglesXTextBox1.Text = " ";
-            GeometryRectanglesYTextBox1.Text = " ";
-            GeometryRectanglesWidthTextBox1.Text = " ";
-            GeometryRectanglesLengthTextBox1.Text = " ";
+            GeometryRectanglesIdTextBox.Text = "";
+            GeometryRectanglesXTextBox.Text = "";
+            GeometryRectanglesYTextBox.Text = "";
+            GeometryRectanglesWidthTextBox.Text = "";
+            GeometryRectanglesLengthTextBox.Text = "";
 
-            GeometryRectanglesXTextBox1.BackColor = System.Drawing.Color.White;
-            GeometryRectanglesYTextBox1.BackColor = System.Drawing.Color.White;
-            GeometryRectanglesWidthTextBox1.BackColor = System.Drawing.Color.White;
-            GeometryRectanglesLengthTextBox1.BackColor = System.Drawing.Color.White;
+            GeometryRectanglesXTextBox.BackColor = System.Drawing.Color.White;
+            GeometryRectanglesYTextBox.BackColor = System.Drawing.Color.White;
+            GeometryRectanglesWidthTextBox.BackColor = System.Drawing.Color.White;
+            GeometryRectanglesLengthTextBox.BackColor = System.Drawing.Color.White;
         }
 
         /// <summary>
         /// Добавляет прямоугольник на панель.
         /// </summary>
-        private void GeometryAddButton1_Click(object sender, EventArgs e)
+        private void GeometryAddButton_Click(object sender, EventArgs e)
         {
-            var rectangle = RectangleFactory.Randomize(576, 635);
+            var size_X = RectanglesPanel.Size.Width;
+            var size_Y = RectanglesPanel.Size.Height;
+
+            var rectangle = RectangleFactory.Randomize(size_X, size_Y);
             var panel = new Panel();
 
             var info = TakeInfoFromRectangle(rectangle);
 
-            _rectanglesList.Add(rectangle);
-            GeometryRectanglesListBox1.Items.Add(info);
+            _rectangles.Add(rectangle);
+            GeometryRectanglesListBox.Items.Add(info);
 
             panel.Height = Convert.ToInt32(rectangle.Length);
             panel.Width = Convert.ToInt32(rectangle.Width);
             var x = Convert.ToInt32(rectangle.Center.X);
             var y = Convert.ToInt32(rectangle.Center.Y);
             panel.Location = new Point(x, y);
-            panel.BackColor = System.Drawing.Color.FromArgb(127, 127, 255, 127);
+            panel.BackColor = colorGreen;
 
-            _rectanglePanel.Add(panel);
-            rectanglesPanel1.Controls.Add(panel);
+            _rectanglePanels.Add(panel);
+            RectanglesPanel.Controls.Add(panel);
             FindCollision();
         }
 
         /// <summary>
         /// Удаляет прямоугольник с панели.
         /// </summary>
-        private void GeometryRemoveButton1_Click(object sender, EventArgs e)
+        private void GeometryRemoveButton_Click(object sender, EventArgs e)
         {
+            var currentIndex = GeometryRectanglesListBox.SelectedIndex;
             try
             {
-                _rectanglesList.RemoveAt(GeometryRectanglesListBox1.SelectedIndex);
-                _rectanglePanel.RemoveAt(GeometryRectanglesListBox1.SelectedIndex);
-                rectanglesPanel1.Controls.RemoveAt(GeometryRectanglesListBox1.SelectedIndex);
-                GeometryRectanglesListBox1.Items.RemoveAt(GeometryRectanglesListBox1.SelectedIndex);
+                _rectangles.RemoveAt(currentIndex);
+                _rectanglePanels.RemoveAt(currentIndex);
+                RectanglesPanel.Controls.RemoveAt(currentIndex);
+                GeometryRectanglesListBox.Items.RemoveAt(currentIndex);
                 FindCollision();
+                GeometryRectanglesListBox.SelectedIndex = currentIndex;
             }
-            catch
+            catch (ArgumentOutOfRangeException)
             {
 
             }
-
         }
 
         /// <summary>
         /// При нажатии на конкретный прямоугольник в списке прямоугольников даёт о нём информацию.
         /// </summary>
-        private void GeometryRectanlesListBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void GeometryRectanlesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             try
             {
-                UpdateRectangleInfo(ref _currentRectangleList);
+                UpdateRectangleInfo(ref _currentRectangle);
             }
             catch
             {
                 ClearRectangleInfo();
             }
-
-
         }
 
         /// <summary>
@@ -155,22 +168,19 @@ namespace Programming.View.Panels
         /// </summary>
         private void FindCollision()
         {
-            var colorRed = System.Drawing.Color.FromArgb(127, 255, 127, 127);
-            var colorGreen = System.Drawing.Color.FromArgb(127, 127, 255, 127);
-
-            foreach (Panel rectangle in rectanglesPanel1.Controls)
+            foreach (Panel rectangle in RectanglesPanel.Controls)
             {
                 rectangle.BackColor = colorGreen;
             }
 
-            for (int i = 0; i < _rectanglesList.Count; i++)
+            for (int i = 0; i < _rectangles.Count; i++)
             {
-                for (int j = 0; j < _rectanglesList.Count; j++)
+                for (int j = 0; j < _rectangles.Count; j++)
                 {
-                    if (CollisionManager.IsCollision(_rectanglesList[i], _rectanglesList[j]) && i != j)
+                    if (CollisionManager.IsCollision(_rectangles[i], _rectangles[j]) && i != j)
                     {
-                        _rectanglePanel[i].BackColor = colorRed;
-                        _rectanglePanel[j].BackColor = colorRed;
+                        _rectanglePanels[i].BackColor = colorRed;
+                        _rectanglePanels[j].BackColor = colorRed;
                     }
                 }
             }
@@ -179,7 +189,7 @@ namespace Programming.View.Panels
         /// <summary>
         /// Запрещает изменять текст в поле ID.
         /// </summary>
-        private void GeometryRectanglesIdTextBox1_KeyPress(object sender, KeyPressEventArgs e)
+        private void GeometryRectanglesIdTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = true;
         }
@@ -188,103 +198,125 @@ namespace Programming.View.Panels
         /// При изменении у конкретного прямоугольника X координаты перерисовывет положение прямоугольника и обновляет
         /// информацию о нём.
         /// </summary>
-        private void GeometryRectanglesXTextBox1_TextChanged(object sender, EventArgs e)
+        private void GeometryRectanglesXTextBox_KeyDown(object sender, KeyEventArgs e)
         {
+            if (e.KeyCode != Keys.Enter)
+            {
+                return;
+            }
+
             try
             {
-                GeometryRectanglesIdTextBox1.BackColor = System.Drawing.Color.White;
+                GeometryRectanglesXTextBox.BackColor = System.Drawing.Color.White;
 
-                var x = Convert.ToDouble(GeometryRectanglesXTextBox1.Text);
-                var y = _currentRectangleList.Center.Y;
+                var x = Convert.ToDouble(GeometryRectanglesXTextBox.Text);
+                var y = _currentRectangle.Center.Y;
                 var coordinatePoint2D = new Point2D(x, y);
                 var coordinatePoint = new Point(Convert.ToInt32(x), Convert.ToInt32(y));
-                var info = TakeInfoFromRectangle(_currentRectangleList);
 
-                _currentRectangleList.Center = coordinatePoint2D;
-                _rectanglePanel[GeometryRectanglesListBox1.SelectedIndex].Location = coordinatePoint;
-                GeometryRectanglesListBox1.Items[GeometryRectanglesListBox1.SelectedIndex] = info;
+                _currentRectangle.Center = coordinatePoint2D;
+                var info = TakeInfoFromRectangle(_currentRectangle);
+                _rectanglePanels[GeometryRectanglesListBox.SelectedIndex].Location = coordinatePoint;
+                GeometryRectanglesListBox.Items[GeometryRectanglesListBox.SelectedIndex] = info;
                 FindCollision();
             }
             catch
             {
-                GeometryRectanglesXTextBox1.BackColor = System.Drawing.Color.LightPink;
+                GeometryRectanglesXTextBox.BackColor = System.Drawing.Color.LightPink;
             }
-
         }
 
         /// <summary>
         /// При изменении у конкретного прямоугольника Y координаты перерисовывет положение прямоугольника и обновляет
         /// информацию о нём.
         /// </summary>
-        private void GeometryRectanglesYTextBox1_TextChanged(object sender, EventArgs e)
+        private void GeometryRectanglesYTextBox_KeyDown(object sender, KeyEventArgs e)
         {
+            if (e.KeyCode != Keys.Enter)
+            {
+                return;
+            }
+
             try
             {
-                GeometryRectanglesYTextBox1.BackColor = System.Drawing.Color.White;
+                GeometryRectanglesYTextBox.BackColor = System.Drawing.Color.White;
 
-                var x = _currentRectangleList.Center.X;
-                var y = Convert.ToDouble(GeometryRectanglesYTextBox1.Text);
-                var coordinatePoint2D = new Point2D(x, y);
-                var coordinatePoint = new Point(Convert.ToInt32(x), Convert.ToInt32(y));
-                var info = TakeInfoFromRectangle(_currentRectangleList);
+                if (_currentRectangle != null)
+                {
+                    var x = _currentRectangle.Center.X;
+                    var y = Convert.ToDouble(GeometryRectanglesYTextBox.Text);
+                    var coordinatePoint2D = new Point2D(x, y);
+                    var coordinatePoint = new Point(Convert.ToInt32(x), Convert.ToInt32(y));                    
 
-                _currentRectangleList.Center = coordinatePoint2D;
-                _rectanglePanel[GeometryRectanglesListBox1.SelectedIndex].Location = coordinatePoint;
-                GeometryRectanglesListBox1.Items[GeometryRectanglesListBox1.SelectedIndex] = info;
+                    _currentRectangle.Center = coordinatePoint2D;
+                    var info = TakeInfoFromRectangle(_currentRectangle);
+                    _rectanglePanels[GeometryRectanglesListBox.SelectedIndex].Location = coordinatePoint;
+                    GeometryRectanglesListBox.Items[GeometryRectanglesListBox.SelectedIndex] = info;
+                    FindCollision();
+                }
+            }
+            catch
+            {
+                GeometryRectanglesYTextBox.BackColor = System.Drawing.Color.LightPink;
+            }
+        }
+
+        /// <summary>
+        /// При изменении у конкретного прямоугольника высоты перерисовывет положение прямоугольника 
+        /// и обновляет информацию о нём.
+        /// </summary>    
+        private void GeometryRectanglesLengthTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode != Keys.Enter)
+            {
+                return;
+            }
+
+            try
+            {
+                GeometryRectanglesLengthTextBox.BackColor = System.Drawing.Color.White;
+
+                var lengthDouble = Convert.ToDouble(GeometryRectanglesLengthTextBox.Text);
+                var lengthInt = Convert.ToInt32(GeometryRectanglesLengthTextBox.Text);
+
+                _currentRectangle.Length = lengthDouble;
+                var info = TakeInfoFromRectangle(_currentRectangle);
+                _rectanglePanels[GeometryRectanglesListBox.SelectedIndex].Height = lengthInt;
+                GeometryRectanglesListBox.Items[GeometryRectanglesListBox.SelectedIndex] = info;
                 FindCollision();
             }
             catch
             {
-                GeometryRectanglesYTextBox1.BackColor = System.Drawing.Color.LightPink;
+                GeometryRectanglesLengthTextBox.BackColor = System.Drawing.Color.LightPink;
             }
         }
 
         /// <summary>
         /// При изменении у конкретного прямоугольника ширины перерисовывет положение прямоугольника и обновляет
         /// информацию о нём.
-        /// </summary>
-        private void GeometryRectanglesWidthTextBox1_TextChanged(object sender, EventArgs e)
+        /// </summary> 
+        private void GeometryRectanglesWidthTextBox_KeyDown(object sender, KeyEventArgs e)
         {
+            if (e.KeyCode != Keys.Enter)
+            {
+                return;
+            }
+
             try
             {
-                GeometryRectanglesWidthTextBox1.BackColor = System.Drawing.Color.White;
-                var widthDouble = Convert.ToDouble(GeometryRectanglesWidthTextBox1.Text);
-                var widthInt = Convert.ToInt32(GeometryRectanglesWidthTextBox1.Text);
-                var info = TakeInfoFromRectangle(_currentRectangleList);
+                GeometryRectanglesWidthTextBox.BackColor = System.Drawing.Color.White;
+                var widthDouble = Convert.ToDouble(GeometryRectanglesWidthTextBox.Text);
+                var widthInt = Convert.ToInt32(GeometryRectanglesWidthTextBox.Text);
 
-                _currentRectangleList.Width = widthDouble;
-                _rectanglePanel[GeometryRectanglesListBox1.SelectedIndex].Width = widthInt;
-                GeometryRectanglesListBox1.Items[GeometryRectanglesListBox1.SelectedIndex] = info;
+                _currentRectangle.Width = widthDouble;
+                var info = TakeInfoFromRectangle(_currentRectangle);
+                _rectanglePanels[GeometryRectanglesListBox.SelectedIndex].Width = widthInt;
+                GeometryRectanglesListBox.Items[GeometryRectanglesListBox.SelectedIndex] = info;
                 FindCollision();
             }
             catch
             {
-                GeometryRectanglesWidthTextBox1.BackColor = System.Drawing.Color.LightPink;
-            }
-
-        }
-
-        /// <summary>
-        /// При изменении у конкретного прямоугольника высоты перерисовывет положение прямоугольника и обновляет
-        /// информацию о нём.
-        /// </summary>
-        private void GeometryRectanglesLengthTextBox1_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                GeometryRectanglesLengthTextBox1.BackColor = System.Drawing.Color.White;
-                var lengthDouble = Convert.ToDouble(GeometryRectanglesLengthTextBox1.Text);
-                var lengthInt = Convert.ToInt32(GeometryRectanglesLengthTextBox1.Text);
-                var info = TakeInfoFromRectangle(_currentRectangleList);
-
-                _currentRectangleList.Length = lengthDouble;
-                _rectanglePanel[GeometryRectanglesListBox1.SelectedIndex].Height = lengthInt;
-                GeometryRectanglesListBox1.Items[GeometryRectanglesListBox1.SelectedIndex] = info;
-                FindCollision();
-            }
-            catch
-            {
-                GeometryRectanglesLengthTextBox1.BackColor = System.Drawing.Color.LightPink;
+                GeometryRectanglesWidthTextBox.BackColor = System.Drawing.Color.LightPink;
             }
         }
     }

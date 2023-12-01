@@ -44,7 +44,6 @@ namespace Programming.Model
                 else
                     throw new ArgumentException("Введите имя песни");
             }
-
         }
 
         /// <summary>
@@ -59,7 +58,6 @@ namespace Programming.Model
                 
                 _duration = value;
             }
-
         }
 
         /// <summary>
@@ -75,7 +73,6 @@ namespace Programming.Model
                 else
                     throw new ArgumentException("Укажите жанр песни");
             }
-
         }
 
         /// <summary>
@@ -91,7 +88,6 @@ namespace Programming.Model
                 else
                     throw new ArgumentException("Введите имя артиста");
             }
-
         }
 
         /// <summary>

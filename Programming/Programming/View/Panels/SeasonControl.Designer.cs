@@ -71,7 +71,6 @@
             SeasonComboBox.Name = "SeasonComboBox";
             SeasonComboBox.Size = new Size(421, 33);
             SeasonComboBox.TabIndex = 3;
-            SeasonComboBox.SelectedIndexChanged += SeasonComboBox_SelectedIndexChanged;
             // 
             // SeasonLabel
             // 

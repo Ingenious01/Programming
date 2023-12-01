@@ -4,24 +4,7 @@ namespace MoviesApp.Model
     /// Хранит данные о фильме.
     /// </summary>
     public class Movie
-    {
-        /// <summary>
-        /// Создает экземпляр класса Movie.
-        /// </summary>
-        /// <param name="title">Название фильма.</param>
-        /// <param name="durationMinutes">Продолжительность фильма в минутах.</param>
-        /// <param name="year">Год выхода.</param>
-        /// <param name="genre">Жанр.</param>
-        /// <param name="rating">Рейтинг фильма.</param>
-        public Movie(string title, int durationMinutes, int year, string genre, double rating)
-        {
-            Title = title;
-            DurationMinutes = durationMinutes;
-            Year = year;
-            Genre = genre;
-            Rating = rating;
-        }
-        
+    {       
         /// <summary>
         /// Возвращает и задает название фильма.
         /// </summary>
@@ -46,5 +29,22 @@ namespace MoviesApp.Model
         /// Возвращает и задает рейтинг фильма.
         /// </summary>
         public double Rating { get; set; }
+
+        /// <summary>
+        /// Создает экземпляр класса Movie.
+        /// </summary>
+        /// <param name="title">Название фильма.</param>
+        /// <param name="durationMinutes">Продолжительность фильма в минутах.</param>
+        /// <param name="year">Год выхода.</param>
+        /// <param name="genre">Жанр.</param>
+        /// <param name="rating">Рейтинг фильма.</param>
+        public Movie(string title, int durationMinutes, int year, string genre, double rating)
+        {
+            Title = title;
+            DurationMinutes = durationMinutes;
+            Year = year;
+            Genre = genre;
+            Rating = rating;
+        }
     }
 }

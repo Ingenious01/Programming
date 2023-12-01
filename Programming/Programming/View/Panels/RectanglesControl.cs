@@ -166,7 +166,6 @@ namespace Programming.View.Panels
                 }
                 RectanglesListBox.SelectedIndex = index;
             }
-
         }
     }
 }

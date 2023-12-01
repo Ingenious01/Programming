@@ -44,10 +44,5 @@ namespace Programming.View.Panels
                 ParsingResultLabel.Visible = true;
             }
         }
-
-        private void ParsingTextBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }

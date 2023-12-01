@@ -54,10 +54,5 @@ namespace Programming.View.Panels
                     break;
             }
         }
-
-        private void SeasonComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }

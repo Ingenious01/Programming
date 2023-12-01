@@ -11,7 +11,6 @@ namespace MoviesApp.Model
     /// </summary>
     public static class DataBase
     {
-
         /// <summary>
         /// Путь до папки.
         /// </summary>
@@ -68,7 +67,6 @@ namespace MoviesApp.Model
                 
                 fstream.Write(buffer, 0, buffer.Length);
             }
-        }
-        
+        }        
     } 
 }
