@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Resources\icon-512x512.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\icon_512x512.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -117,12 +117,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon-512x512.ico" />
-    <Content Include="Resources\accept-button-512x512.png" />
-    <Content Include="Resources\cancel-button-512x512.png" />
+    <Content Include="Resources\accept_button-512x512.png" />
+    <Content Include="Resources\cancel_button-512x512.png" />
     <Content Include="Resources\delete_button_512x512.png" />
     <Content Include="Resources\edit_button_512x512.png" />
     <Content Include="Resources\add_button_512x512.png" />
-    <Content Include="Resources\icon-512x512.ico" />
+    <Content Include="Resources\icon_512x512.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
