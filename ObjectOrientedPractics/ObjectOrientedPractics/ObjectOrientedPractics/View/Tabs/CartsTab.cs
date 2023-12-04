@@ -121,7 +121,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private void createOrderButton_Click(object sender, EventArgs e)
         {
-            Order NewOrder = new Order(CurrentCustomer.Address, CurrentCustomer.Cart);
+            Order NewOrder = new Order(CurrentCustomer);
             CurrentCustomer.Orders.Add(NewOrder);
 
             CurrentCustomer.Cart.ListOfItems.Clear();

@@ -91,23 +91,30 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Создаёт экземпляр класса <see cref="Order">
         /// </summary>
-        /// <param name="adress">Адресс доставки</param>
-        /// <param name="items">Список предметов в заказе(корзина покупателя)</param>
-        public Order(Address adress, Cart cart)
+        public Order()
+        {
+        }
+
+        /// <summary>
+        /// Создаёт экземпляр класса <see cref="Order">
+        /// </summary>
+        /// <param name="customer">Клиент, заказ которого создаётся</param>
+        public Order(Customer customer)
         {
             Id = IdGenerator.GetNextOrderId();
             Date = DateTime.Now;
-            Address = adress;
+            Address = customer.Address;
             Items = new List<Item>();
-            foreach (var item in cart.ListOfItems)
+            foreach (var item in customer.Cart.ListOfItems)
             {
                 if(item != null)
                 {
                     Items.Add(item);
                 }
             }
-            TotalPrice = cart.Amount();
+            TotalPrice = customer.Cart.Amount();
             Status = OrderStatus.New;
+            CustomerFullName = customer.FullName;
         }
     }
 }
