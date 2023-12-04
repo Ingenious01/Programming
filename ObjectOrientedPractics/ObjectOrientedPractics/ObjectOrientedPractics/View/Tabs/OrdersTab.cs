@@ -161,8 +161,6 @@ namespace ObjectOrientedPractics.View.Tabs
 
            CurrentOrder.Status = newStatus;
 
-           //CurrentOrder.Status = (OrderStatus)Enum.Parse(typeof(OrderStatus), statusComboBox.Text);
-
         }
     }
 }

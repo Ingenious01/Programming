@@ -93,6 +93,7 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         public Order()
         {
+            Id = IdGenerator.GetNextOrderId();
         }
 
         /// <summary>
