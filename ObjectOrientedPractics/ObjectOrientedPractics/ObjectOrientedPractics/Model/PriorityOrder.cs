@@ -15,7 +15,7 @@ namespace ObjectOrientedPractics.Model
 
         private DeliveryTime _deliveryTime;
 
-        public DateTime DelivertDate { get; set; }
+        public DateTime DeliveryDate { get; set; }
 
         public DeliveryTime DeliveryTime { get; set; }
 
@@ -26,8 +26,14 @@ namespace ObjectOrientedPractics.Model
         public PriorityOrder(Customer customer, DateTime deliveryDate, DeliveryTime deliveryTime)
             : base(customer)
         {
-            _deliveryDate = deliveryDate;
+            DeliveryDate = deliveryDate;
             DeliveryTime = deliveryTime;
+        }
+
+        public PriorityOrder(Customer customer)
+            : base(customer)
+        {
+
         }
     }
 }

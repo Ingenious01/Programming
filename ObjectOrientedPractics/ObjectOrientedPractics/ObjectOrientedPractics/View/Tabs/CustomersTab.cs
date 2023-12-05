@@ -23,7 +23,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <summary>
         /// Покупатель, выбранный в CustomersListBox.
         /// </summary>
-        private Customer _currentCustomerList;
+        private Customer _currentCustomer;
 
         /// <summary>
         /// Default value for Name.
@@ -49,6 +49,14 @@ namespace ObjectOrientedPractics.View.Tabs
             idTextBox.Text = customer.Id.ToString();
             nameTextBox.Text = customer.FullName;
             addressControl1.Address = customer.Address;
+            if(customer.IsPriority == true)
+            {
+                priorityCheckBox.Checked = true;
+            }
+            else if(customer.IsPriority == false)
+            {
+                priorityCheckBox.Checked = false;
+            }
         }
 
         /// <summary>
@@ -69,8 +77,8 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             try
             {
-                _currentCustomerList = _customers[customersListBox.SelectedIndex];
-                UpdateCustomerInfo(_currentCustomerList);
+                _currentCustomer = _customers[customersListBox.SelectedIndex];
+                UpdateCustomerInfo(_currentCustomer);
             }
             catch
             {
@@ -87,20 +95,20 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         /// <summary>
-        /// При нажатии пробела присваивает имя клиенту из NameTextBox. 
+        /// При нажатии enter присваивает имя клиенту из NameTextBox. 
         /// Если не получается, окрашивает background поля NameTextBox в красный цвет.
         /// </summary>        
         private void nameTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
             {
-                _currentCustomerList = _customers[customersListBox.SelectedIndex];
+                _currentCustomer = _customers[customersListBox.SelectedIndex];
 
                 var currentName = nameTextBox.Text;
 
                 if (e.KeyChar == (char)Keys.Enter)
                 {
-                    _currentCustomerList.FullName = currentName;
+                    _currentCustomer.FullName = currentName;
                 }
             }
             catch
@@ -146,6 +154,13 @@ namespace ObjectOrientedPractics.View.Tabs
             var newCustomer = new Customer(firstname, stockAdress);
             _customers.Add(newCustomer);
 
+            priorityCheckBox.Enabled = true;
+            nameTextBox.Enabled = true;
+            addressControl1.Enabled = true;
+            removeButton.Enabled = true;
+
+            UpdateCustomerInfo(_customers[customersListBox.SelectedIndex]);
+
         }
 
         /// <summary>
@@ -157,11 +172,20 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 _customers.RemoveAt(customersListBox.SelectedIndex);
                 customersListBox.Items.RemoveAt(customersListBox.SelectedIndex);
+                UpdateCustomerInfo(_customers[customersListBox.SelectedIndex]);
             }
             catch
             {
             }
 
+            if (customersListBox.SelectedIndex < 0)
+            {
+                priorityCheckBox.Enabled = false;
+                nameTextBox.Enabled = false;
+                addressControl1.ClearInfo();
+                addressControl1.Enabled = false;
+                removeButton.Enabled = false;
+            }
         }
 
         public BindingList<Customer> Customers
@@ -176,6 +200,19 @@ namespace ObjectOrientedPractics.View.Tabs
                     customersListBox.DataSource = _customers;
                     
                 }
+            }
+        }
+
+        private void priorityCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            _currentCustomer = _customers[customersListBox.SelectedIndex];
+            if (priorityCheckBox.Checked == true)
+            {
+                _currentCustomer.IsPriority = true;
+            }
+            else if (priorityCheckBox.Checked == false) 
+            {
+                _currentCustomer.IsPriority = false;
             }
         }
     }

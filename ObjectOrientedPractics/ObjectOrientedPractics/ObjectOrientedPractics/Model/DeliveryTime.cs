@@ -8,6 +8,7 @@ namespace ObjectOrientedPractics.Model
 {
     public enum DeliveryTime
     {
+        none,
         nineAm,
         elevenAm,
         onePm,

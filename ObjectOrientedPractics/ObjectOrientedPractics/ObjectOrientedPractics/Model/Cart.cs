@@ -47,7 +47,10 @@ namespace ObjectOrientedPractics.Model
 
             foreach (var item in _listOfItems)
             {
-                total = total + item.Cost;
+                if (item != null)
+                {
+                    total = total + item.Cost;
+                }
             }
 
             return total;

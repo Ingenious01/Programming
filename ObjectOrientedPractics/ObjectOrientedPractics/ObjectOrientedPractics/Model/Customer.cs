@@ -39,6 +39,11 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         private List<Order> _orders;
 
+        /// <summary>
+        /// Указывает, явдяется ли покупатель приоритетным.
+        /// </summary>
+        private bool _isPriority = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public void OnPropertyChanged([CallerMemberName] string propertyName = "")
@@ -82,7 +87,6 @@ namespace ObjectOrientedPractics.Model
             return info;
         }
 
-
         /// <summary>
         /// Возвращает и задаёт домашний адрес покупателя. Длинна строки с адресом должна быть не больше 500.
         /// </summary>
@@ -120,6 +124,15 @@ namespace ObjectOrientedPractics.Model
         {
             set => _orders = value;
             get => _orders;
+        }
+
+        /// <summary>
+        /// Возвращает и задает приоритетность покупателя.
+        /// </summary>
+        public bool IsPriority
+        {
+            set => _isPriority = value;
+            get => _isPriority;
         }
 
         /// <summary>

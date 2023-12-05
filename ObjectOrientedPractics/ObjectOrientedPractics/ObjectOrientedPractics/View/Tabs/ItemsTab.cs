@@ -251,7 +251,15 @@ namespace ObjectOrientedPractics.View.Tabs
         private void AddButton_Click(object sender, EventArgs e)
         {
             var newItem = new Item(firstname, firstdescription, firstcost, firstCategory);
-            _items.Add(newItem);           
+            _items.Add(newItem);  
+            
+            costTextBox.Enabled = true;
+            categoryComboBox.Enabled = true;
+            descriptionRichTextBox.Enabled = true;
+            nameRichTextBox.Enabled = true;
+            removeButton.Enabled = true;
+
+            UpdateItemInfo(_items[itemsListBox.SelectedIndex]);
         }
 
         /// <summary>
@@ -266,6 +274,19 @@ namespace ObjectOrientedPractics.View.Tabs
             }
             catch
             {
+
+            }
+
+            if (itemsListBox.SelectedIndex < 0)
+            {
+                costTextBox.Enabled = false;
+                categoryComboBox.SelectedItem = null;
+                categoryComboBox.Enabled = false;
+                descriptionRichTextBox.Enabled = false;
+                nameRichTextBox.Enabled = false;
+                removeButton.Enabled = false;
+
+                ClearItemInfo();
             }
         }
 

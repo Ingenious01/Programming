@@ -92,25 +92,83 @@ namespace ObjectOrientedPractics.View.Tabs
 
             _orders = new BindingList<Order>();
             OrderBindingSource.DataSource = _orders;
+
+            /// <summary>
+            /// Список из возможного времени доставки.
+            /// </summary>
+            var listDeliveryTime = new string[]
+            {
+                "None",
+                "9:00 – 11:00",
+                "11:00 – 13:00",
+                "13:00 – 15:00",
+                "15:00 – 17:00",
+                "17:00 – 19:00",
+                "19:00 – 21:00"
+            };
+
+            ///deliveryTimeComboBox.Items.AddRange(listDeliveryTime);
+            statusComboBox.DataSource = Enum.GetValues(typeof(OrderStatus));
+        }
+
+        public string DeliveryDateParse (PriorityOrder order)
+        {
+            switch (order.DeliveryTime)
+            {
+                case DeliveryTime.nineAm:
+                    return "9:00 – 11:00";
+
+                case DeliveryTime.elevenAm:
+                    return "11:00 – 13:00";
+
+                case DeliveryTime.onePm:
+                    return "13:00 – 15:00";
+
+                case DeliveryTime.threePm:
+                    return "15:00 – 17:00";
+
+                case DeliveryTime.fivePm:
+                    return "17:00 – 19:00";
+
+                case DeliveryTime.sevenPm:
+                    return "19:00 – 21:00";
+
+                case DeliveryTime.none:
+                    return "None";
+                default:
+                    return " ";
+            }
         }
 
         private void ordersGridView_SelectionChanged(object sender, EventArgs e)
         {
             if (ordersGridView.CurrentRow == null)
             {
+               /// priorityOptionsGroupBox.Enabled = false;
                 return;
             }
             CurrentOrder = _orders[ordersGridView.CurrentRow.Index];
 
             idTextBox.Text = Convert.ToString(CurrentOrder.Id);
             costTextBox.Text = Convert.ToString(CurrentOrder.TotalPrice);
-            statusComboBox.DataSource = Enum.GetValues(typeof(OrderStatus));
             statusComboBox.Text = Convert.ToString(CurrentOrder.Status);
 
             orderItemsListBox.DataSource = null;
             orderItemsListBox.DataSource = CurrentOrder.Items;
 
             addressControl1.Address = CurrentOrder.Address;
+
+            if (CurrentOrder is PriorityOrder)
+            {
+                PriorityOrder currentOrder = (PriorityOrder)CurrentOrder;
+                ///priorityOptionsGroupBox.Enabled = true;
+                ///deliveryTimeComboBox.Text = DeliveryDateParse(currentOrder);
+            }
+            else if(CurrentOrder is Order)
+            {
+                ///deliveryTimeComboBox.Text = " ";
+                //priorityOptionsGroupBox.Enabled = false;
+            }
         }
 
         private void statusComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -119,47 +177,60 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 return;
             }
-            CurrentOrder = _orders[ordersGridView.CurrentRow.Index];
-            var currentStatus = statusComboBox.Text;
 
-            OrderStatus newStatus = OrderStatus.New;
-            switch (currentStatus)
+            _orders[ordersGridView.CurrentRow.Index].Status = (OrderStatus)statusComboBox.SelectedItem;          
+        }
+
+        private void deliveryTimeComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            PriorityOrder currentOrder = (PriorityOrder)_orders[ordersGridView.CurrentRow.Index];
+            /*
+            switch (///deliveryTimeComboBox.Text)
             {
-                case "New":
-                    newStatus = OrderStatus.New;
+                case "9:00 – 11:00":
+                    currentOrder.DeliveryTime = DeliveryTime.nineAm;
+                break;
+
+                case "11:00 – 13:00":
+                    currentOrder.DeliveryTime = DeliveryTime.elevenAm;
                     break;
-                case "Processing":
-                    newStatus = OrderStatus.Processing;
+
+                case "13:00 – 15:00":
+                    currentOrder.DeliveryTime = DeliveryTime.onePm;
                     break;
-                case "Assembly":
-                    newStatus = OrderStatus.Assembly;
+
+                case "15:00 – 17:00":
+                    currentOrder.DeliveryTime = DeliveryTime.threePm;
                     break;
-                case "Sent":
-                    newStatus = OrderStatus.Sent;
+
+                case "17:00 – 19:00":
+                    currentOrder.DeliveryTime = DeliveryTime.fivePm;
                     break;
-                case "Delivered":
-                    newStatus = OrderStatus.Delivered;
+
+                case "19:00 – 21:00":
+                    currentOrder.DeliveryTime = DeliveryTime.sevenPm;
                     break;
-                case "Returned":
-                    newStatus = OrderStatus.Returned;
-                    break;
-                case "Abandoned":
-                    newStatus = OrderStatus.Abandoned;
+
+                case "None":
+                    currentOrder.DeliveryTime = DeliveryTime.none;
                     break;
             }
+            */
+            
+        }
 
-            foreach(var customer in Customers)
-            {
-                foreach(var order in customer.Orders)
-                {
-                    if(order.Id == CurrentOrder.Id)
-                    {
-                        order.Status = newStatus;
-                    }
-                }
-            }
+        private void removeItemButton_Click(object sender, EventArgs e)
+        {
 
-           CurrentOrder.Status = newStatus;
+        }
+
+        private void addItemButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void clearOrderButton_Click(object sender, EventArgs e)
+        {
 
         }
     }

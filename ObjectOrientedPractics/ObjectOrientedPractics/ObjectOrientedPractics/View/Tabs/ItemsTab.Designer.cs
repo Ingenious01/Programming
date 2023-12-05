@@ -91,6 +91,7 @@
             // 
             // categoryComboBox
             // 
+            this.categoryComboBox.Enabled = false;
             this.categoryComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.categoryComboBox.FormattingEnabled = true;
             this.categoryComboBox.Location = new System.Drawing.Point(118, 119);
@@ -114,6 +115,7 @@
             this.descriptionRichTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.descriptionRichTextBox.Enabled = false;
             this.descriptionRichTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.descriptionRichTextBox.Location = new System.Drawing.Point(11, 377);
             this.descriptionRichTextBox.Name = "descriptionRichTextBox";
@@ -136,6 +138,7 @@
             // 
             this.nameRichTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.nameRichTextBox.Enabled = false;
             this.nameRichTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.nameRichTextBox.Location = new System.Drawing.Point(10, 186);
             this.nameRichTextBox.Name = "nameRichTextBox";
@@ -156,6 +159,7 @@
             // 
             // costTextBox
             // 
+            this.costTextBox.Enabled = false;
             this.costTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.costTextBox.Location = new System.Drawing.Point(118, 82);
             this.costTextBox.Name = "costTextBox";
@@ -230,6 +234,7 @@
             this.removeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.removeButton.Enabled = false;
             this.removeButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.removeButton.Location = new System.Drawing.Point(133, 3);
             this.removeButton.Name = "removeButton";

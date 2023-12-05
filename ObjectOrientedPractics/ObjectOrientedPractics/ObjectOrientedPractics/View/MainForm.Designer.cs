@@ -109,6 +109,7 @@
             this.itemsTab1.Name = "itemsTab1";
             this.itemsTab1.Size = new System.Drawing.Size(1168, 668);
             this.itemsTab1.TabIndex = 0;
+            this.itemsTab1.Items = null;
             // 
             // customersTab1
             // 
@@ -118,6 +119,7 @@
             this.customersTab1.Name = "customersTab1";
             this.customersTab1.Size = new System.Drawing.Size(1168, 668);
             this.customersTab1.TabIndex = 0;
+            this.customersTab1.Customers = null;
             // 
             // cartsTab1
             // 
@@ -129,6 +131,7 @@
             this.cartsTab1.Name = "cartsTab1";
             this.cartsTab1.Size = new System.Drawing.Size(1168, 668);
             this.cartsTab1.TabIndex = 0;
+            this.cartsTab1.Customers = null;
             // 
             // ordersTab1
             // 
@@ -137,6 +140,7 @@
             this.ordersTab1.Name = "ordersTab1";
             this.ordersTab1.Size = new System.Drawing.Size(1168, 668);
             this.ordersTab1.TabIndex = 0;
+            this.ordersTab1.Customers = null;
             // 
             // MainForm
             // 

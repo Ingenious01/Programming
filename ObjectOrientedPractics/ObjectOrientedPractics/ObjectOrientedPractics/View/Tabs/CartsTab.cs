@@ -90,12 +90,26 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private void itemsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            CurrentItem = Items[itemsListBox.SelectedIndex];
+            try
+            {
+                CurrentItem = Items[itemsListBox.SelectedIndex];
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+
+            }
         }
 
         private void customerComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            CurrentCustomer = Customers[customerComboBox.SelectedIndex];
+            try
+            {
+                CurrentCustomer = Customers[customerComboBox.SelectedIndex];
+            }
+            catch (ArgumentOutOfRangeException)
+            { 
+
+            }
         }
 
         private void addButton_Click(object sender, EventArgs e)
@@ -120,9 +134,17 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         private void createOrderButton_Click(object sender, EventArgs e)
-        {
-            Order NewOrder = new Order(CurrentCustomer);
-            CurrentCustomer.Orders.Add(NewOrder);
+        {            
+            if (CurrentCustomer.IsPriority == true)
+            {
+                PriorityOrder NewPriorityOrder = new PriorityOrder(CurrentCustomer);
+                CurrentCustomer.Orders.Add(NewPriorityOrder);
+            }    
+            else if (CurrentCustomer.IsPriority == false)
+            {
+                Order NewOrder = new Order(CurrentCustomer);
+                CurrentCustomer.Orders.Add(NewOrder);
+            }
 
             CurrentCustomer.Cart.ListOfItems.Clear();
             Customers.ResetBindings();

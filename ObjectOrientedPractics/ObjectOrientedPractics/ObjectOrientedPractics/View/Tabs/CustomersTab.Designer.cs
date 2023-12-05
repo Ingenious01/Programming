@@ -31,6 +31,7 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.priorityCheckBox = new System.Windows.Forms.CheckBox();
             this.nameTextBox = new System.Windows.Forms.TextBox();
             this.idTextBox = new System.Windows.Forms.TextBox();
             this.fullNameLabel = new System.Windows.Forms.Label();
@@ -82,6 +83,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.priorityCheckBox);
             this.groupBox2.Controls.Add(this.nameTextBox);
             this.groupBox2.Controls.Add(this.idTextBox);
             this.groupBox2.Controls.Add(this.fullNameLabel);
@@ -95,10 +97,23 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Selected Customer";
             // 
+            // priorityCheckBox
+            // 
+            this.priorityCheckBox.AutoSize = true;
+            this.priorityCheckBox.Enabled = false;
+            this.priorityCheckBox.Location = new System.Drawing.Point(344, 43);
+            this.priorityCheckBox.Name = "priorityCheckBox";
+            this.priorityCheckBox.Size = new System.Drawing.Size(222, 30);
+            this.priorityCheckBox.TabIndex = 4;
+            this.priorityCheckBox.Text = "Customer is priority";
+            this.priorityCheckBox.UseVisualStyleBackColor = true;
+            this.priorityCheckBox.CheckedChanged += new System.EventHandler(this.priorityCheckBox_CheckedChanged);
+            // 
             // nameTextBox
             // 
             this.nameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.nameTextBox.Enabled = false;
             this.nameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.nameTextBox.Location = new System.Drawing.Point(111, 83);
             this.nameTextBox.Name = "nameTextBox";
@@ -140,6 +155,7 @@
             // 
             this.addressControl1.Address = null;
             this.addressControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.addressControl1.Enabled = false;
             this.addressControl1.Location = new System.Drawing.Point(3, 146);
             this.addressControl1.Name = "addressControl1";
             this.addressControl1.Size = new System.Drawing.Size(647, 575);
@@ -217,6 +233,7 @@
             // removeButton
             // 
             this.removeButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.removeButton.Enabled = false;
             this.removeButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.removeButton.Location = new System.Drawing.Point(145, 3);
             this.removeButton.Name = "removeButton";
@@ -260,5 +277,6 @@
         private System.Windows.Forms.Button addButton;
         private System.Windows.Forms.Button removeButton;
         private Controls.AddressControl addressControl1;
+        private System.Windows.Forms.CheckBox priorityCheckBox;
     }
 }

@@ -33,6 +33,16 @@ namespace ObjectOrientedPractics.View.Controls
             }
         }
 
+        public void ClearInfo()
+        {
+            PostIndexTextBox.Text = null;
+            CountryTextBox.Text = null;
+            CityTextBox.Text = null;
+            StreetTextBox.Text = null;
+            BuildingTextBox.Text = null;
+            ApartamentTextBox.Text = null;
+        }
+
         public void UpdateAdressInfo(Address value)
         {
             PostIndexTextBox.Text = value.Index.ToString();
