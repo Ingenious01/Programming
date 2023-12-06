@@ -89,6 +89,24 @@ namespace ObjectOrientedPractics.Model
         public string CustomerFullName { get { return _customerFullName; } set { _customerFullName = value; OnPropertyChanged(); } }
 
         /// <summary>
+        /// Считает общую стоимость всех пердметов в заказе у покупателя.
+        /// </summary>
+        public double Amount()
+        {
+            double total = 0;
+
+            foreach (var item in _items)
+            {
+                if (item != null)
+                {
+                    total = total + item.Cost;
+                }
+            }
+
+            return total;
+        }
+
+        /// <summary>
         /// Создаёт экземпляр класса <see cref="Order">
         /// </summary>
         public Order()

@@ -14,6 +14,9 @@ namespace ObjectOrientedPractics
 {
     public partial class MainForm : Form
     {
+        /// <summary>
+        /// Экземпляр класса <see cref="Store"/>
+        /// </summary>
         private Store _store = new Store();        
         public MainForm()
         {
@@ -26,6 +29,7 @@ namespace ObjectOrientedPractics
             cartsTab1.Items = _store.Items;
 
             ordersTab1.Customers = _store.Customers;
+            ordersTab1.Items = _store.Items;
         }        
     }
 }

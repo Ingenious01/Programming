@@ -14,14 +14,29 @@ namespace ObjectOrientedPractics.View.Tabs
 {
     public partial class cartsTab : UserControl
     {
+        /// <summary>
+        /// Список всех предметов в магазине типа <see cref="Item"/>.
+        /// </summary>
         private BindingList<Item> _items = new BindingList<Item>();
 
+        /// <summary>
+        /// Список всех клиентов типа <see cref="Customer"/>.
+        /// </summary>
         private BindingList<Customer> _customers = new BindingList<Customer>();
 
+        /// <summary>
+        /// Текущий выбранный клиент.
+        /// </summary>
         private Customer _currentCustomer;
 
+        /// <summary>
+        /// Текущий выбранный предмет.
+        /// </summary>
         private Item _currentItem;
 
+        /// <summary>
+        /// Возвращает и задаёт список предметов в магазине.
+        /// </summary>
         public BindingList<Item> Items
         {
             get => _items;
@@ -36,6 +51,9 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
+        /// <summary>
+        /// Возвращает и задаёт список клиентов.
+        /// </summary>
         public BindingList<Customer> Customers
         {
             get => _customers;
@@ -52,6 +70,9 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
+        /// <summary>
+        /// Возвращает и задаёт текущего клиента.
+        /// </summary>
         private Customer CurrentCustomer
         {
             get => _currentCustomer;
@@ -63,6 +84,9 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
+        /// <summary>
+        /// Возвращает и задаёт выбранный предмет.
+        /// </summary>
         public Item CurrentItem
         {
             get => _currentItem;
@@ -77,6 +101,9 @@ namespace ObjectOrientedPractics.View.Tabs
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Обновляет информацию о карзине клиента.
+        /// </summary>
         void UpdateCartInfo()
         {
             cartListBox.DataSource = null;

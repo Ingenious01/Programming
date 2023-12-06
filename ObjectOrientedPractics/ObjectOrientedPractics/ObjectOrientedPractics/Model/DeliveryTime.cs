@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ObjectOrientedPractics.Model
 {
+    /// <summary>
+    /// Варианты времени доставки.
+    /// </summary>
     public enum DeliveryTime
     {
         none,

@@ -16,19 +16,14 @@ namespace ObjectOrientedPractics.View.Tabs
     public partial class customersTab : UserControl
     {
         /// <summary>
-        /// Покупатель типа Customer.
+        /// Список всех клиентов типа <see cref="Customer"/>.
         /// </summary>
         private BindingList<Customer> _customers = new BindingList<Customer>();
 
         /// <summary>
         /// Покупатель, выбранный в CustomersListBox.
         /// </summary>
-        private Customer _currentCustomer;
-
-        /// <summary>
-        /// Default value for Name.
-        /// </summary>
-        static string firstname = "Stock Name";
+        private Customer _currentCustomer;        
 
         /// <summary>
         /// Создаёт экземпляр класса CustomerTab.
@@ -122,6 +117,11 @@ namespace ObjectOrientedPractics.View.Tabs
             /// <summary>
             /// Default value for Name.
             /// </summary>
+            string firstname = "Stock Name";
+
+            /// <summary>
+            /// Default value for Name.
+            /// </summary>
             int defaultindex = 111111;
 
             /// <summary>
@@ -188,6 +188,9 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
+        /// <summary>
+        /// Возвращает и задаёт список клиентов.
+        /// </summary>
         public BindingList<Customer> Customers
         {
             get { return _customers; }

@@ -15,34 +15,14 @@ namespace ObjectOrientedPractics.View.Tabs
     public partial class itemsTab : UserControl
     {
         /// <summary>
-        /// Предмет типа Item.
+        /// Список предметов в магазине типа <see cref="Item"/>.
         /// </summary>
         private BindingList<Item> _items = new BindingList<Item>();
 
         /// <summary>
         /// Предмет, выбранный в ItemsListBox.
         /// </summary>
-        private Item _currentItemList;
-
-        /// <summary>
-        /// Default value of Cost.
-        /// </summary>
-        static int firstcost = 100;
-
-        /// <summary>
-        /// Default value for Name.
-        /// </summary>
-        static string firstname = "Name";
-
-        /// <summary>
-        /// Default value for Info.
-        /// </summary>
-        static string firstdescription = "Info";
-
-        /// <summary>
-        /// Default value for Category.
-        /// </summary>
-        static Category firstCategory = Category.Processor;
+        private Item _currentItemList;        
 
         /// <summary>
         /// Создаёт экземпляр класса ItemsTab.
@@ -250,6 +230,26 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>        
         private void AddButton_Click(object sender, EventArgs e)
         {
+            /// <summary>
+            /// Default value of Cost.
+            /// </summary>
+            int firstcost = 100;
+
+            /// <summary>
+            /// Default value for Name.
+            /// </summary>
+            string firstname = "Name";
+
+            /// <summary>
+            /// Default value for Info.
+            /// </summary>
+            string firstdescription = "Info";
+
+            /// <summary>
+            /// Default value for Category.
+            /// </summary>
+            Category firstCategory = Category.Processor;
+
             var newItem = new Item(firstname, firstdescription, firstcost, firstCategory);
             _items.Add(newItem);  
             
