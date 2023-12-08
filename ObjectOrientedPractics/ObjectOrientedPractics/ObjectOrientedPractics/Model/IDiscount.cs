@@ -8,7 +8,7 @@ namespace ObjectOrientedPractics.Model
 {
     public interface IDiscount
     {
-        string Info();
+        string ToString();
         int Calculate(List<Item> items);
         int Apply(List<Item> items);
         void Update(List<Item> items);

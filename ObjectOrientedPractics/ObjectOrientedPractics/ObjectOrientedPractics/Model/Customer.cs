@@ -40,13 +40,7 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Заказы покупателя.
         /// </summary>
-        private List<Order> _orders;
-
-
-        private PercentDiscount _gpuDiscount = new PercentDiscount(Category.GraphicsCard);
-
-        private PercentDiscount _ramDiscount = new PercentDiscount(Category.RAM);
-        
+        private List<Order> _orders;        
 
         /// <summary>
         /// Указывает, явдяется ли покупатель приоритетным.
@@ -142,17 +136,6 @@ namespace ObjectOrientedPractics.Model
         {
             set => _isPriority = value;
             get => _isPriority;
-        }
-
-
-        public PercentDiscount GPUDiscount
-        {
-            get => _gpuDiscount;
-        }
-
-        public PercentDiscount RAMDiscount
-        {
-            get => _ramDiscount;
         }
 
         public List<IDiscount> Discounts { get; set; }

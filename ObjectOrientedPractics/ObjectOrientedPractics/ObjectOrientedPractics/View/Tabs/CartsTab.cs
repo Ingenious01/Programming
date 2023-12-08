@@ -11,11 +11,13 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static ObjectOrientedPractics.Model.IDiscount;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
     public partial class cartsTab : UserControl
     {
+
         /// <summary>
         /// Список всех предметов в магазине типа <see cref="Item"/>.
         /// </summary>
@@ -134,6 +136,7 @@ namespace ObjectOrientedPractics.View.Tabs
             try
             {
                 CurrentCustomer = Customers[customerComboBox.SelectedIndex];
+                CalculateDiscount();
             }
             catch (ArgumentOutOfRangeException)
             { 
@@ -147,6 +150,7 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 CurrentCustomer.Cart.ListOfItems.Add(CurrentItem);
                 UpdateCartInfo();
+                CalculateDiscount();
             }
         }
 
@@ -175,46 +179,40 @@ namespace ObjectOrientedPractics.View.Tabs
                 CurrentCustomer.Orders.Add(NewOrder);
             }
 
+            UpdateDiscount();
             CurrentCustomer.Cart.ListOfItems.Clear();
             Customers.ResetBindings();
             UpdateCartInfo();
         }
 
-        private void calculateButton_Click(object sender, EventArgs e)
+        public void CalculateDiscount()
         {
-            discountInfoLabel.Text = CurrentCustomer.GPUDiscount.Info();
+            var Discount = 0;
+            foreach (var discount in _currentCustomer.Discounts)
+            {
+                Discount = Discount + discount.Calculate(_currentCustomer.Cart.ListOfItems);
+            }
 
-            label1.Text = Convert.ToString(CurrentCustomer.GPUDiscount.Calculate(CurrentCustomer.Cart.ListOfItems));
+            int newPrice = (int)_currentCustomer.Cart.Amount() - Discount;
+            discountAmountLabel.Text = Discount.ToString();
+
+            totalLabel.Text = newPrice.ToString();
         }
 
-        private void updateButton_Click(object sender, EventArgs e)
+        public void UpdateDiscount()
         {
-            CurrentCustomer.GPUDiscount.Update(CurrentCustomer.Cart.ListOfItems);
+            foreach (var discount in _currentCustomer.Discounts)
+            {
+                discount.Update(_currentCustomer.Cart.ListOfItems);
+            }
         }
 
-        private void applyButton_Click(object sender, EventArgs e)
+        public void ApplyDiscount()
         {
-            totalCostLabel.Text = Convert.ToString(CurrentCustomer.GPUDiscount.Apply(CurrentCustomer.Cart.ListOfItems));
+            foreach (var discount in _currentCustomer.Discounts)
+            {
+                discount.Apply(_currentCustomer.Cart.ListOfItems);
+            }
         }
-
-        /*
-        private void calculateButton_Click(object sender, EventArgs e)
-        {
-            discountInfoLabel.Text = CurrentCustomer.PointsDiscount.Info();            
-            
-            label1.Text = Convert.ToString(CurrentCustomer.PointsDiscount.Calculate(CurrentCustomer));
-        }
-
-        private void updateButton_Click(object sender, EventArgs e)
-        {
-            CurrentCustomer.PointsDiscount.Update(CurrentCustomer);
-        }
-
-        private void applyButton_Click(object sender, EventArgs e)
-        {
-            totalCostLabel.Text = Convert.ToString(CurrentCustomer.PointsDiscount.Apply(CurrentCustomer));
-        }
-        */
-
     }
 }

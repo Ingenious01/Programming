@@ -1,4 +1,6 @@
 ﻿using ObjectOrientedPractics.Model;
+using ObjectOrientedPractics.Model.Discounts;
+using ObjectOrientedPractics.Model.Enums;
 using ObjectOrientedPractics.View.Controls;
 using System;
 using System.Collections.Generic;
@@ -33,6 +35,8 @@ namespace ObjectOrientedPractics.View.Tabs
             InitializeComponent();
 
             customersListBox.DataSource = _customers;
+
+            comboBox1.DataSource = Enum.GetValues(typeof(Category));
         }      
 
         /// <summary>
@@ -44,7 +48,12 @@ namespace ObjectOrientedPractics.View.Tabs
             idTextBox.Text = customer.Id.ToString();
             nameTextBox.Text = customer.FullName;
             addressControl1.Address = customer.Address;
-            if(customer.IsPriority == true)
+            if (customer.Discounts != null)
+            {
+                discountsListBox.DataSource = customer.Discounts;
+            }
+            
+            if (customer.IsPriority == true)
             {
                 priorityCheckBox.Checked = true;
             }
@@ -159,7 +168,8 @@ namespace ObjectOrientedPractics.View.Tabs
             addressControl1.Enabled = true;
             removeButton.Enabled = true;
 
-            UpdateCustomerInfo(_customers[customersListBox.SelectedIndex]);
+            _currentCustomer = _customers[customersListBox.SelectedIndex];
+            UpdateCustomerInfo(_currentCustomer);
 
         }
 
@@ -221,8 +231,11 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private void addDiscountButton_Click(object sender, EventArgs e)
         {
-            MainForm form2 = new MainForm();
-            form2.Show();
+            PercentDiscount percentDiscount = new PercentDiscount((Category)comboBox1.SelectedItem);
+            _currentCustomer.Discounts.Add(percentDiscount);
+
+            discountsListBox.DataSource = null;
+            discountsListBox.DataSource = _currentCustomer.Discounts;
         }
     }
 }

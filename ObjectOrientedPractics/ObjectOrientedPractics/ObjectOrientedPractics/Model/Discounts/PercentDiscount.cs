@@ -1,13 +1,15 @@
 ﻿using ObjectOrientedPractics.Model.Enums;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ObjectOrientedPractics.Model.Discounts
 {
-    public class PercentDiscount : PointsDiscount, IDiscount
+    public class PercentDiscount : PointsDiscount, IDiscount, INotifyPropertyChanged
     {
         private Category _category;
 
@@ -15,15 +17,22 @@ namespace ObjectOrientedPractics.Model.Discounts
 
         private double _discount =0.0;
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
         public double TotalSpent
         {
-            set { _totalSpent = value; }
+            set { _totalSpent = value; OnPropertyChanged(); }
             get { return _totalSpent; }
         }
 
         public double Discount
         {
-            set { _discount = value; }
+            set { _discount = value; OnPropertyChanged(); }
             get { return _discount; }
         }        
 
@@ -75,7 +84,7 @@ namespace ObjectOrientedPractics.Model.Discounts
             }
         }
 
-        public override string Info()
+        public override string ToString()
         {
             double discount = Discount *10;
             Category category = _category;

@@ -37,23 +37,24 @@
             this.fullNameLabel = new System.Windows.Forms.Label();
             this.idLabel = new System.Windows.Forms.Label();
             this.addressControl1 = new ObjectOrientedPractics.View.Controls.AddressControl();
+            this.discountsGroupBox = new System.Windows.Forms.GroupBox();
+            this.removeDiscountButton = new System.Windows.Forms.Button();
+            this.addDiscountButton = new System.Windows.Forms.Button();
+            this.discountsListBox = new System.Windows.Forms.ListBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.customersGroupBox = new System.Windows.Forms.GroupBox();
             this.customersListBox = new System.Windows.Forms.ListBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.addButton = new System.Windows.Forms.Button();
             this.removeButton = new System.Windows.Forms.Button();
-            this.discountsGroupBox = new System.Windows.Forms.GroupBox();
-            this.discountsListBox = new System.Windows.Forms.ListBox();
-            this.addDiscountButton = new System.Windows.Forms.Button();
-            this.removeDiscountButton = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.discountsGroupBox.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.customersGroupBox.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
-            this.discountsGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -168,6 +169,50 @@
             this.addressControl1.Size = new System.Drawing.Size(647, 283);
             this.addressControl1.TabIndex = 3;
             // 
+            // discountsGroupBox
+            // 
+            this.discountsGroupBox.Controls.Add(this.comboBox1);
+            this.discountsGroupBox.Controls.Add(this.removeDiscountButton);
+            this.discountsGroupBox.Controls.Add(this.addDiscountButton);
+            this.discountsGroupBox.Controls.Add(this.discountsListBox);
+            this.discountsGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.discountsGroupBox.Location = new System.Drawing.Point(3, 436);
+            this.discountsGroupBox.Name = "discountsGroupBox";
+            this.discountsGroupBox.Size = new System.Drawing.Size(647, 285);
+            this.discountsGroupBox.TabIndex = 4;
+            this.discountsGroupBox.TabStop = false;
+            this.discountsGroupBox.Text = "Discounts";
+            // 
+            // removeDiscountButton
+            // 
+            this.removeDiscountButton.Location = new System.Drawing.Point(390, 98);
+            this.removeDiscountButton.Name = "removeDiscountButton";
+            this.removeDiscountButton.Size = new System.Drawing.Size(129, 48);
+            this.removeDiscountButton.TabIndex = 2;
+            this.removeDiscountButton.Text = "Remove";
+            this.removeDiscountButton.UseVisualStyleBackColor = true;
+            // 
+            // addDiscountButton
+            // 
+            this.addDiscountButton.Location = new System.Drawing.Point(390, 22);
+            this.addDiscountButton.Name = "addDiscountButton";
+            this.addDiscountButton.Size = new System.Drawing.Size(129, 70);
+            this.addDiscountButton.TabIndex = 1;
+            this.addDiscountButton.Text = "Add";
+            this.addDiscountButton.UseVisualStyleBackColor = true;
+            this.addDiscountButton.Click += new System.EventHandler(this.addDiscountButton_Click);
+            // 
+            // discountsListBox
+            // 
+            this.discountsListBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.discountsListBox.FormattingEnabled = true;
+            this.discountsListBox.ItemHeight = 16;
+            this.discountsListBox.Location = new System.Drawing.Point(10, 22);
+            this.discountsListBox.Name = "discountsListBox";
+            this.discountsListBox.Size = new System.Drawing.Size(374, 164);
+            this.discountsListBox.TabIndex = 0;
+            // 
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.ColumnCount = 1;
@@ -250,48 +295,13 @@
             this.removeButton.UseVisualStyleBackColor = true;
             this.removeButton.Click += new System.EventHandler(this.removeButton_Click);
             // 
-            // discountsGroupBox
+            // comboBox1
             // 
-            this.discountsGroupBox.Controls.Add(this.removeDiscountButton);
-            this.discountsGroupBox.Controls.Add(this.addDiscountButton);
-            this.discountsGroupBox.Controls.Add(this.discountsListBox);
-            this.discountsGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.discountsGroupBox.Location = new System.Drawing.Point(3, 436);
-            this.discountsGroupBox.Name = "discountsGroupBox";
-            this.discountsGroupBox.Size = new System.Drawing.Size(647, 285);
-            this.discountsGroupBox.TabIndex = 4;
-            this.discountsGroupBox.TabStop = false;
-            this.discountsGroupBox.Text = "Discounts";
-            // 
-            // discountsListBox
-            // 
-            this.discountsListBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.discountsListBox.FormattingEnabled = true;
-            this.discountsListBox.ItemHeight = 16;
-            this.discountsListBox.Location = new System.Drawing.Point(10, 22);
-            this.discountsListBox.Name = "discountsListBox";
-            this.discountsListBox.Size = new System.Drawing.Size(374, 164);
-            this.discountsListBox.TabIndex = 0;
-            // 
-            // addDiscountButton
-            // 
-            this.addDiscountButton.Location = new System.Drawing.Point(390, 22);
-            this.addDiscountButton.Name = "addDiscountButton";
-            this.addDiscountButton.Size = new System.Drawing.Size(129, 70);
-            this.addDiscountButton.TabIndex = 1;
-            this.addDiscountButton.Text = "Add";
-            this.addDiscountButton.UseVisualStyleBackColor = true;
-            this.addDiscountButton.Click += new System.EventHandler(this.addDiscountButton_Click);
-            // 
-            // removeDiscountButton
-            // 
-            this.removeDiscountButton.Location = new System.Drawing.Point(390, 98);
-            this.removeDiscountButton.Name = "removeDiscountButton";
-            this.removeDiscountButton.Size = new System.Drawing.Size(129, 48);
-            this.removeDiscountButton.TabIndex = 2;
-            this.removeDiscountButton.Text = "Remove";
-            this.removeDiscountButton.UseVisualStyleBackColor = true;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(341, 226);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(178, 24);
+            this.comboBox1.TabIndex = 3;
             // 
             // customersTab
             // 
@@ -304,10 +314,10 @@
             this.tableLayoutPanel4.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.discountsGroupBox.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.customersGroupBox.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
-            this.discountsGroupBox.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -333,5 +343,6 @@
         private System.Windows.Forms.Button removeDiscountButton;
         private System.Windows.Forms.Button addDiscountButton;
         private System.Windows.Forms.ListBox discountsListBox;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }

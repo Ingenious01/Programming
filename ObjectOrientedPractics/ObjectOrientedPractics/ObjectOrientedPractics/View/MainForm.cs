@@ -14,10 +14,18 @@ namespace ObjectOrientedPractics
 {
     public partial class MainForm : Form
     {
+        public event EventHandler<string> DayOfWeekSelected;
+
+        public void OnDayOfWeekSelected(string dayOfWeek)
+        {
+            DayOfWeekSelected?.Invoke(this, dayOfWeek);
+        }
+
         /// <summary>
         /// Экземпляр класса <see cref="Store"/>
         /// </summary>
-        private Store _store = new Store();        
+        private Store _store = new Store(); 
+        
         public MainForm()
         {
             InitializeComponent();            

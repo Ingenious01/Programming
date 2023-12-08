@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,6 +28,7 @@ namespace ObjectOrientedPractics.Model.Discounts
 
             return result;
         }
+
         public virtual int Calculate (List<Item> items)
         {
             if (Amount(items) <= 0)
@@ -83,7 +85,7 @@ namespace ObjectOrientedPractics.Model.Discounts
             _points = _points + (int)(Amount(items)*0.1);
         }
 
-        public virtual string Info()
+        public override string ToString()
         {
             int points = _points;
             string info = $"Накопительная - {points} баллов";
