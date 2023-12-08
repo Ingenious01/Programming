@@ -1,4 +1,7 @@
-﻿using ObjectOrientedPractics.Services;
+﻿using ObjectOrientedPractics.Model.Discounts;
+using ObjectOrientedPractics.Model.Enums;
+using ObjectOrientedPractics.Model.Orders;
+using ObjectOrientedPractics.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -38,6 +41,12 @@ namespace ObjectOrientedPractics.Model
         /// Заказы покупателя.
         /// </summary>
         private List<Order> _orders;
+
+
+        private PercentDiscount _gpuDiscount = new PercentDiscount(Category.GraphicsCard);
+
+        private PercentDiscount _ramDiscount = new PercentDiscount(Category.RAM);
+        
 
         /// <summary>
         /// Указывает, явдяется ли покупатель приоритетным.
@@ -135,6 +144,20 @@ namespace ObjectOrientedPractics.Model
             get => _isPriority;
         }
 
+
+        public PercentDiscount GPUDiscount
+        {
+            get => _gpuDiscount;
+        }
+
+        public PercentDiscount RAMDiscount
+        {
+            get => _ramDiscount;
+        }
+
+        public List<IDiscount> Discounts { get; set; }
+        
+
         /// <summary>
         /// Создаёт экземпляр класса <see cref="Customer"/>.
         /// </summary>    
@@ -147,6 +170,10 @@ namespace ObjectOrientedPractics.Model
             Address = address;
             Cart = new Cart();
             Orders = new List<Order>();
+
+            Discounts = new List<IDiscount>();
+            PointsDiscount pointsDiscount = new PointsDiscount();
+            Discounts.Add(pointsDiscount);
         }
     }
 }

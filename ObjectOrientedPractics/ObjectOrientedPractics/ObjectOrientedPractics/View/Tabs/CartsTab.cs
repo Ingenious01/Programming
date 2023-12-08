@@ -1,4 +1,6 @@
 ﻿using ObjectOrientedPractics.Model;
+using ObjectOrientedPractics.Model.Discounts;
+using ObjectOrientedPractics.Model.Orders;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -177,5 +179,42 @@ namespace ObjectOrientedPractics.View.Tabs
             Customers.ResetBindings();
             UpdateCartInfo();
         }
+
+        private void calculateButton_Click(object sender, EventArgs e)
+        {
+            discountInfoLabel.Text = CurrentCustomer.GPUDiscount.Info();
+
+            label1.Text = Convert.ToString(CurrentCustomer.GPUDiscount.Calculate(CurrentCustomer.Cart.ListOfItems));
+        }
+
+        private void updateButton_Click(object sender, EventArgs e)
+        {
+            CurrentCustomer.GPUDiscount.Update(CurrentCustomer.Cart.ListOfItems);
+        }
+
+        private void applyButton_Click(object sender, EventArgs e)
+        {
+            totalCostLabel.Text = Convert.ToString(CurrentCustomer.GPUDiscount.Apply(CurrentCustomer.Cart.ListOfItems));
+        }
+
+        /*
+        private void calculateButton_Click(object sender, EventArgs e)
+        {
+            discountInfoLabel.Text = CurrentCustomer.PointsDiscount.Info();            
+            
+            label1.Text = Convert.ToString(CurrentCustomer.PointsDiscount.Calculate(CurrentCustomer));
+        }
+
+        private void updateButton_Click(object sender, EventArgs e)
+        {
+            CurrentCustomer.PointsDiscount.Update(CurrentCustomer);
+        }
+
+        private void applyButton_Click(object sender, EventArgs e)
+        {
+            totalCostLabel.Text = Convert.ToString(CurrentCustomer.PointsDiscount.Apply(CurrentCustomer));
+        }
+        */
+
     }
 }

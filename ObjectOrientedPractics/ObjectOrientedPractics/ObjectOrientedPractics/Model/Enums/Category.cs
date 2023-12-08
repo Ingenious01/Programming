@@ -4,19 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ObjectOrientedPractics.Model
+namespace ObjectOrientedPractics.Model.Enums
 {
     /// <summary>
     /// Категория, вид товара (процессор, видеокарта и т.п)
     /// </summary>
-    public enum OrderStatus
+    public enum Category
     {
-        New,
-        Processing,
-        Assembly,
-        Sent,
-        Delivered,
-        Returned,
-        Abandoned
+        Processor,
+        GraphicsCard,
+        Motherboard,
+        RAM,
+        PowerSupplie,
+        SSD,
+        HDD
     }
 }

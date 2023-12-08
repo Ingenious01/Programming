@@ -47,6 +47,12 @@
             this.cartLabel = new System.Windows.Forms.Label();
             this.customerComboBox = new System.Windows.Forms.ComboBox();
             this.customerLabel = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.discountLabel = new System.Windows.Forms.Label();
+            this.calculateButton = new System.Windows.Forms.Button();
+            this.applyButton = new System.Windows.Forms.Button();
+            this.updateButton = new System.Windows.Forms.Button();
+            this.discountInfoLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.itemsGroupBox.SuspendLayout();
@@ -149,8 +155,8 @@
             this.tableLayoutPanel4.Location = new System.Drawing.Point(478, 3);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 2;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel4.Size = new System.Drawing.Size(707, 753);
             this.tableLayoutPanel4.TabIndex = 1;
             // 
@@ -166,7 +172,7 @@
             this.tableLayoutPanel5.RowCount = 2;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(701, 521);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(701, 596);
             this.tableLayoutPanel5.TabIndex = 0;
             // 
             // tableLayoutPanel6
@@ -180,11 +186,11 @@
             this.tableLayoutPanel6.Controls.Add(this.removeItemButton, 2, 0);
             this.tableLayoutPanel6.Controls.Add(this.clearCartButton, 3, 0);
             this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel6.Location = new System.Drawing.Point(3, 471);
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(3, 539);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.RowCount = 1;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(695, 47);
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(695, 54);
             this.tableLayoutPanel6.TabIndex = 2;
             // 
             // createOrderButton
@@ -193,7 +199,7 @@
             this.createOrderButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.createOrderButton.Location = new System.Drawing.Point(3, 3);
             this.createOrderButton.Name = "createOrderButton";
-            this.createOrderButton.Size = new System.Drawing.Size(167, 41);
+            this.createOrderButton.Size = new System.Drawing.Size(167, 48);
             this.createOrderButton.TabIndex = 4;
             this.createOrderButton.Text = "Create Order";
             this.createOrderButton.UseVisualStyleBackColor = true;
@@ -204,7 +210,7 @@
             this.removeItemButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.removeItemButton.Location = new System.Drawing.Point(349, 3);
             this.removeItemButton.Name = "removeItemButton";
-            this.removeItemButton.Size = new System.Drawing.Size(167, 41);
+            this.removeItemButton.Size = new System.Drawing.Size(167, 48);
             this.removeItemButton.TabIndex = 5;
             this.removeItemButton.Text = "Remove Item";
             this.removeItemButton.UseVisualStyleBackColor = true;
@@ -215,7 +221,7 @@
             this.clearCartButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.clearCartButton.Location = new System.Drawing.Point(522, 3);
             this.clearCartButton.Name = "clearCartButton";
-            this.clearCartButton.Size = new System.Drawing.Size(170, 41);
+            this.clearCartButton.Size = new System.Drawing.Size(170, 48);
             this.clearCartButton.TabIndex = 7;
             this.clearCartButton.Text = "ClearCart";
             this.clearCartButton.UseVisualStyleBackColor = true;
@@ -223,6 +229,12 @@
             // 
             // cartGropBox
             // 
+            this.cartGropBox.Controls.Add(this.discountInfoLabel);
+            this.cartGropBox.Controls.Add(this.updateButton);
+            this.cartGropBox.Controls.Add(this.applyButton);
+            this.cartGropBox.Controls.Add(this.calculateButton);
+            this.cartGropBox.Controls.Add(this.label1);
+            this.cartGropBox.Controls.Add(this.discountLabel);
             this.cartGropBox.Controls.Add(this.totalCostLabel);
             this.cartGropBox.Controls.Add(this.amountLabel);
             this.cartGropBox.Controls.Add(this.cartListBox);
@@ -232,7 +244,7 @@
             this.cartGropBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cartGropBox.Location = new System.Drawing.Point(3, 3);
             this.cartGropBox.Name = "cartGropBox";
-            this.cartGropBox.Size = new System.Drawing.Size(695, 462);
+            this.cartGropBox.Size = new System.Drawing.Size(695, 530);
             this.cartGropBox.TabIndex = 1;
             this.cartGropBox.TabStop = false;
             // 
@@ -241,7 +253,7 @@
             this.totalCostLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.totalCostLabel.AutoSize = true;
             this.totalCostLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.totalCostLabel.Location = new System.Drawing.Point(616, 428);
+            this.totalCostLabel.Location = new System.Drawing.Point(600, 434);
             this.totalCostLabel.Name = "totalCostLabel";
             this.totalCostLabel.Size = new System.Drawing.Size(28, 29);
             this.totalCostLabel.TabIndex = 11;
@@ -252,7 +264,7 @@
             this.amountLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.amountLabel.AutoSize = true;
             this.amountLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.amountLabel.Location = new System.Drawing.Point(601, 404);
+            this.amountLabel.Location = new System.Drawing.Point(601, 410);
             this.amountLabel.Name = "amountLabel";
             this.amountLabel.Size = new System.Drawing.Size(88, 24);
             this.amountLabel.TabIndex = 10;
@@ -268,7 +280,7 @@
             this.cartListBox.ItemHeight = 22;
             this.cartListBox.Location = new System.Drawing.Point(6, 95);
             this.cartListBox.Name = "cartListBox";
-            this.cartListBox.Size = new System.Drawing.Size(683, 290);
+            this.cartListBox.Size = new System.Drawing.Size(683, 312);
             this.cartListBox.TabIndex = 9;
             // 
             // cartLabel
@@ -302,6 +314,68 @@
             this.customerLabel.Size = new System.Drawing.Size(105, 24);
             this.customerLabel.TabIndex = 4;
             this.customerLabel.Text = "Customer:";
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(600, 487);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(28, 29);
+            this.label1.TabIndex = 13;
+            this.label1.Text = "0";
+            // 
+            // discountLabel
+            // 
+            this.discountLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.discountLabel.AutoSize = true;
+            this.discountLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.discountLabel.Location = new System.Drawing.Point(601, 463);
+            this.discountLabel.Name = "discountLabel";
+            this.discountLabel.Size = new System.Drawing.Size(97, 24);
+            this.discountLabel.TabIndex = 12;
+            this.discountLabel.Text = "Discount:";
+            // 
+            // calculateButton
+            // 
+            this.calculateButton.Location = new System.Drawing.Point(6, 434);
+            this.calculateButton.Name = "calculateButton";
+            this.calculateButton.Size = new System.Drawing.Size(154, 53);
+            this.calculateButton.TabIndex = 14;
+            this.calculateButton.Text = "Calculate";
+            this.calculateButton.UseVisualStyleBackColor = true;
+            this.calculateButton.Click += new System.EventHandler(this.calculateButton_Click);
+            // 
+            // applyButton
+            // 
+            this.applyButton.Location = new System.Drawing.Point(326, 434);
+            this.applyButton.Name = "applyButton";
+            this.applyButton.Size = new System.Drawing.Size(154, 53);
+            this.applyButton.TabIndex = 15;
+            this.applyButton.Text = "Apply";
+            this.applyButton.UseVisualStyleBackColor = true;
+            this.applyButton.Click += new System.EventHandler(this.applyButton_Click);
+            // 
+            // updateButton
+            // 
+            this.updateButton.Location = new System.Drawing.Point(166, 434);
+            this.updateButton.Name = "updateButton";
+            this.updateButton.Size = new System.Drawing.Size(154, 53);
+            this.updateButton.TabIndex = 16;
+            this.updateButton.Text = "Update";
+            this.updateButton.UseVisualStyleBackColor = true;
+            this.updateButton.Click += new System.EventHandler(this.updateButton_Click);
+            // 
+            // discountInfoLabel
+            // 
+            this.discountInfoLabel.AutoSize = true;
+            this.discountInfoLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.discountInfoLabel.Location = new System.Drawing.Point(3, 413);
+            this.discountInfoLabel.Name = "discountInfoLabel";
+            this.discountInfoLabel.Size = new System.Drawing.Size(52, 18);
+            this.discountInfoLabel.TabIndex = 17;
+            this.discountInfoLabel.Text = "label2";
             // 
             // cartsTab
             // 
@@ -344,5 +418,11 @@
         private System.Windows.Forms.Button clearCartButton;
         private System.Windows.Forms.GroupBox itemsGroupBox;
         private System.Windows.Forms.ListBox itemsListBox;
+        private System.Windows.Forms.Label discountInfoLabel;
+        private System.Windows.Forms.Button updateButton;
+        private System.Windows.Forms.Button applyButton;
+        private System.Windows.Forms.Button calculateButton;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label discountLabel;
     }
 }

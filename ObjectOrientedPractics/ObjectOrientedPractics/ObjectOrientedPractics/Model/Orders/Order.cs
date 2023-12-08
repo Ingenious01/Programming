@@ -1,4 +1,5 @@
-﻿using ObjectOrientedPractics.Services;
+﻿using ObjectOrientedPractics.Model.Enums;
+using ObjectOrientedPractics.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -7,7 +8,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ObjectOrientedPractics.Model
+namespace ObjectOrientedPractics.Model.Orders
 {
     public class Order : INotifyPropertyChanged
     {
@@ -82,11 +83,15 @@ namespace ObjectOrientedPractics.Model
         /// Возвращает и задаёт общую стоимость заказа.
         /// </summary>
         public double TotalPrice { get { return _totalPrice; } set { _totalPrice = value; OnPropertyChanged(); } }
-
+        
         /// <summary>
         /// Возвращает и задаёт список предметов в заказе.
         /// </summary>
         public string CustomerFullName { get { return _customerFullName; } set { _customerFullName = value; OnPropertyChanged(); } }
+
+        public int DiscountAmount { get; set; }
+
+        public int Total { get; set; }
 
         /// <summary>
         /// Считает общую стоимость всех пердметов в заказе у покупателя.

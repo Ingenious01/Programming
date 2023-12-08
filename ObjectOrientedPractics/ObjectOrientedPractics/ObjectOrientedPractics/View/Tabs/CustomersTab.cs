@@ -218,5 +218,11 @@ namespace ObjectOrientedPractics.View.Tabs
                 _currentCustomer.IsPriority = false;
             }
         }
+
+        private void addDiscountButton_Click(object sender, EventArgs e)
+        {
+            MainForm form2 = new MainForm();
+            form2.Show();
+        }
     }
 }

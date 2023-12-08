@@ -323,7 +323,7 @@
             // 
             // OrderBindingSource
             // 
-            this.OrderBindingSource.DataSource = typeof(ObjectOrientedPractics.Model.Order);
+            this.OrderBindingSource.DataSource = typeof(ObjectOrientedPractics.Model.Orders.Order);
             // 
             // tableLayoutPanel6
             // 
