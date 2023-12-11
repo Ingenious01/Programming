@@ -19,6 +19,7 @@ namespace ObjectOrientedPractics
             InitializeComponent();
 
             categoryComboBox.DataSource = Enum.GetValues(typeof(Category));
+            categoryComboBox.SelectedItem = null;
         }
 
         public Category GetCategory()
@@ -28,7 +29,8 @@ namespace ObjectOrientedPractics
         }
 
         private void okButton_Click(object sender, EventArgs e)
-        {            
+        {
+            customersTab1.SelectedCategory = Category.GraphicsCard;
             this.Close();
         }
 

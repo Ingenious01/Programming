@@ -35,7 +35,12 @@ namespace ObjectOrientedPractics.Model.Orders
         /// <summary>
         /// Стоимость заказа.
         /// </summary>
-        private double _totalPrice;
+        private double _price;
+
+        /// <summary>
+        /// Стоимость заказа с учётом скидок.
+        /// </summary>
+        private int _totalPrice;
 
         /// <summary>
         /// Стоимость заказа.
@@ -82,8 +87,13 @@ namespace ObjectOrientedPractics.Model.Orders
         /// <summary>
         /// Возвращает и задаёт общую стоимость заказа.
         /// </summary>
-        public double TotalPrice { get { return _totalPrice; } set { _totalPrice = value; OnPropertyChanged(); } }
-        
+        public double Price { get { return _price; } set { _price = value; OnPropertyChanged(); } }
+
+        /// <summary>
+        /// Возвращает и задаёт стоимость заказа с учётом скидок.
+        /// </summary>
+        public int TotalPrice { get { return _totalPrice; } set { _totalPrice = value; OnPropertyChanged(); } }
+
         /// <summary>
         /// Возвращает и задаёт список предметов в заказе.
         /// </summary>
@@ -136,7 +146,7 @@ namespace ObjectOrientedPractics.Model.Orders
                     Items.Add(item);
                 }
             }
-            TotalPrice = customer.Cart.Amount();
+            Price = customer.Cart.Amount();
             Status = OrderStatus.New;
             CustomerFullName = customer.FullName;
         }

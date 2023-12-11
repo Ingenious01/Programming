@@ -25,7 +25,31 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <summary>
         /// Покупатель, выбранный в CustomersListBox.
         /// </summary>
-        private Customer _currentCustomer;        
+        private Customer _currentCustomer;
+
+        /// <summary>
+        /// Возвращает и задаёт список клиентов.
+        /// </summary>
+        public BindingList<Customer> Customers
+        {
+            get { return _customers; }
+            set
+            {
+                if (value != null)
+                {
+                    _customers = value;
+
+                    customersListBox.DataSource = _customers;
+
+                }
+            }
+        }
+
+        public Customer CurrentCustomer
+        {
+            get { return _currentCustomer; }
+            set { _currentCustomer = value; }
+        }
 
         /// <summary>
         /// Создаёт экземпляр класса CustomerTab.
@@ -81,8 +105,8 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             try
             {
-                _currentCustomer = _customers[customersListBox.SelectedIndex];
-                UpdateCustomerInfo(_currentCustomer);
+                CurrentCustomer = _customers[customersListBox.SelectedIndex];
+                UpdateCustomerInfo(CurrentCustomer);
             }
             catch
             {
@@ -106,13 +130,13 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             try
             {
-                _currentCustomer = _customers[customersListBox.SelectedIndex];
+                CurrentCustomer = _customers[customersListBox.SelectedIndex];
 
                 var currentName = nameTextBox.Text;
 
                 if (e.KeyChar == (char)Keys.Enter)
                 {
-                    _currentCustomer.FullName = currentName;
+                    CurrentCustomer.FullName = currentName;
                 }
             }
             catch
@@ -163,13 +187,14 @@ namespace ObjectOrientedPractics.View.Tabs
             var newCustomer = new Customer(firstname, stockAdress);
             _customers.Add(newCustomer);
 
+            discountsGroupBox.Enabled = true;
             priorityCheckBox.Enabled = true;
             nameTextBox.Enabled = true;
             addressControl1.Enabled = true;
             removeButton.Enabled = true;
 
-            _currentCustomer = _customers[customersListBox.SelectedIndex];
-            UpdateCustomerInfo(_currentCustomer);
+            CurrentCustomer = _customers[customersListBox.SelectedIndex];
+            UpdateCustomerInfo(CurrentCustomer);
 
         }
 
@@ -198,44 +223,67 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
-        /// <summary>
-        /// Возвращает и задаёт список клиентов.
-        /// </summary>
-        public BindingList<Customer> Customers
-        {
-            get { return _customers; }
-            set
-            {
-                if (value != null)
-                {
-                    _customers = value;
-
-                    customersListBox.DataSource = _customers;
-                    
-                }
-            }
-        }
-
         private void priorityCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            _currentCustomer = _customers[customersListBox.SelectedIndex];
+            CurrentCustomer = _customers[customersListBox.SelectedIndex];
             if (priorityCheckBox.Checked == true)
             {
-                _currentCustomer.IsPriority = true;
+                CurrentCustomer.IsPriority = true;
             }
             else if (priorityCheckBox.Checked == false) 
             {
-                _currentCustomer.IsPriority = false;
+                CurrentCustomer.IsPriority = false;
             }
+        }
+
+        private Category _selectedCategory;
+        public Category SelectedCategory 
+        { 
+            get { return _selectedCategory; }
+              set
+              {
+                CurrentCustomer = _customers[customersListBox.SelectedIndex];
+                _selectedCategory = value;
+
+                foreach(var discount in CurrentCustomer.Discounts)
+                {
+                    if (discount is PercentDiscount)
+                    {
+                        if (discount.Category == _selectedCategory)
+                        {
+                            return;
+                        }
+                    }
+                }
+
+                PercentDiscount percentDiscount = new PercentDiscount((Category)comboBox1.SelectedItem);
+                CurrentCustomer.Discounts.Add(percentDiscount);
+
+                discountsListBox.DataSource = null;
+                discountsListBox.DataSource = CurrentCustomer.Discounts;
+              }
         }
 
         private void addDiscountButton_Click(object sender, EventArgs e)
         {
-            PercentDiscount percentDiscount = new PercentDiscount((Category)comboBox1.SelectedItem);
-            _currentCustomer.Discounts.Add(percentDiscount);
+            /*
+            DiscountCategory category = new DiscountCategory();
+            category.Show();
+            */
 
+            SelectedCategory = (Category)comboBox1.SelectedItem;
+        }
+
+        private void removeDiscountButton_Click(object sender, EventArgs e)
+        {
+            if (discountsListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+
+            CurrentCustomer.Discounts.RemoveAt(discountsListBox.SelectedIndex);
             discountsListBox.DataSource = null;
-            discountsListBox.DataSource = _currentCustomer.Discounts;
+            discountsListBox.DataSource= CurrentCustomer.Discounts;
         }
     }
 }

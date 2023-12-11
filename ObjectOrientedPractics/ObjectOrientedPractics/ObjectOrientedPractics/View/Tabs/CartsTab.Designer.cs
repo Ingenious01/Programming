@@ -41,7 +41,7 @@
             this.removeItemButton = new System.Windows.Forms.Button();
             this.clearCartButton = new System.Windows.Forms.Button();
             this.cartGropBox = new System.Windows.Forms.GroupBox();
-            this.totalCostLabel = new System.Windows.Forms.Label();
+            this.costLabel = new System.Windows.Forms.Label();
             this.amountLabel = new System.Windows.Forms.Label();
             this.cartListBox = new System.Windows.Forms.ListBox();
             this.cartLabel = new System.Windows.Forms.Label();
@@ -56,7 +56,7 @@
             this.powersupplieDiscountСheckBox = new System.Windows.Forms.CheckBox();
             this.ramDiscountСheckBox = new System.Windows.Forms.CheckBox();
             this.pointsDiscountСheckBox = new System.Windows.Forms.CheckBox();
-            this.totalLabel = new System.Windows.Forms.Label();
+            this.totalCostLabel = new System.Windows.Forms.Label();
             this.totalInfoLabel = new System.Windows.Forms.Label();
             this.discountAmountLabel = new System.Windows.Forms.Label();
             this.discountAmountInfoLabel = new System.Windows.Forms.Label();
@@ -238,7 +238,7 @@
             // 
             // cartGropBox
             // 
-            this.cartGropBox.Controls.Add(this.totalCostLabel);
+            this.cartGropBox.Controls.Add(this.costLabel);
             this.cartGropBox.Controls.Add(this.amountLabel);
             this.cartGropBox.Controls.Add(this.cartListBox);
             this.cartGropBox.Controls.Add(this.cartLabel);
@@ -251,17 +251,17 @@
             this.cartGropBox.TabIndex = 1;
             this.cartGropBox.TabStop = false;
             // 
-            // totalCostLabel
+            // costLabel
             // 
-            this.totalCostLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.totalCostLabel.AutoSize = true;
-            this.totalCostLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.totalCostLabel.Location = new System.Drawing.Point(600, 303);
-            this.totalCostLabel.Name = "totalCostLabel";
-            this.totalCostLabel.Size = new System.Drawing.Size(28, 29);
-            this.totalCostLabel.TabIndex = 11;
-            this.totalCostLabel.Text = "0";
-            this.totalCostLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.costLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.costLabel.AutoSize = true;
+            this.costLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.costLabel.Location = new System.Drawing.Point(600, 303);
+            this.costLabel.Name = "costLabel";
+            this.costLabel.Size = new System.Drawing.Size(28, 29);
+            this.costLabel.TabIndex = 11;
+            this.costLabel.Text = "0";
+            this.costLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // amountLabel
             // 
@@ -329,7 +329,7 @@
             this.discountsGroupBox.Controls.Add(this.powersupplieDiscountСheckBox);
             this.discountsGroupBox.Controls.Add(this.ramDiscountСheckBox);
             this.discountsGroupBox.Controls.Add(this.pointsDiscountСheckBox);
-            this.discountsGroupBox.Controls.Add(this.totalLabel);
+            this.discountsGroupBox.Controls.Add(this.totalCostLabel);
             this.discountsGroupBox.Controls.Add(this.totalInfoLabel);
             this.discountsGroupBox.Controls.Add(this.discountAmountLabel);
             this.discountsGroupBox.Controls.Add(this.discountAmountInfoLabel);
@@ -345,79 +345,93 @@
             // hddDiscountСheckBox
             // 
             this.hddDiscountСheckBox.AutoSize = true;
+            this.hddDiscountСheckBox.Enabled = false;
             this.hddDiscountСheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.hddDiscountСheckBox.Location = new System.Drawing.Point(9, 239);
             this.hddDiscountСheckBox.Name = "hddDiscountСheckBox";
-            this.hddDiscountСheckBox.Size = new System.Drawing.Size(113, 24);
+            this.hddDiscountСheckBox.Size = new System.Drawing.Size(293, 24);
             this.hddDiscountСheckBox.TabIndex = 28;
-            this.hddDiscountСheckBox.Text = "checkBox8";
+            this.hddDiscountСheckBox.Text = "Процентная в категоргии HDD";
             this.hddDiscountСheckBox.UseVisualStyleBackColor = true;
+            this.hddDiscountСheckBox.CheckedChanged += new System.EventHandler(this.hddDiscountСheckBox_CheckedChanged);
             // 
             // motherboardDiscountСheckBox
             // 
             this.motherboardDiscountСheckBox.AutoSize = true;
+            this.motherboardDiscountСheckBox.Enabled = false;
             this.motherboardDiscountСheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.motherboardDiscountСheckBox.Location = new System.Drawing.Point(9, 119);
             this.motherboardDiscountСheckBox.Name = "motherboardDiscountСheckBox";
-            this.motherboardDiscountСheckBox.Size = new System.Drawing.Size(113, 24);
+            this.motherboardDiscountСheckBox.Size = new System.Drawing.Size(351, 24);
             this.motherboardDiscountСheckBox.TabIndex = 27;
-            this.motherboardDiscountСheckBox.Text = "checkBox7";
+            this.motherboardDiscountСheckBox.Text = "Процентная в категоргии MotherBoard";
             this.motherboardDiscountСheckBox.UseVisualStyleBackColor = true;
+            this.motherboardDiscountСheckBox.CheckedChanged += new System.EventHandler(this.motherboardDiscountСheckBox_CheckedChanged);
             // 
             // processorDiscountСheckBox
             // 
             this.processorDiscountСheckBox.AutoSize = true;
+            this.processorDiscountСheckBox.Enabled = false;
             this.processorDiscountСheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.processorDiscountСheckBox.Location = new System.Drawing.Point(9, 59);
             this.processorDiscountСheckBox.Name = "processorDiscountСheckBox";
-            this.processorDiscountСheckBox.Size = new System.Drawing.Size(113, 24);
+            this.processorDiscountСheckBox.Size = new System.Drawing.Size(331, 24);
             this.processorDiscountСheckBox.TabIndex = 26;
-            this.processorDiscountСheckBox.Text = "checkBox6";
+            this.processorDiscountСheckBox.Text = "Процентная в категоргии Processor";
             this.processorDiscountСheckBox.UseVisualStyleBackColor = true;
+            this.processorDiscountСheckBox.CheckedChanged += new System.EventHandler(this.processorDiscountСheckBox_CheckedChanged);
             // 
             // gpuDiscountСheckBox
             // 
             this.gpuDiscountСheckBox.AutoSize = true;
+            this.gpuDiscountСheckBox.Enabled = false;
             this.gpuDiscountСheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.gpuDiscountСheckBox.Location = new System.Drawing.Point(9, 89);
             this.gpuDiscountСheckBox.Name = "gpuDiscountСheckBox";
-            this.gpuDiscountСheckBox.Size = new System.Drawing.Size(113, 24);
+            this.gpuDiscountСheckBox.Size = new System.Drawing.Size(349, 24);
             this.gpuDiscountСheckBox.TabIndex = 25;
-            this.gpuDiscountСheckBox.Text = "checkBox5";
+            this.gpuDiscountСheckBox.Text = "Процентная в категоргии GrahicsCard";
             this.gpuDiscountСheckBox.UseVisualStyleBackColor = true;
+            this.gpuDiscountСheckBox.CheckedChanged += new System.EventHandler(this.gpuDiscountСheckBox_CheckedChanged);
             // 
             // ssdDiscountСheckBox
             // 
             this.ssdDiscountСheckBox.AutoSize = true;
+            this.ssdDiscountСheckBox.Enabled = false;
             this.ssdDiscountСheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ssdDiscountСheckBox.Location = new System.Drawing.Point(9, 209);
             this.ssdDiscountСheckBox.Name = "ssdDiscountСheckBox";
-            this.ssdDiscountСheckBox.Size = new System.Drawing.Size(113, 24);
+            this.ssdDiscountСheckBox.Size = new System.Drawing.Size(289, 24);
             this.ssdDiscountСheckBox.TabIndex = 24;
-            this.ssdDiscountСheckBox.Text = "checkBox4";
+            this.ssdDiscountСheckBox.Text = "Процентная в категоргии SSD";
             this.ssdDiscountСheckBox.UseVisualStyleBackColor = true;
+            this.ssdDiscountСheckBox.CheckedChanged += new System.EventHandler(this.ssdDiscountСheckBox_CheckedChanged);
             // 
             // powersupplieDiscountСheckBox
             // 
             this.powersupplieDiscountСheckBox.AutoSize = true;
+            this.powersupplieDiscountСheckBox.Enabled = false;
             this.powersupplieDiscountСheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.powersupplieDiscountСheckBox.Location = new System.Drawing.Point(9, 179);
             this.powersupplieDiscountСheckBox.Name = "powersupplieDiscountСheckBox";
-            this.powersupplieDiscountСheckBox.Size = new System.Drawing.Size(113, 24);
+            this.powersupplieDiscountСheckBox.Size = new System.Drawing.Size(356, 24);
             this.powersupplieDiscountСheckBox.TabIndex = 23;
-            this.powersupplieDiscountСheckBox.Text = "checkBox3";
+            this.powersupplieDiscountСheckBox.Text = "Процентная в категоргии PowerSupplie";
             this.powersupplieDiscountСheckBox.UseVisualStyleBackColor = true;
+            this.powersupplieDiscountСheckBox.CheckedChanged += new System.EventHandler(this.powersupplieDiscountСheckBox_CheckedChanged);
             // 
             // ramDiscountСheckBox
             // 
             this.ramDiscountСheckBox.AutoSize = true;
+            this.ramDiscountСheckBox.Enabled = false;
             this.ramDiscountСheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ramDiscountСheckBox.Location = new System.Drawing.Point(9, 149);
             this.ramDiscountСheckBox.Name = "ramDiscountСheckBox";
-            this.ramDiscountСheckBox.Size = new System.Drawing.Size(113, 24);
+            this.ramDiscountСheckBox.Size = new System.Drawing.Size(291, 24);
             this.ramDiscountСheckBox.TabIndex = 22;
-            this.ramDiscountСheckBox.Text = "checkBox2";
+            this.ramDiscountСheckBox.Text = "Процентная в категоргии RAM";
             this.ramDiscountСheckBox.UseVisualStyleBackColor = true;
+            this.ramDiscountСheckBox.CheckedChanged += new System.EventHandler(this.ramDiscountСheckBox_CheckedChanged);
             // 
             // pointsDiscountСheckBox
             // 
@@ -425,22 +439,23 @@
             this.pointsDiscountСheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.pointsDiscountСheckBox.Location = new System.Drawing.Point(9, 29);
             this.pointsDiscountСheckBox.Name = "pointsDiscountСheckBox";
-            this.pointsDiscountСheckBox.Size = new System.Drawing.Size(113, 24);
+            this.pointsDiscountСheckBox.Size = new System.Drawing.Size(163, 24);
             this.pointsDiscountСheckBox.TabIndex = 21;
-            this.pointsDiscountСheckBox.Text = "checkBox1";
+            this.pointsDiscountСheckBox.Text = "Накопительная";
             this.pointsDiscountСheckBox.UseVisualStyleBackColor = true;
+            this.pointsDiscountСheckBox.CheckedChanged += new System.EventHandler(this.pointsDiscountСheckBox_CheckedChanged);
             // 
-            // totalLabel
+            // totalCostLabel
             // 
-            this.totalLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.totalLabel.AutoSize = true;
-            this.totalLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.totalLabel.Location = new System.Drawing.Point(619, 233);
-            this.totalLabel.Name = "totalLabel";
-            this.totalLabel.Size = new System.Drawing.Size(28, 29);
-            this.totalLabel.TabIndex = 20;
-            this.totalLabel.Text = "0";
-            this.totalLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.totalCostLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.totalCostLabel.AutoSize = true;
+            this.totalCostLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.totalCostLabel.Location = new System.Drawing.Point(603, 233);
+            this.totalCostLabel.Name = "totalCostLabel";
+            this.totalCostLabel.Size = new System.Drawing.Size(28, 29);
+            this.totalCostLabel.TabIndex = 20;
+            this.totalCostLabel.Text = "0";
+            this.totalCostLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // totalInfoLabel
             // 
@@ -470,11 +485,11 @@
             this.discountAmountInfoLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.discountAmountInfoLabel.AutoSize = true;
             this.discountAmountInfoLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.discountAmountInfoLabel.Location = new System.Drawing.Point(529, 18);
+            this.discountAmountInfoLabel.Location = new System.Drawing.Point(517, 18);
             this.discountAmountInfoLabel.Name = "discountAmountInfoLabel";
-            this.discountAmountInfoLabel.Size = new System.Drawing.Size(163, 24);
+            this.discountAmountInfoLabel.Size = new System.Drawing.Size(175, 24);
             this.discountAmountInfoLabel.TabIndex = 17;
-            this.discountAmountInfoLabel.Text = "Discount Amont:";
+            this.discountAmountInfoLabel.Text = "Discount Amount:";
             // 
             // cartsTab
             // 
@@ -512,7 +527,7 @@
         private System.Windows.Forms.ComboBox customerComboBox;
         private System.Windows.Forms.Label customerLabel;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
-        private System.Windows.Forms.Label totalCostLabel;
+        private System.Windows.Forms.Label costLabel;
         private System.Windows.Forms.Label amountLabel;
         private System.Windows.Forms.Button createOrderButton;
         private System.Windows.Forms.Button removeItemButton;
@@ -522,7 +537,7 @@
         private System.Windows.Forms.GroupBox discountsGroupBox;
         private System.Windows.Forms.Label discountAmountLabel;
         private System.Windows.Forms.Label discountAmountInfoLabel;
-        private System.Windows.Forms.Label totalLabel;
+        private System.Windows.Forms.Label totalCostLabel;
         private System.Windows.Forms.Label totalInfoLabel;
         private System.Windows.Forms.CheckBox motherboardDiscountСheckBox;
         private System.Windows.Forms.CheckBox processorDiscountСheckBox;

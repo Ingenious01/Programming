@@ -1,5 +1,6 @@
 ﻿using ObjectOrientedPractics.Model;
 using ObjectOrientedPractics.Model.Discounts;
+using ObjectOrientedPractics.Model.Enums;
 using ObjectOrientedPractics.Model.Orders;
 using System;
 using System.Collections.Generic;
@@ -114,9 +115,56 @@ namespace ObjectOrientedPractics.View.Tabs
 
             cartListBox.DataSource = CurrentCustomer.Cart.ListOfItems;
 
+            costLabel.Text = "0";
+
             totalCostLabel.Text = "0";
 
-            totalCostLabel.Text = Convert.ToString(CurrentCustomer.Cart.Amount());
+            costLabel.Text = Convert.ToString(CurrentCustomer.Cart.Amount());
+        }
+
+        public void RefreshDiscountInfo(Customer customer)
+        {
+            var discounts = customer.Discounts;
+
+            foreach (var discount in discounts) 
+            {
+                if (discount is PercentDiscount)
+                {
+                    switch (discount.Category)
+                    {
+                        case Category.Processor:
+                            processorDiscountСheckBox.Enabled = true;
+                            processorDiscountСheckBox.Text = discount.ToString();
+                            break;
+                        case Category.GraphicsCard:
+                            gpuDiscountСheckBox.Enabled = true;
+                            gpuDiscountСheckBox.Text = discount.ToString();
+                            break;
+                        case Category.Motherboard:
+                            motherboardDiscountСheckBox.Enabled = true;
+                            motherboardDiscountСheckBox.Text = discount.ToString();
+                            break;
+                        case Category.RAM:
+                            ramDiscountСheckBox.Enabled = true;
+                            ramDiscountСheckBox.Text = discount.ToString();
+                            break;
+                        case Category.PowerSupplie:
+                            powersupplieDiscountСheckBox.Enabled = true;
+                            powersupplieDiscountСheckBox.Text = discount.ToString();
+                            break;
+                        case Category.SSD:
+                            ssdDiscountСheckBox.Enabled = true;
+                            ssdDiscountСheckBox.Text = discount.ToString();
+                            break;
+                        case Category.HDD:
+                            hddDiscountСheckBox.Enabled = true;
+                            hddDiscountСheckBox.Text = discount.ToString();
+                            break;
+                    }                    
+                }
+                else { pointsDiscountСheckBox.Text = discount.ToString(); }
+               
+            }
         }
 
         private void itemsListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -135,7 +183,29 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             try
             {
+                processorDiscountСheckBox.Enabled = false;
+                processorDiscountСheckBox.Text = "Процентная в категоргии Processor";
+
+                gpuDiscountСheckBox.Enabled = false;
+                gpuDiscountСheckBox.Text = "Процентная в категоргии GrahicsCard";
+
+                motherboardDiscountСheckBox.Enabled = false;
+                motherboardDiscountСheckBox.Text = "Процентная в категоргии MotherBoard";
+
+                ramDiscountСheckBox.Enabled = false;
+                ramDiscountСheckBox.Text = "Процентная в категоргии RAM";
+
+                powersupplieDiscountСheckBox.Enabled = false;
+                powersupplieDiscountСheckBox.Text = "Процентная в категоргии PowerSupplie";
+
+                ssdDiscountСheckBox.Enabled = false;
+                ssdDiscountСheckBox.Text = "Процентная в категоргии SSD";
+
+                hddDiscountСheckBox.Enabled = false;
+                hddDiscountСheckBox.Text = "Процентная в категоргии HDD";
+
                 CurrentCustomer = Customers[customerComboBox.SelectedIndex];
+                RefreshDiscountInfo(CurrentCustomer);
                 CalculateDiscount();
             }
             catch (ArgumentOutOfRangeException)
@@ -143,7 +213,6 @@ namespace ObjectOrientedPractics.View.Tabs
 
             }
         }
-
         private void addButton_Click(object sender, EventArgs e)
         {
             if (CurrentCustomer != null)
@@ -171,32 +240,104 @@ namespace ObjectOrientedPractics.View.Tabs
             if (CurrentCustomer.IsPriority == true)
             {
                 PriorityOrder NewPriorityOrder = new PriorityOrder(CurrentCustomer);
+                NewPriorityOrder.TotalPrice = Convert.ToInt32(totalCostLabel.Text);
                 CurrentCustomer.Orders.Add(NewPriorityOrder);
             }    
             else if (CurrentCustomer.IsPriority == false)
             {
                 Order NewOrder = new Order(CurrentCustomer);
+                NewOrder.TotalPrice = Convert.ToInt32(totalCostLabel.Text);
                 CurrentCustomer.Orders.Add(NewOrder);
             }
-
+            
             UpdateDiscount();
             CurrentCustomer.Cart.ListOfItems.Clear();
             Customers.ResetBindings();
             UpdateCartInfo();
+            CurrentCustomer = Customers[customerComboBox.SelectedIndex];
+            RefreshDiscountInfo(CurrentCustomer);
+            CalculateDiscount();
         }
 
         public void CalculateDiscount()
         {
-            var Discount = 0;
-            foreach (var discount in _currentCustomer.Discounts)
+            if (CurrentCustomer == null)
             {
-                Discount = Discount + discount.Calculate(_currentCustomer.Cart.ListOfItems);
+                return;
+            }
+
+            var Discount = 0;
+            foreach (var discount in CurrentCustomer.Discounts)
+            {
+
+                if (discount is PointsDiscount)
+                {
+                    if (pointsDiscountСheckBox.Checked == true)
+                    {
+                        Discount = Discount + discount.Calculate(_currentCustomer.Cart.ListOfItems);
+                        totalCostLabel.Text = discount.Category.ToString();
+                    }
+                }
+                else
+                {
+                    switch (discount.Category)
+                    {
+                        case Category.Processor:
+                            if (processorDiscountСheckBox.Checked == true)
+                            {
+                                Discount = Discount + discount.Calculate(_currentCustomer.Cart.ListOfItems);                                
+                            }
+                            break;
+
+                        case Category.GraphicsCard:
+                            if (gpuDiscountСheckBox.Checked == true)
+                            {
+                                Discount = Discount + discount.Calculate(_currentCustomer.Cart.ListOfItems);
+                            }
+                            break;
+
+                        case Category.Motherboard:
+                            if (motherboardDiscountСheckBox.Checked == true)
+                            {
+                                Discount = Discount + discount.Calculate(_currentCustomer.Cart.ListOfItems);
+                            }
+                            break;
+
+                        case Category.RAM:
+                            if (ramDiscountСheckBox.Checked == true)
+                            {
+                                Discount = Discount + discount.Calculate(_currentCustomer.Cart.ListOfItems);
+                            }
+                            break;
+
+                        case Category.PowerSupplie:
+                            if (powersupplieDiscountСheckBox.Checked == true)
+                            {
+                                Discount = Discount + discount.Calculate(_currentCustomer.Cart.ListOfItems);
+                            }
+                            break;
+
+                        case Category.SSD:
+                            if (ssdDiscountСheckBox.Checked == true)
+                            {
+                                Discount = Discount + discount.Calculate(_currentCustomer.Cart.ListOfItems);
+                            }
+                            break;
+
+                        case Category.HDD:
+                            if (hddDiscountСheckBox.Checked == true)
+                            {
+                                Discount = Discount + discount.Calculate(_currentCustomer.Cart.ListOfItems);
+                            }
+                            break;
+                    }
+                }                
             }
 
             int newPrice = (int)_currentCustomer.Cart.Amount() - Discount;
             discountAmountLabel.Text = Discount.ToString();
 
-            totalLabel.Text = newPrice.ToString();
+            totalCostLabel.Text = newPrice.ToString();
         }
 
         public void UpdateDiscount()
@@ -213,6 +354,46 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 discount.Apply(_currentCustomer.Cart.ListOfItems);
             }
+        }
+
+        private void pointsDiscountСheckBox_CheckedChanged(object sender, EventArgs e)  
+        {
+            CalculateDiscount();
+        }
+
+        private void processorDiscountСheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            CalculateDiscount();
+        }
+
+        private void gpuDiscountСheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            CalculateDiscount();
+        }
+
+        private void motherboardDiscountСheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            CalculateDiscount();
+        }
+
+        private void ramDiscountСheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            CalculateDiscount();
+        }
+
+        private void powersupplieDiscountСheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            CalculateDiscount();
+        }
+
+        private void ssdDiscountСheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            CalculateDiscount();
+        }
+
+        private void hddDiscountСheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            CalculateDiscount();
         }
     }
 }

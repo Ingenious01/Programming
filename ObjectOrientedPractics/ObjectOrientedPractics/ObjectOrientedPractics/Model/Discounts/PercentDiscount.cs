@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ObjectOrientedPractics.Model.Discounts
 {
-    public class PercentDiscount : PointsDiscount, IDiscount, INotifyPropertyChanged
+    public class PercentDiscount : IDiscount, INotifyPropertyChanged
     {
         private Category _category;
 
@@ -24,6 +24,11 @@ namespace ObjectOrientedPractics.Model.Discounts
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        public Category Category 
+        { 
+            get { return _category; }
+        }
+
         public double TotalSpent
         {
             set { _totalSpent = value; OnPropertyChanged(); }
@@ -34,9 +39,23 @@ namespace ObjectOrientedPractics.Model.Discounts
         {
             set { _discount = value; OnPropertyChanged(); }
             get { return _discount; }
-        }        
+        }
 
-        public override int Calculate(List<Item> items)
+        public double Amount(List<Item> items)
+        {
+            double result = 0;
+
+            foreach (var item in items)
+            {               
+                if (item.Category == Category)
+                {
+                    result = result + item.Cost;
+                }
+            }
+            return result;
+        }
+
+        public int Calculate(List<Item> items)
         {
             if (Amount(items) <= 0)
             {
@@ -56,7 +75,7 @@ namespace ObjectOrientedPractics.Model.Discounts
             return discount;
         }
 
-        public override int Apply(List<Item> items)
+        public int Apply(List<Item> items)
         {
             if (Amount(items) <= 0)
             {
@@ -72,7 +91,7 @@ namespace ObjectOrientedPractics.Model.Discounts
             return newPrice;
         }
 
-        public override void Update(List<Item> items)
+        public void Update(List<Item> items)
         {
             TotalSpent = TotalSpent + Amount(items);
 

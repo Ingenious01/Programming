@@ -190,7 +190,11 @@ namespace ObjectOrientedPractics.View.Tabs
             idTextBox.Text = Convert.ToString(CurrentOrder.Id);
 
             costTextBox.Text = null;
-            costTextBox.Text = Convert.ToString(CurrentOrder.TotalPrice);
+            costTextBox.Text = Convert.ToString(CurrentOrder.Price);
+
+            totalPriceLabel.Text = null;
+            string totalprice = Convert.ToString(CurrentOrder.TotalPrice);
+            totalPriceLabel.Text = $"Сумма заказа с учётом скидки: {CurrentOrder.TotalPrice}";
 
             orderItemsListBox.DataSource = null;
             orderItemsListBox.DataSource = CurrentOrder.Items;
@@ -198,6 +202,8 @@ namespace ObjectOrientedPractics.View.Tabs
             statusComboBox.Text = null;
             statusComboBox.Text = Convert.ToString(CurrentOrder.Status);
 
+            string price = Convert.ToString(CurrentOrder.TotalPrice);
+            totalPriceLabel.Text = $"Итоговая цена заказ: {price}";
             addressControl1.Address = CurrentOrder.Address;
 
             if (CurrentOrder is PriorityOrder)
@@ -288,7 +294,7 @@ namespace ObjectOrientedPractics.View.Tabs
             }
 
             CurrentOrder.Items.RemoveAt(orderItemsListBox.SelectedIndex);
-            CurrentOrder.TotalPrice = CurrentOrder.Amount();
+            CurrentOrder.Price = CurrentOrder.Amount();
 
             RefreshOrderInfo();           
         }
@@ -319,14 +325,14 @@ namespace ObjectOrientedPractics.View.Tabs
                 i--;
             }
 
-            CurrentOrder.TotalPrice = CurrentOrder.Amount();
+            CurrentOrder.Price = CurrentOrder.Amount();
 
             RefreshOrderInfo();
         }
 
         private void clearOrderButton_Click(object sender, EventArgs e)
         {
-            if (CurrentOrder.TotalPrice == 0)
+            if (CurrentOrder.Price == 0)
             {
                 return;
             }

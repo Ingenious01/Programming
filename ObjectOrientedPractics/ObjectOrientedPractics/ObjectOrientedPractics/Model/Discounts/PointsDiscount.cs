@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ObjectOrientedPractics.Model.Enums;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -17,7 +18,8 @@ namespace ObjectOrientedPractics.Model.Discounts
             get => _points;
         }
 
-        public double Amount(List<Item> items)
+        public virtual Category Category { get { return Category.Processor; } }
+        public virtual double Amount(List<Item> items)
         {
             double result = 0;
 
