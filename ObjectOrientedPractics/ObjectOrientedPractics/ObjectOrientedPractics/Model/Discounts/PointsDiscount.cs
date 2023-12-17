@@ -84,6 +84,8 @@ namespace ObjectOrientedPractics.Model.Discounts
 
         public virtual void Update(List<Item> items)
         {
+            int discount = Calculate(items);
+            _points = _points - discount;
             _points = _points + (int)(Amount(items)*0.1);
         }
 

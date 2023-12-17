@@ -17,6 +17,8 @@ namespace ObjectOrientedPractics.View.Tabs
 {
     public partial class customersTab : UserControl
     {
+        public event EventHandler<Category> ValueChanged; // Создаем событие для передачи значения
+
         /// <summary>
         /// Список всех клиентов типа <see cref="Customer"/>.
         /// </summary>
@@ -40,7 +42,6 @@ namespace ObjectOrientedPractics.View.Tabs
                     _customers = value;
 
                     customersListBox.DataSource = _customers;
-
                 }
             }
         }
@@ -50,6 +51,8 @@ namespace ObjectOrientedPractics.View.Tabs
             get { return _currentCustomer; }
             set { _currentCustomer = value; }
         }
+
+        DiscountCategory discount;
 
         /// <summary>
         /// Создаёт экземпляр класса CustomerTab.
@@ -61,7 +64,30 @@ namespace ObjectOrientedPractics.View.Tabs
             customersListBox.DataSource = _customers;
 
             comboBox1.DataSource = Enum.GetValues(typeof(Category));
-        }      
+            
+        }
+
+        private void Discount_ValueChanged(object sender, CategoryEventsArgs e)
+        {
+            
+            Category selectedCategory = new PercentDiscount(e.Category).Category;
+
+            foreach (var discount in CurrentCustomer.Discounts)
+            {
+                if (discount is PercentDiscount)
+                {
+                    if (discount.Category == selectedCategory)
+                    {
+                        return;
+                    }
+                }
+            }           
+
+            CurrentCustomer = _customers[customersListBox.SelectedIndex];
+            CurrentCustomer.Discounts.Add(new PercentDiscount(e.Category));
+            discountsListBox.DataSource = null;
+            discountsListBox.DataSource = CurrentCustomer.Discounts;
+        }
 
         /// <summary>
         /// Обновляет параметры покупателя.
@@ -236,42 +262,12 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
-        private Category _selectedCategory;
-        public Category SelectedCategory 
-        { 
-            get { return _selectedCategory; }
-              set
-              {
-                CurrentCustomer = _customers[customersListBox.SelectedIndex];
-                _selectedCategory = value;
-
-                foreach(var discount in CurrentCustomer.Discounts)
-                {
-                    if (discount is PercentDiscount)
-                    {
-                        if (discount.Category == _selectedCategory)
-                        {
-                            return;
-                        }
-                    }
-                }
-
-                PercentDiscount percentDiscount = new PercentDiscount((Category)comboBox1.SelectedItem);
-                CurrentCustomer.Discounts.Add(percentDiscount);
-
-                discountsListBox.DataSource = null;
-                discountsListBox.DataSource = CurrentCustomer.Discounts;
-              }
-        }
-
         private void addDiscountButton_Click(object sender, EventArgs e)
         {
-            /*
-            DiscountCategory category = new DiscountCategory();
-            category.Show();
-            */
+            discount = new DiscountCategory();
+            discount.ValueChanged += Discount_ValueChanged;
 
-            SelectedCategory = (Category)comboBox1.SelectedItem;
+            discount.Show();
         }
 
         private void removeDiscountButton_Click(object sender, EventArgs e)

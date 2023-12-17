@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.customersTab1 = new ObjectOrientedPractics.View.Tabs.customersTab();
             this.discountLabel = new System.Windows.Forms.Label();
             this.categoryLabel = new System.Windows.Forms.Label();
             this.categoryComboBox = new System.Windows.Forms.ComboBox();
@@ -108,7 +107,6 @@
 
         #endregion
 
-        private View.Tabs.customersTab customersTab1;
         private System.Windows.Forms.Label discountLabel;
         private System.Windows.Forms.Label categoryLabel;
         private System.Windows.Forms.ComboBox categoryComboBox;

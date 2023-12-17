@@ -1,4 +1,5 @@
-﻿using ObjectOrientedPractics.Model.Enums;
+﻿using ObjectOrientedPractics.Model;
+using ObjectOrientedPractics.Model.Enums;
 using ObjectOrientedPractics.View.Tabs;
 using System;
 using System.Collections.Generic;
@@ -9,11 +10,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ObjectOrientedPractics
 {
     public partial class DiscountCategory : Form
-    {
+    {      
+        public event EventHandler<CategoryEventsArgs> ValueChanged;
+
+        private Category _value;
+
         public DiscountCategory()
         {
             InitializeComponent();
@@ -22,15 +28,11 @@ namespace ObjectOrientedPractics
             categoryComboBox.SelectedItem = null;
         }
 
-        public Category GetCategory()
-        {
-            Category category = (Category)categoryComboBox.SelectedItem;
-            return category;
-        }
-
         private void okButton_Click(object sender, EventArgs e)
         {
-            customersTab1.SelectedCategory = Category.GraphicsCard;
+            _value = (Category)categoryComboBox.SelectedItem;
+            var categoryEventsArgs = new CategoryEventsArgs(_value);
+            ValueChanged?.Invoke(this, categoryEventsArgs);
             this.Close();
         }
 
