@@ -61,10 +61,7 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             InitializeComponent();
 
-            customersListBox.DataSource = _customers;
-
-            comboBox1.DataSource = Enum.GetValues(typeof(Category));
-            
+            customersListBox.DataSource = _customers;            
         }
 
         private void Discount_ValueChanged(object sender, CategoryEventsArgs e)
