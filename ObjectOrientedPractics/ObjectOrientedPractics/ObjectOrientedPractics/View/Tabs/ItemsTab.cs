@@ -1,5 +1,6 @@
 ﻿using ObjectOrientedPractics.Model;
 using ObjectOrientedPractics.Model.Enums;
+using ObjectOrientedPractics.Services.DataTools;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,6 +21,19 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private BindingList<Item> _items = new BindingList<Item>();
 
+        private BindingList<Item> _displayedItems = new BindingList<Item>();
+
+        public BindingList<Item> DisplayedItems 
+        { 
+            get 
+            { 
+                return _displayedItems; 
+            }
+            set 
+            { 
+                _displayedItems = value; 
+            } 
+        }
         /// <summary>
         /// Предмет, выбранный в ItemsListBox.
         /// </summary>
@@ -35,6 +49,14 @@ namespace ObjectOrientedPractics.View.Tabs
             categoryComboBox.DataSource = Enum.GetValues(typeof(Category));
 
             itemsListBox.DataSource = _items;
+
+            orderbyComboBox.Items.Add("By Name");
+
+            orderbyComboBox.Items.Add("By Category");
+
+            orderbyComboBox.Items.Add("By Cost");
+
+            orderbyComboBox.SelectedIndex = 0;
         }
         
         /// <summary>
@@ -259,6 +281,9 @@ namespace ObjectOrientedPractics.View.Tabs
             descriptionRichTextBox.Enabled = true;
             nameRichTextBox.Enabled = true;
             removeButton.Enabled = true;
+            findItemLabel.Enabled = true;
+            findItemTextBox.Enabled = true;
+            orderbyComboBox.Enabled = true;
 
             UpdateItemInfo(_items[itemsListBox.SelectedIndex]);
         }
@@ -304,6 +329,23 @@ namespace ObjectOrientedPractics.View.Tabs
                 }
                         
             }
-        }      
+        }
+
+        private void findItemTextBox_TextChanged(object sender, EventArgs e)
+        {
+            DisplayedItems = null;
+            DisplayedItems = ChangeListOfItems.ChangeByString(Items, findItemTextBox.Text, ChangeListOfItems.CheckName);
+
+            if (DisplayedItems != null)
+            {
+                itemsListBox.DataSource = null;
+                itemsListBox.DataSource = DisplayedItems;
+            }
+        }
+
+        private void orderbyComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
