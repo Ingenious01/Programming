@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ObjectOrientedPractics.Model;
+using ObjectOrientedPractics.View.Tabs;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,14 +14,23 @@ namespace ObjectOrientedPractics
 {
     public partial class MainForm : Form
     {
+        /// <summary>
+        /// Экземпляр класса <see cref="Store"/>
+        /// </summary>
+        private Store _store = new Store(); 
+        
         public MainForm()
         {
-            InitializeComponent();
-        }
+            InitializeComponent();            
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
+            customersTab1.Customers = _store.Customers;
+            itemsTab1.Items = _store.Items;
 
-        }
+            cartsTab1.Customers = _store.Customers;
+            cartsTab1.Items = _store.Items;
+
+            ordersTab1.Customers = _store.Customers;
+            ordersTab1.Items = _store.Items;
+        }        
     }
 }

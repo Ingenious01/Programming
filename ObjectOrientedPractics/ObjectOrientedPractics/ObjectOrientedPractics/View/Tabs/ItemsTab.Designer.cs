@@ -1,6 +1,6 @@
 ﻿namespace ObjectOrientedPractics.View.Tabs
 {
-    partial class ItemsTab
+    partial class itemsTab
     {
         /// <summary> 
         /// Обязательная переменная конструктора.
@@ -29,80 +29,189 @@
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.selectedItemGroupBox = new System.Windows.Forms.GroupBox();
+            this.categoryComboBox = new System.Windows.Forms.ComboBox();
+            this.categoryLabel = new System.Windows.Forms.Label();
+            this.descriptionRichTextBox = new System.Windows.Forms.RichTextBox();
+            this.searchDescriptionLabel = new System.Windows.Forms.Label();
+            this.nameRichTextBox = new System.Windows.Forms.RichTextBox();
+            this.searchNameLabel = new System.Windows.Forms.Label();
+            this.costTextBox = new System.Windows.Forms.TextBox();
+            this.idTextBox = new System.Windows.Forms.TextBox();
+            this.costLabel = new System.Windows.Forms.Label();
+            this.idLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.ItemsGroupBox = new System.Windows.Forms.GroupBox();
-            this.ItemsListBox = new System.Windows.Forms.ListBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.AddButton = new System.Windows.Forms.Button();
-            this.RemoveButton = new System.Windows.Forms.Button();
-            this.SelectedItemGroupBox = new System.Windows.Forms.GroupBox();
-            this.DescriptionRichTextBox = new System.Windows.Forms.RichTextBox();
-            this.SearchDescriptionLabel = new System.Windows.Forms.Label();
-            this.NameRichTextBox = new System.Windows.Forms.RichTextBox();
-            this.SearchNameLabel = new System.Windows.Forms.Label();
-            this.CostTextBox = new System.Windows.Forms.TextBox();
-            this.IdTextBox = new System.Windows.Forms.TextBox();
-            this.CostLabel = new System.Windows.Forms.Label();
-            this.IdLabel = new System.Windows.Forms.Label();
+            this.removeButton = new System.Windows.Forms.Button();
+            this.addButton = new System.Windows.Forms.Button();
+            this.itemsListGroupBox = new System.Windows.Forms.GroupBox();
+            this.itemsListBox = new System.Windows.Forms.ListBox();
             this.tableLayoutPanel1.SuspendLayout();
+            this.selectedItemGroupBox.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
-            this.ItemsGroupBox.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
-            this.SelectedItemGroupBox.SuspendLayout();
+            this.itemsListGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 41.17647F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 58.82353F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
+            this.tableLayoutPanel1.Controls.Add(this.selectedItemGroupBox, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.SelectedItemGroupBox, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(997, 691);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1009, 678);
             this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // selectedItemGroupBox
+            // 
+            this.selectedItemGroupBox.Controls.Add(this.categoryComboBox);
+            this.selectedItemGroupBox.Controls.Add(this.categoryLabel);
+            this.selectedItemGroupBox.Controls.Add(this.descriptionRichTextBox);
+            this.selectedItemGroupBox.Controls.Add(this.searchDescriptionLabel);
+            this.selectedItemGroupBox.Controls.Add(this.nameRichTextBox);
+            this.selectedItemGroupBox.Controls.Add(this.searchNameLabel);
+            this.selectedItemGroupBox.Controls.Add(this.costTextBox);
+            this.selectedItemGroupBox.Controls.Add(this.idTextBox);
+            this.selectedItemGroupBox.Controls.Add(this.costLabel);
+            this.selectedItemGroupBox.Controls.Add(this.idLabel);
+            this.selectedItemGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.selectedItemGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.selectedItemGroupBox.Location = new System.Drawing.Point(406, 3);
+            this.selectedItemGroupBox.Name = "selectedItemGroupBox";
+            this.selectedItemGroupBox.Size = new System.Drawing.Size(600, 672);
+            this.selectedItemGroupBox.TabIndex = 2;
+            this.selectedItemGroupBox.TabStop = false;
+            this.selectedItemGroupBox.Text = "Selected Item";
+            // 
+            // categoryComboBox
+            // 
+            this.categoryComboBox.Enabled = false;
+            this.categoryComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.categoryComboBox.FormattingEnabled = true;
+            this.categoryComboBox.Location = new System.Drawing.Point(118, 119);
+            this.categoryComboBox.Name = "categoryComboBox";
+            this.categoryComboBox.Size = new System.Drawing.Size(175, 30);
+            this.categoryComboBox.TabIndex = 9;
+            this.categoryComboBox.SelectedIndexChanged += new System.EventHandler(this.categoryComboBox_SelectedIndexChanged);
+            // 
+            // categoryLabel
+            // 
+            this.categoryLabel.AutoSize = true;
+            this.categoryLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.categoryLabel.Location = new System.Drawing.Point(8, 122);
+            this.categoryLabel.Name = "categoryLabel";
+            this.categoryLabel.Size = new System.Drawing.Size(90, 24);
+            this.categoryLabel.TabIndex = 8;
+            this.categoryLabel.Text = "Category:";
+            // 
+            // descriptionRichTextBox
+            // 
+            this.descriptionRichTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.descriptionRichTextBox.Enabled = false;
+            this.descriptionRichTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.descriptionRichTextBox.Location = new System.Drawing.Point(11, 377);
+            this.descriptionRichTextBox.Name = "descriptionRichTextBox";
+            this.descriptionRichTextBox.Size = new System.Drawing.Size(584, 223);
+            this.descriptionRichTextBox.TabIndex = 7;
+            this.descriptionRichTextBox.Text = "";
+            this.descriptionRichTextBox.TextChanged += new System.EventHandler(this.DescriptionRichTextBox1_TextChanged);
+            this.descriptionRichTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.descriptionRichTextBox_KeyPress);
+            // 
+            // searchDescriptionLabel
+            // 
+            this.searchDescriptionLabel.AutoSize = true;
+            this.searchDescriptionLabel.Location = new System.Drawing.Point(7, 348);
+            this.searchDescriptionLabel.Name = "searchDescriptionLabel";
+            this.searchDescriptionLabel.Size = new System.Drawing.Size(127, 26);
+            this.searchDescriptionLabel.TabIndex = 6;
+            this.searchDescriptionLabel.Text = "Description:";
+            // 
+            // nameRichTextBox
+            // 
+            this.nameRichTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.nameRichTextBox.Enabled = false;
+            this.nameRichTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.nameRichTextBox.Location = new System.Drawing.Point(10, 186);
+            this.nameRichTextBox.Name = "nameRichTextBox";
+            this.nameRichTextBox.Size = new System.Drawing.Size(584, 140);
+            this.nameRichTextBox.TabIndex = 5;
+            this.nameRichTextBox.Text = "";
+            this.nameRichTextBox.TextChanged += new System.EventHandler(this.NameRichTextBox_TextChanged);
+            this.nameRichTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.nameRichTextBox_KeyPress);
+            // 
+            // searchNameLabel
+            // 
+            this.searchNameLabel.AutoSize = true;
+            this.searchNameLabel.Location = new System.Drawing.Point(6, 157);
+            this.searchNameLabel.Name = "searchNameLabel";
+            this.searchNameLabel.Size = new System.Drawing.Size(77, 26);
+            this.searchNameLabel.TabIndex = 4;
+            this.searchNameLabel.Text = "Name:";
+            // 
+            // costTextBox
+            // 
+            this.costTextBox.Enabled = false;
+            this.costTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.costTextBox.Location = new System.Drawing.Point(118, 82);
+            this.costTextBox.Name = "costTextBox";
+            this.costTextBox.Size = new System.Drawing.Size(141, 28);
+            this.costTextBox.TabIndex = 3;
+            this.costTextBox.TextChanged += new System.EventHandler(this.costTextBox_TextChanged);
+            this.costTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.costTextBox_KeyPress);
+            // 
+            // idTextBox
+            // 
+            this.idTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.idTextBox.Location = new System.Drawing.Point(118, 44);
+            this.idTextBox.Name = "idTextBox";
+            this.idTextBox.ReadOnly = true;
+            this.idTextBox.Size = new System.Drawing.Size(141, 28);
+            this.idTextBox.TabIndex = 2;
+            // 
+            // costLabel
+            // 
+            this.costLabel.AutoSize = true;
+            this.costLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.costLabel.Location = new System.Drawing.Point(6, 85);
+            this.costLabel.Name = "costLabel";
+            this.costLabel.Size = new System.Drawing.Size(52, 24);
+            this.costLabel.TabIndex = 1;
+            this.costLabel.Text = "Cost:";
+            // 
+            // idLabel
+            // 
+            this.idLabel.AutoSize = true;
+            this.idLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.idLabel.Location = new System.Drawing.Point(6, 47);
+            this.idLabel.Name = "idLabel";
+            this.idLabel.Size = new System.Drawing.Size(32, 24);
+            this.idLabel.TabIndex = 0;
+            this.idLabel.Text = "ID:";
             // 
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Controls.Add(this.ItemsGroupBox, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel3, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.itemsListGroupBox, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(404, 685);
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(397, 672);
             this.tableLayoutPanel2.TabIndex = 0;
-            // 
-            // ItemsGroupBox
-            // 
-            this.ItemsGroupBox.Controls.Add(this.ItemsListBox);
-            this.ItemsGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ItemsGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ItemsGroupBox.Location = new System.Drawing.Point(3, 3);
-            this.ItemsGroupBox.Name = "ItemsGroupBox";
-            this.ItemsGroupBox.Size = new System.Drawing.Size(398, 610);
-            this.ItemsGroupBox.TabIndex = 0;
-            this.ItemsGroupBox.TabStop = false;
-            this.ItemsGroupBox.Text = "Items";
-            // 
-            // ItemsListBox
-            // 
-            this.ItemsListBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ItemsListBox.FormattingEnabled = true;
-            this.ItemsListBox.ItemHeight = 26;
-            this.ItemsListBox.Location = new System.Drawing.Point(3, 28);
-            this.ItemsListBox.Name = "ItemsListBox";
-            this.ItemsListBox.Size = new System.Drawing.Size(392, 579);
-            this.ItemsListBox.TabIndex = 0;
-            this.ItemsListBox.SelectedIndexChanged += new System.EventHandler(this.ItemsListBox_SelectedIndexChanged);
             // 
             // tableLayoutPanel3
             // 
@@ -110,156 +219,82 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel3.Controls.Add(this.AddButton, 0, 0);
-            this.tableLayoutPanel3.Controls.Add(this.RemoveButton, 1, 0);
+            this.tableLayoutPanel3.Controls.Add(this.removeButton, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.addButton, 0, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 619);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 607);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(398, 63);
-            this.tableLayoutPanel3.TabIndex = 1;
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(391, 62);
+            this.tableLayoutPanel3.TabIndex = 0;
             // 
-            // AddButton
+            // removeButton
             // 
-            this.AddButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.AddButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.AddButton.Location = new System.Drawing.Point(3, 3);
-            this.AddButton.Name = "AddButton";
-            this.AddButton.Size = new System.Drawing.Size(126, 57);
-            this.AddButton.TabIndex = 0;
-            this.AddButton.Text = "Add";
-            this.AddButton.UseVisualStyleBackColor = true;
-            this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
-            // 
-            // RemoveButton
-            // 
-            this.RemoveButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RemoveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.RemoveButton.Location = new System.Drawing.Point(135, 3);
-            this.RemoveButton.Name = "RemoveButton";
-            this.RemoveButton.Size = new System.Drawing.Size(126, 57);
-            this.RemoveButton.TabIndex = 1;
-            this.RemoveButton.Text = "Remove";
-            this.RemoveButton.UseVisualStyleBackColor = true;
-            this.RemoveButton.Click += new System.EventHandler(this.RemoveButton_Click);
-            // 
-            // SelectedItemGroupBox
-            // 
-            this.SelectedItemGroupBox.Controls.Add(this.DescriptionRichTextBox);
-            this.SelectedItemGroupBox.Controls.Add(this.SearchDescriptionLabel);
-            this.SelectedItemGroupBox.Controls.Add(this.NameRichTextBox);
-            this.SelectedItemGroupBox.Controls.Add(this.SearchNameLabel);
-            this.SelectedItemGroupBox.Controls.Add(this.CostTextBox);
-            this.SelectedItemGroupBox.Controls.Add(this.IdTextBox);
-            this.SelectedItemGroupBox.Controls.Add(this.CostLabel);
-            this.SelectedItemGroupBox.Controls.Add(this.IdLabel);
-            this.SelectedItemGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SelectedItemGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.SelectedItemGroupBox.Location = new System.Drawing.Point(413, 3);
-            this.SelectedItemGroupBox.Name = "SelectedItemGroupBox";
-            this.SelectedItemGroupBox.Size = new System.Drawing.Size(581, 685);
-            this.SelectedItemGroupBox.TabIndex = 1;
-            this.SelectedItemGroupBox.TabStop = false;
-            this.SelectedItemGroupBox.Text = "Selected Item";
-            // 
-            // DescriptionRichTextBox
-            // 
-            this.DescriptionRichTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.removeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.DescriptionRichTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.DescriptionRichTextBox.Location = new System.Drawing.Point(11, 377);
-            this.DescriptionRichTextBox.Name = "DescriptionRichTextBox";
-            this.DescriptionRichTextBox.Size = new System.Drawing.Size(565, 236);
-            this.DescriptionRichTextBox.TabIndex = 7;
-            this.DescriptionRichTextBox.Text = "";
-            this.DescriptionRichTextBox.TextChanged += new System.EventHandler(this.DescriptionRichTextBox1_TextChanged);
-            this.DescriptionRichTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DescriptionRichTextBox_KeyPress);
+            this.removeButton.Enabled = false;
+            this.removeButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.removeButton.Location = new System.Drawing.Point(133, 3);
+            this.removeButton.Name = "removeButton";
+            this.removeButton.Size = new System.Drawing.Size(124, 56);
+            this.removeButton.TabIndex = 2;
+            this.removeButton.Text = "Remove";
+            this.removeButton.UseVisualStyleBackColor = true;
+            this.removeButton.Click += new System.EventHandler(this.RemoveButton_Click);
             // 
-            // SearchDescriptionLabel
+            // addButton
             // 
-            this.SearchDescriptionLabel.AutoSize = true;
-            this.SearchDescriptionLabel.Location = new System.Drawing.Point(7, 348);
-            this.SearchDescriptionLabel.Name = "SearchDescriptionLabel";
-            this.SearchDescriptionLabel.Size = new System.Drawing.Size(127, 26);
-            this.SearchDescriptionLabel.TabIndex = 6;
-            this.SearchDescriptionLabel.Text = "Description:";            
-            // 
-            // NameRichTextBox
-            // 
-            this.NameRichTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.addButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.NameRichTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.NameRichTextBox.Location = new System.Drawing.Point(10, 186);
-            this.NameRichTextBox.Name = "NameRichTextBox";
-            this.NameRichTextBox.Size = new System.Drawing.Size(565, 140);
-            this.NameRichTextBox.TabIndex = 5;
-            this.NameRichTextBox.Text = "";
-            this.NameRichTextBox.TextChanged += new System.EventHandler(this.NameRichTextBox_TextChanged);
-            this.NameRichTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NameRichTextBox_KeyPress);
+            this.addButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.addButton.Location = new System.Drawing.Point(3, 3);
+            this.addButton.Name = "addButton";
+            this.addButton.Size = new System.Drawing.Size(124, 56);
+            this.addButton.TabIndex = 1;
+            this.addButton.Text = "Add";
+            this.addButton.UseVisualStyleBackColor = true;
+            this.addButton.Click += new System.EventHandler(this.AddButton_Click);
             // 
-            // SearchNameLabel
+            // itemsListGroupBox
             // 
-            this.SearchNameLabel.AutoSize = true;
-            this.SearchNameLabel.Location = new System.Drawing.Point(6, 157);
-            this.SearchNameLabel.Name = "SearchNameLabel";
-            this.SearchNameLabel.Size = new System.Drawing.Size(77, 26);
-            this.SearchNameLabel.TabIndex = 4;
-            this.SearchNameLabel.Text = "Name:";
+            this.itemsListGroupBox.Controls.Add(this.itemsListBox);
+            this.itemsListGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.itemsListGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.itemsListGroupBox.Location = new System.Drawing.Point(3, 3);
+            this.itemsListGroupBox.Name = "itemsListGroupBox";
+            this.itemsListGroupBox.Size = new System.Drawing.Size(391, 598);
+            this.itemsListGroupBox.TabIndex = 1;
+            this.itemsListGroupBox.TabStop = false;
+            this.itemsListGroupBox.Text = "Items";
             // 
-            // CostTextBox
+            // itemsListBox
             // 
-            this.CostTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.CostTextBox.Location = new System.Drawing.Point(67, 82);
-            this.CostTextBox.Name = "CostTextBox";
-            this.CostTextBox.Size = new System.Drawing.Size(141, 28);
-            this.CostTextBox.TabIndex = 3;
-            this.CostTextBox.TextChanged += new System.EventHandler(this.CostTextBox_TextChanged);
-            this.CostTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CostTextBox_KeyPress);
+            this.itemsListBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.itemsListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.itemsListBox.FormattingEnabled = true;
+            this.itemsListBox.ItemHeight = 22;
+            this.itemsListBox.Location = new System.Drawing.Point(3, 28);
+            this.itemsListBox.Name = "itemsListBox";
+            this.itemsListBox.Size = new System.Drawing.Size(385, 567);
+            this.itemsListBox.TabIndex = 0;
+            this.itemsListBox.SelectedIndexChanged += new System.EventHandler(this.itemsListBox_SelectedIndexChanged);
             // 
-            // IdTextBox
-            // 
-            this.IdTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.IdTextBox.Location = new System.Drawing.Point(67, 44);
-            this.IdTextBox.Name = "IdTextBox";
-            this.IdTextBox.ReadOnly = true;
-            this.IdTextBox.Size = new System.Drawing.Size(141, 28);
-            this.IdTextBox.TabIndex = 2;            
-            // 
-            // CostLabel
-            // 
-            this.CostLabel.AutoSize = true;
-            this.CostLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.CostLabel.Location = new System.Drawing.Point(6, 85);
-            this.CostLabel.Name = "CostLabel";
-            this.CostLabel.Size = new System.Drawing.Size(52, 24);
-            this.CostLabel.TabIndex = 1;
-            this.CostLabel.Text = "Cost:";
-            // 
-            // IdLabel
-            // 
-            this.IdLabel.AutoSize = true;
-            this.IdLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.IdLabel.Location = new System.Drawing.Point(6, 47);
-            this.IdLabel.Name = "IdLabel";
-            this.IdLabel.Size = new System.Drawing.Size(32, 24);
-            this.IdLabel.TabIndex = 0;
-            this.IdLabel.Text = "ID:";
-            // 
-            // ItemsTab
+            // itemsTab
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Name = "ItemsTab";
-            this.Size = new System.Drawing.Size(997, 691);
+            this.Name = "itemsTab";
+            this.Size = new System.Drawing.Size(1009, 678);
             this.tableLayoutPanel1.ResumeLayout(false);
+            this.selectedItemGroupBox.ResumeLayout(false);
+            this.selectedItemGroupBox.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
-            this.ItemsGroupBox.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
-            this.SelectedItemGroupBox.ResumeLayout(false);
-            this.SelectedItemGroupBox.PerformLayout();
+            this.itemsListGroupBox.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -268,19 +303,21 @@
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.GroupBox ItemsGroupBox;
-        private System.Windows.Forms.ListBox ItemsListBox;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
-        private System.Windows.Forms.Button AddButton;
-        private System.Windows.Forms.Button RemoveButton;
-        private System.Windows.Forms.GroupBox SelectedItemGroupBox;
-        private System.Windows.Forms.RichTextBox DescriptionRichTextBox;
-        private System.Windows.Forms.Label SearchDescriptionLabel;
-        private System.Windows.Forms.RichTextBox NameRichTextBox;
-        private System.Windows.Forms.Label SearchNameLabel;
-        private System.Windows.Forms.TextBox CostTextBox;
-        private System.Windows.Forms.TextBox IdTextBox;
-        private System.Windows.Forms.Label CostLabel;
-        private System.Windows.Forms.Label IdLabel;
+        private System.Windows.Forms.GroupBox itemsListGroupBox;
+        private System.Windows.Forms.ListBox itemsListBox;
+        private System.Windows.Forms.GroupBox selectedItemGroupBox;
+        private System.Windows.Forms.ComboBox categoryComboBox;
+        private System.Windows.Forms.Label categoryLabel;
+        private System.Windows.Forms.RichTextBox descriptionRichTextBox;
+        private System.Windows.Forms.Label searchDescriptionLabel;
+        private System.Windows.Forms.RichTextBox nameRichTextBox;
+        private System.Windows.Forms.Label searchNameLabel;
+        private System.Windows.Forms.TextBox costTextBox;
+        private System.Windows.Forms.TextBox idTextBox;
+        private System.Windows.Forms.Label costLabel;
+        private System.Windows.Forms.Label idLabel;
+        private System.Windows.Forms.Button removeButton;
+        private System.Windows.Forms.Button addButton;
     }
 }

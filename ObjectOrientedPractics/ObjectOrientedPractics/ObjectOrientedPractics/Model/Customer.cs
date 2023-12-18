@@ -1,16 +1,21 @@
-﻿using System;
+﻿using ObjectOrientedPractics.Model.Discounts;
+using ObjectOrientedPractics.Model.Enums;
+using ObjectOrientedPractics.Model.Orders;
+using ObjectOrientedPractics.Services;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-using System.Xml.Linq;
 
-namespace ObjectOrientedPractics.Services
+namespace ObjectOrientedPractics.Model
 {
     /// <summary>
     /// Хранит информацию о покупателе.
     /// </summary>
-    internal class Customer
+    public class Customer : INotifyPropertyChanged
     {
         /// <summary>
         /// Персональный номер покупателя.
@@ -25,7 +30,29 @@ namespace ObjectOrientedPractics.Services
         /// <summary>
         /// Домашний адрес покупателя.
         /// </summary>
-        private string _adress;
+        private Address _address;
+
+        /// <summary>
+        /// Корзина покупателя.
+        /// </summary>
+        private Cart _cart;
+
+        /// <summary>
+        /// Заказы покупателя.
+        /// </summary>
+        private List<Order> _orders;        
+
+        /// <summary>
+        /// Указывает, явдяется ли покупатель приоритетным.
+        /// </summary>
+        private bool _isPriority = false;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
 
         /// <summary>
         /// Возвращает и задаёт персональный номер покупателя.
@@ -42,40 +69,94 @@ namespace ObjectOrientedPractics.Services
         public string FullName
         {
             get => _fullname;
-            set 
+            set
             {
                 ValueValidator.AssertStringOnLength(value, 200, nameof(FullName));
 
                 ValueValidator.AssertFullNameStringOnSymbols(value, nameof(FullName));
 
                 _fullname = value;
+
+                OnPropertyChanged();
             }
+        }        
+
+        public override string ToString()
+        {
+            var info = $"{Id}. " +
+               $"Name={FullName}, " +
+               $"Index ={Address.Index} ";
+
+            return info;
         }
 
         /// <summary>
         /// Возвращает и задаёт домашний адрес покупателя. Длинна строки с адресом должна быть не больше 500.
         /// </summary>
-        public string Adress
+        public Address Address
         {
-            get => _adress;
+            get
+            {
+                return _address;
+            }
             set
             {
-                ValueValidator.AssertStringOnLength(value, 500, nameof(Adress));
-
-                _adress = value;
+                _address = value;
+                _address.PropertyChanged += AddressChanged;
+                void AddressChanged(object sender, PropertyChangedEventArgs args) =>
+                    OnPropertyChanged();
             }
         }
+
+        /// <summary>
+        /// Возвращает и задаёт персональный номер покупателя.
+        /// </summary>
+        public Cart Cart
+        {
+            get => _cart;
+            set
+            {
+                _cart = value;
+            }
+        }
+
+        /// <summary>
+        /// Возвращает и задаёт заказ покупателя.
+        /// </summary>
+        public List<Order> Orders
+        {
+            set => _orders = value;
+            get => _orders;
+        }
+
+        /// <summary>
+        /// Возвращает и задает приоритетность покупателя.
+        /// </summary>
+        public bool IsPriority
+        {
+            set => _isPriority = value;
+            get => _isPriority;
+        }
+
+        public List<IDiscount> Discounts { get; set; }
+        
 
         /// <summary>
         /// Создаёт экземпляр класса <see cref="Customer"/>.
         /// </summary>    
         /// <param name="fullname">ФИО</param>
         /// <param name="adress">Адрес</param>
-        public Customer(string fullname, string adress)
+        public Customer(string fullname, Address address)
         {
             Id = IdGenerator.GetNextCustomerId();
             FullName = fullname;
-            Adress = adress;
+            Address = address;
+            Cart = new Cart();
+            Orders = new List<Order>();
+
+            Discounts = new List<IDiscount>();
+            PointsDiscount pointsDiscount = new PointsDiscount();
+            Discounts.Add(pointsDiscount);
         }
     }
 }

@@ -1,67 +1,42 @@
-﻿using ObjectOrientedPractics.Services;
+﻿using ObjectOrientedPractics.Model;
+using ObjectOrientedPractics.Model.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml.Linq;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
-    /// <summary>
-    /// Предоставляет шаблон пользовательского интерфейса ItemsTab.
-    /// </summary>
-    public partial class ItemsTab : UserControl
+    public partial class itemsTab : UserControl
     {
         /// <summary>
-        /// Предмет типа Item.
+        /// Список предметов в магазине типа <see cref="Item"/>.
         /// </summary>
-        private List<Item> _items = new List<Item>();
+        private BindingList<Item> _items = new BindingList<Item>();
 
         /// <summary>
         /// Предмет, выбранный в ItemsListBox.
         /// </summary>
-        private Item _currentItemList;
-
-        /// <summary>
-        /// Default value of Cost.
-        /// </summary>
-        static int firstcost = 100;
-
-        /// <summary>
-        /// Default value for Name.
-        /// </summary>
-        static string firstname = "Name";
-
-        /// <summary>
-        /// Default value for Info.
-        /// </summary>
-        static string firstdescription = "Info";
-
-        /// <summary>
-        /// The first default Item.
-        /// </summary>  
-        Item stockItem = new Item(firstname, firstdescription, firstcost);
+        private Item _currentItemList;        
 
         /// <summary>
         /// Создаёт экземпляр класса ItemsTab.
         /// </summary>
-        public ItemsTab()
+        public itemsTab()
         {
             InitializeComponent();
 
-            _items.Add(stockItem);
-            var info = TakeInfoFromItem(stockItem);
+            categoryComboBox.DataSource = Enum.GetValues(typeof(Category));
 
-            ItemsListBox.Items.Add(info);            
+            itemsListBox.DataSource = _items;
         }
-
+        
         /// <summary>
         /// Создаёт строчку с информацией о предмете.
         /// </summary>
@@ -69,7 +44,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <returns>Возвращает строку с информацией о предмете</returns>
         private static string TakeInfoFromItem(Item item)
         {
-            var info = $"{item.Id}. " + $"Name={item.Name}, " + $"Cost={item.Cost} ";
+            var info = $"{item.Id}. " + $"{item.Name}, " + $"{item.Category}, " + $"{item.Cost}";
 
             return info;
         }
@@ -78,14 +53,13 @@ namespace ObjectOrientedPractics.View.Tabs
         /// Обновляет параметры предмета.
         /// </summary>
         /// <param name="item">Предмет</param>
-        private void UpdateItemInfo(ref Item item)
+        private void UpdateItemInfo(Item item)
         {
-            item = _items[ItemsListBox.SelectedIndex];
-
-            IdTextBox.Text = item.Id.ToString();
-            CostTextBox.Text = item.Cost.ToString();
-            NameRichTextBox.Text = item.Name;
-            DescriptionRichTextBox.Text = item.Info;            
+            idTextBox.Text = item.Id.ToString();
+            costTextBox.Text = item.Cost.ToString();
+            nameRichTextBox.Text = item.Name;
+            descriptionRichTextBox.Text = item.Info;
+            categoryComboBox.Text = item.Category.ToString();
         }
 
         /// <summary>
@@ -93,37 +67,38 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private void ClearItemInfo()
         {
-            IdTextBox.Text = " ";            
-            CostTextBox.Text = " ";
-            NameRichTextBox.Text = " ";
-            DescriptionRichTextBox.Text = " ";           
+            idTextBox.Text = " ";
+            costTextBox.Text = " ";
+            nameRichTextBox.Text = " ";
+            descriptionRichTextBox.Text = " ";
 
-            CostTextBox.BackColor = System.Drawing.Color.White;
-            DescriptionRichTextBox.BackColor = System.Drawing.Color.White; 
-            NameRichTextBox.BackColor= System.Drawing.Color.White;
-        }        
+            costTextBox.BackColor = System.Drawing.Color.White;
+            descriptionRichTextBox.BackColor = System.Drawing.Color.White;
+            nameRichTextBox.BackColor = System.Drawing.Color.White;
+        }
 
         /// <summary>
         /// При нажатии на конкретный предмет в списке предметов даёт о нём информацию.
         /// </summary>
-        private void ItemsListBox_SelectedIndexChanged(object sender, EventArgs e)
-        {            
+        private void itemsListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
             try
             {
-                UpdateItemInfo(ref _currentItemList);
+                _currentItemList = _items[itemsListBox.SelectedIndex];
+                UpdateItemInfo(_currentItemList);
             }
             catch
             {
                 ClearItemInfo();
             }
         }
-        
+
         /// <summary>
         /// При изменении символа в строке цены окрашивает её в белый цвет.
         /// </summary>  
-        private void CostTextBox_TextChanged(object sender, EventArgs e)
+        private void costTextBox_TextChanged(object sender, EventArgs e)
         {
-            CostTextBox.BackColor = System.Drawing.Color.White;
+            costTextBox.BackColor = System.Drawing.Color.White;
         }
 
         /// <summary>
@@ -131,7 +106,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>  
         private void NameRichTextBox_TextChanged(object sender, EventArgs e)
         {
-            NameRichTextBox.BackColor = System.Drawing.Color.White;
+            nameRichTextBox.BackColor = System.Drawing.Color.White;
         }
 
         /// <summary>
@@ -139,33 +114,29 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>  
         private void DescriptionRichTextBox1_TextChanged(object sender, EventArgs e)
         {
-            DescriptionRichTextBox.BackColor = System.Drawing.Color.White;
+            descriptionRichTextBox.BackColor = System.Drawing.Color.White;
         }
 
         /// <summary>
         /// При нажатии пробела присваивает название предмету из NameRichTextBox. 
         /// Если не получается, окрашивает background поля NameRIchTextBox в красный цвет.
         /// </summary>   
-        private void NameRichTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        private void nameRichTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
             {
-                _currentItemList = _items[ItemsListBox.SelectedIndex];
+                _currentItemList = _items[itemsListBox.SelectedIndex];
 
-                var currentName = NameRichTextBox.Text;
+                var currentName = nameRichTextBox.Text;
 
                 if (e.KeyChar == (char)Keys.Enter)
                 {
-                    _currentItemList.Name = currentName;
-
-                    var info = TakeInfoFromItem(_currentItemList);
-
-                    ItemsListBox.Items[ItemsListBox.SelectedIndex] = info;
+                    _currentItemList.Name = currentName;                    
                 }
             }
-            catch  
+            catch
             {
-                NameRichTextBox.BackColor = System.Drawing.Color.LightPink;
+                nameRichTextBox.BackColor = System.Drawing.Color.LightPink;
             }
         }
 
@@ -173,27 +144,23 @@ namespace ObjectOrientedPractics.View.Tabs
         /// При нажатии пробела присваивает цену предмету из CostTextBox. 
         /// Если не получается, окрашивает background поля CostTextBox в красный цвет.
         /// </summary>  
-        private void CostTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        private void costTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
 
             try
             {
-                _currentItemList = _items[ItemsListBox.SelectedIndex];
+                _currentItemList = _items[itemsListBox.SelectedIndex];
 
-                var currentCost = Convert.ToDouble(CostTextBox.Text);
+                var currentCost = Convert.ToDouble(costTextBox.Text);
 
                 if (e.KeyChar == (char)Keys.Enter)
                 {
-                    _currentItemList.Cost = currentCost;
-
-                    var info = TakeInfoFromItem(_currentItemList);
-
-                    ItemsListBox.Items[ItemsListBox.SelectedIndex] = info;
+                    _currentItemList.Cost = currentCost;                    
                 }
             }
             catch
             {
-                CostTextBox.BackColor = System.Drawing.Color.LightPink;
+                costTextBox.BackColor = System.Drawing.Color.LightPink;
             }
 
         }
@@ -202,28 +169,61 @@ namespace ObjectOrientedPractics.View.Tabs
         /// При нажатии пробела присваивает описание предмету из DescriptionRichTextBox. 
         /// Если не получается, окрашивает background поля DescriptionRichTextBox в красный цвет.
         /// </summary>  
-        private void DescriptionRichTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        private void descriptionRichTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
             {
-                _currentItemList = _items[ItemsListBox.SelectedIndex];
+                _currentItemList = _items[itemsListBox.SelectedIndex];
 
-                var currentInfo = DescriptionRichTextBox.Text;
+                var currentInfo = descriptionRichTextBox.Text;
 
                 if (e.KeyChar == (char)Keys.Enter)
                 {
-                    _currentItemList.Info = currentInfo;
-
-                    var info = TakeInfoFromItem(_currentItemList);
-
-                    ItemsListBox.Items[ItemsListBox.SelectedIndex] = info;
+                    _currentItemList.Info = currentInfo;                    
                 }
             }
             catch
             {
-                DescriptionRichTextBox.BackColor = System.Drawing.Color.LightPink;
+                descriptionRichTextBox.BackColor = System.Drawing.Color.LightPink;
             }
 
+        }
+        /// <summary>
+        /// При изменении значения в CategoryComboBox присваивает его значение параметру category товара. 
+        /// </summary> 
+        private void categoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (itemsListBox.SelectedIndex >= 0)
+            {
+                _currentItemList = _items[itemsListBox.SelectedIndex];
+
+                var currentCategory = categoryComboBox.Text;
+
+                switch (currentCategory)
+                {
+                    case "Processor":
+                        _currentItemList.Category = Category.Processor;
+                        break;
+                    case "GraphicsCard":
+                        _currentItemList.Category = Category.GraphicsCard;
+                        break;
+                    case "Motherboard":
+                        _currentItemList.Category = Category.Motherboard;
+                        break;
+                    case "RAM":
+                        _currentItemList.Category = Category.RAM;
+                        break;
+                    case "PowerSupplie":
+                        _currentItemList.Category = Category.PowerSupplie;
+                        break;
+                    case "SSD":
+                        _currentItemList.Category = Category.SSD;
+                        break;
+                    case "HDD":
+                        _currentItemList.Category = Category.HDD;
+                        break;
+                }
+            }
         }
 
         /// <summary>
@@ -231,11 +231,36 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>        
         private void AddButton_Click(object sender, EventArgs e)
         {
-            var newItem = new Item(firstname, firstdescription, firstcost);
-            _items.Add(newItem);
-            var info = TakeInfoFromItem(newItem);
+            /// <summary>
+            /// Default value of Cost.
+            /// </summary>
+            int firstcost = 100;
 
-            ItemsListBox.Items.Add(info);
+            /// <summary>
+            /// Default value for Name.
+            /// </summary>
+            string firstname = "Name";
+
+            /// <summary>
+            /// Default value for Info.
+            /// </summary>
+            string firstdescription = "Info";
+
+            /// <summary>
+            /// Default value for Category.
+            /// </summary>
+            Category firstCategory = Category.Processor;
+
+            var newItem = new Item(firstname, firstdescription, firstcost, firstCategory);
+            _items.Add(newItem);  
+            
+            costTextBox.Enabled = true;
+            categoryComboBox.Enabled = true;
+            descriptionRichTextBox.Enabled = true;
+            nameRichTextBox.Enabled = true;
+            removeButton.Enabled = true;
+
+            UpdateItemInfo(_items[itemsListBox.SelectedIndex]);
         }
 
         /// <summary>
@@ -245,12 +270,40 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             try
             {
-                _items.RemoveAt(ItemsListBox.SelectedIndex);                
-                ItemsListBox.Items.RemoveAt(ItemsListBox.SelectedIndex);                
+                _items.RemoveAt(itemsListBox.SelectedIndex);
+                itemsListBox.Items.RemoveAt(itemsListBox.SelectedIndex);
             }
             catch
             {
+
+            }
+
+            if (itemsListBox.SelectedIndex < 0)
+            {
+                costTextBox.Enabled = false;
+                categoryComboBox.SelectedItem = null;
+                categoryComboBox.Enabled = false;
+                descriptionRichTextBox.Enabled = false;
+                nameRichTextBox.Enabled = false;
+                removeButton.Enabled = false;
+
+                ClearItemInfo();
             }
         }
+
+        public BindingList<Item> Items
+        {
+            get { return _items; }
+            set
+            {
+                if (value != null)
+                {
+                    _items = value;
+
+                    itemsListBox.DataSource = _items;
+                }
+                        
+            }
+        }      
     }
 }

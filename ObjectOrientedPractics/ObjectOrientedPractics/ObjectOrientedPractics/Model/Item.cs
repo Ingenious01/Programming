@@ -1,17 +1,19 @@
-﻿using ObjectOrientedPractics.Services;
+﻿using ObjectOrientedPractics.Model.Enums;
+using ObjectOrientedPractics.Services;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
-using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ObjectOrientedPractics.Services
+namespace ObjectOrientedPractics.Model
 {
     /// <summary>
     /// Хранит информацию о товаре.
     /// </summary>
-    internal class Item
+    public class Item : INotifyPropertyChanged, ICloneable
     {
         /// <summary>
         /// Индивидуальный номер товара.
@@ -33,15 +35,21 @@ namespace ObjectOrientedPractics.Services
         /// </summary>
         private double _cost;
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
         /// <summary>
         /// Возвращает и задаёт индивидуальный номер товара.
         /// </summary>
         public int Id
-        { 
-           get => _id;
-           set => _id = value;
-
-        }        
+        {
+            get => _id;
+            set => _id = value;            
+        }
 
         /// <summary>
         /// Возвращает и задаёт название товара.
@@ -53,10 +61,19 @@ namespace ObjectOrientedPractics.Services
             {
                 ValueValidator.AssertStringOnLength(value, 200, nameof(Name));
 
-                ValueValidator.AssertNameStringOnSymbols(value, nameof(Name));
-
                 _name = value;
+
+                OnPropertyChanged();
             }
+        }
+
+        public override string ToString()
+        {
+            var info = $"{Id}. " +
+               $"Name={Name}, " +
+               $"Cost ={Cost} ";
+
+            return info;
         }
 
         /// <summary>
@@ -67,27 +84,36 @@ namespace ObjectOrientedPractics.Services
             get => _info;
             set
             {
-                ValueValidator.AssertStringOnLength(value, 500, nameof(Info));               
+                ValueValidator.AssertStringOnLength(value, 500, nameof(Info));                
 
                 _info = value;
+
+                OnPropertyChanged();
             }
         }
 
         /// <summary>
         /// Возвращает и задаёт стоимость товара. Стоимость должна быть больше 0.
         /// </summary>
-        public double Cost 
+        public double Cost
         {
             get => _cost;
 
             set
             {
-                if (value>0) 
-                    _cost = value;                
-                else 
+                if (value > 0)
+                    _cost = value;
+                else
                     throw new ArgumentException("Укажите корректную цену");
+                OnPropertyChanged();
             }
         }
+
+        /// <summary>
+        /// Возвращает и задаёт категорию товара.
+        /// </summary>
+        public Category Category { get; set; }
+
 
         /// <summary>
         /// Создаёт экземпляр класса <see cref="Item"/>.
@@ -95,12 +121,53 @@ namespace ObjectOrientedPractics.Services
         /// <param name="name">Название товара</param>
         /// <param name="info">Информация о товаре</param>
         /// <param name="cost">Стоимость товара</param>
-        public Item(string name, string info, double cost)
+        /// /// <param name="category">Категория товара</param>
+        public Item(string name, string info, double cost, Category category)
         {
             Id = IdGenerator.GetNextItemId();
             Name = name;
             Info = info;
             Cost = cost;
+            Category = category;
+        }
+
+        public object Clone()
+        {
+            return new Item(this.Name, this.Info, this.Cost, this.Category);
+        }
+
+        public override bool Equals(object other)
+        {
+            // Обязательные проверки прежде чем мы сравним поля
+            if (other == null)
+                return false;
+                
+            if (other is Item)
+            {
+                if (object.ReferenceEquals(this, other))
+                    return true;
+
+                var item2 = (Item)other;
+
+                // Только теперь мы можем сделать собственное сравнение
+                return (this.Name == item2.Name);
+            }
+
+            else
+            {
+                return false;
+            }            
+        }
+
+        public int CompareTo(object item)
+        {
+            if (item == null) return 1;
+
+            Item otherItem = item as Item;
+            if (otherItem != null)
+                return this.Cost.CompareTo(otherItem.Cost);
+            else
+                throw new ArgumentException("Object is not an Item");
         }
     }
 }
