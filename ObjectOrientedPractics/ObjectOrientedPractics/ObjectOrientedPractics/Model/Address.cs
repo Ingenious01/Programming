@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ObjectOrientedPractics.Model
 {
-    public class Address : INotifyPropertyChanged
+    public class Address : INotifyPropertyChanged, ICloneable
     {
         /// <summary>
         /// Почтовый индекс.
@@ -168,6 +168,35 @@ namespace ObjectOrientedPractics.Model
             Street = street;
             Building = building;
             Apartament = apartament;
+        }
+        
+
+        public object Clone()
+        {
+            return new Address(this.Index, this.Country, this.City, this.Street, this.Building, this.Apartament);
+        }
+
+        public override bool Equals(object other)
+        {
+            // Обязательные проверки прежде чем мы сравним поля
+            if (other == null)
+                return false;
+
+            if (other is Address)
+            {
+                if (object.ReferenceEquals(this, other))
+                    return true;
+
+                var address2 = (Address)other;
+
+                // Только теперь мы можем сделать собственное сравнение
+                return (this.Index == address2.Index);
+            }
+
+            else
+            {
+                return false;
+            }
         }
     }
 }

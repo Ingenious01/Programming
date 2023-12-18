@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ObjectOrientedPractics.Model
 {
-    public class Cart : INotifyPropertyChanged
+    public class Cart : INotifyPropertyChanged, ICloneable
     {
         /// <summary>
         /// Список предметов в корзине покупателя.
@@ -62,6 +62,16 @@ namespace ObjectOrientedPractics.Model
         public Cart()
         {
             ListOfItems = new List<Item>();
+        }
+
+        public Cart(List<Item> items)
+        {
+            ListOfItems = items;
+        }
+
+        public object Clone()
+        {
+            return new Cart(this.ListOfItems);
         }
     }
 }

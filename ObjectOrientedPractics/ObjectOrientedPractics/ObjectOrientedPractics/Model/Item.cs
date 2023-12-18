@@ -13,7 +13,7 @@ namespace ObjectOrientedPractics.Model
     /// <summary>
     /// Хранит информацию о товаре.
     /// </summary>
-    public class Item : INotifyPropertyChanged
+    public class Item : INotifyPropertyChanged, ICloneable
     {
         /// <summary>
         /// Индивидуальный номер товара.
@@ -129,6 +129,45 @@ namespace ObjectOrientedPractics.Model
             Info = info;
             Cost = cost;
             Category = category;
+        }
+
+        public object Clone()
+        {
+            return new Item(this.Name, this.Info, this.Cost, this.Category);
+        }
+
+        public override bool Equals(object other)
+        {
+            // Обязательные проверки прежде чем мы сравним поля
+            if (other == null)
+                return false;
+                
+            if (other is Item)
+            {
+                if (object.ReferenceEquals(this, other))
+                    return true;
+
+                var item2 = (Item)other;
+
+                // Только теперь мы можем сделать собственное сравнение
+                return (this.Name == item2.Name);
+            }
+
+            else
+            {
+                return false;
+            }            
+        }
+
+        public int CompareTo(object item)
+        {
+            if (item == null) return 1;
+
+            Item otherItem = item as Item;
+            if (otherItem != null)
+                return this.Cost.CompareTo(otherItem.Cost);
+            else
+                throw new ArgumentException("Object is not an Item");
         }
     }
 }

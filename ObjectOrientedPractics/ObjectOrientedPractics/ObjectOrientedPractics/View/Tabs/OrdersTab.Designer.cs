@@ -39,37 +39,37 @@
             this.orderItemsGroupBox = new System.Windows.Forms.GroupBox();
             this.orderItemsListBox = new System.Windows.Forms.ListBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.ordersGroupBox1 = new System.Windows.Forms.GroupBox();
-            this.ordersGridView = new System.Windows.Forms.DataGridView();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.statusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OrderBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.idLabel = new System.Windows.Forms.Label();
-            this.costLabel = new System.Windows.Forms.Label();
-            this.idTextBox = new System.Windows.Forms.TextBox();
-            this.costTextBox = new System.Windows.Forms.TextBox();
-            this.statusLabel = new System.Windows.Forms.Label();
-            this.statusComboBox = new System.Windows.Forms.ComboBox();
             this.selectedOrderGroupBox = new System.Windows.Forms.GroupBox();
+            this.statusComboBox = new System.Windows.Forms.ComboBox();
+            this.statusLabel = new System.Windows.Forms.Label();
+            this.costTextBox = new System.Windows.Forms.TextBox();
+            this.idTextBox = new System.Windows.Forms.TextBox();
+            this.costLabel = new System.Windows.Forms.Label();
+            this.idLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.priorityOptionsGroupBox = new System.Windows.Forms.GroupBox();
             this.deliveryTimeComboBox = new System.Windows.Forms.ComboBox();
             this.deliverytimeLabel = new System.Windows.Forms.Label();
             this.totalPriceGroupBox = new System.Windows.Forms.GroupBox();
             this.totalPriceLabel = new System.Windows.Forms.Label();
+            this.ordersGroupBox1 = new System.Windows.Forms.GroupBox();
+            this.ordersGridView = new System.Windows.Forms.DataGridView();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.statusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OrderBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
             this.orderItemsGroupBox.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
-            this.ordersGroupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ordersGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.OrderBindingSource)).BeginInit();
             this.selectedOrderGroupBox.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.priorityOptionsGroupBox.SuspendLayout();
             this.totalPriceGroupBox.SuspendLayout();
+            this.ordersGroupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ordersGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.OrderBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -211,6 +211,148 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(554, 131);
             this.tableLayoutPanel3.TabIndex = 3;
             // 
+            // selectedOrderGroupBox
+            // 
+            this.selectedOrderGroupBox.Controls.Add(this.statusComboBox);
+            this.selectedOrderGroupBox.Controls.Add(this.statusLabel);
+            this.selectedOrderGroupBox.Controls.Add(this.costTextBox);
+            this.selectedOrderGroupBox.Controls.Add(this.idTextBox);
+            this.selectedOrderGroupBox.Controls.Add(this.costLabel);
+            this.selectedOrderGroupBox.Controls.Add(this.idLabel);
+            this.selectedOrderGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.selectedOrderGroupBox.Location = new System.Drawing.Point(3, 3);
+            this.selectedOrderGroupBox.Name = "selectedOrderGroupBox";
+            this.selectedOrderGroupBox.Size = new System.Drawing.Size(243, 125);
+            this.selectedOrderGroupBox.TabIndex = 2;
+            this.selectedOrderGroupBox.TabStop = false;
+            this.selectedOrderGroupBox.Text = "Selected Order";
+            // 
+            // statusComboBox
+            // 
+            this.statusComboBox.Enabled = false;
+            this.statusComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.statusComboBox.FormattingEnabled = true;
+            this.statusComboBox.Location = new System.Drawing.Point(96, 90);
+            this.statusComboBox.Name = "statusComboBox";
+            this.statusComboBox.Size = new System.Drawing.Size(141, 30);
+            this.statusComboBox.TabIndex = 15;
+            this.statusComboBox.SelectedIndexChanged += new System.EventHandler(this.statusComboBox_SelectedIndexChanged);
+            // 
+            // statusLabel
+            // 
+            this.statusLabel.AutoSize = true;
+            this.statusLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.statusLabel.Location = new System.Drawing.Point(8, 93);
+            this.statusLabel.Name = "statusLabel";
+            this.statusLabel.Size = new System.Drawing.Size(65, 24);
+            this.statusLabel.TabIndex = 14;
+            this.statusLabel.Text = "Status:";
+            // 
+            // costTextBox
+            // 
+            this.costTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.costTextBox.Location = new System.Drawing.Point(96, 53);
+            this.costTextBox.Name = "costTextBox";
+            this.costTextBox.ReadOnly = true;
+            this.costTextBox.Size = new System.Drawing.Size(141, 28);
+            this.costTextBox.TabIndex = 13;
+            // 
+            // idTextBox
+            // 
+            this.idTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.idTextBox.Location = new System.Drawing.Point(96, 15);
+            this.idTextBox.Name = "idTextBox";
+            this.idTextBox.ReadOnly = true;
+            this.idTextBox.Size = new System.Drawing.Size(141, 28);
+            this.idTextBox.TabIndex = 12;
+            // 
+            // costLabel
+            // 
+            this.costLabel.AutoSize = true;
+            this.costLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.costLabel.Location = new System.Drawing.Point(6, 56);
+            this.costLabel.Name = "costLabel";
+            this.costLabel.Size = new System.Drawing.Size(52, 24);
+            this.costLabel.TabIndex = 11;
+            this.costLabel.Text = "Cost:";
+            // 
+            // idLabel
+            // 
+            this.idLabel.AutoSize = true;
+            this.idLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.idLabel.Location = new System.Drawing.Point(6, 18);
+            this.idLabel.Name = "idLabel";
+            this.idLabel.Size = new System.Drawing.Size(32, 24);
+            this.idLabel.TabIndex = 10;
+            this.idLabel.Text = "ID:";
+            // 
+            // tableLayoutPanel4
+            // 
+            this.tableLayoutPanel4.ColumnCount = 1;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.Controls.Add(this.priorityOptionsGroupBox, 0, 0);
+            this.tableLayoutPanel4.Controls.Add(this.totalPriceGroupBox, 0, 1);
+            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(252, 3);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 2;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(299, 125);
+            this.tableLayoutPanel4.TabIndex = 3;
+            // 
+            // priorityOptionsGroupBox
+            // 
+            this.priorityOptionsGroupBox.Controls.Add(this.deliveryTimeComboBox);
+            this.priorityOptionsGroupBox.Controls.Add(this.deliverytimeLabel);
+            this.priorityOptionsGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.priorityOptionsGroupBox.Location = new System.Drawing.Point(3, 3);
+            this.priorityOptionsGroupBox.Name = "priorityOptionsGroupBox";
+            this.priorityOptionsGroupBox.Size = new System.Drawing.Size(293, 56);
+            this.priorityOptionsGroupBox.TabIndex = 4;
+            this.priorityOptionsGroupBox.TabStop = false;
+            this.priorityOptionsGroupBox.Text = "Priority Order";
+            // 
+            // deliveryTimeComboBox
+            // 
+            this.deliveryTimeComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.deliveryTimeComboBox.FormattingEnabled = true;
+            this.deliveryTimeComboBox.Location = new System.Drawing.Point(144, 21);
+            this.deliveryTimeComboBox.Name = "deliveryTimeComboBox";
+            this.deliveryTimeComboBox.Size = new System.Drawing.Size(143, 30);
+            this.deliveryTimeComboBox.TabIndex = 15;
+            this.deliveryTimeComboBox.SelectedIndexChanged += new System.EventHandler(this.deliveryTimeComboBox_SelectedIndexChanged);
+            // 
+            // deliverytimeLabel
+            // 
+            this.deliverytimeLabel.AutoSize = true;
+            this.deliverytimeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.deliverytimeLabel.Location = new System.Drawing.Point(8, 24);
+            this.deliverytimeLabel.Name = "deliverytimeLabel";
+            this.deliverytimeLabel.Size = new System.Drawing.Size(130, 24);
+            this.deliverytimeLabel.TabIndex = 14;
+            this.deliverytimeLabel.Text = "Delivery Time:";
+            // 
+            // totalPriceGroupBox
+            // 
+            this.totalPriceGroupBox.Controls.Add(this.totalPriceLabel);
+            this.totalPriceGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.totalPriceGroupBox.Location = new System.Drawing.Point(3, 65);
+            this.totalPriceGroupBox.Name = "totalPriceGroupBox";
+            this.totalPriceGroupBox.Size = new System.Drawing.Size(293, 57);
+            this.totalPriceGroupBox.TabIndex = 5;
+            this.totalPriceGroupBox.TabStop = false;
+            this.totalPriceGroupBox.Text = "Discounts";
+            // 
+            // totalPriceLabel
+            // 
+            this.totalPriceLabel.AutoSize = true;
+            this.totalPriceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.totalPriceLabel.Location = new System.Drawing.Point(8, 25);
+            this.totalPriceLabel.Name = "totalPriceLabel";
+            this.totalPriceLabel.Size = new System.Drawing.Size(0, 24);
+            this.totalPriceLabel.TabIndex = 15;
+            // 
             // ordersGroupBox1
             // 
             this.ordersGroupBox1.Controls.Add(this.ordersGridView);
@@ -278,147 +420,6 @@
             // 
             this.OrderBindingSource.DataSource = typeof(ObjectOrientedPractics.Model.Orders.Order);
             // 
-            // idLabel
-            // 
-            this.idLabel.AutoSize = true;
-            this.idLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.idLabel.Location = new System.Drawing.Point(6, 18);
-            this.idLabel.Name = "idLabel";
-            this.idLabel.Size = new System.Drawing.Size(32, 24);
-            this.idLabel.TabIndex = 10;
-            this.idLabel.Text = "ID:";
-            // 
-            // costLabel
-            // 
-            this.costLabel.AutoSize = true;
-            this.costLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.costLabel.Location = new System.Drawing.Point(6, 56);
-            this.costLabel.Name = "costLabel";
-            this.costLabel.Size = new System.Drawing.Size(52, 24);
-            this.costLabel.TabIndex = 11;
-            this.costLabel.Text = "Cost:";
-            // 
-            // idTextBox
-            // 
-            this.idTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.idTextBox.Location = new System.Drawing.Point(96, 15);
-            this.idTextBox.Name = "idTextBox";
-            this.idTextBox.ReadOnly = true;
-            this.idTextBox.Size = new System.Drawing.Size(141, 28);
-            this.idTextBox.TabIndex = 12;
-            // 
-            // costTextBox
-            // 
-            this.costTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.costTextBox.Location = new System.Drawing.Point(96, 53);
-            this.costTextBox.Name = "costTextBox";
-            this.costTextBox.ReadOnly = true;
-            this.costTextBox.Size = new System.Drawing.Size(141, 28);
-            this.costTextBox.TabIndex = 13;
-            // 
-            // statusLabel
-            // 
-            this.statusLabel.AutoSize = true;
-            this.statusLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.statusLabel.Location = new System.Drawing.Point(8, 93);
-            this.statusLabel.Name = "statusLabel";
-            this.statusLabel.Size = new System.Drawing.Size(65, 24);
-            this.statusLabel.TabIndex = 14;
-            this.statusLabel.Text = "Status:";
-            // 
-            // statusComboBox
-            // 
-            this.statusComboBox.Enabled = false;
-            this.statusComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.statusComboBox.FormattingEnabled = true;
-            this.statusComboBox.Location = new System.Drawing.Point(96, 90);
-            this.statusComboBox.Name = "statusComboBox";
-            this.statusComboBox.Size = new System.Drawing.Size(141, 30);
-            this.statusComboBox.TabIndex = 15;
-            this.statusComboBox.SelectedIndexChanged += new System.EventHandler(this.statusComboBox_SelectedIndexChanged);
-            // 
-            // selectedOrderGroupBox
-            // 
-            this.selectedOrderGroupBox.Controls.Add(this.statusComboBox);
-            this.selectedOrderGroupBox.Controls.Add(this.statusLabel);
-            this.selectedOrderGroupBox.Controls.Add(this.costTextBox);
-            this.selectedOrderGroupBox.Controls.Add(this.idTextBox);
-            this.selectedOrderGroupBox.Controls.Add(this.costLabel);
-            this.selectedOrderGroupBox.Controls.Add(this.idLabel);
-            this.selectedOrderGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.selectedOrderGroupBox.Location = new System.Drawing.Point(3, 3);
-            this.selectedOrderGroupBox.Name = "selectedOrderGroupBox";
-            this.selectedOrderGroupBox.Size = new System.Drawing.Size(243, 125);
-            this.selectedOrderGroupBox.TabIndex = 2;
-            this.selectedOrderGroupBox.TabStop = false;
-            this.selectedOrderGroupBox.Text = "Selected Order";
-            // 
-            // tableLayoutPanel4
-            // 
-            this.tableLayoutPanel4.ColumnCount = 1;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Controls.Add(this.priorityOptionsGroupBox, 0, 0);
-            this.tableLayoutPanel4.Controls.Add(this.totalPriceGroupBox, 0, 1);
-            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(252, 3);
-            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 2;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(299, 125);
-            this.tableLayoutPanel4.TabIndex = 3;
-            // 
-            // priorityOptionsGroupBox
-            // 
-            this.priorityOptionsGroupBox.Controls.Add(this.deliveryTimeComboBox);
-            this.priorityOptionsGroupBox.Controls.Add(this.deliverytimeLabel);
-            this.priorityOptionsGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.priorityOptionsGroupBox.Location = new System.Drawing.Point(3, 3);
-            this.priorityOptionsGroupBox.Name = "priorityOptionsGroupBox";
-            this.priorityOptionsGroupBox.Size = new System.Drawing.Size(293, 56);
-            this.priorityOptionsGroupBox.TabIndex = 4;
-            this.priorityOptionsGroupBox.TabStop = false;
-            this.priorityOptionsGroupBox.Text = "Priority Order";
-            // 
-            // deliveryTimeComboBox
-            // 
-            this.deliveryTimeComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.deliveryTimeComboBox.FormattingEnabled = true;
-            this.deliveryTimeComboBox.Location = new System.Drawing.Point(144, 21);
-            this.deliveryTimeComboBox.Name = "deliveryTimeComboBox";
-            this.deliveryTimeComboBox.Size = new System.Drawing.Size(143, 30);
-            this.deliveryTimeComboBox.TabIndex = 15;
-            // 
-            // deliverytimeLabel
-            // 
-            this.deliverytimeLabel.AutoSize = true;
-            this.deliverytimeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.deliverytimeLabel.Location = new System.Drawing.Point(8, 24);
-            this.deliverytimeLabel.Name = "deliverytimeLabel";
-            this.deliverytimeLabel.Size = new System.Drawing.Size(130, 24);
-            this.deliverytimeLabel.TabIndex = 14;
-            this.deliverytimeLabel.Text = "Delivery Time:";
-            // 
-            // totalPriceGroupBox
-            // 
-            this.totalPriceGroupBox.Controls.Add(this.totalPriceLabel);
-            this.totalPriceGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.totalPriceGroupBox.Location = new System.Drawing.Point(3, 65);
-            this.totalPriceGroupBox.Name = "totalPriceGroupBox";
-            this.totalPriceGroupBox.Size = new System.Drawing.Size(293, 57);
-            this.totalPriceGroupBox.TabIndex = 5;
-            this.totalPriceGroupBox.TabStop = false;
-            this.totalPriceGroupBox.Text = "Discounts";
-            // 
-            // totalPriceLabel
-            // 
-            this.totalPriceLabel.AutoSize = true;
-            this.totalPriceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.totalPriceLabel.Location = new System.Drawing.Point(8, 25);
-            this.totalPriceLabel.Name = "totalPriceLabel";
-            this.totalPriceLabel.Size = new System.Drawing.Size(0, 24);
-            this.totalPriceLabel.TabIndex = 15;
-            // 
             // ordersTab
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -432,9 +433,6 @@
             this.tableLayoutPanel6.ResumeLayout(false);
             this.orderItemsGroupBox.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
-            this.ordersGroupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.ordersGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.OrderBindingSource)).EndInit();
             this.selectedOrderGroupBox.ResumeLayout(false);
             this.selectedOrderGroupBox.PerformLayout();
             this.tableLayoutPanel4.ResumeLayout(false);
@@ -442,6 +440,9 @@
             this.priorityOptionsGroupBox.PerformLayout();
             this.totalPriceGroupBox.ResumeLayout(false);
             this.totalPriceGroupBox.PerformLayout();
+            this.ordersGroupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ordersGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.OrderBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }

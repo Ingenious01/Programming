@@ -100,5 +100,16 @@ namespace ObjectOrientedPractics.Model.Discounts
         {
 
         }
+
+        public int CompareTo(object discount)
+        {
+            if (discount == null) return 1;
+
+            PointsDiscount otherDiscount = discount as PointsDiscount;
+            if (otherDiscount != null)
+                return this.Points.CompareTo(otherDiscount.Points);
+            else
+                throw new ArgumentException("Object is not a PointsDiscount");
+        }
     }
 }

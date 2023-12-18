@@ -116,5 +116,16 @@ namespace ObjectOrientedPractics.Model.Discounts
         {
             _category = category;
         }
+
+        public int CompareTo(object discount)
+        {
+            if (discount == null) return 1;
+
+            PercentDiscount otherDiscount = discount as PercentDiscount;
+            if (otherDiscount != null)
+                return this.Discount.CompareTo(otherDiscount.Discount);
+            else
+                throw new ArgumentException("Object is not a PercentDiscount");
+        }
     }
 }
