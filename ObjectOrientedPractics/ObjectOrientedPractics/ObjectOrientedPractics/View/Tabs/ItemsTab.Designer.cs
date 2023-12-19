@@ -45,11 +45,11 @@
             this.removeButton = new System.Windows.Forms.Button();
             this.addButton = new System.Windows.Forms.Button();
             this.itemsListGroupBox = new System.Windows.Forms.GroupBox();
+            this.orderbyComboBox = new System.Windows.Forms.ComboBox();
+            this.orderByLabel = new System.Windows.Forms.Label();
             this.findItemTextBox = new System.Windows.Forms.TextBox();
             this.findItemLabel = new System.Windows.Forms.Label();
             this.itemsListBox = new System.Windows.Forms.ListBox();
-            this.orderbyComboBox = new System.Windows.Forms.ComboBox();
-            this.orderByLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.selectedItemGroupBox.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -278,6 +278,29 @@
             this.itemsListGroupBox.TabStop = false;
             this.itemsListGroupBox.Text = "Items";
             // 
+            // orderbyComboBox
+            // 
+            this.orderbyComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.orderbyComboBox.Enabled = false;
+            this.orderbyComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.orderbyComboBox.FormattingEnabled = true;
+            this.orderbyComboBox.Location = new System.Drawing.Point(101, 559);
+            this.orderbyComboBox.Name = "orderbyComboBox";
+            this.orderbyComboBox.Size = new System.Drawing.Size(175, 30);
+            this.orderbyComboBox.TabIndex = 11;
+            this.orderbyComboBox.SelectedIndexChanged += new System.EventHandler(this.orderbyComboBox_SelectedIndexChanged);
+            // 
+            // orderByLabel
+            // 
+            this.orderByLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.orderByLabel.AutoSize = true;
+            this.orderByLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.orderByLabel.Location = new System.Drawing.Point(6, 565);
+            this.orderByLabel.Name = "orderByLabel";
+            this.orderByLabel.Size = new System.Drawing.Size(89, 24);
+            this.orderByLabel.TabIndex = 10;
+            this.orderByLabel.Text = "Order by:";
+            // 
             // findItemTextBox
             // 
             this.findItemTextBox.Enabled = false;
@@ -311,29 +334,6 @@
             this.itemsListBox.Size = new System.Drawing.Size(385, 488);
             this.itemsListBox.TabIndex = 0;
             this.itemsListBox.SelectedIndexChanged += new System.EventHandler(this.itemsListBox_SelectedIndexChanged);
-            // 
-            // orderbyComboBox
-            // 
-            this.orderbyComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.orderbyComboBox.Enabled = false;
-            this.orderbyComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.orderbyComboBox.FormattingEnabled = true;
-            this.orderbyComboBox.Location = new System.Drawing.Point(116, 562);
-            this.orderbyComboBox.Name = "orderbyComboBox";
-            this.orderbyComboBox.Size = new System.Drawing.Size(175, 30);
-            this.orderbyComboBox.TabIndex = 11;
-            this.orderbyComboBox.SelectedIndexChanged += new System.EventHandler(this.orderbyComboBox_SelectedIndexChanged);
-            // 
-            // orderByLabel
-            // 
-            this.orderByLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.orderByLabel.AutoSize = true;
-            this.orderByLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.orderByLabel.Location = new System.Drawing.Point(6, 565);
-            this.orderByLabel.Name = "orderByLabel";
-            this.orderByLabel.Size = new System.Drawing.Size(89, 24);
-            this.orderByLabel.TabIndex = 10;
-            this.orderByLabel.Text = "Order by:";
             // 
             // itemsTab
             // 

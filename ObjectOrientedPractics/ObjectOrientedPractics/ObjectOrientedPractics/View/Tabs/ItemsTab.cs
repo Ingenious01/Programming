@@ -37,7 +37,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <summary>
         /// Предмет, выбранный в ItemsListBox.
         /// </summary>
-        private Item _currentItemList;        
+        private Item _currentItem;        
 
         /// <summary>
         /// Создаёт экземпляр класса ItemsTab.
@@ -50,11 +50,15 @@ namespace ObjectOrientedPractics.View.Tabs
 
             itemsListBox.DataSource = _items;
 
+            DisplayedItems = null;
+
             orderbyComboBox.Items.Add("By Name");
 
             orderbyComboBox.Items.Add("By Category");
 
             orderbyComboBox.Items.Add("By Cost");
+
+            orderbyComboBox.Items.Add("By Id");
 
             orderbyComboBox.SelectedIndex = 0;
         }
@@ -106,8 +110,22 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             try
             {
-                _currentItemList = _items[itemsListBox.SelectedIndex];
-                UpdateItemInfo(_currentItemList);
+                _currentItem = _items[itemsListBox.SelectedIndex];
+
+                if (DisplayedItems != null)
+                {
+                    _currentItem = DisplayedItems[itemsListBox.SelectedIndex];
+
+                    foreach (var item in _items)
+                    {
+                        if (_currentItem.Id == item.Id)
+                        {
+                            _currentItem = item;
+                        }
+                    }
+                }
+
+                UpdateItemInfo(_currentItem);
             }
             catch
             {
@@ -147,13 +165,16 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             try
             {
-                _currentItemList = _items[itemsListBox.SelectedIndex];
+                if (_currentItem == null)
+                {
+                    return;
+                }
 
                 var currentName = nameRichTextBox.Text;
 
                 if (e.KeyChar == (char)Keys.Enter)
                 {
-                    _currentItemList.Name = currentName;                    
+                    _currentItem.Name = currentName;                    
                 }
             }
             catch
@@ -171,13 +192,16 @@ namespace ObjectOrientedPractics.View.Tabs
 
             try
             {
-                _currentItemList = _items[itemsListBox.SelectedIndex];
+                if (_currentItem == null)
+                {
+                    return;
+                }
 
                 var currentCost = Convert.ToDouble(costTextBox.Text);
 
                 if (e.KeyChar == (char)Keys.Enter)
                 {
-                    _currentItemList.Cost = currentCost;                    
+                    _currentItem.Cost = currentCost;                    
                 }
             }
             catch
@@ -195,13 +219,16 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             try
             {
-                _currentItemList = _items[itemsListBox.SelectedIndex];
+                if (_currentItem == null)
+                {
+                    return;
+                }
 
                 var currentInfo = descriptionRichTextBox.Text;
 
                 if (e.KeyChar == (char)Keys.Enter)
                 {
-                    _currentItemList.Info = currentInfo;                    
+                    _currentItem.Info = currentInfo;                    
                 }
             }
             catch
@@ -217,32 +244,35 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             if (itemsListBox.SelectedIndex >= 0)
             {
-                _currentItemList = _items[itemsListBox.SelectedIndex];
+                if (_currentItem == null)
+                {
+                    return;
+                }
 
                 var currentCategory = categoryComboBox.Text;
 
                 switch (currentCategory)
                 {
                     case "Processor":
-                        _currentItemList.Category = Category.Processor;
+                        _currentItem.Category = Category.Processor;
                         break;
                     case "GraphicsCard":
-                        _currentItemList.Category = Category.GraphicsCard;
+                        _currentItem.Category = Category.GraphicsCard;
                         break;
                     case "Motherboard":
-                        _currentItemList.Category = Category.Motherboard;
+                        _currentItem.Category = Category.Motherboard;
                         break;
                     case "RAM":
-                        _currentItemList.Category = Category.RAM;
+                        _currentItem.Category = Category.RAM;
                         break;
                     case "PowerSupplie":
-                        _currentItemList.Category = Category.PowerSupplie;
+                        _currentItem.Category = Category.PowerSupplie;
                         break;
                     case "SSD":
-                        _currentItemList.Category = Category.SSD;
+                        _currentItem.Category = Category.SSD;
                         break;
                     case "HDD":
-                        _currentItemList.Category = Category.HDD;
+                        _currentItem.Category = Category.HDD;
                         break;
                 }
             }
@@ -253,6 +283,15 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>        
         private void AddButton_Click(object sender, EventArgs e)
         {
+            costTextBox.Enabled = true;
+            categoryComboBox.Enabled = true;
+            descriptionRichTextBox.Enabled = true;
+            nameRichTextBox.Enabled = true;
+            removeButton.Enabled = true;
+            findItemLabel.Enabled = true;
+            findItemTextBox.Enabled = true;
+            orderbyComboBox.Enabled = true;
+
             /// <summary>
             /// Default value of Cost.
             /// </summary>
@@ -274,18 +313,14 @@ namespace ObjectOrientedPractics.View.Tabs
             Category firstCategory = Category.Processor;
 
             var newItem = new Item(firstname, firstdescription, firstcost, firstCategory);
-            _items.Add(newItem);  
-            
-            costTextBox.Enabled = true;
-            categoryComboBox.Enabled = true;
-            descriptionRichTextBox.Enabled = true;
-            nameRichTextBox.Enabled = true;
-            removeButton.Enabled = true;
-            findItemLabel.Enabled = true;
-            findItemTextBox.Enabled = true;
-            orderbyComboBox.Enabled = true;
-
+            _items.Add(newItem);
             UpdateItemInfo(_items[itemsListBox.SelectedIndex]);
+
+            if (DisplayedItems != null)
+            {
+                DisplayedItems.Add(newItem);
+                UpdateItemInfo(DisplayedItems[itemsListBox.SelectedIndex]);
+            }            
         }
 
         /// <summary>
@@ -295,8 +330,26 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             try
             {
-                _items.RemoveAt(itemsListBox.SelectedIndex);
-                itemsListBox.Items.RemoveAt(itemsListBox.SelectedIndex);
+                if (DisplayedItems != null)
+                {
+                    _currentItem = DisplayedItems[itemsListBox.SelectedIndex];
+
+                    foreach (var item in _items)
+                    {
+                        if (_currentItem.Id == item.Id)
+                        {
+                            DisplayedItems.RemoveAt(itemsListBox.SelectedIndex);
+                            _items.Remove(item);
+                            itemsListBox.Items.RemoveAt(itemsListBox.SelectedIndex);                            
+                        }
+                    }
+                }
+
+                else
+                {
+                    _items.RemoveAt(itemsListBox.SelectedIndex);
+                    itemsListBox.Items.RemoveAt(itemsListBox.SelectedIndex);
+                }                
             }
             catch
             {
@@ -340,11 +393,69 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 itemsListBox.DataSource = null;
                 itemsListBox.DataSource = DisplayedItems;
+                return;
             }
+
+            itemsListBox.DataSource = null;
+            itemsListBox.DataSource = _items;
         }
 
         private void orderbyComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            switch (orderbyComboBox.Text)
+            {
+                case "By Name":
+                    if (itemsListBox.DataSource == DisplayedItems)
+                    {
+                        DisplayedItems = ChangeListOfItems.SortByName(DisplayedItems);
+                        itemsListBox.DataSource = DisplayedItems;
+                    }
+                    else if (itemsListBox.DataSource == Items)
+                    {
+                        Items = ChangeListOfItems.SortByName(Items);
+                        itemsListBox.DataSource = Items;
+                    }
+                    break;
+
+                case "By Cost":
+                    if (itemsListBox.DataSource == DisplayedItems)
+                    {
+                        DisplayedItems = ChangeListOfItems.SortBySign(DisplayedItems, ChangeListOfItems.SortByCost);
+                        itemsListBox.DataSource = DisplayedItems;
+                    }
+                    else if (itemsListBox.DataSource == Items)
+                    {
+                        Items = ChangeListOfItems.SortBySign(Items, ChangeListOfItems.SortByCost);
+                        itemsListBox.DataSource = Items;
+                    }
+                    break;
+
+                case "By Category":
+                    if (itemsListBox.DataSource == DisplayedItems)
+                    {
+                        DisplayedItems = ChangeListOfItems.SortBySign(DisplayedItems, ChangeListOfItems.SortByCategory);
+                        itemsListBox.DataSource = DisplayedItems;
+                    }
+                    else if (itemsListBox.DataSource == Items)
+                    {
+                        Items = ChangeListOfItems.SortBySign(Items, ChangeListOfItems.SortByCategory);
+                        itemsListBox.DataSource = Items;
+                    }
+                    break;
+
+                case "By Id":
+                    if (itemsListBox.DataSource == DisplayedItems)
+                    {
+                        DisplayedItems = ChangeListOfItems.SortBySign(DisplayedItems, ChangeListOfItems.SortById);
+                        itemsListBox.DataSource = DisplayedItems;
+                    }
+                    else if (itemsListBox.DataSource == Items)
+                    {
+                        Items = ChangeListOfItems.SortBySign(Items, ChangeListOfItems.SortById);
+                        itemsListBox.DataSource = Items;
+                    }
+                    break;
+            }
 
         }
     }
