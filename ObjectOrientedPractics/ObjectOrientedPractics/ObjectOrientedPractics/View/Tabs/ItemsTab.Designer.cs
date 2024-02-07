@@ -45,6 +45,10 @@
             this.removeButton = new System.Windows.Forms.Button();
             this.addButton = new System.Windows.Forms.Button();
             this.itemsListGroupBox = new System.Windows.Forms.GroupBox();
+            this.orderbyComboBox = new System.Windows.Forms.ComboBox();
+            this.orderByLabel = new System.Windows.Forms.Label();
+            this.findItemTextBox = new System.Windows.Forms.TextBox();
+            this.findItemLabel = new System.Windows.Forms.Label();
             this.itemsListBox = new System.Windows.Forms.ListBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.selectedItemGroupBox.SuspendLayout();
@@ -260,6 +264,10 @@
             // 
             // itemsListGroupBox
             // 
+            this.itemsListGroupBox.Controls.Add(this.orderbyComboBox);
+            this.itemsListGroupBox.Controls.Add(this.orderByLabel);
+            this.itemsListGroupBox.Controls.Add(this.findItemTextBox);
+            this.itemsListGroupBox.Controls.Add(this.findItemLabel);
             this.itemsListGroupBox.Controls.Add(this.itemsListBox);
             this.itemsListGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.itemsListGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -270,15 +278,60 @@
             this.itemsListGroupBox.TabStop = false;
             this.itemsListGroupBox.Text = "Items";
             // 
+            // orderbyComboBox
+            // 
+            this.orderbyComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.orderbyComboBox.Enabled = false;
+            this.orderbyComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.orderbyComboBox.FormattingEnabled = true;
+            this.orderbyComboBox.Location = new System.Drawing.Point(101, 559);
+            this.orderbyComboBox.Name = "orderbyComboBox";
+            this.orderbyComboBox.Size = new System.Drawing.Size(175, 30);
+            this.orderbyComboBox.TabIndex = 11;
+            this.orderbyComboBox.SelectedIndexChanged += new System.EventHandler(this.orderbyComboBox_SelectedIndexChanged);
+            // 
+            // orderByLabel
+            // 
+            this.orderByLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.orderByLabel.AutoSize = true;
+            this.orderByLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.orderByLabel.Location = new System.Drawing.Point(6, 565);
+            this.orderByLabel.Name = "orderByLabel";
+            this.orderByLabel.Size = new System.Drawing.Size(89, 24);
+            this.orderByLabel.TabIndex = 10;
+            this.orderByLabel.Text = "Order by:";
+            // 
+            // findItemTextBox
+            // 
+            this.findItemTextBox.Enabled = false;
+            this.findItemTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.findItemTextBox.Location = new System.Drawing.Point(75, 31);
+            this.findItemTextBox.Name = "findItemTextBox";
+            this.findItemTextBox.Size = new System.Drawing.Size(182, 28);
+            this.findItemTextBox.TabIndex = 5;
+            this.findItemTextBox.TextChanged += new System.EventHandler(this.findItemTextBox_TextChanged);
+            // 
+            // findItemLabel
+            // 
+            this.findItemLabel.AutoSize = true;
+            this.findItemLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.findItemLabel.Location = new System.Drawing.Point(16, 34);
+            this.findItemLabel.Name = "findItemLabel";
+            this.findItemLabel.Size = new System.Drawing.Size(53, 24);
+            this.findItemLabel.TabIndex = 4;
+            this.findItemLabel.Text = "Find:";
+            // 
             // itemsListBox
             // 
-            this.itemsListBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.itemsListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.itemsListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.itemsListBox.FormattingEnabled = true;
             this.itemsListBox.ItemHeight = 22;
-            this.itemsListBox.Location = new System.Drawing.Point(3, 28);
+            this.itemsListBox.Location = new System.Drawing.Point(3, 72);
             this.itemsListBox.Name = "itemsListBox";
-            this.itemsListBox.Size = new System.Drawing.Size(385, 567);
+            this.itemsListBox.Size = new System.Drawing.Size(385, 488);
             this.itemsListBox.TabIndex = 0;
             this.itemsListBox.SelectedIndexChanged += new System.EventHandler(this.itemsListBox_SelectedIndexChanged);
             // 
@@ -295,6 +348,7 @@
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.itemsListGroupBox.ResumeLayout(false);
+            this.itemsListGroupBox.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -319,5 +373,9 @@
         private System.Windows.Forms.Label idLabel;
         private System.Windows.Forms.Button removeButton;
         private System.Windows.Forms.Button addButton;
+        private System.Windows.Forms.TextBox findItemTextBox;
+        private System.Windows.Forms.Label findItemLabel;
+        private System.Windows.Forms.ComboBox orderbyComboBox;
+        private System.Windows.Forms.Label orderByLabel;
     }
 }
