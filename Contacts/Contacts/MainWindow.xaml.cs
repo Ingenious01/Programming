@@ -20,20 +20,10 @@ namespace Contacts
         public MainWindow()
         {
             InitializeComponent();
-
+            
             MainVM mainVm = new MainVM();
 
             this.DataContext = mainVm;
-        }
-
-        private void SaveButton_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
-        private void LoadButton_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

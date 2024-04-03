@@ -1,30 +1,29 @@
 ﻿using System;
-using System.Windows.Input;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using View.Model;
-using System.IO;
 using View.Model.Services;
+using View.Model;
+using System.Windows.Input;
 
 namespace View.ViewModel
 {
     /// <summary>
-    /// Содержит метод, считывающий информацию из файла.
+    /// Класс, соуществляющий удаление элемента из <see cref="MainVM.Contacts"/>
     /// </summary>
-    public class LoadCommand: ICommand
+    public class RemoveCommand: ICommand
     {
         /// <summary>
-        /// Экземпляр класса <see cref="MainVM"/>.
+        /// Экземпляр класса <see cref="MainVM">.
         /// </summary>
         private MainVM _viewModel;
 
         /// <summary>
-        /// Принимает экземпляр класса <see cref="MainVM"/>.
+        /// Принимает экземпляр класса <see cref="MainVM">.
         /// </summary>
         /// <param name="viewModel">Текущий контакт</param>
-        public LoadCommand(MainVM viewModel)
+        public RemoveCommand(MainVM viewModel)
         {
             _viewModel = viewModel;
         }
@@ -43,12 +42,22 @@ namespace View.ViewModel
         }
 
         /// <summary>
-        /// Считывание данных из файла.
+        /// Удаляет контакт и записывает изменения в файл.
         /// </summary>
         /// <param name="parameter"></param>
         public void Execute(object parameter)
         {
-            _viewModel.Contacts = ContactSerializer.GetData();
+            try
+            {
+                _viewModel.Contacts.RemoveAt(_viewModel.SelectedIndex);
+                ContactSerializer.UpdateData(_viewModel.Contacts);
+                _viewModel.Contacts = ContactSerializer.GetData();
+                _viewModel.ClearText();
+            } 
+            catch
+            {
+
+            }
         }
     }
 }

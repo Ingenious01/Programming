@@ -8,4 +8,18 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Resources\contact.jpg" />
+    <None Remove="Resources\logo.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\contact.jpg" />
+    <Resource Include="Resources\logo.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Conventers\" />
+  </ItemGroup>
+
 </Project>

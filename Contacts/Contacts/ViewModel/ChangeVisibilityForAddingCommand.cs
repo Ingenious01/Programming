@@ -1,19 +1,13 @@
-﻿using System;
+﻿using System.Windows;
 using System.Windows.Input;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using View.Model;
-using System.IO;
-using View.Model.Services;
 
 namespace View.ViewModel
 {
     /// <summary>
-    /// Содержит метод, считывающий информацию из файла.
+    /// Класс, позволяющий менять поле Visibility в класса <see cref="MainVM"/> при добавлении
+    /// нового контакта/>
     /// </summary>
-    public class LoadCommand: ICommand
+    class ChangeVisibilityForAddingCommand: ICommand
     {
         /// <summary>
         /// Экземпляр класса <see cref="MainVM"/>.
@@ -24,7 +18,7 @@ namespace View.ViewModel
         /// Принимает экземпляр класса <see cref="MainVM"/>.
         /// </summary>
         /// <param name="viewModel">Текущий контакт</param>
-        public LoadCommand(MainVM viewModel)
+        public ChangeVisibilityForAddingCommand(MainVM viewModel)
         {
             _viewModel = viewModel;
         }
@@ -43,12 +37,23 @@ namespace View.ViewModel
         }
 
         /// <summary>
-        /// Считывание данных из файла.
+        /// В зависимости от значения поля Visible в <see cref="MainVM"/> меняет его значение.
         /// </summary>
         /// <param name="parameter"></param>
         public void Execute(object parameter)
         {
-            _viewModel.Contacts = ContactSerializer.GetData();
+            if (_viewModel.IsVisible == false)
+            {
+                _viewModel.IsEnabled = false;
+                _viewModel.ClearText();
+                _viewModel.IsVisible = true;
+                _viewModel.IsReadOnly = false;
+                _viewModel.IsEditing = false;
+            }
+            else if (_viewModel.IsVisible == true) 
+            {
+                _viewModel.ClearText();
+            }
         }
     }
 }

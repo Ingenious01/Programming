@@ -6,20 +6,26 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Text.Json;
 using System.Windows.Input;
+using System.ComponentModel;
+using System.Drawing;
 
 namespace View.Model.Services
 {
+    /// <summary>
+    /// Предоставляет методы для записи и считывания контактов из файла.
+    /// </summary>
     public static class ContactSerializer
     {
         /// <summary>
         /// Путь до папки.
         /// </summary>
-        private static string _directoryPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+        private static string _directoryPath =
+            Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
         /// <summary>
         /// Путь до файла.
         /// </summary>
-        private static string _filePath = Path.Combine(_directoryPath, "Contacts.json");
+        private static string _filePath = Path.Combine(_directoryPath, "Contacts.json");        
 
         /// <summary>
         /// Проверка на наличия папки и файла.
@@ -45,19 +51,11 @@ namespace View.Model.Services
         /// <summary>
         /// Считывает данные файла и возвращает их список. 
         /// </summary>
-        /// <returns>Данные файла.</returns>
-        public static Contact GetData()
-        {
+        public static List<Contact> GetData()
+        {            
             using (FileStream fstream = new FileStream(_filePath, FileMode.OpenOrCreate))
             {
-                try 
-                {
-                    return JsonSerializer.Deserialize<Contact>(fstream);
-                }
-                catch
-                {
-                    throw new Exception("Файл пустой или его не существует");
-                }
+                return JsonSerializer.Deserialize<List<Contact>>(fstream);
             }
         }
 
@@ -65,7 +63,7 @@ namespace View.Model.Services
         /// Записывает новые данные в файл.
         /// </summary>
         /// <param name="data">Новые данные.</param>
-        public static void UpdateData(Contact data)
+        public static void UpdateData(List<Contact> data)
         {
             string newDate = JsonSerializer.Serialize(data);
             using (FileStream fstream = new FileStream(_filePath, FileMode.Create))

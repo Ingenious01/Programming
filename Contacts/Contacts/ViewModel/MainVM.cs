@@ -7,35 +7,103 @@ using System.Printing;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
+using System.Windows;
 using System.Windows.Input;
 using View.Model;
+using View.Model.Services;
+using System.Windows.Data;
 
 namespace View.ViewModel
 {
+    /// <summary>
+    /// Метод связывающий поля в форме с Contact.
+    /// </summary>
     public class MainVM: INotifyPropertyChanged
     {
+        /// <summary>
+        /// Текущий контакт.
+        /// </summary>
         private Contact _contact;
+
+        /// <summary>
+        /// Список всех контактов.
+        /// </summary>
+        private List<Contact> _contacts;
+
+        /// <summary>
+        /// Список всех тех контактов, которые отображаются в ListBox.
+        /// </summary>
+        private List<Contact> _displayedContacts;        
+
+        /// <summary>
+        /// Экзменпляр класса SaveCommand.
+        /// </summary>
         private ICommand _saveCommand;
+
+        /// <summary>
+        /// Экземпляр класса LoadCommand>.
+        /// </summary>
         private ICommand _loadCommand;
 
+        /// <summary>
+        /// Экземпляр класса RemoveCommand>.
+        /// </summary>
+        private ICommand _removeCommand;
+
+        /// <summary>
+        /// Экземпляр класса ChangeVisibilityForAddingCommand>.
+        /// </summary>
+        private ICommand _changeVisibilityForAddingCommand;
+
+        /// <summary>
+        /// Экземпляр класса ChangeVisibilityForEditingCommand>.
+        /// </summary>
+        private ICommand _changeVisibilityForEditingCommand;
+
+        /// <inheritdoc/>
         public event PropertyChangedEventHandler PropertyChanged;
 
+        /// <summary>
+        /// Оповещает при изменении параметра экземпляра класса.
+        /// </summary>
+        /// <param name="propertyName"></param>
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        /// <summary>
+        /// Конструкторк класса <see cref="MainVM"/>.
+        /// </summary>
         public MainVM()
         {
             _contact = new Contact();
             _saveCommand = new SaveCommand(this);
             _loadCommand = new LoadCommand(this);
+            _removeCommand = new RemoveCommand(this);
+            _changeVisibilityForAddingCommand = new ChangeVisibilityForAddingCommand(this);
+            _changeVisibilityForEditingCommand = new ChangeVisibilityForEditingCommand(this);
+
+            ContactSerializer.IsCreateFolderAndFile();
+            Contacts = new List<Contact>();
+            try 
+            { 
+                Contacts = ContactSerializer.GetData(); 
+                _selectedIndex = -2;
+            }
+            catch { }
+
+            DisplayedContacts = Contacts;
+
+            IsReadOnly = true;
+            IsEnabled = true;
+            IsVisible = false;
         }
 
-        public ICommand SaveCommand => _saveCommand;
-
-        public ICommand LoadCommand => _loadCommand;
-
+        /// <summary>
+        /// Возвращает и задает имя текущего контакта.
+        /// </summary>
         public string Name
         {
             get { return _contact.Name; }
@@ -46,6 +114,9 @@ namespace View.ViewModel
             }
         }
 
+        /// <summary>
+        /// Возвращает и задает номер телефона текущего контакта.
+        /// </summary>
         public string PhoneNumber
         {
             get { return _contact.PhoneNumber; }
@@ -56,6 +127,9 @@ namespace View.ViewModel
             }
         }
 
+        /// <summary>
+        /// Возвращает и задает почту текущего контакта.
+        /// </summary>
         public string Email
         {
             get { return _contact.Email; }
@@ -64,6 +138,208 @@ namespace View.ViewModel
                 _contact.Email = value;
                 OnPropertyChanged();
             }
+        }
+
+        /// <summary>
+        /// Возвращает и задает список всех контактов.
+        /// </summary>
+        public List<Contact> Contacts
+        {
+            get { return _contacts; }
+            set
+            {
+                _contacts = value;
+                OnPropertyChanged();
+                DisplayedContacts = Contacts;
+            }
+        }
+
+        /// <summary>
+        /// Возвращает и задает список всех тех контактов, которые отображаются в ListBox.
+        /// </summary>
+        public List<Contact> DisplayedContacts
+        {
+            get { return _displayedContacts; }
+            set
+            {
+                _displayedContacts = value;
+                OnPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Текущий индекс в ListBox.
+        /// </summary>
+        private int _selectedIndex;
+
+        /// <summary>
+        /// Возвращает и задает текущий индекс в ListBox.
+        /// </summary>
+        public int SelectedIndex
+        {
+            get { return _selectedIndex; }
+            set
+            {
+                _selectedIndex = value;
+                OnPropertyChanged();
+
+                if (_selectedIndex != -1)
+                {
+                    _contact.Name = Contacts[_selectedIndex].Name;
+                    _contact.PhoneNumber = Contacts[_selectedIndex].PhoneNumber;
+                    _contact.Email = Contacts[_selectedIndex].Email;
+                    Name = _contact.Name;
+                    PhoneNumber = _contact.PhoneNumber;
+                    Email = _contact.Email;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Строка, по которой осуществляется поиск среди контактов.
+        /// </summary>
+        private string _findText;
+
+        /// <summary>
+        /// Возвращает и задает строку, по которой осуществляется поиск среди контактов.
+        /// При изменении этой строки прозиводит поиск.
+        /// </summary>
+        public string FindText
+        {
+            get { return _findText; }
+            set
+            {
+                _findText = value;
+                OnPropertyChanged();
+
+                if (_findText != null)
+                {
+                    DisplayedContacts = ValueValidator.ChangeByString(Contacts, _findText,
+                        ValueValidator.CheckName);
+
+                    if (DisplayedContacts == null)
+                    {
+                        DisplayedContacts = Contacts;
+                    }
+                }
+                else
+                {
+                    DisplayedContacts = Contacts;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Определяет какое действие происходит: добавление или изменение контакта.
+        /// </summary>
+        private bool _isEditing;
+
+        /// <summary>
+        /// Задает и возвращает значение, которое определяет какое действие
+        /// происходит: добавление или изменение контакта.
+        /// </summary>
+        public bool IsEditing
+        {
+            get { return _isEditing; }
+            set
+            {
+                _isEditing = value;
+                OnPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Метод, очищающий строки для добавления нового контакта.
+        /// </summary>
+        public void ClearText()
+        {            
+            Name = "";
+            PhoneNumber = "";
+            Email = "";
+        }
+
+        /// <summary>
+        /// Значение, отвечающее за значение параметра ReadOnly у некоторых элементов верстки.
+        /// </summary>
+        private bool _isReadonly;
+
+        /// <summary>
+        /// Возвращает и задает значение, отвечающее за значение параметра ReadOnly у некоторых
+        /// элементов верстки.
+        /// </summary>
+        public bool IsReadOnly
+        {
+            get { return _isReadonly; }
+            set
+            {
+                _isReadonly = value;
+                OnPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Значение, отвечающее за значение параметра IsEnabled у некоторых элементов верстки.
+        /// </summary>
+        private bool _isEnabled;
+
+        /// <summary>
+        /// Возвращает и задает значение, отвечающее за значение параметра IsEnable у некоторых
+        /// элементов верстки.
+        /// </summary>
+        public bool IsEnabled 
+        { 
+            get { return _isEnabled; }
+            set 
+            { 
+            _isEnabled = value;
+            OnPropertyChanged();
+            }
         }        
+
+        /// <summary>
+        /// Значение, отвечающее за значение параметра Visivility у некоторых элементов верски.
+        /// </summary>
+        private bool _isVisible;
+
+        /// <summary>
+        /// Возвращает и задает значение, отвечающее за значение параметра Visibility у некоторых
+        /// элементов верски.
+        /// </summary>
+        public bool IsVisible
+        {
+            get { return _isVisible; }
+            set
+            {
+                _isVisible = value;
+                OnPropertyChanged();
+            }
+        }                
+
+        /// <summary>
+        /// Свойство сохранения данных.
+        /// </summary>
+        public ICommand SaveCommand => _saveCommand;
+
+        /// <summary>
+        /// Свойство загрузки данных.
+        /// </summary>
+        public ICommand LoadCommand => _loadCommand;
+
+        /// <summary>
+        /// Свойство удаления данных.
+        /// </summary>
+        public ICommand RemoveCommand => _removeCommand;
+
+        /// <summary>
+        /// Свойство изменения параметра Visibility у некоторых элементов при изменении
+        /// параметров клиента.
+        /// </summary>
+        public ICommand ChangeVisibilityForAddingCommand => _changeVisibilityForAddingCommand;
+
+        /// <summary>
+        /// Свойство изменения параметра Visibility у некоторых элементов при изменении
+        /// параметров контакта.
+        /// </summary>
+        public ICommand ChangeVisibilityForEditingCommand => _changeVisibilityForEditingCommand;
     }
 }

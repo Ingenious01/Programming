@@ -3,79 +3,139 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Contacts" xmlns:viewmodel="clr-namespace:View.ViewModel" 
+        xmlns:local="clr-namespace:Contacts"
+        xmlns:viewmodel="clr-namespace:View.ViewModel" 
+        xmlns:controls="clr-namespace:System.Windows.Controls;assembly=PresentationFramework"
         d:DataContext="{d:DesignInstance Type=viewmodel:MainVM}"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        ResizeMode="NoResize"
-        WindowStyle="None"
-        Title="Contact" Height="300" Width="390" MinWidth="390" MinHeight="300">
+        Title="Contacts" Height="450" Width="700" MinHeight="450" MinWidth="700" Icon="Resources/logo.jpg">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </Window.Resources>
+        
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="35*" MinWidth="200"/>
+            <ColumnDefinition Width="65*" MinWidth ="250"/>
         </Grid.ColumnDefinitions>
 
-        <GroupBox x:Name="EditGroupBox" Header="Edit Contact" Grid.Column="0" 
-          HorizontalAlignment="Left" VerticalAlignment="Top" 
-          Margin="15,15,10,0" Height="230" Width="175">
-            <StackPanel Margin="0">
-                <StackPanel Orientation="Horizontal" Margin="0,3,0,0">
-                    <Label x:Name="EditNameLabel" Content="Name:"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="3,3,0,0">
-                    <TextBox x:Name="EditNameTextBox" Width="150" Height="20"
-                     Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}"/>
-                </StackPanel>
+        <GridSplitter Grid.Column="0" Width="5" Background="Gray" />
 
-                <StackPanel Orientation="Horizontal" Margin="0,3,0,0">
-                    <Label x:Name="EditPhoneNumberLabel" Content="Phone number:"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="3,3,0,0">
-                    <TextBox x:Name="EditPhoneNumberTextBox" Width="150" Height="20" 
-                     Text="{Binding Path=PhoneNumber, UpdateSourceTrigger=PropertyChanged}"/>
-                </StackPanel>
+        <!-- Левая сторона -->
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="45"/>
+            </Grid.RowDefinitions>
 
-                <StackPanel Orientation="Horizontal" Margin="0,3,0,0">
-                    <Label x:Name="EditEmailLabel" Content="Email:"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="3,3,0,0">
-                    <TextBox x:Name="EditEmailTextBox" Width="150" Height="20"
-                     Text="{Binding Path=Email, UpdateSourceTrigger=PropertyChanged}"/>
-                </StackPanel>
-            </StackPanel>
-        </GroupBox>
+            <!-- Первая строка -->
+                <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
 
-        <GroupBox Header="Read Contact" Grid.Column="0" 
-          HorizontalAlignment="Right" VerticalAlignment="Top" 
-          Margin="200,15,10,0" Height="230" Width="175">
-            <StackPanel Margin="0">
-                <StackPanel Orientation="Horizontal" Margin="0,3,0,0">
-                    <Label Content="Name:"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="0,0,0,0">
-                    <Label Content="{Binding Path=Name}" FontWeight="Bold" FontSize="12" Height="27"/>
-                </StackPanel>
+                <TextBlock Text="Find:" Margin="10,5,0,0" FontSize="14"/>
+                
+                <TextBox Grid.Column="1" Margin="0,2,10,5" FontSize="14" IsEnabled="{Binding Path=IsEnabled}"
+                         Text="{Binding Path=FindText, UpdateSourceTrigger=PropertyChanged}"/>
 
-                <StackPanel Orientation="Horizontal" Margin="0,1,0,0">
-                    <Label Content="Phone number:"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="0,0,0,0">
-                    <Label Content="{Binding Path=PhoneNumber}" FontWeight="Bold" FontSize="12" Height="27"/>
-                </StackPanel>
+            </Grid>
 
-                <StackPanel Orientation="Horizontal" Margin="0,0,0,0">
-                    <Label Content="Email:"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="0,0,0,0">
-                    <Label Content="{Binding Path=Email}" FontWeight="Bold" FontSize="12" Height="27"/>
-                </StackPanel>
-            </StackPanel>
-        </GroupBox>
+            <!-- Вторая строка -->
+            <ListBox Grid.Row="1" Margin="10,0,10,0" ItemsSource="{Binding Path=DisplayedContacts}"
+                     SelectedIndex="{Binding Path = SelectedIndex}" IsEnabled="{Binding Path=IsEnabled}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="{Binding Path = Name}" />
+                            <TextBlock Text="{Binding Path = PhoneNumber}" />
+                            <TextBlock Text="{Binding Path = Email}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
 
-        <Button Content="Save" HorizontalAlignment="Left" Margin="300,250,0,0" VerticalAlignment="Top" 
-            Height="25" Width="75" Command="{Binding Path=SaveCommand}"/>
+            <!-- Третья строка -->
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="0" Content="Add" Margin="10,5,0,10"
+                        
+                        Command="{Binding Path=ChangeVisibilityForAddingCommand}" IsEnabled="{Binding Path=IsEnabled}"/>
+
+                <Button Grid.Column="1" Content="Edit" Margin="5,5,0,10"
+                        Command="{Binding Path=ChangeVisibilityForEditingCommand}" IsEnabled="{Binding Path=IsEnabled}"/>
+
+                <Button Grid.Column="2" Content="Remove" Margin="5,5,10,10"
+                        Command="{Binding Path=RemoveCommand}" IsEnabled="{Binding Path=IsEnabled}"/>
+            </Grid>
+        </Grid>
+
+        <!-- Правая сторона содержимое -->
+        <Grid Grid.Column="1">
+            
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="150"/>
+                    <RowDefinition Height="35"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Image Grid.Column="0" Source="Resources/contact.jpg" Margin="5,5,20,20"/>
+
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Row="0" Text="Name:" Margin="0,0,0,0" FontSize="14"/>
+                        <TextBox Grid.Row="0" Margin="0,20,5,5" FontSize="14" IsReadOnly="{Binding Path=IsReadOnly}"
+                                 Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}"/>
+
+                        <TextBlock Grid.Row="1" Text="Phone number:" Margin="0,0,0,0" FontSize="14"/>
+                        <TextBox Grid.Row="1" Margin="0,20,5,5" FontSize="14" IsReadOnly="{Binding Path=IsReadOnly}"
+                                 Text="{Binding Path=PhoneNumber, UpdateSourceTrigger=PropertyChanged}"/>
+
+                        <TextBlock Grid.Row="2" Text="Email:" Margin="0,0,0,0" FontSize="14"/>
+                        <TextBox Grid.Row="2" Margin="0,20,5,5" FontSize="14" IsReadOnly="{Binding Path=IsReadOnly}"
+                                 Text="{Binding Path=Email, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    </Grid>
+                    
+                </Grid>
+
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="90"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button Grid.Column="1" Command="{Binding Path=SaveCommand}"
+                            Visibility="{Binding Path=IsVisible, 
+                        Converter={StaticResource BooleanToVisibilityConverter}}" Content="Apply" 
+                            Margin="0,5,0,0"/>
+                </Grid>
+
+            </Grid>
+
+        </Grid>
         
-        <Button Content="Load" HorizontalAlignment="Left" Margin="212,250,0,0" VerticalAlignment="Top" 
-            Height="25" Width="75" Command="{Binding Path=LoadCommand}"/>
     </Grid>
 </Window>

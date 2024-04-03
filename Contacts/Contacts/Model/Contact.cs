@@ -6,51 +6,32 @@ using System.Threading.Tasks;
 
 namespace View.Model
 {
+    /// <summary>
+    /// Содержит информацию о контакте.
+    /// </summary>
     public class Contact
     {
-        private string _name;
+        /// <summary>
+        /// Возвращает и задает имя текущего контакта.
+        /// </summary>
+        public string Name { get; set; }
 
-        private string _phoneNumber;
+        /// <summary>
+        /// Возвращает и задает имя текущего контакта.
+        /// </summary>
+        public string PhoneNumber { get; set; }
 
-        private string _email;
+        /// <summary>
+        /// Возвращает и задает имя текущего контакта.
+        /// </summary>
+        public string Email { get; set; }
 
-        public string Name
-        {
-            get
-            {
-                return _name;
-            }
-            set
-            {
-                _name = value;
-            }
-        }
-
-        public string PhoneNumber
-        {
-            get 
-            { 
-                return _phoneNumber; 
-            }
-
-            set
-            {
-                _phoneNumber = value;
-            }
-        }
-
-        public string Email
-        {
-            get
-            {
-                return _email;
-            }
-            set
-            {
-                _email = value;
-            }
-        }
-
+        /// <summary>
+        /// Конструкток класса <see cref="Contact">.
+        /// </summary>
+        /// <param name="name">Имя</param>
+        /// <param name="phoneNumber">Номер телефона</param>
+        /// <param name="email">Почта</param>
         public Contact(string name, string phoneNumber, string email)
         {
             Name = name;
@@ -58,7 +39,11 @@ namespace View.Model
             Email = email;
         }
 
+        /// <summary>
+        /// Конструкток класса <see cref="Contact"/>.
+        /// </summary>
         public Contact()
-        { }
+        { 
+        }
     }
 }
