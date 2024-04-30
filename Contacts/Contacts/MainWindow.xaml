@@ -4,12 +4,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Contacts"
+        xmlns:Control="clr-namespace:Contacts"
+        xmlns:MyNamespace="clr-namespace:View"
         xmlns:viewmodel="clr-namespace:View.ViewModel" 
         xmlns:controls="clr-namespace:System.Windows.Controls;assembly=PresentationFramework"
         d:DataContext="{d:DesignInstance Type=viewmodel:MainVM}"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         Title="Contacts" Height="450" Width="700" MinHeight="450" MinWidth="700" Icon="Resources/logo.jpg">
+    
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
     </Window.Resources>
@@ -46,13 +49,17 @@
 
             <!-- Вторая строка -->
             <ListBox Grid.Row="1" Margin="10,0,10,0" ItemsSource="{Binding Path=DisplayedContacts}"
-                     SelectedIndex="{Binding Path = SelectedIndex}" IsEnabled="{Binding Path=IsEnabled}">
+                     SelectedIndex="{Binding Path = SelectedIndex}" SelectedItem="{Binding Path=Contact}" IsEnabled="{Binding Path=IsEnabled}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel>
-                            <TextBlock Text="{Binding Path = Name}" />
-                            <TextBlock Text="{Binding Path = PhoneNumber}" />
-                            <TextBlock Text="{Binding Path = Email}" />
+                        <StackPanel Margin="3">
+                            <TextBlock
+                                FontSize="12"
+                                FontWeight="SemiBold"
+                                Text="{Binding Name}"/>
+                            <TextBlock
+                                FontSize="10"
+                                Text="{Binding PhoneNumber}"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
@@ -78,64 +85,31 @@
             </Grid>
         </Grid>
 
-        <!-- Правая сторона содержимое -->
         <Grid Grid.Column="1">
-            
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="150"/>
-                    <RowDefinition Height="35"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="150"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-                <Grid Grid.Row="1">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="150"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
+            <Grid Grid.Row="1">
+                <MyNamespace:ContactControl DataContext="{Binding Contact}"/>
+            </Grid>
 
-                    <Image Grid.Column="0" Source="Resources/contact.jpg" Margin="5,5,20,20"/>
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="90"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
 
-                    <Grid Grid.Column="1">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-
-                        <TextBlock Grid.Row="0" Text="Name:" Margin="0,0,0,0" FontSize="14"/>
-                        <TextBox Grid.Row="0" Margin="0,20,5,5" FontSize="14" IsReadOnly="{Binding Path=IsReadOnly}"
-                                 Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}"/>
-
-                        <TextBlock Grid.Row="1" Text="Phone number:" Margin="0,0,0,0" FontSize="14"/>
-                        <TextBox Grid.Row="1" Margin="0,20,5,5" FontSize="14" IsReadOnly="{Binding Path=IsReadOnly}"
-                                 Text="{Binding Path=PhoneNumber, UpdateSourceTrigger=PropertyChanged}"/>
-
-                        <TextBlock Grid.Row="2" Text="Email:" Margin="0,0,0,0" FontSize="14"/>
-                        <TextBox Grid.Row="2" Margin="0,20,5,5" FontSize="14" IsReadOnly="{Binding Path=IsReadOnly}"
-                                 Text="{Binding Path=Email, UpdateSourceTrigger=PropertyChanged}"/>
-
-                    </Grid>
-                    
-                </Grid>
-
-                <Grid Grid.Row="2">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="150"/>
-                        <ColumnDefinition Width="90"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <Button Grid.Column="1" Command="{Binding Path=SaveCommand}"
-                            Visibility="{Binding Path=IsVisible, 
-                        Converter={StaticResource BooleanToVisibilityConverter}}" Content="Apply" 
-                            Margin="0,5,0,0"/>
-                </Grid>
-
+                <Button Grid.Column="1" Command="{Binding Path=SaveCommand}"
+                    Visibility="{Binding Path=IsVisible, 
+                    Converter={StaticResource BooleanToVisibilityConverter}}" Content="Apply" 
+                    Margin="0,5,0,0"/>
             </Grid>
 
         </Grid>
-        
     </Grid>
 </Window>

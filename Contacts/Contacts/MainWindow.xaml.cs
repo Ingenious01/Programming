@@ -8,6 +8,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using View;
 using View.ViewModel;
 
 namespace Contacts
@@ -22,6 +23,8 @@ namespace Contacts
             InitializeComponent();
             
             MainVM mainVm = new MainVM();
+
+            ContactControl contactControl = new ContactControl();
 
             this.DataContext = mainVm;
         }

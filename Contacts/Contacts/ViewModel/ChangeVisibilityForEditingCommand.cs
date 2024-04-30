@@ -17,15 +17,20 @@ namespace View.ViewModel
         /// <summary>
         /// Экземпляр класса <see cref="MainVM"/>.
         /// </summary>
+        private ContactControl _contactControl;
+
+        /// <summary>
+        /// Экземпляр класса <see cref="MainVM"/>.
+        /// </summary>
         private MainVM _viewModel;
 
         /// <summary>
         /// Принимает экземпляр класса <see cref="MainVM"/>.
         /// </summary>
         /// <param name="viewModel">Текущий контакт</param>
-        public ChangeVisibilityForEditingCommand(MainVM viewModel)
+        public ChangeVisibilityForEditingCommand(ContactControl contactControl)
         {
-            _viewModel = viewModel;
+            _contactControl = contactControl;
         }
 
         /// <inheritdoc/>
@@ -47,16 +52,16 @@ namespace View.ViewModel
         /// <param name="parameter"></param>
         public void Execute(object parameter)
         {           
-            if (_viewModel.IsVisible == false)
+            if (_contactControl.IsVisible == false)
             {
-                _viewModel.IsEnabled = false;
-                _viewModel.IsVisible = true;
-                _viewModel.IsReadOnly = false;
-                _viewModel.IsEditing = true;
+                _contactControl.IsEnabled = false;
+                _contactControl.IsVisible = true;
+                _contactControl.IsReadOnly = false;
+                _contactControl.IsEditing = true;
             }
-            else if (_viewModel.IsVisible == true)
+            else if (_contactControl.IsVisible == true)
             {
-                _viewModel.ClearText();
+                _contactControl.ClearText();
             }
         }
     }

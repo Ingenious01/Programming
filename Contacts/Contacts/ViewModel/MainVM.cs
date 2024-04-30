@@ -26,6 +26,8 @@ namespace View.ViewModel
         /// </summary>
         private Contact _contact;
 
+        public Contact CurrentContact { get; set; }
+
         /// <summary>
         /// Список всех контактов.
         /// </summary>
@@ -61,6 +63,8 @@ namespace View.ViewModel
         /// </summary>
         private ICommand _changeVisibilityForEditingCommand;
 
+        private ContactControl _contactControl;
+
         /// <inheritdoc/>
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -82,8 +86,6 @@ namespace View.ViewModel
             _saveCommand = new SaveCommand(this);
             _loadCommand = new LoadCommand(this);
             _removeCommand = new RemoveCommand(this);
-            _changeVisibilityForAddingCommand = new ChangeVisibilityForAddingCommand(this);
-            _changeVisibilityForEditingCommand = new ChangeVisibilityForEditingCommand(this);
 
             ContactSerializer.IsCreateFolderAndFile();
             Contacts = new List<Contact>();
@@ -185,12 +187,11 @@ namespace View.ViewModel
 
                 if (_selectedIndex != -1)
                 {
-                    _contact.Name = Contacts[_selectedIndex].Name;
-                    _contact.PhoneNumber = Contacts[_selectedIndex].PhoneNumber;
-                    _contact.Email = Contacts[_selectedIndex].Email;
-                    Name = _contact.Name;
-                    PhoneNumber = _contact.PhoneNumber;
-                    Email = _contact.Email;
+                    CurrentContact.Name = Contacts[_selectedIndex].Name;
+                    CurrentContact.PhoneNumber = Contacts[_selectedIndex].PhoneNumber;
+                    CurrentContact.Email = Contacts[_selectedIndex].Email;
+
+                    _contactControl.Contact = CurrentContact;
                 }
             }
         }
