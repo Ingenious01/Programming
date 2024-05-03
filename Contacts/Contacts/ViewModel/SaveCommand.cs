@@ -21,12 +21,18 @@ namespace View.ViewModel
         private MainVM _viewModel;
 
         /// <summary>
+        /// Экземпляр класса <see cref="MainVM"/>.
+        /// </summary>
+        private ContactVM _contactVM = new ContactVM();
+
+        /// <summary>
         /// Принимает экземпляр класса <see cref="MainVM">.
         /// </summary>
         /// <param name="viewModel">Текущий контакт</param>
-        public SaveCommand(MainVM viewModel)
+        public SaveCommand(MainVM viewModel, ContactVM contactVM)
         {
             _viewModel = viewModel;
+            _contactVM = contactVM;
         }
 
         /// <inheritdoc/>
@@ -48,51 +54,53 @@ namespace View.ViewModel
         /// <param name="parameter"></param>
         public void Execute(object parameter)
         {
-            var fawf = _viewModel.Contacts;
-            var name = _viewModel.Name;
-            var phoneNumber = _viewModel.PhoneNumber;
-            var email = _viewModel.Email;
             var isEditing = _viewModel.IsEditing;
-            fawf = _viewModel.Contacts;
+            var name = _contactVM.Name;
+            var phoneNumber = _contactVM.PhoneNumber;
+            var email = _contactVM.Email;
 
-            if (isEditing == true)
+            if (ValueValidator.CheckParameters(name, phoneNumber, email))
             {
-                if (_viewModel.IsReadOnly == false)
+            
+                if (isEditing == true)
                 {
-                    var index = _viewModel.SelectedIndex;
-                    _viewModel.Contacts[_viewModel.SelectedIndex].Name = _viewModel.Name;
-                    _viewModel.Contacts[_viewModel.SelectedIndex].PhoneNumber =
-                        _viewModel.PhoneNumber;
-                    _viewModel.Contacts[_viewModel.SelectedIndex].Email = _viewModel.Email;
+                    if (_contactVM.IsReadOnly == false)
+                    {
+                        var index = _viewModel.SelectedIndex;
+                        _viewModel.Contacts[_viewModel.SelectedIndex].Name = _contactVM.Name;
+                        _viewModel.Contacts[_viewModel.SelectedIndex].PhoneNumber =
+                            _contactVM.PhoneNumber;
+                        _viewModel.Contacts[_viewModel.SelectedIndex].Email = _contactVM.Email;
+                        ContactSerializer.UpdateData(_viewModel.Contacts);
+                        _viewModel.Contacts = ContactSerializer.GetData();
+
+                        _viewModel.IsVisible = false;
+                        _contactVM.IsReadOnly = true;
+                        _viewModel.IsEnabled = true;
+                        _viewModel.SelectedIndex = index;
+                    }
+                    else
+                    {
+                        _contactVM.IsReadOnly = false;
+                        _viewModel.IsEnabled = false;
+                    }
+                }
+                else if (isEditing == false)
+                {
+                    ContactSerializer.IsCreateFolderAndFile();
+
+                    Contact newContact = new Contact(name, phoneNumber, email);
+                    _viewModel.Contacts.Add(newContact);
+
                     ContactSerializer.UpdateData(_viewModel.Contacts);
+
                     _viewModel.Contacts = ContactSerializer.GetData();
+                    _contactVM.ClearText();
 
                     _viewModel.IsVisible = false;
-                    _viewModel.IsReadOnly = true;
+                    _contactVM.IsReadOnly = true;
                     _viewModel.IsEnabled = true;
-                    _viewModel.SelectedIndex = index;
                 }
-                else
-                {
-                    _viewModel.IsReadOnly = false;
-                    _viewModel.IsEnabled = false;
-                }
-            }
-            else if (isEditing == false)
-            {
-                ContactSerializer.IsCreateFolderAndFile();
-
-                Contact newContact = new Contact(name, phoneNumber, email);
-                _viewModel.Contacts.Add(newContact);
-
-                ContactSerializer.UpdateData(_viewModel.Contacts);
-
-                _viewModel.Contacts = ContactSerializer.GetData();
-                _viewModel.ClearText();
-
-                _viewModel.IsVisible = false;
-                _viewModel.IsReadOnly = true;
-                _viewModel.IsEnabled = true;
             }
         }
     }

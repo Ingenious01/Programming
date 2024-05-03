@@ -20,12 +20,17 @@ namespace View.ViewModel
         private MainVM _viewModel;
 
         /// <summary>
-        /// Принимает экземпляр класса <see cref="MainVM">.
+        /// Экземпляр класса <see cref="ContactVM"/>.
         /// </summary>
-        /// <param name="viewModel">Текущий контакт</param>
-        public RemoveCommand(MainVM viewModel)
+        private ContactVM _contactVM = new ContactVM();
+
+        /// <summary>
+        /// Принимает экземпляр классов <see cref="MainVM"/> и <see cref="ContactVM"/>.
+        /// </summary>
+        public RemoveCommand(MainVM viewModel, ContactVM contactVM)
         {
             _viewModel = viewModel;
+            _contactVM = contactVM;
         }
 
         /// <inheritdoc/>
@@ -52,7 +57,7 @@ namespace View.ViewModel
                 _viewModel.Contacts.RemoveAt(_viewModel.SelectedIndex);
                 ContactSerializer.UpdateData(_viewModel.Contacts);
                 _viewModel.Contacts = ContactSerializer.GetData();
-                _viewModel.ClearText();
+                _contactVM.ClearText();
             } 
             catch
             {

@@ -20,7 +20,7 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="35*" MinWidth="200"/>
-            <ColumnDefinition Width="65*" MinWidth ="250"/>
+            <ColumnDefinition Width="65*" MinWidth ="300"/>
         </Grid.ColumnDefinitions>
 
         <GridSplitter Grid.Column="0" Width="5" Background="Gray" />
@@ -49,7 +49,7 @@
 
             <!-- Вторая строка -->
             <ListBox Grid.Row="1" Margin="10,0,10,0" ItemsSource="{Binding Path=DisplayedContacts}"
-                     SelectedIndex="{Binding Path = SelectedIndex}" SelectedItem="{Binding Path=Contact}" IsEnabled="{Binding Path=IsEnabled}">
+                     SelectedIndex="{Binding Path = SelectedIndex}" SelectedItem="{Binding Path=CurrentContact}" IsEnabled="{Binding Path=IsEnabled}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Margin="3">
@@ -73,8 +73,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <Button Grid.Column="0" Content="Add" Margin="10,5,0,10"
-                        
+                <Button Grid.Column="0" Content="Add" Margin="10,5,0,10"                        
                         Command="{Binding Path=ChangeVisibilityForAddingCommand}" IsEnabled="{Binding Path=IsEnabled}"/>
 
                 <Button Grid.Column="1" Content="Edit" Margin="5,5,0,10"
@@ -94,7 +93,7 @@
             </Grid.RowDefinitions>
 
             <Grid Grid.Row="1">
-                <MyNamespace:ContactControl DataContext="{Binding Contact}"/>
+                <MyNamespace:ContactControl DataContext="{Binding Path = ContactVM}"/>
             </Grid>
 
             <Grid Grid.Row="2">

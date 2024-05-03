@@ -18,20 +18,27 @@ namespace View.Model.Services
         /// <param name="phoneNumber">Номер телефона</param>
         /// <param name="email">Адрес электронной почты</param>
         /// <returns></returns>
-        public static bool CorrectCheck(string name, string phoneNumber, string email)
+        public static bool CheckParameters(string name, string phoneNumber, string email)
         {
-            if (name.Any(c => char.IsLetter(c)) && name.Length > 1)
+            if (name.Length > 100 || phoneNumber.Length > 100 || email.Length > 100)
             {
-                if (phoneNumber.All(char.IsDigit) && phoneNumber.Length == 11)
+                return false;
+            }
+
+            foreach (char c in phoneNumber)
+            {
+                if (!char.IsDigit(c) && c != '+' && c != '-' && c != '(' && c != ')')
                 {
-                    if (email.Contains("@mail") || email.Contains("@gmail")
-                        || email.Contains("@yandex"))
-                    {
-                        return true;
-                    }
+                    return false;
                 }
             }
-            return false;
+
+            if (!email.Contains("@"))
+            {
+                return false;
+            }
+
+            return true;
         }
 
         /// <summary>

@@ -4,24 +4,40 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:controls="clr-namespace:System.Windows.Controls;assembly=PresentationFramework"
-             xmlns:local="clr-namespace:View"
+             xmlns:local="clr-namespace:View" 
+             xmlns:service="clr-namespace:View.Model.Services"
+             xmlns:viewmodel="clr-namespace:View.ViewModel"              
              mc:Ignorable="d" 
-             d:DesignHeight="150" d:DesignWidth="450">   
-    
+             d:DesignHeight="150" d:DesignWidth="450"
+             d:DataContext="{d:DesignInstance Type=viewmodel:ContactVM}">
+
 
     <UserControl.Resources>
-        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
     </UserControl.Resources>
 
     <UserControl.Background>
         <SolidColorBrush Color="White"/>
     </UserControl.Background>
 
+    
     <Grid>
+        <Grid.Resources>
+            <Style TargetType="TextBox">
+                <Style.Triggers>
+                    <Trigger Property="Validation.HasError" Value="True">
+                        <Setter Property="ToolTip"
+                            Value="{Binding RelativeSource={RelativeSource Self},
+                            Path=(Validation.Errors)[0].ErrorContent}"/>
+                        <Setter Property="Background" Value="#ff9595" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </Grid.Resources>
+        
         <Grid>
             <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="150"/>
-            <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
             <Image Grid.Column="0" Source="Resources/contact.jpg" Margin="5,5,20,20"/>
@@ -34,19 +50,41 @@
                 </Grid.RowDefinitions>
 
                 <TextBlock Grid.Row="0" Text="Name:" Margin="0,0,0,0" FontSize="14"/>
-                <TextBox Grid.Row="0" Margin="0,20,5,5" FontSize="14" IsReadOnly="{Binding Path=IsReadOnly}"
-                    Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBox Grid.Row="0" Margin="0,20,5,5" FontSize="14" IsReadOnly="{Binding Path=IsReadOnly}" >
+                    <TextBox.Text>
+                        <Binding Path="Name" UpdateSourceTrigger="PropertyChanged" ValidatesOnDataErrors="True">
+                            <Binding.ValidationRules>
+                                <DataErrorValidationRule />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
 
-                <TextBlock Grid.Row="1" Text="Phone number:" Margin="0,0,0,0" FontSize="14"/>
-                <TextBox Grid.Row="1" Margin="0,20,5,5" FontSize="14" IsReadOnly="{Binding Path=IsReadOnly}"
-                    Text="{Binding Path=PhoneNumber, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBlock Grid.Row="1" Text="Phone number:" FontSize="14" HorizontalAlignment="Left" Width="300"/>
+                <TextBox Grid.Row="1" Margin="0,20,5,5" FontSize="14" IsReadOnly="{Binding Path=IsReadOnly}" 
+                         PreviewTextInput="TextBox_PreviewTextInput" DataObject.Pasting="TextBox_Pasting">
+                    <TextBox.Text>
+                        <Binding Path="PhoneNumber" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <DataErrorValidationRule />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
 
                 <TextBlock Grid.Row="2" Text="Email:" Margin="0,0,0,0" FontSize="14"/>
-                <TextBox Grid.Row="2" Margin="0,20,5,5" FontSize="14" IsReadOnly="{Binding Path=IsReadOnly}"
-                    Text="{Binding Path=Email, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBox Grid.Row="2" Margin="0,20,5,5" FontSize="14" IsReadOnly="{Binding Path=IsReadOnly}" >
+                    <TextBox.Text>
+                        <Binding Path="Email" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
+                            <Binding.ValidationRules>
+                                <DataErrorValidationRule />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
 
-            </Grid>           
-
+            </Grid>
         </Grid>
     </Grid>
+
 </UserControl>

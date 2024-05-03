@@ -9,6 +9,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Conventers\**" />
+    <EmbeddedResource Remove="Conventers\**" />
+    <None Remove="Conventers\**" />
+    <Page Remove="Conventers\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Resources\contact.jpg" />
     <None Remove="Resources\logo.jpg" />
   </ItemGroup>
@@ -16,10 +23,6 @@
   <ItemGroup>
     <Resource Include="Resources\contact.jpg" />
     <Resource Include="Resources\logo.jpg" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Conventers\" />
   </ItemGroup>
 
 </Project>

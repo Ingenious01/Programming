@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Resources;
 using System.Text;
@@ -46,7 +47,7 @@ namespace View.Model
         /// Конструкток класса <see cref="Contact"/>.   
         /// </summary>
         public Contact()
-        { 
+        {
         }
     }
 }

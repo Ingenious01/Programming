@@ -24,8 +24,6 @@ namespace View.ViewModel
         /// <summary>
         /// Текущий контакт.
         /// </summary>
-        private Contact _contact;
-
         public Contact CurrentContact { get; set; }
 
         /// <summary>
@@ -63,11 +61,22 @@ namespace View.ViewModel
         /// </summary>
         private ICommand _changeVisibilityForEditingCommand;
 
-        private ContactControl _contactControl;
+        /// <summary>
+        /// Экземпляр класса <see cref="ContactVM"/>
+        /// </summary>
+        private ContactVM _contactVM = new ContactVM();
+
+        /// <summary>
+        /// Возвращает экземпляр класса <see cref="ContactVM"/>
+        /// </summary>
+        public ContactVM ContactVM
+        {
+            get { return _contactVM; }
+        }
 
         /// <inheritdoc/>
         public event PropertyChangedEventHandler PropertyChanged;
-
+   
         /// <summary>
         /// Оповещает при изменении параметра экземпляра класса.
         /// </summary>
@@ -82,10 +91,13 @@ namespace View.ViewModel
         /// </summary>
         public MainVM()
         {
-            _contact = new Contact();
-            _saveCommand = new SaveCommand(this);
+            CurrentContact = new Contact();            
             _loadCommand = new LoadCommand(this);
-            _removeCommand = new RemoveCommand(this);
+
+            _removeCommand = new RemoveCommand(this, ContactVM);
+            _changeVisibilityForAddingCommand = new ChangeVisibilityForAddingCommand(this, ContactVM);
+            _changeVisibilityForEditingCommand = new ChangeVisibilityForEditingCommand(this, ContactVM);
+            _saveCommand = new SaveCommand(this, ContactVM);
 
             ContactSerializer.IsCreateFolderAndFile();
             Contacts = new List<Contact>();
@@ -98,48 +110,8 @@ namespace View.ViewModel
 
             DisplayedContacts = Contacts;
 
-            IsReadOnly = true;
             IsEnabled = true;
             IsVisible = false;
-        }
-
-        /// <summary>
-        /// Возвращает и задает имя текущего контакта.
-        /// </summary>
-        public string Name
-        {
-            get { return _contact.Name; }
-            set
-            {
-                _contact.Name = value;
-                OnPropertyChanged();
-            }
-        }
-
-        /// <summary>
-        /// Возвращает и задает номер телефона текущего контакта.
-        /// </summary>
-        public string PhoneNumber
-        {
-            get { return _contact.PhoneNumber; }
-            set
-            {
-                _contact.PhoneNumber = value;
-                OnPropertyChanged();
-            }
-        }
-
-        /// <summary>
-        /// Возвращает и задает почту текущего контакта.
-        /// </summary>
-        public string Email
-        {
-            get { return _contact.Email; }
-            set
-            {
-                _contact.Email = value;
-                OnPropertyChanged();
-            }
         }
 
         /// <summary>
@@ -187,11 +159,7 @@ namespace View.ViewModel
 
                 if (_selectedIndex != -1)
                 {
-                    CurrentContact.Name = Contacts[_selectedIndex].Name;
-                    CurrentContact.PhoneNumber = Contacts[_selectedIndex].PhoneNumber;
-                    CurrentContact.Email = Contacts[_selectedIndex].Email;
-
-                    _contactControl.Contact = CurrentContact;
+                    _contactVM.Contact = Contacts[SelectedIndex];
                 }
             }
         }
@@ -247,36 +215,7 @@ namespace View.ViewModel
                 _isEditing = value;
                 OnPropertyChanged();
             }
-        }
-
-        /// <summary>
-        /// Метод, очищающий строки для добавления нового контакта.
-        /// </summary>
-        public void ClearText()
-        {            
-            Name = "";
-            PhoneNumber = "";
-            Email = "";
-        }
-
-        /// <summary>
-        /// Значение, отвечающее за значение параметра ReadOnly у некоторых элементов верстки.
-        /// </summary>
-        private bool _isReadonly;
-
-        /// <summary>
-        /// Возвращает и задает значение, отвечающее за значение параметра ReadOnly у некоторых
-        /// элементов верстки.
-        /// </summary>
-        public bool IsReadOnly
-        {
-            get { return _isReadonly; }
-            set
-            {
-                _isReadonly = value;
-                OnPropertyChanged();
-            }
-        }
+        }       
 
         /// <summary>
         /// Значение, отвечающее за значение параметра IsEnabled у некоторых элементов верстки.

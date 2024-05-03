@@ -10,9 +10,9 @@ namespace View.ViewModel
     class ChangeVisibilityForAddingCommand: ICommand
     {
         /// <summary>
-        /// Экземпляр класса <see cref="MainVM"/>.
+        /// Экземпляр класса <see cref="ContactVM"/>.
         /// </summary>
-        private ContactControl _contactControl;
+        private ContactVM _contactVM;
 
         /// <summary>
         /// Экземпляр класса <see cref="MainVM"/>.
@@ -20,12 +20,12 @@ namespace View.ViewModel
         private MainVM _viewModel;
 
         /// <summary>
-        /// Принимает экземпляр класса <see cref="MainVM"/>.
+        /// Принимает экземпляр классов <see cref="MainVM"/> и <see cref="ContactVM"/>.
         /// </summary>
-        /// <param name="viewModel">Текущий контакт</param>
-        public ChangeVisibilityForAddingCommand(ContactControl contactControl)
+        public ChangeVisibilityForAddingCommand(MainVM mainVM, ContactVM contactVM)
         {
-           _contactControl = contactControl;
+           _viewModel = mainVM;
+            _contactVM = contactVM;
         }
 
         /// <inheritdoc/>
@@ -47,17 +47,17 @@ namespace View.ViewModel
         /// <param name="parameter"></param>
         public void Execute(object parameter)
         {
-            if (_contactControl.IsVisible == false)
+            if (_viewModel.IsVisible == false)
             {
-                _contactControl.IsEnabled = false;
-                _contactControl.ClearText();
-                _contactControl.IsVisible = true;
-                _contactControl.IsReadOnly = false;
-                _contactControl.IsEditing = false;
+                _contactVM.ClearText();
+                _viewModel.IsEnabled = false;
+                _viewModel.IsVisible = true;
+                _contactVM.IsReadOnly = false;
+                _viewModel.IsEditing = false;
             }
-            else if (_contactControl.IsVisible == true) 
+            else if (_viewModel.IsVisible == true) 
             {
-                _contactControl.ClearText();
+                _contactVM.ClearText();
             }
         }
     }
