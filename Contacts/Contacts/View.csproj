@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Conventers\**" />
+    <EmbeddedResource Remove="Conventers\**" />
+    <None Remove="Conventers\**" />
+    <Page Remove="Conventers\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\contact.jpg" />
+    <None Remove="Resources\logo.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\contact.jpg" />
+    <Resource Include="Resources\logo.jpg" />
+  </ItemGroup>
+
+</Project>
