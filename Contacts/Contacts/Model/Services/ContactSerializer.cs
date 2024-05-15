@@ -8,6 +8,7 @@ using System.Text.Json;
 using System.Windows.Input;
 using System.ComponentModel;
 using System.Drawing;
+using System.Collections.ObjectModel;
 
 namespace View.Model.Services
 {
@@ -51,11 +52,11 @@ namespace View.Model.Services
         /// <summary>
         /// Считывает данные файла и возвращает их список. 
         /// </summary>
-        public static List<Contact> GetData()
+        public static ObservableCollection<Contact> GetData()
         {            
             using (FileStream fstream = new FileStream(_filePath, FileMode.OpenOrCreate))
             {
-                return JsonSerializer.Deserialize<List<Contact>>(fstream);
+                return JsonSerializer.Deserialize<ObservableCollection<Contact>>(fstream);
             }
         }
 
@@ -63,7 +64,7 @@ namespace View.Model.Services
         /// Записывает новые данные в файл.
         /// </summary>
         /// <param name="data">Новые данные.</param>
-        public static void UpdateData(List<Contact> data)
+        public static void UpdateData(ObservableCollection<Contact> data)
         {
             string newDate = JsonSerializer.Serialize(data);
             using (FileStream fstream = new FileStream(_filePath, FileMode.Create))

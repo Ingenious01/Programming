@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using View.Model;
 
@@ -7,12 +8,12 @@ namespace View.ViewModel
     /// <summary>
     /// Метод, содержащий логику ContactControl.xaml.
     /// </summary>
-    public class ContactVM : INotifyPropertyChanged, IDataErrorInfo
+    public class ContactVM : ObservableObject, INotifyPropertyChanged, IDataErrorInfo
     {
         /// <summary>
         /// Текущий контакт.
         /// </summary>
-        private Contact _contact;
+        private Contact _contact = new Contact();
 
         /// <inheritdoc/>
         public event PropertyChangedEventHandler PropertyChanged;
@@ -44,10 +45,9 @@ namespace View.ViewModel
             get { return _contact; }
             set
             {
-                _contact = value;
-                Name = _contact.Name;
-                PhoneNumber = _contact.PhoneNumber;
-                Email = _contact.Email;
+                Name = value.Name;
+                PhoneNumber = value.PhoneNumber;
+                Email = value.Email;
             }
         }
 

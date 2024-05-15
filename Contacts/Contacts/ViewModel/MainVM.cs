@@ -13,13 +13,15 @@ using System.Windows.Input;
 using View.Model;
 using View.Model.Services;
 using System.Windows.Data;
+using CommunityToolkit.Mvvm.ComponentModel;
+using System.Collections.ObjectModel;
 
 namespace View.ViewModel
 {
     /// <summary>
     /// Метод связывающий поля в форме с Contact.
     /// </summary>
-    public class MainVM: INotifyPropertyChanged
+    public class MainVM: ObservableObject, INotifyPropertyChanged
     {
         /// <summary>
         /// Текущий контакт.
@@ -29,12 +31,12 @@ namespace View.ViewModel
         /// <summary>
         /// Список всех контактов.
         /// </summary>
-        private List<Contact> _contacts;
+        private ObservableCollection<Contact> _contacts;
 
         /// <summary>
         /// Список всех тех контактов, которые отображаются в ListBox.
         /// </summary>
-        private List<Contact> _displayedContacts;        
+        private ObservableCollection<Contact> _displayedContacts;        
 
         /// <summary>
         /// Экзменпляр класса SaveCommand.
@@ -100,7 +102,7 @@ namespace View.ViewModel
             _saveCommand = new SaveCommand(this, ContactVM);
 
             ContactSerializer.IsCreateFolderAndFile();
-            Contacts = new List<Contact>();
+            Contacts = new ObservableCollection<Contact>();
             try 
             { 
                 Contacts = ContactSerializer.GetData(); 
@@ -117,13 +119,12 @@ namespace View.ViewModel
         /// <summary>
         /// Возвращает и задает список всех контактов.
         /// </summary>
-        public List<Contact> Contacts
+        public ObservableCollection<Contact> Contacts
         {
             get { return _contacts; }
             set
             {
                 _contacts = value;
-                OnPropertyChanged();
                 DisplayedContacts = Contacts;
             }
         }
@@ -131,7 +132,7 @@ namespace View.ViewModel
         /// <summary>
         /// Возвращает и задает список всех тех контактов, которые отображаются в ListBox.
         /// </summary>
-        public List<Contact> DisplayedContacts
+        public ObservableCollection<Contact> DisplayedContacts
         {
             get { return _displayedContacts; }
             set

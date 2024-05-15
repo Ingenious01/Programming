@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -66,7 +67,7 @@ namespace View.Model.Services
         /// <param name="str">Строка поиска</param>
         /// <param name="find">Функция, по которой выполняется поиск</param>
         /// <returns></returns>
-        public static List<Contact> ChangeByString(List<Contact> contacts, string str,
+        public static ObservableCollection<Contact> ChangeByString(ObservableCollection<Contact> contacts, string str,
             Func<Contact, string, bool> find)
         {
             if (str == "")
@@ -74,7 +75,7 @@ namespace View.Model.Services
                 return null;
             }
 
-            List<Contact> newList = new List<Contact>();
+            ObservableCollection<Contact> newList = new ObservableCollection<Contact>();
 
             foreach (var item in contacts)
             {

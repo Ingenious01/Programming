@@ -87,6 +87,7 @@ namespace View.ViewModel
                 }
                 else if (isEditing == false)
                 {
+                    Contact contact = new Contact();
                     ContactSerializer.IsCreateFolderAndFile();
 
                     Contact newContact = new Contact(name, phoneNumber, email);
@@ -95,6 +96,7 @@ namespace View.ViewModel
                     ContactSerializer.UpdateData(_viewModel.Contacts);
 
                     _viewModel.Contacts = ContactSerializer.GetData();
+
                     _contactVM.ClearText();
 
                     _viewModel.IsVisible = false;

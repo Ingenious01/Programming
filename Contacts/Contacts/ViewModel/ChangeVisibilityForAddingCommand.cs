@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using CommunityToolkit.Mvvm.Input;
+using System.Windows;
 using System.Windows.Input;
 
 namespace View.ViewModel
@@ -24,7 +25,7 @@ namespace View.ViewModel
         /// </summary>
         public ChangeVisibilityForAddingCommand(MainVM mainVM, ContactVM contactVM)
         {
-           _viewModel = mainVM;
+            _viewModel = mainVM;
             _contactVM = contactVM;
         }
 
@@ -55,7 +56,7 @@ namespace View.ViewModel
                 _contactVM.IsReadOnly = false;
                 _viewModel.IsEditing = false;
             }
-            else if (_viewModel.IsVisible == true) 
+            else if (_viewModel.IsVisible == true)
             {
                 _contactVM.ClearText();
             }

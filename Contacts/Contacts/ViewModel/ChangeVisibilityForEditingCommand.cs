@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CommunityToolkit.Mvvm.Input;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -52,7 +53,7 @@ namespace View.ViewModel
         /// </summary>
         /// <param name="parameter"></param>
         public void Execute(object parameter)
-        {           
+        {
             if (_viewModel.IsVisible == false)
             {
                 _viewModel.IsEnabled = false;
