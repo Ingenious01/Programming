@@ -15,13 +15,14 @@ using View.Model.Services;
 using System.Windows.Data;
 using CommunityToolkit.Mvvm.ComponentModel;
 using System.Collections.ObjectModel;
+using CommunityToolkit.Mvvm.Input;
 
 namespace View.ViewModel
 {
     /// <summary>
     /// Метод связывающий поля в форме с Contact.
     /// </summary>
-    public class MainVM: ObservableObject, INotifyPropertyChanged
+    public partial class MainVM : ObservableObject, INotifyPropertyChanged
     {
         /// <summary>
         /// Текущий контакт.
@@ -36,32 +37,32 @@ namespace View.ViewModel
         /// <summary>
         /// Список всех тех контактов, которые отображаются в ListBox.
         /// </summary>
-        private ObservableCollection<Contact> _displayedContacts;        
+        private ObservableCollection<Contact> _displayedContacts;
 
         /// <summary>
         /// Экзменпляр класса SaveCommand.
         /// </summary>
-        private ICommand _saveCommand;
+        public ICommand SaveCommand { get; }
 
         /// <summary>
         /// Экземпляр класса LoadCommand>.
         /// </summary>
-        private ICommand _loadCommand;
+        public ICommand LoadCommand { get; }
 
         /// <summary>
         /// Экземпляр класса RemoveCommand>.
         /// </summary>
-        private ICommand _removeCommand;
+        public ICommand RemoveCommand { get; }
 
         /// <summary>
         /// Экземпляр класса ChangeVisibilityForAddingCommand>.
         /// </summary>
-        private ICommand _changeVisibilityForAddingCommand;
+        public ICommand ChangeVisibilityForAddingCommand { get; }
 
         /// <summary>
         /// Экземпляр класса ChangeVisibilityForEditingCommand>.
         /// </summary>
-        private ICommand _changeVisibilityForEditingCommand;
+        public ICommand ChangeVisibilityForEditingCommand { get; }
 
         /// <summary>
         /// Экземпляр класса <see cref="ContactVM"/>
@@ -78,7 +79,7 @@ namespace View.ViewModel
 
         /// <inheritdoc/>
         public event PropertyChangedEventHandler PropertyChanged;
-   
+
         /// <summary>
         /// Оповещает при изменении параметра экземпляра класса.
         /// </summary>
@@ -93,19 +94,20 @@ namespace View.ViewModel
         /// </summary>
         public MainVM()
         {
-            CurrentContact = new Contact();            
-            _loadCommand = new LoadCommand(this);
+            CurrentContact = new Contact();
 
-            _removeCommand = new RemoveCommand(this, ContactVM);
-            _changeVisibilityForAddingCommand = new ChangeVisibilityForAddingCommand(this, ContactVM);
-            _changeVisibilityForEditingCommand = new ChangeVisibilityForEditingCommand(this, ContactVM);
-            _saveCommand = new SaveCommand(this, ContactVM);
+            ChangeVisibilityForAddingCommand = new RelayCommand(Add);
+            ChangeVisibilityForEditingCommand = new RelayCommand(Edit);
+
+            LoadCommand = new RelayCommand(Load);
+            RemoveCommand = new RelayCommand(Remove);
+            SaveCommand = new RelayCommand(Save);
 
             ContactSerializer.IsCreateFolderAndFile();
             Contacts = new ObservableCollection<Contact>();
-            try 
-            { 
-                Contacts = ContactSerializer.GetData(); 
+            try
+            {
+                Contacts = ContactSerializer.GetData();
                 _selectedIndex = -2;
             }
             catch { }
@@ -114,6 +116,8 @@ namespace View.ViewModel
 
             IsEnabled = true;
             IsVisible = false;
+
+
         }
 
         /// <summary>
@@ -202,85 +206,134 @@ namespace View.ViewModel
         /// <summary>
         /// Определяет какое действие происходит: добавление или изменение контакта.
         /// </summary>
+        [ObservableProperty]
         private bool _isEditing;
 
-        /// <summary>
-        /// Задает и возвращает значение, которое определяет какое действие
-        /// происходит: добавление или изменение контакта.
-        /// </summary>
-        public bool IsEditing
+        partial void OnIsEditingChanged(bool value)
         {
-            get { return _isEditing; }
-            set
-            {
-                _isEditing = value;
-                OnPropertyChanged();
-            }
-        }       
+            var a = 0;
+        }
 
         /// <summary>
         /// Значение, отвечающее за значение параметра IsEnabled у некоторых элементов верстки.
         /// </summary>
+        [ObservableProperty]
         private bool _isEnabled;
 
-        /// <summary>
-        /// Возвращает и задает значение, отвечающее за значение параметра IsEnable у некоторых
-        /// элементов верстки.
-        /// </summary>
-        public bool IsEnabled 
-        { 
-            get { return _isEnabled; }
-            set 
-            { 
-            _isEnabled = value;
-            OnPropertyChanged();
-            }
-        }        
+        partial void OnIsEnabledChanged(bool value)
+        {
+            var b =0;
+        }
 
         /// <summary>
         /// Значение, отвечающее за значение параметра Visivility у некоторых элементов верски.
         /// </summary>
+        [ObservableProperty]
         private bool _isVisible;
 
-        /// <summary>
-        /// Возвращает и задает значение, отвечающее за значение параметра Visibility у некоторых
-        /// элементов верски.
-        /// </summary>
-        public bool IsVisible
+        public void Save()
         {
-            get { return _isVisible; }
-            set
+            var isEditing = IsEditing;
+            var name = _contactVM.Name;
+            var phoneNumber = _contactVM.PhoneNumber;
+            var email = _contactVM.Email;
+
+            if (ValueValidator.CheckParameters(name, phoneNumber, email))
             {
-                _isVisible = value;
-                OnPropertyChanged();
+
+                if (isEditing == true)
+                {
+                    if (_contactVM.IsReadOnly == false)
+                    {
+                        var index = SelectedIndex;
+                        Contacts[SelectedIndex].Name = _contactVM.Name;
+                        Contacts[SelectedIndex].PhoneNumber =
+                            _contactVM.PhoneNumber;
+                        Contacts[SelectedIndex].Email = _contactVM.Email;
+                        ContactSerializer.UpdateData(Contacts);
+                        Contacts = ContactSerializer.GetData();
+
+                        IsVisible = false;
+                        _contactVM.IsReadOnly = true;
+                        IsEnabled = true;
+                        SelectedIndex = index;
+                    }
+                    else
+                    {
+                        _contactVM.IsReadOnly = false;
+                        IsEnabled = false;
+                    }
+                }
+                else if (isEditing == false)
+                {
+                    Contact contact = new Contact();
+                    ContactSerializer.IsCreateFolderAndFile();
+
+                    Contact newContact = new Contact(name, phoneNumber, email);
+                    Contacts.Add(newContact);
+
+                    ContactSerializer.UpdateData(Contacts);
+
+                    Contacts = ContactSerializer.GetData();
+
+                    _contactVM.ClearText();
+
+                    IsVisible = false;
+                    _contactVM.IsReadOnly = true;
+                    IsEnabled = true;
+                }
             }
-        }                
+        }
 
-        /// <summary>
-        /// Свойство сохранения данных.
-        /// </summary>
-        public ICommand SaveCommand => _saveCommand;
+        public void Remove()
+        {
+            try
+            {
+                Contacts.RemoveAt(SelectedIndex);
+                ContactSerializer.UpdateData(Contacts);
+                Contacts = ContactSerializer.GetData();
+                _contactVM.ClearText();
+            }
+            catch
+            {
 
-        /// <summary>
-        /// Свойство загрузки данных.
-        /// </summary>
-        public ICommand LoadCommand => _loadCommand;
+            }
+        }
 
-        /// <summary>
-        /// Свойство удаления данных.
-        /// </summary>
-        public ICommand RemoveCommand => _removeCommand;
+        public void Load()
+        {
+            Contacts = ContactSerializer.GetData();
+        }
 
-        /// <summary>
-        /// Свойство изменения параметра Visibility у некоторых элементов при изменении
-        /// параметров клиента.
-        /// </summary>
-        public ICommand ChangeVisibilityForAddingCommand => _changeVisibilityForAddingCommand;
+        public void Add()
+        {
+            if (IsVisible == false)
+            {
+                _contactVM.ClearText();
+                IsEnabled = false;
+                IsVisible = true;
+                _contactVM.IsReadOnly = false;
+                IsEditing = false;
+            }
+            else if (IsVisible == true)
+            {
+                _contactVM.ClearText();
+            }
+        }
 
-        /// <summary>
-        /// Свойство изменения параметра Visibility у некоторых элементов при изменении
-        /// параметров контакта.
-        /// </summary>
-        public ICommand ChangeVisibilityForEditingCommand => _changeVisibilityForEditingCommand;
+        public void Edit()
+        {
+            if (IsVisible == false)
+            {
+                IsEnabled = false;
+                IsVisible = true;
+                _contactVM.IsReadOnly = false;
+                IsEditing = true;
+            }
+            else if (IsVisible == true)
+            {
+                _contactVM.ClearText();
+            }
+        }
     }
 }
