@@ -206,30 +206,50 @@ namespace View.ViewModel
         /// <summary>
         /// Определяет какое действие происходит: добавление или изменение контакта.
         /// </summary>
-        [ObservableProperty]
+        //[ObservableProperty]
         private bool _isEditing;
 
-        partial void OnIsEditingChanged(bool value)
+        public bool IsEditing
         {
-            var a = 0;
+            get { return _isEditing; }
+            set
+            {
+                _isEditing = value;
+                OnPropertyChanged();
+            }
         }
 
         /// <summary>
         /// Значение, отвечающее за значение параметра IsEnabled у некоторых элементов верстки.
         /// </summary>
-        [ObservableProperty]
+        //[ObservableProperty]
         private bool _isEnabled;
 
-        partial void OnIsEnabledChanged(bool value)
+        public bool IsEnabled
         {
-            var b =0;
+            get { return _isEnabled; }
+            set
+            {
+                _isEnabled = value;
+                OnPropertyChanged();
+            }
         }
 
         /// <summary>
         /// Значение, отвечающее за значение параметра Visivility у некоторых элементов верски.
         /// </summary>
-        [ObservableProperty]
+        //[ObservableProperty]
         private bool _isVisible;
+
+        public bool IsVisible
+        {
+            get { return _isVisible; }
+            set
+            {
+                _isVisible = value;
+                OnPropertyChanged();
+            }
+        }
 
         public void Save()
         {
